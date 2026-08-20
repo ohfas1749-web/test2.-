@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>オーファス リファラル採用｜あなたの大切な人に、オーファスという選択肢を。</title>
+  <title>オーファス リファラル採用｜紹介を受けた方へ</title>
 
   <style>
 
@@ -38,13 +38,13 @@
     }
 
     :root {
-      --blue: #112ccf;
-      --dark-blue: #071a78;
-      --yellow: #ffd52e;
-      --light-yellow: #fff8d8;
-      --green: #22a833;
+      --blue: #1536d8;
+      --dark-blue: #0d236f;
+      --yellow: #ffd72e;
+      --light-yellow: #fff9d9;
+      --light-blue: #eef3ff;
       --gray: #f6f7f9;
-      --dark: #181818;
+      --dark: #161616;
       --white: #ffffff;
     }
 
@@ -54,9 +54,11 @@
     ========================= */
 
     header {
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 82px;
-      background: rgba(255,255,255,0.96);
 
       display: flex;
       justify-content: space-between;
@@ -64,25 +66,21 @@
 
       padding: 0 6%;
 
-      position: fixed;
-      top: 0;
-      left: 0;
+      background: rgba(255,255,255,0.97);
+      border-bottom: 1px solid #eee;
 
       z-index: 1000;
-
-      border-bottom: 1px solid #eee;
     }
 
     .logo img {
       width: 180px;
-      height: auto;
       display: block;
     }
 
     nav {
       display: flex;
-      gap: 32px;
       align-items: center;
+      gap: 28px;
     }
 
     nav a {
@@ -90,7 +88,6 @@
       color: #222;
       font-weight: 700;
       font-size: 14px;
-      transition: 0.3s;
     }
 
     nav a:hover {
@@ -99,7 +96,7 @@
 
     .nav-entry {
       background: var(--yellow);
-      padding: 11px 22px;
+      padding: 10px 20px;
       border-radius: 30px;
     }
 
@@ -109,23 +106,23 @@
     ========================= */
 
     .hero {
-      min-height: 92vh;
-
-      padding: 170px 8% 100px;
+      min-height: 94vh;
 
       display: flex;
       align-items: center;
+
+      padding: 155px 8% 90px;
 
       position: relative;
       overflow: hidden;
 
       background:
         linear-gradient(
-          115deg,
+          120deg,
           #ffffff 0%,
-          #ffffff 55%,
-          #f4f6ff 55%,
-          #f4f6ff 100%
+          #ffffff 58%,
+          #eef3ff 58%,
+          #eef3ff 100%
         );
     }
 
@@ -133,61 +130,55 @@
       content: "";
       position: absolute;
 
-      width: 450px;
-      height: 450px;
+      width: 420px;
+      height: 420px;
 
       background: var(--yellow);
-
       border-radius: 50%;
 
       right: -100px;
       top: 100px;
-
-      opacity: 0.95;
     }
 
     .hero::after {
       content: "";
       position: absolute;
 
-      width: 280px;
-      height: 280px;
+      width: 240px;
+      height: 240px;
 
       background: var(--blue);
-
       border-radius: 50%;
 
       right: 220px;
-      bottom: -120px;
-
-      opacity: 0.95;
+      bottom: -110px;
     }
 
     .hero-content {
-      max-width: 850px;
       position: relative;
       z-index: 2;
+
+      max-width: 900px;
     }
 
-    .hero-small {
+    .hero-label {
       display: inline-block;
 
       color: var(--blue);
 
-      font-weight: 800;
-      font-size: 14px;
+      font-size: 13px;
+      font-weight: 900;
 
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
 
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     .hero h1 {
       font-size: clamp(38px, 5.5vw, 72px);
-      line-height: 1.25;
-      letter-spacing: -0.02em;
+      line-height: 1.3;
 
-      margin-bottom: 28px;
+      margin-bottom: 30px;
     }
 
     .hero h1 span {
@@ -200,7 +191,7 @@
       position: absolute;
 
       left: 0;
-      bottom: 3px;
+      bottom: 4px;
 
       width: 100%;
       height: 14px;
@@ -211,44 +202,68 @@
     }
 
     .hero-text {
+      color: #555;
       font-size: 18px;
       line-height: 2;
 
-      color: #555;
-
-      margin-bottom: 38px;
+      margin-bottom: 35px;
     }
 
-    .hero-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 15px;
+    .hero-note {
+      display: inline-block;
 
-      background: var(--blue);
-      color: white;
+      background: white;
+      padding: 10px 18px;
+
+      border-radius: 10px;
+
+      font-weight: bold;
+      margin-bottom: 35px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .button-main,
+    .button-sub {
+      display: inline-block;
 
       text-decoration: none;
       font-weight: bold;
 
-      padding: 17px 30px;
-
+      padding: 16px 28px;
       border-radius: 40px;
 
       transition: 0.3s;
     }
 
-    .hero-button:hover {
+    .button-main {
+      background: var(--blue);
+      color: white;
+    }
+
+    .button-sub {
+      background: white;
+      color: var(--blue);
+
+      border: 2px solid var(--blue);
+    }
+
+    .button-main:hover,
+    .button-sub:hover {
       transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(17,44,207,0.25);
     }
 
 
     /* =========================
-       共通セクション
+       共通
     ========================= */
 
     section {
-      padding: 110px 8%;
+      padding: 105px 8%;
     }
 
     .section-inner {
@@ -257,7 +272,7 @@
     }
 
     .section-head {
-      margin-bottom: 60px;
+      margin-bottom: 55px;
     }
 
     .section-en {
@@ -265,23 +280,88 @@
 
       color: var(--blue);
 
-      font-weight: 800;
       font-size: 13px;
+      font-weight: 900;
 
-      letter-spacing: 0.16em;
+      letter-spacing: 0.14em;
 
       margin-bottom: 10px;
     }
 
     .section-title {
       font-size: clamp(30px, 4vw, 48px);
-      line-height: 1.4;
+      line-height: 1.5;
     }
 
     .section-description {
       color: #666;
+
+      max-width: 720px;
+
       margin-top: 18px;
-      max-width: 650px;
+    }
+
+
+    /* =========================
+       リファラルについて
+    ========================= */
+
+    .referral-message {
+      background: #fff;
+    }
+
+    .message-box {
+      background: var(--light-yellow);
+
+      border-radius: 24px;
+
+      padding: 65px;
+
+      position: relative;
+      overflow: hidden;
+    }
+
+    .message-box::after {
+      content: "REFERRAL";
+
+      position: absolute;
+
+      right: 20px;
+      bottom: -25px;
+
+      font-size: 95px;
+      font-weight: 900;
+
+      color: rgba(21,54,216,0.06);
+    }
+
+    .message-box h3 {
+      font-size: 32px;
+      line-height: 1.6;
+
+      margin-bottom: 25px;
+    }
+
+    .message-box p {
+      color: #555;
+      max-width: 850px;
+
+      margin-bottom: 16px;
+    }
+
+    .message-highlight {
+      margin-top: 30px;
+
+      display: inline-block;
+
+      background: var(--blue);
+      color: white;
+
+      padding: 12px 20px;
+
+      border-radius: 10px;
+
+      font-weight: bold;
     }
 
 
@@ -290,62 +370,41 @@
     ========================= */
 
     .about {
-      background: white;
+      background: var(--gray);
     }
 
-    .about-box {
-      background: var(--gray);
-
-      border-radius: 24px;
-
-      padding: 60px;
-
+    .about-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1.1fr 1fr;
 
-      gap: 60px;
-
+      gap: 45px;
       align-items: center;
     }
 
-    .about-number {
-      color: var(--yellow);
-      background: var(--blue);
-
-      display: inline-block;
-
-      padding: 6px 14px;
-
-      border-radius: 30px;
-
-      font-size: 13px;
-      font-weight: bold;
-
-      margin-bottom: 20px;
-    }
-
-    .about h3 {
+    .about-text h3 {
       font-size: 30px;
       line-height: 1.5;
+
       margin-bottom: 20px;
     }
 
-    .about p {
+    .about-text p {
       color: #555;
     }
 
-    .business-list {
+    .business-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 14px;
+
+      gap: 15px;
     }
 
-    .business-item {
+    .business-card {
       background: white;
 
-      padding: 20px;
+      border-radius: 16px;
 
-      border-radius: 14px;
+      padding: 25px;
 
       font-weight: bold;
 
@@ -366,64 +425,65 @@
       color: var(--yellow);
     }
 
+    .mvv .section-description {
+      color: #dbe2ff;
+    }
+
     .mvv-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
 
-      gap: 25px;
+      gap: 22px;
     }
 
     .mvv-card {
       background: white;
       color: #222;
 
-      padding: 45px 35px;
-
       border-radius: 20px;
 
-      min-height: 310px;
+      padding: 42px 32px;
+
+      min-height: 300px;
 
       position: relative;
-
-      transition: 0.3s;
-    }
-
-    .mvv-card:hover {
-      transform: translateY(-7px);
-    }
-
-    .mvv-label {
-      color: var(--blue);
-
-      font-weight: 900;
-      font-size: 13px;
-
-      letter-spacing: 0.14em;
-
-      margin-bottom: 18px;
     }
 
     .mvv-number {
       position: absolute;
 
       right: 25px;
-      top: 15px;
+      top: 12px;
 
-      color: #eef0ff;
-
-      font-size: 70px;
+      font-size: 72px;
       font-weight: 900;
+
+      color: #eef1ff;
+    }
+
+    .mvv-label {
+      color: var(--blue);
+
+      font-size: 13px;
+      font-weight: 900;
+
+      letter-spacing: 0.14em;
+
+      margin-bottom: 20px;
     }
 
     .mvv-card h3 {
-      font-size: 24px;
-      line-height: 1.7;
-
       position: relative;
       z-index: 2;
+
+      font-size: 24px;
+      line-height: 1.7;
     }
 
     .value-list {
+      position: relative;
+      z-index: 2;
+
       list-style: none;
     }
 
@@ -440,56 +500,58 @@
 
 
     /* =========================
-       JOB
+       仕事
     ========================= */
 
     .jobs {
-      background: #f7f8fb;
+      background: white;
     }
 
     .job-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+
+      gap: 22px;
     }
 
     .job-card {
-      background: white;
+      border: 1px solid #e5e5e5;
 
       border-radius: 18px;
 
-      padding: 35px;
+      padding: 32px;
+
+      background: white;
 
       transition: 0.3s;
-
-      border: 1px solid #eee;
     }
 
     .job-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+
+      box-shadow: 0 15px 35px rgba(0,0,0,0.07);
     }
 
     .job-icon {
       width: 52px;
       height: 52px;
 
-      border-radius: 14px;
-
-      background: var(--light-yellow);
-
       display: flex;
       justify-content: center;
       align-items: center;
 
+      background: var(--light-yellow);
+
+      border-radius: 14px;
+
       font-size: 25px;
 
-      margin-bottom: 22px;
+      margin-bottom: 20px;
     }
 
     .job-card h3 {
+      margin-bottom: 10px;
       font-size: 21px;
-      margin-bottom: 12px;
     }
 
     .job-card p {
@@ -499,11 +561,99 @@
 
 
     /* =========================
-       RECRUIT
+       STAFF INTERVIEW
+    ========================= */
+
+    .staff {
+      background: var(--light-blue);
+    }
+
+    .staff-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 24px;
+    }
+
+    .staff-card {
+      background: white;
+
+      border-radius: 20px;
+
+      overflow: hidden;
+
+      box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+
+      transition: 0.3s;
+    }
+
+    .staff-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .staff-photo {
+      height: 220px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: #dfe5f5;
+
+      color: #777;
+
+      font-size: 14px;
+    }
+
+    .staff-content {
+      padding: 25px;
+    }
+
+    .staff-job {
+      display: inline-block;
+
+      background: var(--yellow);
+
+      padding: 4px 10px;
+
+      border-radius: 20px;
+
+      font-size: 12px;
+      font-weight: bold;
+
+      margin-bottom: 14px;
+    }
+
+    .staff-content h3 {
+      font-size: 20px;
+      line-height: 1.5;
+
+      margin-bottom: 12px;
+    }
+
+    .staff-content p {
+      color: #666;
+      font-size: 14px;
+    }
+
+    .staff-link {
+      display: inline-block;
+
+      margin-top: 18px;
+
+      text-decoration: none;
+      color: var(--blue);
+
+      font-weight: bold;
+    }
+
+
+    /* =========================
+       募集要項
     ========================= */
 
     .recruit {
-      background: white;
+      background: #fff;
     }
 
     .recruit-list {
@@ -512,22 +662,22 @@
     }
 
     .recruit-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      gap: 20px;
+
       border: 1px solid #ddd;
 
       border-radius: 16px;
 
       padding: 25px 30px;
-
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      transition: 0.3s;
     }
 
     .recruit-card:hover {
-      border-color: var(--blue);
       background: #f8f9ff;
+      border-color: var(--blue);
     }
 
     .recruit-info h3 {
@@ -540,7 +690,7 @@
     }
 
     .detail-button {
-      text-decoration: none;
+      display: inline-block;
 
       background: var(--yellow);
       color: #111;
@@ -549,9 +699,54 @@
 
       border-radius: 30px;
 
+      text-decoration: none;
       font-weight: bold;
 
       white-space: nowrap;
+    }
+
+
+    /* =========================
+       紹介からの流れ
+    ========================= */
+
+    .flow {
+      background: var(--gray);
+    }
+
+    .flow-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+
+      gap: 18px;
+    }
+
+    .flow-card {
+      background: white;
+
+      border-radius: 18px;
+
+      padding: 30px;
+
+      position: relative;
+    }
+
+    .flow-number {
+      color: var(--blue);
+
+      font-size: 40px;
+      font-weight: 900;
+
+      margin-bottom: 15px;
+    }
+
+    .flow-card h3 {
+      margin-bottom: 10px;
+    }
+
+    .flow-card p {
+      color: #666;
+      font-size: 14px;
     }
 
 
@@ -563,13 +758,14 @@
       background: var(--yellow);
 
       text-align: center;
-
-      padding: 100px 8%;
     }
 
     .cta p {
       color: #555;
-      margin: 20px 0 35px;
+
+      margin: 20px auto 35px;
+
+      max-width: 650px;
     }
 
     .cta-button {
@@ -579,41 +775,37 @@
       color: white;
 
       text-decoration: none;
-
       font-weight: bold;
 
-      font-size: 17px;
-
-      padding: 18px 42px;
+      padding: 18px 40px;
 
       border-radius: 50px;
     }
 
 
     /* =========================
-       FOOTER
+       フッター
     ========================= */
 
     footer {
       background: #111;
-
       color: white;
 
-      padding: 55px 8%;
-
       text-align: center;
+
+      padding: 55px 8%;
     }
 
     .footer-logo {
-      background: white;
-
       display: inline-block;
 
-      padding: 15px 25px;
+      background: white;
+
+      padding: 14px 24px;
 
       border-radius: 10px;
 
-      margin-bottom: 25px;
+      margin-bottom: 20px;
     }
 
     .footer-logo img {
@@ -621,8 +813,8 @@
     }
 
     footer p {
-      font-size: 12px;
       color: #aaa;
+      font-size: 12px;
     }
 
 
@@ -630,7 +822,7 @@
        スマホ
     ========================= */
 
-    @media (max-width: 850px) {
+    @media (max-width: 900px) {
 
       header {
         height: 70px;
@@ -645,26 +837,18 @@
         display: none;
       }
 
-      .nav-entry {
-        padding: 9px 15px;
-        font-size: 12px;
-      }
-
       .hero {
         min-height: auto;
 
-        padding:
-          135px
-          7%
-          90px;
+        padding: 130px 7% 85px;
       }
 
       .hero::before {
         width: 220px;
         height: 220px;
 
-        right: -100px;
-        top: 100px;
+        right: -90px;
+        top: 120px;
       }
 
       .hero::after {
@@ -676,22 +860,29 @@
       }
 
       section {
-        padding: 80px 6%;
+        padding: 75px 6%;
       }
 
-      .about-box {
+      .message-box {
+        padding: 38px 25px;
+      }
+
+      .message-box h3 {
+        font-size: 25px;
+      }
+
+      .about-grid {
         grid-template-columns: 1fr;
-
-        padding: 35px 25px;
-
-        gap: 35px;
       }
 
-      .business-list {
+      .business-grid {
         grid-template-columns: 1fr;
       }
 
-      .mvv-grid {
+      .mvv-grid,
+      .job-grid,
+      .staff-grid,
+      .flow-grid {
         grid-template-columns: 1fr;
       }
 
@@ -699,15 +890,9 @@
         min-height: auto;
       }
 
-      .job-grid {
-        grid-template-columns: 1fr;
-      }
-
       .recruit-card {
         flex-direction: column;
         align-items: flex-start;
-
-        gap: 20px;
       }
 
     }
@@ -719,9 +904,7 @@
 <body>
 
 
-  <!-- =========================
-       HEADER
-  ========================== -->
+  <!-- HEADER -->
 
   <header>
 
@@ -730,13 +913,13 @@
     </a>
 
     <nav>
-      <a href="#about">オーファスについて</a>
-      <a href="#mvv">私たちの想い</a>
-      <a href="#jobs">仕事を知る</a>
+      <a href="#referral">紹介を受けた方へ</a>
+      <a href="#about">会社を知る</a>
+      <a href="#staff">働く人を知る</a>
       <a href="#recruit">募集職種</a>
 
       <a href="#entry" class="nav-entry">
-        紹介で応募する
+        話を聞いてみる
       </a>
     </nav>
 
@@ -744,35 +927,50 @@
 
 
 
-  <!-- =========================
-       HERO
-  ========================== -->
-
   <main>
+
+
+    <!-- HERO -->
 
     <section class="hero">
 
       <div class="hero-content">
 
-        <span class="hero-small">
+        <span class="hero-label">
           OHFAS REFERRAL RECRUITING
         </span>
 
         <h1>
-          あなたの大切な人に、<br>
-          <span>オーファスという選択肢を。</span>
+          「ここ、あなたに合うかも。」<br>
+          <span>そんなひと言から、出会いが始まります。</span>
         </h1>
 
         <p class="hero-text">
-          社員からの紹介で、このページをご覧いただいたあなたへ。<br>
-          私たちがどんな会社で、どんな想いで働いているのか。<br>
-          まずは少しだけ、オーファスのことを知ってください。
+          社員・スタッフから紹介を受けて、
+          このページをご覧いただいたあなたへ。<br><br>
+
+          今すぐ転職を考えている方も、
+          まだそこまで考えていない方も。<br>
+
+          まずはオーファスがどんな会社なのか、
+          少しだけ覗いてみませんか？
         </p>
 
-        <a href="#about" class="hero-button">
-          オーファスを知る
-          <span>→</span>
-        </a>
+        <div class="hero-note">
+          応募する前に、「知る」だけでも大丈夫です。
+        </div>
+
+        <div class="hero-buttons">
+
+          <a href="#about" class="button-main">
+            オーファスを知る
+          </a>
+
+          <a href="#staff" class="button-sub">
+            働く人を見る
+          </a>
+
+        </div>
 
       </div>
 
@@ -780,9 +978,72 @@
 
 
 
-    <!-- =========================
-         ABOUT
-    ========================== -->
+    <!-- 紹介を受けた方へ -->
+
+    <section class="referral-message" id="referral">
+
+      <div class="section-inner">
+
+        <div class="section-head">
+
+          <span class="section-en">
+            FOR YOU
+          </span>
+
+          <h2 class="section-title">
+            あなたにこのページが届いた理由。
+          </h2>
+
+        </div>
+
+
+        <div class="message-box">
+
+          <h3>
+            人とのつながりを、<br>
+            大切にした採用です。
+          </h3>
+
+          <p>
+            オーファスでは、私たちのことをよく知る社員・スタッフから、
+            大切な友人や知人をご紹介いただく「リファラル採用」を行っています。
+          </p>
+
+          <p>
+            あなたにこのページが届いたのも、
+            誰かが「オーファスに合うかもしれない」と
+            思ってくれたからかもしれません。
+          </p>
+
+          <p>
+            だからといって、
+            すぐに応募や転職を決める必要はありません。
+          </p>
+
+          <p>
+            どんな会社なのか。<br>
+            どんな人が働いているのか。<br>
+            どんな仕事があるのか。
+          </p>
+
+          <p>
+            このページを通して、
+            まずはオーファスを知ってもらえたら嬉しいです。
+          </p>
+
+          <div class="message-highlight">
+            「ちょっと話を聞いてみたい」からでも大歓迎です。
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ABOUT -->
 
     <section class="about" id="about">
 
@@ -795,53 +1056,59 @@
           </span>
 
           <h2 class="section-title">
-            オーファスって、<br>
-            どんな会社？
+            オーファスって、どんな会社？
           </h2>
 
         </div>
 
 
-        <div class="about-box">
+        <div class="about-grid">
 
-          <div>
-
-            <span class="about-number">
-              BUILDING MANAGEMENT
-            </span>
+          <div class="about-text">
 
             <h3>
               建物を守る。<br>
-              その先の暮らしを守る。
+              その先の安心を支える。
             </h3>
 
             <p>
-              オーファスは、建物を安全・快適に利用できる環境を
-              支える総合ビルメンテナンス会社です。
-              清掃・設備管理・警備など、
-              建物に関わるさまざまな仕事を通して、
+              オーファスは、建物の安全・快適な環境を支える
+              総合ビルメンテナンス会社です。
+            </p>
+
+            <p>
+              清掃、設備管理、警備、顧客管理など、
+              さまざまな仕事を通じて、
               地域の暮らしや社会を支えています。
             </p>
 
           </div>
 
 
-          <div class="business-list">
+          <div class="business-grid">
 
-            <div class="business-item">
+            <div class="business-card">
               🧹 清掃管理
             </div>
 
-            <div class="business-item">
+            <div class="business-card">
               🔧 設備管理
             </div>
 
-            <div class="business-item">
+            <div class="business-card">
               🛡️ 警備業務
             </div>
 
-            <div class="business-item">
+            <div class="business-card">
               🤝 企画・顧客管理
+            </div>
+
+            <div class="business-card">
+              ☎️ 電話交換
+            </div>
+
+            <div class="business-card">
+              🏢 その他施設管理
             </div>
 
           </div>
@@ -854,9 +1121,7 @@
 
 
 
-    <!-- =========================
-         MVV
-    ========================== -->
+    <!-- MVV -->
 
     <section class="mvv" id="mvv">
 
@@ -872,9 +1137,9 @@
             私たちが大切にしていること
           </h2>
 
-          <p class="section-description" style="color:#dfe4ff;">
-            毎日の仕事の先に、お客様の安心がある。<br>
-            オーファスが大切にしている考え方をご紹介します。
+          <p class="section-description">
+            日々の仕事の判断や行動の基準として、
+            オーファスが大切にしている考え方です。
           </p>
 
         </div>
@@ -882,8 +1147,6 @@
 
         <div class="mvv-grid">
 
-
-          <!-- MISSION -->
 
           <div class="mvv-card">
 
@@ -902,9 +1165,6 @@
 
           </div>
 
-
-
-          <!-- VISION -->
 
           <div class="mvv-card">
 
@@ -925,9 +1185,6 @@
           </div>
 
 
-
-          <!-- VALUE -->
-
           <div class="mvv-card">
 
             <div class="mvv-number">
@@ -945,8 +1202,7 @@
               </li>
 
               <li>
-                変化に気づき<br>
-                速やかに対応する
+                変化に気づき速やかに対応する
               </li>
 
               <li>
@@ -966,11 +1222,9 @@
 
 
 
-    <!-- =========================
-         JOBS
-    ========================== -->
+    <!-- 仕事 -->
 
-    <section class="jobs" id="jobs">
+    <section class="jobs">
 
       <div class="section-inner">
 
@@ -981,14 +1235,13 @@
           </span>
 
           <h2 class="section-title">
-            オーファスの仕事
+            いろいろな働き方があります。
           </h2>
 
           <p class="section-description">
-            ひとことで「ビルメンテナンス」と言っても、
-            仕事内容はさまざま。
-            それぞれの仕事がつながりながら、
-            建物の安全と快適を支えています。
+            オーファスには、
+            経験を活かせる仕事も、
+            未経験から始められる仕事もあります。
           </p>
 
         </div>
@@ -1008,8 +1261,8 @@
             </h3>
 
             <p>
-              電気・空調・給排水など、
-              建物設備の点検や保守管理を行います。
+              建物の電気・空調・給排水などの
+              点検や保守管理を行います。
             </p>
 
           </div>
@@ -1026,8 +1279,8 @@
             </h3>
 
             <p>
-              オフィスや公共施設など、
-              建物を利用する方が快適に過ごせる環境をつくります。
+              オフィスや公共施設などの
+              快適な環境を支える仕事です。
             </p>
 
           </div>
@@ -1044,8 +1297,8 @@
             </h3>
 
             <p>
-              施設やイベントなどで、
-              人と建物の安全・安心を守ります。
+              施設やイベントで、
+              人と建物の安全を守ります。
             </p>
 
           </div>
@@ -1062,8 +1315,8 @@
             </h3>
 
             <p>
-              お客様と現場スタッフをつなぎながら、
-              より良い建物管理をつくっていきます。
+              お客様と現場をつなぎながら、
+              建物管理を支えます。
             </p>
 
           </div>
@@ -1080,8 +1333,8 @@
             </h3>
 
             <p>
-              お客様からの電話を適切な部署へつなぎ、
-              施設の窓口を支える仕事です。
+              電話を適切な部署へつなぎ、
+              施設の窓口を支えます。
             </p>
 
           </div>
@@ -1098,8 +1351,8 @@
             </h3>
 
             <p>
-              建物や施設に合わせて、
-              さまざまなサービスを提供しています。
+              施設や勤務地に合わせた
+              さまざまな仕事があります。
             </p>
 
           </div>
@@ -1113,9 +1366,247 @@
 
 
 
-    <!-- =========================
-         RECRUIT
-    ========================== -->
+    <!-- STAFF INTERVIEW -->
+
+    <section class="staff" id="staff">
+
+      <div class="section-inner">
+
+        <div class="section-head">
+
+          <span class="section-en">
+            STAFF INTERVIEW
+          </span>
+
+          <h2 class="section-title">
+            実際に働く人に聞いてみました。
+          </h2>
+
+          <p class="section-description">
+            入社したきっかけや、
+            仕事のやりがい、
+            オーファスで働くリアルを
+            スタッフの言葉でご紹介します。
+          </p>
+
+        </div>
+
+
+        <div class="staff-grid">
+
+
+          <!-- 1 -->
+
+          <article class="staff-card">
+
+            <div class="staff-photo">
+              STAFF PHOTO 01
+            </div>
+
+            <div class="staff-content">
+
+              <span class="staff-job">
+                電話交換スタッフ
+              </span>
+
+              <h3>
+                仕事と好きなことを
+                両立できる働き方。
+              </h3>
+
+              <p>
+                副業や自分の時間も大切にしながら、
+                日々の仕事に向き合っています。
+              </p>
+
+              <a href="#" class="staff-link">
+                インタビューを読む →
+              </a>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- 2 -->
+
+          <article class="staff-card">
+
+            <div class="staff-photo">
+              STAFF PHOTO 02
+            </div>
+
+            <div class="staff-content">
+
+              <span class="staff-job">
+                企画・顧客管理
+              </span>
+
+              <h3>
+                お客様と現場をつなぐ、
+                調整役として。
+              </h3>
+
+              <p>
+                入社2年目。
+                日々の顧客対応や現場管理を担当しています。
+              </p>
+
+              <a href="#" class="staff-link">
+                インタビューを読む →
+              </a>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- 3 -->
+
+          <article class="staff-card">
+
+            <div class="staff-photo">
+              STAFF PHOTO 03
+            </div>
+
+            <div class="staff-content">
+
+              <span class="staff-job">
+                設備管理
+              </span>
+
+              <h3>
+                建物の当たり前を、
+                毎日支える仕事。
+              </h3>
+
+              <p>
+                設備の点検や管理を通して、
+                施設を安心して使える環境を守ります。
+              </p>
+
+              <a href="#" class="staff-link">
+                インタビューを読む →
+              </a>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- 4 -->
+
+          <article class="staff-card">
+
+            <div class="staff-photo">
+              STAFF PHOTO 04
+            </div>
+
+            <div class="staff-content">
+
+              <span class="staff-job">
+                清掃スタッフ
+              </span>
+
+              <h3>
+                「ありがとう」が
+                直接届く仕事。
+              </h3>
+
+              <p>
+                利用する方からのひと言が、
+                日々のやりがいにつながっています。
+              </p>
+
+              <a href="#" class="staff-link">
+                インタビューを読む →
+              </a>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- 5 -->
+
+          <article class="staff-card">
+
+            <div class="staff-photo">
+              STAFF PHOTO 05
+            </div>
+
+            <div class="staff-content">
+
+              <span class="staff-job">
+                警備スタッフ
+              </span>
+
+              <h3>
+                安心をつくることが、
+                私たちの役割です。
+              </h3>
+
+              <p>
+                施設やイベントを利用する方が、
+                安心して過ごせる環境を支えています。
+              </p>
+
+              <a href="#" class="staff-link">
+                インタビューを読む →
+              </a>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- 6 -->
+
+          <article class="staff-card">
+
+            <div class="staff-photo">
+              STAFF PHOTO 06
+            </div>
+
+            <div class="staff-content">
+
+              <span class="staff-job">
+                本社スタッフ
+              </span>
+
+              <h3>
+                現場で働く仲間を、
+                本社から支える。
+              </h3>
+
+              <p>
+                部署を越えて協力しながら、
+                日々の業務を支えています。
+              </p>
+
+              <a href="#" class="staff-link">
+                インタビューを読む →
+              </a>
+
+            </div>
+
+          </article>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- RECRUIT -->
 
     <section class="recruit" id="recruit">
 
@@ -1128,12 +1619,12 @@
           </span>
 
           <h2 class="section-title">
-            現在募集中の仕事
+            今、募集している仕事。
           </h2>
 
           <p class="section-description">
-            あなたに合った働き方が、
-            オーファスで見つかるかもしれません。
+            気になる仕事があれば、
+            まずは仕事内容を見るだけでも大丈夫です。
           </p>
 
         </div>
@@ -1163,7 +1654,6 @@
           </div>
 
 
-
           <div class="recruit-card">
 
             <div class="recruit-info">
@@ -1185,7 +1675,6 @@
           </div>
 
 
-
           <div class="recruit-card">
 
             <div class="recruit-info">
@@ -1205,7 +1694,6 @@
             </a>
 
           </div>
-
 
 
           <div class="recruit-card">
@@ -1237,31 +1725,135 @@
 
 
 
-    <!-- =========================
-         ENTRY
-    ========================== -->
+    <!-- FLOW -->
+
+    <section class="flow">
+
+      <div class="section-inner">
+
+        <div class="section-head">
+
+          <span class="section-en">
+            FLOW
+          </span>
+
+          <h2 class="section-title">
+            紹介を受けてからの流れ
+          </h2>
+
+          <p class="section-description">
+            紹介だからといって、
+            特別な選考をするわけではありません。
+            まずは会社や仕事を知るところから始められます。
+          </p>
+
+        </div>
+
+
+        <div class="flow-grid">
+
+
+          <div class="flow-card">
+
+            <div class="flow-number">
+              01
+            </div>
+
+            <h3>
+              このページを見る
+            </h3>
+
+            <p>
+              まずは会社や仕事、
+              働く人について知ってください。
+            </p>
+
+          </div>
+
+
+          <div class="flow-card">
+
+            <div class="flow-number">
+              02
+            </div>
+
+            <h3>
+              気になる仕事を探す
+            </h3>
+
+            <p>
+              自分に合いそうな仕事があるか、
+              募集内容をチェック。
+            </p>
+
+          </div>
+
+
+          <div class="flow-card">
+
+            <div class="flow-number">
+              03
+            </div>
+
+            <h3>
+              話を聞いてみる
+            </h3>
+
+            <p>
+              応募前の相談や質問も歓迎です。
+            </p>
+
+          </div>
+
+
+          <div class="flow-card">
+
+            <div class="flow-number">
+              04
+            </div>
+
+            <h3>
+              希望すれば選考へ
+            </h3>
+
+            <p>
+              納得した上で、
+              通常の選考に進んでいただきます。
+            </p>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- CTA -->
 
     <section class="cta" id="entry">
 
       <div class="section-inner">
 
         <span class="section-en">
-          REFERRAL ENTRY
+          CONTACT
         </span>
 
         <h2 class="section-title">
-          まずは、話を聞いてみませんか？
+          「少し気になる」からでも大丈夫です。
         </h2>
 
         <p>
-          紹介だからといって、
-          必ず応募しなければならないわけではありません。<br>
-          少しでも気になる仕事があれば、
-          お気軽にお問い合わせください。
+          すぐに応募を決めなくても構いません。
+          仕事のこと、働き方のこと、
+          気になることがあればお気軽にご相談ください。
         </p>
 
         <a href="#" class="cta-button">
-          紹介で応募・問い合わせする →
+          まずは話を聞いてみる →
         </a>
 
       </div>
@@ -1273,9 +1865,7 @@
 
 
 
-  <!-- =========================
-       FOOTER
-  ========================== -->
+  <!-- FOOTER -->
 
   <footer>
 
