@@ -26,6 +26,7 @@
         "Yu Gothic",
         "Meiryo",
         sans-serif;
+
       color: #222;
       background: #fff;
       line-height: 1.8;
@@ -34,13 +35,10 @@
 
     :root {
       --blue: #1737d8;
-      --dark-blue: #0c236f;
       --yellow: #ffd62f;
       --light-yellow: #fff7d3;
       --light-blue: #eef3ff;
       --gray: #f7f8fa;
-      --white: #ffffff;
-      --dark: #151515;
     }
 
     /* =========================
@@ -59,15 +57,17 @@
       align-items: center;
       justify-content: space-between;
 
-      background: rgba(255,255,255,0.96);
+      background: rgba(255,255,255,.96);
       border-bottom: 1px solid #eee;
+
       z-index: 1000;
-      transition: 0.3s;
+
+      transition: .3s;
     }
 
     header.scrolled {
       height: 68px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      box-shadow: 0 8px 25px rgba(0,0,0,.08);
       backdrop-filter: blur(10px);
     }
 
@@ -87,7 +87,7 @@
       text-decoration: none;
       font-size: 14px;
       font-weight: 700;
-      transition: 0.3s;
+      transition: .3s;
     }
 
     nav a:hover {
@@ -109,151 +109,101 @@
     }
 
     /* =========================
-       HERO
+       HERO SLIDESHOW
     ========================= */
 
     .hero {
-      min-height: 95vh;
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      align-items: stretch;
+      position: relative;
 
-      padding-top: 82px;
-      background: #fff;
-    }
+      min-height: 900px;
 
-    .hero-left {
-      padding: 90px 7% 80px 8%;
       display: flex;
       align-items: center;
-      position: relative;
-      z-index: 2;
-    }
 
-    .hero-content {
-      max-width: 760px;
-    }
+      padding-top: 82px;
 
-    .hero-label {
-      display: inline-block;
-      color: var(--blue);
-      font-size: 13px;
-      font-weight: 900;
-      letter-spacing: 0.15em;
-      margin-bottom: 20px;
-    }
-
-    .hero h1 {
-      font-size: clamp(46px, 5vw, 78px);
-      line-height: 1.22;
-      letter-spacing: -0.02em;
-      margin-bottom: 30px;
-    }
-
-    .hero h1 span {
-      position: relative;
-      display: inline-block;
-    }
-
-    .hero h1 span::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 4px;
-      width: 100%;
-      height: 15px;
-      background: var(--yellow);
-      z-index: -1;
-      transform: scaleX(0);
-      transform-origin: left;
-      animation: marker 1s ease 0.6s forwards;
-    }
-
-    @keyframes marker {
-      to {
-        transform: scaleX(1);
-      }
-    }
-
-    .hero-text {
-      color: #555;
-      font-size: 17px;
-      line-height: 2;
-      margin-bottom: 28px;
-    }
-
-    .hero-note {
-      display: inline-block;
-      background: white;
-      padding: 10px 18px;
-      border-radius: 10px;
-      font-weight: bold;
-      margin-bottom: 30px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.06);
-    }
-
-    .hero-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-    }
-
-    .button-main,
-    .button-sub {
-      display: inline-block;
-      padding: 15px 27px;
-      border-radius: 40px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    .button-main {
-      background: var(--blue);
-      color: white;
-    }
-
-    .button-sub {
-      background: white;
-      color: var(--blue);
-      border: 2px solid var(--blue);
-    }
-
-    .button-main:hover,
-    .button-sub:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 25px rgba(0,0,0,0.12);
-    }
-
-    .hero-right {
-      min-height: 100%;
-      position: relative;
-      background: var(--light-blue);
       overflow: hidden;
     }
 
-    .hero-right::before {
-      content: "";
+    .hero-slideshow {
       position: absolute;
-      width: 420px;
-      height: 420px;
-      right: -100px;
-      top: 40px;
-      background: var(--yellow);
-      border-radius: 50%;
-      animation: floatCircle 6s ease-in-out infinite;
+      inset: 0;
+
+      z-index: 0;
     }
 
-    .hero-right::after {
-      content: "";
+    .hero-slide {
       position: absolute;
+      inset: 0;
+
+      background-size: cover;
+      background-position: center;
+
+      opacity: 0;
+
+      transform: scale(1.05);
+
+      transition:
+        opacity 1.5s ease,
+        transform 7s ease;
+    }
+
+    .hero-slide.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+
+      z-index: 1;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(255,255,255,.98) 0%,
+          rgba(255,255,255,.96) 32%,
+          rgba(255,255,255,.84) 52%,
+          rgba(255,255,255,.42) 75%,
+          rgba(255,255,255,.18) 100%
+        );
+    }
+
+    .hero-yellow-circle {
+      position: absolute;
+
+      width: 420px;
+      height: 420px;
+
+      right: -100px;
+      top: 120px;
+
+      background: rgba(255,214,47,.9);
+
+      border-radius: 50%;
+
+      z-index: 1;
+
+      animation: floatCircle 7s ease-in-out infinite;
+    }
+
+    .hero-blue-circle {
+      position: absolute;
+
       width: 220px;
       height: 220px;
-      left: 10%;
-      bottom: -80px;
-      background: var(--blue);
+
+      right: 18%;
+      bottom: -85px;
+
+      background: rgba(23,55,216,.95);
+
       border-radius: 50%;
-      animation: floatCircle 8s ease-in-out infinite reverse;
+
+      z-index: 1;
+
+      animation: floatCircle 9s ease-in-out infinite reverse;
     }
 
     @keyframes floatCircle {
@@ -266,50 +216,174 @@
       }
     }
 
-    .hero-photo-wrap {
-      position: absolute;
-      left: 6%;
-      right: 6%;
-      top: 50%;
-      transform: translateY(-46%);
+    .hero-content {
+      position: relative;
       z-index: 3;
+
+      width: min(1180px, calc(100% - 80px));
+
+      margin: 0 auto;
+
+      padding: 90px 0 70px;
     }
 
-    .hero-photo-wrap::before {
+    .hero-label {
+      display: block;
+
+      color: var(--blue);
+
+      font-size: 13px;
+      font-weight: 900;
+
+      letter-spacing: .17em;
+
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      display: inline-block;
+
+      position: relative;
+
+      font-size: clamp(56px, 6vw, 90px);
+
+      line-height: 1.13;
+
+      letter-spacing: -.03em;
+
+      margin-bottom: 48px;
+    }
+
+    .hero h1::after {
       content: "";
+
       position: absolute;
-      inset: 18px -18px -18px 18px;
-      background: rgba(255,214,47,0.45);
-      border-radius: 30px;
+
+      left: 0;
+      bottom: -4px;
+
+      width: 100%;
+      height: 14px;
+
+      background: var(--yellow);
+
       z-index: -1;
     }
 
-    .hero-photo {
-      width: 100%;
-      display: block;
-      border-radius: 30px;
-      object-fit: cover;
-      box-shadow: 0 28px 70px rgba(0,0,0,0.16);
+    .hero-lead {
+      font-size: 18px;
+      line-height: 2;
+
+      margin-bottom: 30px;
     }
 
-    .hero-photo-caption {
+    .hero-text {
+      color: #555;
+
+      font-size: 17px;
+      line-height: 2;
+
+      margin-bottom: 28px;
+    }
+
+    .hero-note {
       display: inline-block;
-      position: absolute;
-      left: 28px;
-      bottom: 25px;
-      padding: 10px 16px;
-      background: rgba(255,255,255,0.92);
+
+      background: rgba(255,255,255,.92);
+
+      padding: 12px 18px;
+
+      border-radius: 12px;
+
+      font-weight: bold;
+
+      box-shadow: 0 10px 30px rgba(0,0,0,.08);
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+
+      margin-top: 30px;
+    }
+
+    .button-main,
+    .button-sub {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      min-height: 58px;
+
+      padding: 0 28px;
+
       border-radius: 999px;
-      font-size: 12px;
-      font-weight: 800;
-      color: #333;
+
+      text-decoration: none;
+      font-weight: bold;
+
+      transition: .3s;
+    }
+
+    .button-main {
+      background: var(--blue);
+      color: #fff;
+    }
+
+    .button-sub {
+      background: rgba(255,255,255,.92);
+
+      color: var(--blue);
+
+      border: 2px solid var(--blue);
+    }
+
+    .button-main:hover,
+    .button-sub:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 25px rgba(0,0,0,.12);
+    }
+
+    .slide-dots {
+      position: absolute;
+
+      z-index: 4;
+
+      right: 7%;
+      bottom: 45px;
+
+      display: flex;
+      gap: 10px;
+    }
+
+    .slide-dot {
+      width: 10px;
+      height: 10px;
+
+      border: none;
+
+      border-radius: 50%;
+
+      background: rgba(255,255,255,.7);
+
+      cursor: pointer;
+
+      transition: .3s;
+    }
+
+    .slide-dot.active {
+      width: 30px;
+      border-radius: 999px;
+
+      background: var(--yellow);
     }
 
     /* =========================
        COMMON
     ========================= */
 
-    section {
+    section:not(.hero) {
       padding: 105px 8%;
     }
 
@@ -324,30 +398,36 @@
 
     .section-en {
       display: block;
+
       color: var(--blue);
+
       font-size: 13px;
       font-weight: 900;
-      letter-spacing: 0.15em;
+      letter-spacing: .15em;
+
       margin-bottom: 10px;
     }
 
     .section-title {
-      font-size: clamp(30px, 4vw, 48px);
+      font-size: clamp(30px,4vw,48px);
       line-height: 1.5;
     }
 
     .section-description {
       max-width: 720px;
+
       margin-top: 15px;
+
       color: #666;
     }
 
     .reveal {
       opacity: 0;
       transform: translateY(40px);
+
       transition:
-        opacity 0.8s ease,
-        transform 0.8s ease;
+        opacity .8s ease,
+        transform .8s ease;
     }
 
     .reveal.show {
@@ -360,46 +440,61 @@
     ========================= */
 
     .referral-message {
-      background: white;
+      background: #fff;
     }
 
     .message-box {
       padding: 60px;
+
       background: var(--light-yellow);
+
       border-radius: 26px;
+
       position: relative;
       overflow: hidden;
     }
 
     .message-box::after {
       content: "REFERRAL";
+
       position: absolute;
+
       right: 20px;
       bottom: -35px;
+
       font-size: 100px;
       font-weight: 900;
-      color: rgba(24,54,216,0.06);
+
+      color: rgba(24,54,216,.06);
     }
 
     .message-box h3 {
       font-size: 31px;
       line-height: 1.6;
+
       margin-bottom: 25px;
     }
 
     .message-box p {
       max-width: 850px;
+
       color: #555;
+
       margin-bottom: 15px;
     }
 
     .message-highlight {
       display: inline-block;
+
       margin-top: 20px;
+
       padding: 12px 20px;
+
       background: var(--blue);
       color: white;
+
       border-radius: 10px;
+
       font-weight: bold;
     }
 
@@ -413,14 +508,18 @@
 
     .about-grid {
       display: grid;
+
       grid-template-columns: 1.1fr 1fr;
+
       gap: 50px;
+
       align-items: center;
     }
 
     .about-text h3 {
       font-size: 30px;
       line-height: 1.6;
+
       margin-bottom: 20px;
     }
 
@@ -431,15 +530,21 @@
 
     .about-points {
       display: grid;
+
       grid-template-columns: 1fr 1fr;
+
       gap: 15px;
     }
 
     .about-point {
       background: white;
+
       padding: 24px;
+
       border-radius: 16px;
+
       border-left: 5px solid var(--yellow);
+
       font-weight: bold;
     }
 
@@ -462,18 +567,26 @@
 
     .mvv-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+
+      grid-template-columns: repeat(3,1fr);
+
       gap: 22px;
     }
 
     .mvv-card {
       min-height: 300px;
+
       position: relative;
+
       padding: 42px 32px;
+
       background: white;
+
       color: #222;
+
       border-radius: 20px;
-      transition: 0.3s;
+
+      transition: .3s;
     }
 
     .mvv-card:hover {
@@ -482,42 +595,53 @@
 
     .mvv-number {
       position: absolute;
+
       top: 10px;
       right: 22px;
+
       color: #eef1ff;
+
       font-size: 75px;
       font-weight: 900;
     }
 
     .mvv-label {
       color: var(--blue);
+
       font-size: 13px;
       font-weight: 900;
-      letter-spacing: 0.15em;
+
+      letter-spacing: .15em;
+
       margin-bottom: 20px;
     }
 
     .mvv-card h3 {
       position: relative;
       z-index: 2;
+
       font-size: 23px;
       line-height: 1.7;
     }
 
     .value-list {
       list-style: none;
+
       position: relative;
       z-index: 2;
     }
 
     .value-list li {
       margin-bottom: 12px;
+
       font-weight: bold;
     }
 
     .value-list li::before {
       content: "●";
+
       color: var(--yellow);
+
       margin-right: 8px;
     }
 
@@ -530,55 +654,66 @@
         linear-gradient(
           135deg,
           #f8f9fb 0%,
-          #ffffff 55%,
+          #fff 55%,
           #fffbea 100%
         );
     }
 
     .history-lead {
       max-width: 760px;
+
       color: #666;
+
       margin-top: 15px;
+
       line-height: 2;
     }
 
     .history-timeline {
       position: relative;
+
       margin-top: 70px;
     }
 
     .history-timeline::before {
       content: "";
+
       position: absolute;
+
       left: 186px;
+
       top: 20px;
       bottom: 20px;
+
       width: 2px;
+
       background: #dbe2ff;
     }
 
     .history-item {
       display: grid;
-      grid-template-columns: 150px 40px 1fr;
-      gap: 16px;
-      position: relative;
-      padding-bottom: 55px;
-    }
 
-    .history-item:last-child {
-      padding-bottom: 0;
+      grid-template-columns: 150px 40px 1fr;
+
+      gap: 16px;
+
+      padding-bottom: 55px;
+
+      position: relative;
     }
 
     .history-year {
       font-size: 34px;
       font-weight: 900;
-      color: #171717;
+
       padding-top: 20px;
     }
 
     .history-year::after {
       content: "年";
+
       font-size: 15px;
+
       margin-left: 5px;
     }
 
@@ -594,47 +729,64 @@
     .history-dot {
       width: 16px;
       height: 16px;
+
       border-radius: 50%;
+
       background: var(--blue);
+
       border: 5px solid #fff;
+
       box-shadow: 0 0 0 2px var(--blue);
+
       margin-top: 31px;
+
       position: relative;
+
       z-index: 2;
     }
 
     .history-content {
-      background: white;
+      background: #fff;
+
       border-radius: 24px;
+
       padding: 30px 34px;
+
       border: 1px solid #eee;
+
       box-shadow: 0 15px 45px rgba(0,0,0,.05);
-      transition: 0.3s;
+
+      transition: .3s;
     }
 
     .history-content:hover {
       transform: translateY(-5px);
-      box-shadow: 0 20px 50px rgba(0,0,0,.09);
     }
 
     .history-tag {
       display: inline-block;
+
       background: #fff3a8;
+
       padding: 7px 14px;
+
       border-radius: 999px;
+
       font-size: 12px;
       font-weight: 800;
+
       margin-bottom: 13px;
     }
 
     .history-content h3 {
       margin-bottom: 12px;
+
       font-size: 23px;
-      line-height: 1.5;
     }
 
     .history-content p {
       color: #666;
+
       font-size: 15px;
       line-height: 1.9;
     }
@@ -646,7 +798,7 @@
 
     .history-now .history-tag {
       background: var(--blue);
-      color: white;
+      color: #fff;
     }
 
     /* =========================
@@ -654,34 +806,44 @@
     ========================= */
 
     .jobs {
-      background: white;
+      background: #fff;
     }
 
     .job-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+
+      grid-template-columns: repeat(3,1fr);
+
       gap: 24px;
     }
 
     .job-card {
       background: white;
+
       border-radius: 20px;
+
       overflow: hidden;
+
       border: 1px solid #e8e8e8;
-      transition: 0.35s;
+
+      transition: .35s;
     }
 
     .job-card:hover {
       transform: translateY(-8px);
-      box-shadow: 0 18px 40px rgba(0,0,0,0.10);
+
+      box-shadow: 0 18px 40px rgba(0,0,0,.1);
     }
 
     .job-photo {
       width: 100%;
       height: 230px;
-      display: block;
+
       object-fit: cover;
-      transition: transform 0.5s ease;
+
+      display: block;
+
+      transition: transform .5s ease;
     }
 
     .job-card:hover .job-photo {
@@ -689,16 +851,18 @@
     }
 
     .job-content {
-      padding: 28px 28px 32px;
+      padding: 28px;
     }
 
     .job-content h3 {
       font-size: 22px;
+
       margin-bottom: 12px;
     }
 
     .job-content p {
       color: #666;
+
       font-size: 14px;
     }
 
@@ -712,26 +876,32 @@
 
     .staff-grid {
       display: grid;
+
       grid-template-columns: repeat(3,1fr);
+
       gap: 24px;
     }
 
     .staff-card {
-      background: white;
+      background: #fff;
+
       border-radius: 20px;
+
       overflow: hidden;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.05);
-      transition: 0.35s;
+
+      box-shadow: 0 8px 25px rgba(0,0,0,.05);
+
+      transition: .35s;
     }
 
     .staff-card:hover {
       transform: translateY(-8px);
-      box-shadow: 0 18px 35px rgba(0,0,0,0.12);
     }
 
     .staff-photo {
       width: 100%;
       height: 230px;
+
       object-fit: cover;
       object-position: center top;
     }
@@ -742,29 +912,40 @@
 
     .staff-job {
       display: inline-block;
+
       background: var(--yellow);
+
       padding: 4px 10px;
+
       border-radius: 20px;
+
       font-size: 12px;
       font-weight: bold;
+
       margin-bottom: 12px;
     }
 
     .staff-content h3 {
       font-size: 19px;
+
       margin-bottom: 10px;
     }
 
     .staff-content p {
       color: #666;
+
       font-size: 14px;
     }
 
     .staff-link {
       display: inline-block;
+
       margin-top: 16px;
+
       color: var(--blue);
+
       text-decoration: none;
+
       font-weight: bold;
     }
 
@@ -777,64 +958,88 @@
         linear-gradient(
           135deg,
           #eef3ff 0%,
-          #ffffff 55%,
+          #fff 55%,
           #fff9dd 100%
         );
     }
 
     .area-intro {
       display: flex;
+
       justify-content: space-between;
+
       align-items: flex-end;
+
       gap: 30px;
+
       margin-bottom: 45px;
     }
 
     .area-message {
       max-width: 430px;
+
       color: #666;
+
       font-size: 15px;
     }
 
     .area-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+
+      grid-template-columns: repeat(3,1fr);
+
       gap: 20px;
     }
 
     .area-card {
       position: relative;
+
       min-height: 185px;
+
       display: flex;
       flex-direction: column;
+
       align-items: flex-start;
+
       text-align: left;
+
       padding: 28px;
+
       background: white;
+
       border: 1px solid #e6e6e6;
+
       border-radius: 20px;
+
       cursor: pointer;
+
       font-family: inherit;
-      transition: 0.3s;
+
+      transition: .3s;
     }
 
     .area-card:hover {
       transform: translateY(-6px);
+
       border-color: var(--blue);
-      box-shadow: 0 18px 40px rgba(0,0,0,.08);
     }
 
     .area-card.active {
       background: var(--blue);
+
       color: white;
+
       border-color: var(--blue);
     }
 
     .area-small {
       color: var(--blue);
+
       font-size: 11px;
       font-weight: 900;
+
       letter-spacing: .15em;
+
       margin-bottom: 10px;
     }
 
@@ -843,17 +1048,17 @@
     }
 
     .area-name {
-      display: block;
       font-size: 23px;
       font-weight: 900;
-      line-height: 1.4;
     }
 
     .area-jobs {
-      display: block;
       margin-top: 12px;
+
       color: #777;
+
       font-size: 13px;
+
       padding-right: 45px;
     }
 
@@ -863,28 +1068,39 @@
 
     .area-arrow {
       position: absolute;
+
       right: 25px;
       bottom: 22px;
+
       width: 42px;
       height: 42px;
+
       display: flex;
+
       align-items: center;
       justify-content: center;
+
       background: var(--yellow);
+
       color: #111;
+
       border-radius: 50%;
-      font-size: 20px;
-      font-weight: bold;
     }
 
     .area-guide {
       margin-top: 28px;
+
       padding: 18px 22px;
+
       background: white;
+
       border-radius: 14px;
-      color: #555;
-      font-size: 14px;
+
       text-align: center;
+
+      color: #555;
+
+      font-size: 14px;
     }
 
     /* =========================
@@ -892,23 +1108,30 @@
     ========================= */
 
     .recruit {
-      background: white;
+      background: #fff;
     }
 
     .recruit-header-row {
       display: flex;
+
       justify-content: space-between;
+
       align-items: flex-end;
+
       gap: 30px;
+
       margin-bottom: 35px;
     }
 
     .selected-area {
       display: inline-block;
+
       padding: 9px 16px;
+
       background: var(--light-yellow);
+
       border-radius: 30px;
-      color: #333;
+
       font-size: 13px;
       font-weight: bold;
     }
@@ -916,102 +1139,134 @@
     .filter-title {
       font-size: 13px;
       font-weight: bold;
+
       color: #777;
+
       margin-bottom: 12px;
     }
 
     .filter-buttons {
       display: flex;
+
       flex-wrap: wrap;
+
       gap: 10px;
+
       margin-bottom: 35px;
     }
 
     .filter-button {
       border: none;
+
       background: #eee;
+
       padding: 10px 18px;
+
       border-radius: 30px;
+
       cursor: pointer;
+
       font-family: inherit;
+
       font-weight: bold;
-      transition: 0.3s;
+
+      transition: .3s;
     }
 
-    .filter-button:hover,
-    .filter-button.active {
+    .filter-button.active,
+    .filter-button:hover {
       background: var(--blue);
+
       color: white;
     }
 
     .recruit-list {
       display: grid;
+
       gap: 17px;
     }
 
     .recruit-card {
       display: flex;
+
       justify-content: space-between;
+
       align-items: center;
+
       gap: 20px;
+
       padding: 25px 30px;
+
       border: 1px solid #ddd;
+
       border-radius: 17px;
-      transition: 0.3s;
+
+      transition: .3s;
     }
 
     .recruit-card:hover {
       border-color: var(--blue);
+
       background: #f8f9ff;
-      transform: translateX(5px);
     }
 
     .recruit-card.hidden {
       display: none;
     }
 
-    .recruit-info h3 {
-      margin-bottom: 5px;
-    }
-
     .recruit-info span {
       color: #777;
+
       font-size: 14px;
     }
 
     .job-tags {
       display: flex;
+
       flex-wrap: wrap;
+
       gap: 7px;
+
       margin-top: 12px;
     }
 
     .job-tag {
-      display: inline-block;
       padding: 4px 9px;
+
       background: #f1f3f7;
+
       border-radius: 20px;
+
       color: #555;
+
       font-size: 11px;
     }
 
     .detail-button {
-      display: inline-block;
       background: var(--yellow);
+
       color: #111;
+
       padding: 11px 20px;
+
       border-radius: 30px;
+
       text-decoration: none;
+
       font-weight: bold;
-      white-space: nowrap;
     }
 
     .no-jobs {
       display: none;
+
       padding: 40px;
-      text-align: center;
+
       background: var(--gray);
+
       border-radius: 20px;
+
+      text-align: center;
+
       color: #666;
     }
 
@@ -1029,33 +1284,30 @@
 
     .flow-grid {
       display: grid;
+
       grid-template-columns: repeat(4,1fr);
+
       gap: 18px;
     }
 
     .flow-card {
       background: white;
-      padding: 30px;
-      border-radius: 18px;
-      transition: 0.3s;
-    }
 
-    .flow-card:hover {
-      transform: translateY(-5px);
+      padding: 30px;
+
+      border-radius: 18px;
     }
 
     .flow-number {
       color: var(--blue);
+
       font-size: 40px;
       font-weight: 900;
     }
 
-    .flow-card h3 {
-      margin: 10px 0;
-    }
-
     .flow-card p {
       color: #666;
+
       font-size: 14px;
     }
 
@@ -1065,49 +1317,42 @@
 
     .cta {
       background: var(--yellow);
-      text-align: center;
-    }
 
-    .cta .section-en {
-      color: var(--blue);
+      text-align: center;
     }
 
     .cta p {
       max-width: 700px;
+
       margin: 18px auto 22px;
+
       color: #555;
     }
 
     .line-note {
       margin-top: 22px;
+
       font-weight: bold;
+
       line-height: 1.9;
     }
 
     .cta-button {
       display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
+
       margin-top: 15px;
+
       background: var(--blue);
+
       color: white;
+
       padding: 17px 38px;
+
       border-radius: 40px;
+
       text-decoration: none;
+
       font-weight: bold;
-      transition: 0.3s;
-    }
-
-    .cta-button:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 15px 30px rgba(24,54,216,0.25);
-    }
-
-    .line-sub {
-      margin-top: 18px !important;
-      font-size: 13px;
-      color: #6b5a00 !important;
     }
 
     /* =========================
@@ -1116,16 +1361,21 @@
 
     footer {
       background: #111;
-      color: white;
+
       text-align: center;
+
       padding: 55px 8%;
     }
 
     .footer-logo {
       display: inline-block;
+
       background: white;
+
       padding: 14px 24px;
+
       border-radius: 10px;
+
       margin-bottom: 20px;
     }
 
@@ -1135,6 +1385,7 @@
 
     footer p {
       color: #aaa;
+
       font-size: 12px;
     }
 
@@ -1142,7 +1393,7 @@
        MOBILE
     ========================= */
 
-    @media(max-width: 900px) {
+    @media(max-width:900px) {
 
       header {
         height: 70px;
@@ -1158,15 +1409,21 @@
 
       nav {
         position: absolute;
+
         top: 70px;
         left: 0;
+
         width: 100%;
+
         display: none;
+
         flex-direction: column;
+
         align-items: flex-start;
+
         background: white;
+
         padding: 30px;
-        box-shadow: 0 12px 25px rgba(0,0,0,0.08);
       }
 
       nav.open {
@@ -1174,48 +1431,36 @@
       }
 
       .hero {
-        grid-template-columns: 1fr;
+        min-height: 780px;
+
         padding-top: 70px;
       }
 
-      .hero-left {
-        padding: 80px 7% 55px;
+      .hero-content {
+        width: calc(100% - 40px);
+
+        padding: 70px 0;
       }
 
-      .hero-right {
-        min-height: 460px;
-      }
-
-      .hero-photo-wrap {
-        left: 6%;
-        right: 6%;
-        top: 50%;
-        transform: translateY(-50%);
-      }
-
-      .hero-right::before {
-        width: 260px;
-        height: 260px;
-        right: -80px;
-        top: -20px;
-      }
-
-      .hero-right::after {
-        width: 150px;
-        height: 150px;
-        left: -30px;
-        bottom: -30px;
+      .hero-overlay {
+        background: rgba(255,255,255,.82);
       }
 
       .hero h1 {
-        font-size: 44px;
+        font-size: 52px;
       }
 
-      .hero-text {
-        font-size: 15px;
+      .hero-yellow-circle,
+      .hero-blue-circle {
+        display: none;
       }
 
-      section {
+      .slide-dots {
+        right: 25px;
+        bottom: 25px;
+      }
+
+      section:not(.hero) {
         padding: 75px 6%;
       }
 
@@ -1241,42 +1486,33 @@
         display: block;
       }
 
-      .area-message,
-      .selected-area {
-        margin-top: 15px;
-      }
-
       .recruit-card {
         flex-direction: column;
+
         align-items: flex-start;
       }
 
       .history-timeline::before {
         left: 7px;
-        top: 60px;
       }
 
       .history-item {
         grid-template-columns: 30px 1fr;
-        gap: 10px;
-        padding-bottom: 40px;
       }
 
       .history-year {
         grid-column: 2;
-        font-size: 27px;
+
         padding-top: 0;
       }
 
       .history-dot {
         grid-column: 1;
         grid-row: 1 / span 2;
-        margin-top: 12px;
       }
 
       .history-content {
         grid-column: 2;
-        padding: 25px 22px;
       }
     }
 
@@ -1300,88 +1536,149 @@
   </button>
 
   <nav id="nav">
-    <a href="#referral">紹介を受けた方へ</a>
-    <a href="#about">会社を知る</a>
-    <a href="#jobs">仕事を知る</a>
-    <a href="#staff">働く人を知る</a>
-    <a href="#area">エリアから探す</a>
-    <a href="#recruit">募集職種</a>
-    <a href="#entry" class="nav-entry">LINEで話す</a>
+
+    <a href="#referral">
+      紹介を受けた方へ
+    </a>
+
+    <a href="#about">
+      会社を知る
+    </a>
+
+    <a href="#jobs">
+      仕事を知る
+    </a>
+
+    <a href="#staff">
+      働く人を知る
+    </a>
+
+    <a href="#area">
+      エリアから探す
+    </a>
+
+    <a href="#recruit">
+      募集職種
+    </a>
+
+    <a
+      href="#entry"
+      class="nav-entry"
+    >
+      LINEで話す
+    </a>
+
   </nav>
 
 </header>
 
 <main>
 
-  <!-- HERO -->
+  <!-- ======================
+       HERO
+  ======================= -->
 
   <section class="hero">
 
-    <div class="hero-left">
+    <div class="hero-slideshow">
 
-      <div class="hero-content">
+      <div
+        class="hero-slide active"
+        style="background-image:url('hero01.jpg');"
+      ></div>
 
-        <span class="hero-label">
-          OHFAS REFERRAL RECRUITING
-        </span>
+      <div
+        class="hero-slide"
+        style="background-image:url('hero02.jpg');"
+      ></div>
 
-        <h1>
-          <span>このご縁に<br>
-            ありがとう。</span>
-        </h1>
+      <div
+        class="hero-slide"
+        style="background-image:url('hero03.jpg');"
+      ></div>
 
-        <p class="hero-text">
-          社員・スタッフから紹介を受けて、<br>
-          このページをご覧いただいたあなたへ。<br><br>
+    </div>
 
-          今すぐ転職を考えている方も、<br>
-          まだそこまで考えていない方も。<br>
+    <div class="hero-overlay"></div>
 
-          まずはオーファスがどんな会社なのか、<br>
-          少しだけ覗いてみませんか？
-        </p>
+    <div class="hero-yellow-circle"></div>
+    <div class="hero-blue-circle"></div>
 
-        <div class="hero-note">
-          応募する前に、「知る」だけでも大丈夫です。
-        </div>
+    <div class="hero-content">
 
-        <div class="hero-buttons">
+      <span class="hero-label">
+        OHFAS REFERRAL RECRUITING
+      </span>
 
-          <a href="#about" class="button-main">
-            オーファスを知る
-          </a>
+      <h1>
+        このご縁に、<br>
+        ありがとう。
+      </h1>
 
-          <a href="#area" class="button-sub">
-            近くの仕事を探す
-          </a>
+      <p class="hero-lead">
+        社員・スタッフから紹介を受けて、<br>
+        このページをご覧いただいたあなたへ。
+      </p>
 
-        </div>
+      <p class="hero-text">
+        今すぐ転職を考えている方も、<br>
+        まだそこまで考えていない方も。<br>
+
+        まずはオーファスがどんな会社なのか、<br>
+        少しだけ覗いてみませんか？
+      </p>
+
+      <div class="hero-note">
+        応募する前に、「知る」だけでも大丈夫です。
+      </div>
+
+      <div class="hero-buttons">
+
+        <a
+          href="#about"
+          class="button-main"
+        >
+          オーファスを知る
+        </a>
+
+        <a
+          href="#area"
+          class="button-sub"
+        >
+          近くの仕事を探す
+        </a>
 
       </div>
 
     </div>
 
-    <div class="hero-right">
+    <div class="slide-dots">
 
-      <div class="hero-photo-wrap">
+      <button
+        class="slide-dot active"
+        data-slide="0"
+        aria-label="1枚目"
+      ></button>
 
-        <img
-          src="hero-staff.jpg"
-          alt="オーファスで働くスタッフ"
-          class="hero-photo"
-        >
+      <button
+        class="slide-dot"
+        data-slide="1"
+        aria-label="2枚目"
+      ></button>
 
-        <div class="hero-photo-caption">
-          OHFAS STAFF
-        </div>
-
-      </div>
+      <button
+        class="slide-dot"
+        data-slide="2"
+        aria-label="3枚目"
+      ></button>
 
     </div>
 
   </section>
 
-  <!-- REFERRAL -->
+  <!-- ======================
+       REFERRAL
+  ======================= -->
 
   <section
     class="referral-message reveal"
@@ -1448,7 +1745,9 @@
 
   </section>
 
-  <!-- ABOUT -->
+  <!-- ======================
+       ABOUT
+  ======================= -->
 
   <section
     class="about reveal"
@@ -1518,7 +1817,9 @@
 
   </section>
 
-  <!-- MVV -->
+  <!-- ======================
+       MVV
+  ======================= -->
 
   <section class="mvv reveal">
 
@@ -1545,7 +1846,9 @@
 
         <div class="mvv-card">
 
-          <div class="mvv-number">01</div>
+          <div class="mvv-number">
+            01
+          </div>
 
           <div class="mvv-label">
             MISSION
@@ -1560,7 +1863,9 @@
 
         <div class="mvv-card">
 
-          <div class="mvv-number">02</div>
+          <div class="mvv-number">
+            02
+          </div>
 
           <div class="mvv-label">
             VISION
@@ -1576,16 +1881,28 @@
 
         <div class="mvv-card">
 
-          <div class="mvv-number">03</div>
+          <div class="mvv-number">
+            03
+          </div>
 
           <div class="mvv-label">
             VALUE
           </div>
 
           <ul class="value-list">
-            <li>ありがとうをつなぐ仕事を</li>
-            <li>変化に気づき速やかに対応する</li>
-            <li>まごころで応える</li>
+
+            <li>
+              ありがとうをつなぐ仕事を
+            </li>
+
+            <li>
+              変化に気づき速やかに対応する
+            </li>
+
+            <li>
+              まごころで応える
+            </li>
+
           </ul>
 
         </div>
@@ -1596,7 +1913,9 @@
 
   </section>
 
-  <!-- HISTORY -->
+  <!-- ======================
+       HISTORY
+  ======================= -->
 
   <section class="history-section reveal">
 
@@ -1769,7 +2088,9 @@
 
   </section>
 
-  <!-- JOBS -->
+  <!-- ======================
+       JOBS
+  ======================= -->
 
   <section
     class="jobs reveal"
@@ -1807,11 +2128,16 @@
           >
 
           <div class="job-content">
-            <h3>設備管理</h3>
+
+            <h3>
+              設備管理
+            </h3>
+
             <p>
               建物の電気・空調・給排水などの
               点検や保守管理を行います。
             </p>
+
           </div>
 
         </div>
@@ -1825,11 +2151,16 @@
           >
 
           <div class="job-content">
-            <h3>清掃</h3>
+
+            <h3>
+              清掃
+            </h3>
+
             <p>
               オフィスや公共施設などの
               快適な環境を支える仕事です。
             </p>
+
           </div>
 
         </div>
@@ -1843,11 +2174,16 @@
           >
 
           <div class="job-content">
-            <h3>警備</h3>
+
+            <h3>
+              警備
+            </h3>
+
             <p>
               施設やイベントで、
               人と建物の安全を守ります。
             </p>
+
           </div>
 
         </div>
@@ -1861,11 +2197,16 @@
           >
 
           <div class="job-content">
-            <h3>企画・顧客管理</h3>
+
+            <h3>
+              企画・顧客管理
+            </h3>
+
             <p>
               お客様と現場をつなぎながら、
               建物管理を支えます。
             </p>
+
           </div>
 
         </div>
@@ -1879,11 +2220,16 @@
           >
 
           <div class="job-content">
-            <h3>電話交換</h3>
+
+            <h3>
+              電話交換
+            </h3>
+
             <p>
               電話を適切な部署へつなぎ、
               施設の窓口を支えます。
             </p>
+
           </div>
 
         </div>
@@ -1897,11 +2243,16 @@
           >
 
           <div class="job-content">
-            <h3>労務管理</h3>
+
+            <h3>
+              労務管理
+            </h3>
+
             <p>
               スタッフが安心して働けるよう、
               労務や各種手続きを支えます。
             </p>
+
           </div>
 
         </div>
@@ -1912,7 +2263,9 @@
 
   </section>
 
-  <!-- STAFF -->
+  <!-- ======================
+       STAFF
+  ======================= -->
 
   <section
     class="staff reveal"
@@ -1955,8 +2308,7 @@
             </span>
 
             <h3>
-              「ありがとう」が
-              やりがいになる仕事。
+              「ありがとう」がやりがいになる仕事。
             </h3>
 
             <p>
@@ -1986,8 +2338,7 @@
             </span>
 
             <h3>
-              安心をつくることが、
-              私たちの役割。
+              安心をつくることが、私たちの役割。
             </h3>
 
             <p>
@@ -2017,8 +2368,7 @@
             </span>
 
             <h3>
-              建物の当たり前を、
-              毎日支える。
+              建物の当たり前を、毎日支える。
             </h3>
 
             <p>
@@ -2048,8 +2398,7 @@
             </span>
 
             <h3>
-              仕事と好きなことを
-              両立できる働き方。
+              仕事と好きなことを両立できる働き方。
             </h3>
 
             <p>
@@ -2079,8 +2428,7 @@
             </span>
 
             <h3>
-              お客様と現場をつなぐ、
-              調整役として。
+              お客様と現場をつなぐ、調整役として。
             </h3>
 
             <p>
@@ -2110,8 +2458,7 @@
             </span>
 
             <h3>
-              働く人を支えることも、
-              大切な仕事。
+              働く人を支えることも、大切な仕事。
             </h3>
 
             <p>
@@ -2132,7 +2479,9 @@
 
   </section>
 
-  <!-- AREA -->
+  <!-- ======================
+       AREA
+  ======================= -->
 
   <section
     class="area reveal"
@@ -2159,7 +2508,6 @@
         <p class="area-message">
           仕事内容も大切だけど、
           毎日の「通いやすさ」も大切。<br>
-
           気になるエリアから、
           現在募集中のお仕事を探してみてください。
         </p>
@@ -2186,7 +2534,9 @@
             熊本県内のお仕事を見る
           </span>
 
-          <span class="area-arrow">→</span>
+          <span class="area-arrow">
+            →
+          </span>
 
         </button>
 
@@ -2208,7 +2558,9 @@
             設備管理・電話交換・清掃など
           </span>
 
-          <span class="area-arrow">→</span>
+          <span class="area-arrow">
+            →
+          </span>
 
         </button>
 
@@ -2230,7 +2582,9 @@
             清掃・警備など
           </span>
 
-          <span class="area-arrow">→</span>
+          <span class="area-arrow">
+            →
+          </span>
 
         </button>
 
@@ -2252,7 +2606,9 @@
             設備管理・清掃など
           </span>
 
-          <span class="area-arrow">→</span>
+          <span class="area-arrow">
+            →
+          </span>
 
         </button>
 
@@ -2274,7 +2630,9 @@
             清掃・設備管理・警備など
           </span>
 
-          <span class="area-arrow">→</span>
+          <span class="area-arrow">
+            →
+          </span>
 
         </button>
 
@@ -2296,21 +2654,26 @@
             その他の勤務地を見る
           </span>
 
-          <span class="area-arrow">→</span>
+          <span class="area-arrow">
+            →
+          </span>
 
         </button>
 
       </div>
 
       <div class="area-guide">
-        エリアを選ぶと、下の「現在募集中のお仕事」が自動で切り替わります。
+        エリアを選ぶと、
+        下の「現在募集中のお仕事」が自動で切り替わります。
       </div>
 
     </div>
 
   </section>
 
-  <!-- RECRUIT -->
+  <!-- ======================
+       RECRUIT
+  ======================= -->
 
   <section
     class="recruit reveal"
@@ -2473,42 +2836,6 @@
 
         <div
           class="recruit-card"
-          data-area="central"
-          data-category="cleaning"
-        >
-
-          <div class="recruit-info">
-
-            <h3>
-              清掃スタッフ
-            </h3>
-
-            <span>
-              パート ｜ 熊本市中央区
-            </span>
-
-            <div class="job-tags">
-
-              <span class="job-tag">
-                清掃
-              </span>
-
-              <span class="job-tag">
-                未経験OK
-              </span>
-
-            </div>
-
-          </div>
-
-          <a href="#" class="detail-button">
-            詳しく見る →
-          </a>
-
-        </div>
-
-        <div
-          class="recruit-card"
           data-area="east"
           data-category="cleaning"
         >
@@ -2653,42 +2980,6 @@
 
         <div
           class="recruit-card"
-          data-area="kikuyo"
-          data-category="security"
-        >
-
-          <div class="recruit-info">
-
-            <h3>
-              警備スタッフ
-            </h3>
-
-            <span>
-              アルバイト ｜ 菊陽・大津エリア
-            </span>
-
-            <div class="job-tags">
-
-              <span class="job-tag">
-                警備
-              </span>
-
-              <span class="job-tag">
-                アルバイト
-              </span>
-
-            </div>
-
-          </div>
-
-          <a href="#" class="detail-button">
-            詳しく見る →
-          </a>
-
-        </div>
-
-        <div
-          class="recruit-card"
           data-area="other"
           data-category="office"
         >
@@ -2765,22 +3056,16 @@
         class="no-jobs"
         id="noJobs"
       >
-
-        <strong>
-          現在、この条件で表示できる求人はありません。
-        </strong>
-
-        <br>
-
-        別のエリア・職種も見てみてください。
-
+        現在、この条件で表示できる求人はありません。
       </div>
 
     </div>
 
   </section>
 
-  <!-- FLOW -->
+  <!-- ======================
+       FLOW
+  ======================= -->
 
   <section class="flow reveal">
 
@@ -2802,7 +3087,9 @@
 
         <div class="flow-card">
 
-          <div class="flow-number">01</div>
+          <div class="flow-number">
+            01
+          </div>
 
           <h3>
             このページを見る
@@ -2816,7 +3103,9 @@
 
         <div class="flow-card">
 
-          <div class="flow-number">02</div>
+          <div class="flow-number">
+            02
+          </div>
 
           <h3>
             近くの仕事を探す
@@ -2830,7 +3119,9 @@
 
         <div class="flow-card">
 
-          <div class="flow-number">03</div>
+          <div class="flow-number">
+            03
+          </div>
 
           <h3>
             LINEで聞いてみる
@@ -2844,7 +3135,9 @@
 
         <div class="flow-card">
 
-          <div class="flow-number">04</div>
+          <div class="flow-number">
+            04
+          </div>
 
           <h3>
             希望すれば選考へ
@@ -2862,7 +3155,9 @@
 
   </section>
 
-  <!-- CTA -->
+  <!-- ======================
+       LINE
+  ======================= -->
 
   <section
     class="cta reveal"
@@ -2904,11 +3199,6 @@
         LINEで気軽に話してみる →
       </a>
 
-      <p class="line-sub">
-        ※LINE追加だけでも大丈夫です。<br>
-        無理に応募をおすすめすることはありません。
-      </p>
-
     </div>
 
   </section>
@@ -2934,7 +3224,104 @@
 
 <script>
 
-  /* HEADER */
+  /* =========================
+     HERO SLIDESHOW
+  ========================= */
+
+  const slides =
+    document.querySelectorAll(".hero-slide");
+
+  const slideDots =
+    document.querySelectorAll(".slide-dot");
+
+  let currentSlide = 0;
+
+  let slideTimer;
+
+
+  function showSlide(index) {
+
+    slides.forEach(
+      (slide) => {
+        slide.classList.remove("active");
+      }
+    );
+
+    slideDots.forEach(
+      (dot) => {
+        dot.classList.remove("active");
+      }
+    );
+
+    slides[index]
+      .classList
+      .add("active");
+
+    slideDots[index]
+      .classList
+      .add("active");
+
+    currentSlide = index;
+  }
+
+
+  function nextSlide() {
+
+    let next =
+      currentSlide + 1;
+
+    if (next >= slides.length) {
+      next = 0;
+    }
+
+    showSlide(next);
+  }
+
+
+  function startSlideshow() {
+
+    slideTimer =
+      setInterval(
+        nextSlide,
+        5000
+      );
+
+  }
+
+
+  slideDots.forEach(
+    (dot) => {
+
+      dot.addEventListener(
+        "click",
+        () => {
+
+          clearInterval(
+            slideTimer
+          );
+
+          const index =
+            Number(
+              dot.dataset.slide
+            );
+
+          showSlide(index);
+
+          startSlideshow();
+
+        }
+      );
+
+    }
+  );
+
+
+  startSlideshow();
+
+
+  /* =========================
+     HEADER
+  ========================= */
 
   const header =
     document.getElementById("header");
@@ -2953,7 +3340,9 @@
   );
 
 
-  /* SCROLL REVEAL */
+  /* =========================
+     SCROLL REVEAL
+  ========================= */
 
   const revealElements =
     document.querySelectorAll(".reveal");
@@ -2974,18 +3363,22 @@
 
       },
       {
-        threshold: 0.10
+        threshold: .10
       }
     );
 
   revealElements.forEach(
     (element) => {
+
       revealObserver.observe(element);
+
     }
   );
 
 
-  /* MOBILE MENU */
+  /* =========================
+     MOBILE MENU
+  ========================= */
 
   const menuButton =
     document.getElementById("menuButton");
@@ -2996,7 +3389,9 @@
   menuButton.addEventListener(
     "click",
     () => {
+
       nav.classList.toggle("open");
+
     }
   );
 
@@ -3008,7 +3403,9 @@
         link.addEventListener(
           "click",
           () => {
+
             nav.classList.remove("open");
+
           }
         );
 
@@ -3016,7 +3413,9 @@
     );
 
 
-  /* AREA + JOB FILTER */
+  /* =========================
+     AREA + JOB FILTER
+  ========================= */
 
   const areaButtons =
     document.querySelectorAll(".area-card");
@@ -3064,6 +3463,7 @@
         ) {
 
           card.classList.remove("hidden");
+
           visibleCount++;
 
         } else {
@@ -3084,8 +3484,6 @@
   }
 
 
-  /* AREA BUTTON */
-
   areaButtons.forEach(
     (button) => {
 
@@ -3104,19 +3502,16 @@
           currentArea =
             button.dataset.area;
 
-          const label =
-            button.dataset.label;
-
           selectedArea.textContent =
-            "表示中：" + label;
+            "表示中：" +
+            button.dataset.label;
 
           updateJobs();
 
           document
             .getElementById("recruit")
             .scrollIntoView({
-              behavior: "smooth",
-              block: "start"
+              behavior: "smooth"
             });
 
         }
@@ -3125,8 +3520,6 @@
     }
   );
 
-
-  /* JOB FILTER */
 
   filterButtons.forEach(
     (button) => {
