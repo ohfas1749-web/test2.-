@@ -1,19 +1,48 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>株式会社オーファス | リファラル採用専用サイト - このご縁に、ありがとう。</title>
+  <meta name="description" content="株式会社オーファスのリファラル採用特設サイト。社員・スタッフから紹介を受けたあなたへ。建物を守り、安心を支える私たちの仕事や働く仲間をご紹介します。">
 
-  <title>オーファス リファラル採用｜紹介を受けた方へ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
+    /* ==========================================================================
+       CSS VARIABLES & RESET
+       ========================================================================== */
+    :root {
+      --color-primary: #005497;
+      --color-primary-dark: #003e70;
+      --color-primary-light: #e6f0f8;
+      --color-secondary: #20a4af;
+      --color-secondary-light: #e8f6f7;
+      --color-gray: #c7ced3;
+      --color-gray-light: #f5f7f9;
+      --color-gray-border: #e2e8ed;
+      --color-text-main: #2b333a;
+      --color-text-sub: #5c6873;
+      --color-accent: #ffef00;
+      --color-white: #ffffff;
+      
+      --font-base: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-en: 'Outfit', 'Cinzel', sans-serif;
+      --font-serif: 'Cinzel', serif;
+      
+      --shadow-sm: 0 2px 8px rgba(0, 84, 151, 0.06);
+      --shadow-md: 0 8px 24px rgba(0, 84, 151, 0.08);
+      --shadow-lg: 0 16px 40px rgba(0, 84, 151, 0.12);
+      
+      --header-h: 80px;
+      --header-h-shrink: 64px;
+      --container-max: 1200px;
+      --transition-base: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+    }
 
-    /* =========================================================
-       BASE
-    ========================================================= */
-
-    * {
+    *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -21,6434 +50,1937 @@
 
     html {
       scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      font-size: 16px;
     }
 
     body {
-      font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Helvetica Neue",
-        "Hiragino Sans",
-        "Yu Gothic",
-        "Meiryo",
-        sans-serif;
-
-      color: #1a2c35;
-      background: #fff;
-
-      line-height: 1.75;
-
+      font-family: var(--font-base);
+      color: var(--color-text-main);
+      background-color: var(--color-white);
+      line-height: 1.8;
+      letter-spacing: 0.04em;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 0;
     }
 
-
-    :root {
-
-      --main: #005497;
-
-      --sub: #20a4af;
-
-      --gray: #c7ced3;
-
-      --accent: #ffef00;
-
-      --dark: #17333f;
-
-      --text: #43535c;
-
-      --muted: #718087;
-
-      --light: #f4f8f9;
-
-      --white: #ffffff;
-
+    @media (max-width: 768px) {
+      body {
+        padding-bottom: 74px; /* Mobile Bottom CTA Offset */
+      }
     }
-
 
     img {
+      max-width: 100%;
+      height: auto;
       display: block;
-      width: 100%;
+      vertical-align: middle;
     }
-
 
     a {
       color: inherit;
       text-decoration: none;
+      transition: var(--transition-base);
     }
-
 
     button {
       font-family: inherit;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: inherit;
     }
 
-
-    section {
-      scroll-margin-top: 75px;
+    ul, ol {
+      list-style: none;
     }
 
+    /* Accessibility / Focus Visible */
+    :focus-visible {
+      outline: 2px solid var(--color-secondary);
+      outline-offset: 3px;
+    }
 
+    /* Common Container */
+    .container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: 24px;
+    }
 
-    /* =========================================================
-       HEADER
-    ========================================================= */
+    @media (max-width: 768px) {
+      .container {
+        padding-inline: 20px;
+      }
+    }
 
-    .site-header {
+    /* Section Layout */
+    .section {
+      padding-block: 100px;
+      position: relative;
+    }
 
+    @media (max-width: 768px) {
+      .section {
+        padding-block: 64px;
+      }
+    }
+
+    .section--gray {
+      background-color: var(--color-gray-light);
+    }
+
+    .section--primary {
+      background-color: var(--color-primary);
+      color: var(--color-white);
+    }
+
+    /* Section Headers */
+    .sec-header {
+      margin-bottom: 60px;
+      position: relative;
+    }
+
+    @media (max-width: 768px) {
+      .sec-header {
+        margin-bottom: 40px;
+      }
+    }
+
+    .sec-header--center {
+      text-align: center;
+    }
+
+    .sec-en {
+      display: inline-block;
+      font-family: var(--font-en);
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--color-secondary);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .section--primary .sec-en {
+      color: var(--color-accent);
+    }
+
+    .sec-title {
+      font-size: 2.25rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      line-height: 1.35;
+      color: var(--color-primary);
+    }
+
+    .section--primary .sec-title {
+      color: var(--color-white);
+    }
+
+    @media (max-width: 768px) {
+      .sec-title {
+        font-size: 1.75rem;
+      }
+    }
+
+    .sec-desc {
+      margin-top: 16px;
+      color: var(--color-text-sub);
+      font-size: 1rem;
+    }
+
+    .section--primary .sec-desc {
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    /* Marker Highlight */
+    .marker-accent {
+      background: linear-gradient(transparent 65%, var(--color-accent) 65%);
+      display: inline;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 36px;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      border-radius: 4px;
+      transition: var(--transition-base);
+      position: relative;
+      overflow: hidden;
+      gap: 10px;
+    }
+
+    .btn-primary {
+      background-color: var(--color-primary);
+      color: var(--color-white);
+      border: 1px solid var(--color-primary);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--color-primary-dark);
+      border-color: var(--color-primary-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-line {
+      background-color: #06C755;
+      color: var(--color-white);
+      border: 1px solid #06C755;
+    }
+
+    .btn-line:hover {
+      background-color: #05b34c;
+      border-color: #05b34c;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(6, 199, 85, 0.25);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: var(--color-primary);
+      border: 1px solid var(--color-primary);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--color-primary);
+      color: var(--color-white);
+      transform: translateY(-2px);
+    }
+
+    .btn-white {
+      background-color: var(--color-white);
+      color: var(--color-primary);
+      border: 1px solid var(--color-white);
+    }
+
+    .btn-white:hover {
+      background-color: var(--color-gray-light);
+      color: var(--color-primary-dark);
+      transform: translateY(-2px);
+    }
+
+    /* Scroll Reveal Baseline */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.is-revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ==========================================================================
+       1. HEADER
+       ========================================================================== */
+    .header {
       position: fixed;
-
       top: 0;
       left: 0;
-
       width: 100%;
-      height: 76px;
+      height: var(--header-h);
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 1000;
+      transition: height 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+      border-bottom: 1px solid rgba(199, 206, 211, 0.4);
+    }
 
+    .header.is-shrink {
+      height: var(--header-h-shrink);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .header__inner {
       display: flex;
-
       align-items: center;
       justify-content: space-between;
-
-      padding: 0 5%;
-
-      background: rgba(255,255,255,.96);
-
-      backdrop-filter: blur(14px);
-
-      border-bottom:
-        1px solid rgba(0,84,151,.12);
-
-      z-index: 1000;
-
-      transition: .3s;
-
-    }
-
-
-    .site-header.scrolled {
-
-      height: 66px;
-
-      box-shadow:
-        0 10px 30px rgba(0,84,151,.08);
-
-    }
-
-
-    .logo img {
-
-      width: 170px;
-
-    }
-
-
-    .nav {
-
-      display: flex;
-
-      align-items: center;
-
-      gap: 22px;
-
-    }
-
-
-    .nav a {
-
-      position: relative;
-
-      color: #31444e;
-
-      font-size: 13px;
-
-      font-weight: 700;
-
-      transition: .3s;
-
-    }
-
-
-    .nav a:not(.nav-line)::after {
-
-      content: "";
-
-      position: absolute;
-
-      left: 0;
-      bottom: -7px;
-
-      width: 0;
-      height: 3px;
-
-      background: var(--accent);
-
-      transition: .3s;
-
-    }
-
-
-    .nav a:hover {
-
-      color: var(--main);
-
-    }
-
-
-    .nav a:hover::after {
-
-      width: 100%;
-
-    }
-
-
-    .nav-line {
-
-      padding: 11px 20px;
-
-      background: var(--main);
-
-      color: white !important;
-
-      border-radius: 999px;
-
-    }
-
-
-    .nav-line:hover {
-
-      background: var(--sub);
-
-      transform: translateY(-2px);
-
-    }
-
-
-    .menu-button {
-
-      display: none;
-
-      border: none;
-
-      background: transparent;
-
-      color: var(--main);
-
-      font-size: 28px;
-
-      cursor: pointer;
-
-    }
-
-
-
-    /* =========================================================
-       HERO
-    ========================================================= */
-
-    .hero {
-
-      position: relative;
-
-      min-height: 900px;
-
-      padding-top: 76px;
-
-      overflow: hidden;
-
-      background: #edf4f7;
-
-    }
-
-
-    .hero-bg {
-
-      position: absolute;
-
-      inset: 0;
-
-      z-index: 0;
-
-    }
-
-
-    .hero-slide {
-
-      position: absolute;
-
-      inset: 0;
-
-      opacity: 0;
-
-      transition:
-        opacity 1.25s ease;
-
-    }
-
-
-    .hero-slide.active {
-
-      opacity: 1;
-
-    }
-
-
-    .hero-slide img {
-
-      width: 100%;
       height: 100%;
-
-      object-fit: cover;
-
-      object-position: center;
-
-      transform: scale(1.05);
-
-      transition:
-        transform 7s ease;
-
     }
 
-
-    .hero-slide.active img {
-
-      transform: scale(1);
-
-    }
-
-
-    .hero-overlay {
-
-      position: absolute;
-
-      inset: 0;
-
-      z-index: 1;
-
-      background:
-
-        linear-gradient(
-
-          90deg,
-
-          rgba(255,255,255,.99) 0%,
-
-          rgba(255,255,255,.97) 31%,
-
-          rgba(255,255,255,.87) 49%,
-
-          rgba(255,255,255,.40) 72%,
-
-          rgba(255,255,255,.13) 100%
-
-        );
-
-    }
-
-
-    .hero-inner {
-
-      position: relative;
-
-      z-index: 2;
-
-      width:
-        min(1180px, calc(100% - 70px));
-
-      min-height: 824px;
-
-      margin: 0 auto;
-
+    .header__logo {
       display: flex;
-
       align-items: center;
-
-    }
-
-
-    .hero-copy {
-
-      width: 58%;
-
-      padding: 100px 0 80px;
-
-    }
-
-
-    .hero-kicker {
-
-      display: flex;
-
-      align-items: center;
-
       gap: 12px;
-
-      color: var(--sub);
-
-      font-size: 12px;
-
-      font-weight: 800;
-
-      letter-spacing: .19em;
-
-      margin-bottom: 28px;
-
     }
 
-
-    .hero-kicker::before {
-
-      content: "";
-
-      width: 38px;
-      height: 2px;
-
-      background: var(--main);
-
+    .header__logo img {
+      height: 36px;
+      width: auto;
     }
 
-
-    .hero-title {
-
-      position: relative;
-
-      width: fit-content;
-
-      color: var(--main);
-
-      font-size:
-        clamp(58px,6vw,94px);
-
-      line-height: 1.04;
-
-      letter-spacing: -.05em;
-
-      font-weight: 800;
-
-      margin-bottom: 40px;
-
-    }
-
-
-    .hero-title::after {
-
-      content: "";
-
-      position: absolute;
-
-      left: 0;
-      bottom: -9px;
-
-      width: 100%;
-      height: 8px;
-
-      background: var(--accent);
-
-      transform: scaleX(0);
-
-      transform-origin: left;
-
-      animation:
-        heroLine 1s ease .45s forwards;
-
-    }
-
-
-    @keyframes heroLine {
-
-      to {
-
-        transform: scaleX(1);
-
-      }
-
-    }
-
-
-    .hero-lead {
-
-      max-width: 570px;
-
-      color: #264253;
-
-      font-size: 18px;
-
-      font-weight: 600;
-
-      line-height: 2;
-
-      margin-bottom: 24px;
-
-    }
-
-
-    .hero-text {
-
-      max-width: 560px;
-
-      color: #607078;
-
-      font-size: 15px;
-
-      line-height: 2;
-
-      margin-bottom: 30px;
-
-    }
-
-
-    .hero-note {
-
-      display: inline-block;
-
-      padding: 11px 16px;
-
-      background:
-        rgba(255,255,255,.94);
-
-      border-left:
-        4px solid var(--accent);
-
-      box-shadow:
-        0 8px 25px rgba(0,84,151,.08);
-
-      font-size: 13px;
-
-      font-weight: 700;
-
-      margin-bottom: 30px;
-
-    }
-
-
-    .hero-actions {
-
+    .header__logo-text {
       display: flex;
-
-      flex-wrap: wrap;
-
-      gap: 12px;
-
+      flex-direction: column;
     }
 
+    .header__logo-sub {
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: var(--color-secondary);
+      line-height: 1.2;
+    }
 
-    .btn-main,
-    .btn-sub {
+    .header__logo-main {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      letter-spacing: 0.05em;
+    }
 
-      min-height: 56px;
-
-      padding: 0 27px;
-
-      display: inline-flex;
-
+    .header__nav {
+      display: flex;
       align-items: center;
-      justify-content: center;
-
-      border-radius: 999px;
-
-      font-size: 14px;
-
-      font-weight: 700;
-
-      transition: .3s;
-
+      gap: 28px;
     }
 
-
-    .btn-main {
-
-      background: var(--main);
-
-      color: white;
-
-    }
-
-
-    .btn-sub {
-
-      background: white;
-
-      color: var(--main);
-
-      border:
-        1px solid var(--main);
-
-    }
-
-
-    .btn-main:hover {
-
-      background: var(--sub);
-
-      transform: translateY(-3px);
-
-    }
-
-
-    .btn-sub:hover {
-
-      background: var(--main);
-
-      color: white;
-
-      transform: translateY(-3px);
-
-    }
-
-
-    .hero-dots {
-
-      position: absolute;
-
-      z-index: 4;
-
-      right: 5%;
-      bottom: 35px;
-
+    .nav-list {
       display: flex;
-
-      gap: 8px;
-
+      align-items: center;
+      gap: 24px;
     }
 
-
-    .hero-dot {
-
-      width: 9px;
-      height: 9px;
-
-      border-radius: 50%;
-
-      border:
-        1px solid var(--main);
-
-      background: white;
-
-      cursor: pointer;
-
-      transition: .3s;
-
+    .nav-link {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--color-text-main);
+      padding: 6px 0;
+      position: relative;
     }
 
-
-    .hero-dot.active {
-
-      width: 30px;
-
-      border-radius: 999px;
-
-      background: var(--main);
-
-    }
-
-
-    .hero-bottom-line {
-
+    .nav-link::after {
+      content: '';
       position: absolute;
-
-      z-index: 4;
-
       bottom: 0;
       left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--color-primary);
+      transition: width 0.3s ease;
+    }
 
+    .nav-link:hover,
+    .nav-link.is-active {
+      color: var(--color-primary);
+    }
+
+    .nav-link.is-active::after {
       width: 100%;
-      height: 6px;
-
-      background:
-        linear-gradient(
-          90deg,
-          var(--main) 0%,
-          var(--main) 65%,
-          var(--sub) 65%,
-          var(--sub) 90%,
-          var(--accent) 90%
-        );
-
     }
 
-
-
-    /* =========================================================
-       COMMON
-    ========================================================= */
-
-    .section {
-
-      padding:
-        110px 7%;
-
-      position: relative;
-
-      overflow: hidden;
-
+    .header__line-btn {
+      padding: 10px 20px;
+      font-size: 0.875rem;
+      border-radius: 4px;
     }
 
-
-    .section-inner {
-
-      max-width: 1180px;
-
-      margin: 0 auto;
-
-    }
-
-
-    .section-kicker {
-
-      display: block;
-
-      color: var(--sub);
-
-      font-size: 12px;
-
-      font-weight: 800;
-
-      letter-spacing: .18em;
-
-      margin-bottom: 12px;
-
-    }
-
-
-    .section-title {
-
-      color: var(--main);
-
-      font-size:
-        clamp(38px,4vw,60px);
-
-      line-height: 1.25;
-
-      letter-spacing: -.035em;
-
-      font-weight: 750;
-
-    }
-
-
-    .section-lead {
-
-      max-width: 720px;
-
-      margin-top: 18px;
-
-      color: var(--muted);
-
-      line-height: 2;
-
-    }
-
-
-    .section-line {
-
-      width: 55px;
-      height: 4px;
-
-      margin-top: 20px;
-
-      background: var(--accent);
-
-    }
-
-
-
-    /* =========================================================
-       REVEAL
-    ========================================================= */
-
-    .reveal {
-
-      opacity: 0;
-
-      transform:
-        translateY(30px);
-
-      transition:
-        opacity .8s ease,
-        transform .8s ease;
-
-    }
-
-
-    .reveal.show {
-
-      opacity: 1;
-
-      transform:
-        translateY(0);
-
-    }
-
-
-
-    /* =========================================================
-       MESSAGE
-    ========================================================= */
-
-    .message-section {
-
-      background: white;
-
-    }
-
-
-    .message-layout {
-
-      display: grid;
-
-      grid-template-columns:
-        .85fr 1.15fr;
-
-      gap: 75px;
-
-    }
-
-
-    .message-big {
-
-      position: sticky;
-
-      top: 120px;
-
-      color: var(--main);
-
-      font-size:
-        clamp(42px,5vw,72px);
-
-      font-weight: 750;
-
-      line-height: 1.15;
-
-      letter-spacing: -.03em;
-
-    }
-
-
-    .message-big span {
-
-      position: relative;
-
-    }
-
-
-    .message-big span::after {
-
-      content: "";
-
-      position: absolute;
-
-      left: 0;
-      bottom: -7px;
-
-      width: 100%;
-      height: 6px;
-
-      background: var(--accent);
-
-    }
-
-
-    .message-card {
-
-      padding: 45px 0;
-
-      border-top:
-        1px solid var(--gray);
-
-      border-bottom:
-        1px solid var(--gray);
-
-    }
-
-
-    .message-card h3 {
-
-      color: var(--dark);
-
-      font-size: 28px;
-
-      line-height: 1.55;
-
-      margin-bottom: 24px;
-
-    }
-
-
-    .message-card p {
-
-      color: #5e6d75;
-
-      margin-bottom: 14px;
-
-    }
-
-
-    .message-highlight {
-
-      display: inline-block;
-
-      margin-top: 18px;
-
-      padding:
-        10px 15px;
-
-      color: var(--main);
-
-      background: #eaf6f7;
-
-      border-left:
-        4px solid var(--sub);
-
-      font-weight: 700;
-
-    }
-
-
-
-    /* =========================================================
-       ABOUT
-    ========================================================= */
-
-    .about-section {
-
-      background:
-        linear-gradient(
-          135deg,
-          #f7fafb,
-          #eef5f7
-        );
-
-    }
-
-
-    .about-grid {
-
-      display: grid;
-
-      grid-template-columns:
-        1fr 1fr;
-
-      gap: 60px;
-
-      margin-top: 60px;
-
-    }
-
-
-    .about-copy h3 {
-
-      color: var(--dark);
-
-      font-size: 33px;
-
-      line-height: 1.5;
-
-      margin-bottom: 20px;
-
-    }
-
-
-    .about-copy p {
-
-      color: #5f6d75;
-
-      margin-bottom: 14px;
-
-    }
-
-
-    .about-keywords {
-
-      display: grid;
-
-      grid-template-columns:
-        1fr 1fr;
-
-      border-left:
-        1px solid var(--gray);
-
-      border-top:
-        1px solid var(--gray);
-
-    }
-
-
-    .about-keyword {
-
-      min-height: 145px;
-
-      padding: 25px;
-
-      display: flex;
-
+    /* Mobile Menu Toggle */
+    .menu-btn {
+      display: none;
       flex-direction: column;
-
-      justify-content: space-between;
-
-      border-right:
-        1px solid var(--gray);
-
-      border-bottom:
-        1px solid var(--gray);
-
-      background:
-        rgba(255,255,255,.75);
-
-    }
-
-
-    .about-keyword-number {
-
-      color: var(--main);
-
-      font-size: 34px;
-
-      font-weight: 800;
-
-    }
-
-
-    .about-keyword-text {
-
-      color: var(--sub);
-
-      font-size: 12px;
-
-      font-weight: 700;
-
-    }
-
-
-
-    /* =========================================================
-       DATA / 数字で見るオーファス
-    ========================================================= */
-
-    .data-section {
-
-      background: white;
-
-    }
-
-
-    .data-heading {
-
-      display: flex;
-
-      justify-content: space-between;
-
-      align-items: flex-end;
-
-      gap: 30px;
-
-    }
-
-
-    .data-heading-note {
-
-      max-width: 370px;
-
-      color: var(--muted);
-
-      font-size: 13px;
-
-      line-height: 1.9;
-
-    }
-
-
-    .data-grid {
-
-      display: grid;
-
-      grid-template-columns:
-        repeat(12,1fr);
-
-      gap: 18px;
-
-      margin-top: 60px;
-
-    }
-
-
-    .data-card {
-
-      position: relative;
-
-      overflow: hidden;
-
-      min-height: 280px;
-
-      padding: 30px;
-
-      background: #f7fafb;
-
-      border:
-        1px solid #dce4e8;
-
-      transition:
-        transform .3s ease,
-        box-shadow .3s ease,
-        border-color .3s ease;
-
-    }
-
-
-    .data-card:hover {
-
-      transform: translateY(-5px);
-
-      border-color: var(--sub);
-
-      box-shadow:
-        0 16px 36px rgba(0,84,151,.08);
-
-    }
-
-
-    .data-card.gender {
-
-      grid-column: span 5;
-
-    }
-
-
-    .data-card.age {
-
-      grid-column: span 7;
-
-    }
-
-
-    .data-card.unexperienced {
-
-      grid-column: span 4;
-
-      background: var(--main);
-
-      color: white;
-
-    }
-
-
-    .data-card.tenure {
-
-      grid-column: span 4;
-
-    }
-
-
-    .data-card.employment {
-
-      grid-column: span 4;
-
-    }
-
-
-    .data-card.staff-total {
-
-      grid-column: span 6;
-
-    }
-
-
-    .data-card.founded {
-
-      grid-column: span 6;
-
-      background: #eef7f8;
-
-    }
-
-
-    .data-label {
-
-      color: var(--sub);
-
-      font-size: 11px;
-
-      font-weight: 800;
-
-      letter-spacing: .15em;
-
-      margin-bottom: 9px;
-
-    }
-
-
-    .data-title {
-
-      color: var(--dark);
-
-      font-size: 21px;
-
-      font-weight: 750;
-
-      margin-bottom: 25px;
-
-    }
-
-
-    .unexperienced .data-label {
-
-      color: #91d9df;
-
-    }
-
-
-    .unexperienced .data-title {
-
-      color: white;
-
-    }
-
-
-
-    /* 男女比 */
-
-    .gender-layout {
-
-      display: flex;
-
-      align-items: center;
-
-      gap: 35px;
-
-    }
-
-
-    .gender-chart {
-
-      position: relative;
-
-      flex:
-        0 0 170px;
-
-      width: 170px;
-      height: 170px;
-
-      border-radius: 50%;
-
-      background:
-        conic-gradient(
-          var(--main) 0deg,
-          var(--main) 0deg,
-          #e0e7ea 0deg,
-          #e0e7ea 360deg
-        );
-
-      transition:
-        background 1.2s ease;
-
-    }
-
-
-    .gender-chart::after {
-
-      content: "";
-
-      position: absolute;
-
-      inset: 24px;
-
-      border-radius: 50%;
-
-      background: #f7fafb;
-
-    }
-
-
-    .gender-center {
-
-      position: absolute;
-
-      inset: 0;
-
-      display: flex;
-
-      align-items: center;
       justify-content: center;
-
-      flex-direction: column;
-
-      z-index: 2;
-
-    }
-
-
-    .gender-center strong {
-
-      color: var(--main);
-
-      font-size: 30px;
-
-      line-height: 1;
-
-    }
-
-
-    .gender-center span {
-
-      color: var(--muted);
-
-      font-size: 10px;
-
-      margin-top: 7px;
-
-    }
-
-
-    .gender-legend {
-
-      flex: 1;
-
-    }
-
-
-    .gender-row {
-
-      display: flex;
-
-      justify-content: space-between;
-
-      padding: 11px 0;
-
-      border-bottom:
-        1px solid #dce4e8;
-
-    }
-
-
-    .gender-row span {
-
-      color: #67757d;
-
-      font-size: 13px;
-
-    }
-
-
-    .gender-row strong {
-
-      color: var(--main);
-
-      font-size: 22px;
-
-    }
-
-
-    .gender-row:nth-child(2)
-    strong {
-
-      color: var(--sub);
-
-    }
-
-
-
-    /* 年代構成 */
-
-    .age-list {
-
-      display: grid;
-
-      gap: 12px;
-
-    }
-
-
-    .age-row {
-
-      display: grid;
-
-      grid-template-columns:
-        75px 1fr 45px;
-
       align-items: center;
-
-      gap: 14px;
-
+      width: 44px;
+      height: 44px;
+      gap: 6px;
+      z-index: 1001;
     }
 
-
-    .age-name {
-
-      color: #596970;
-
-      font-size: 12px;
-
+    .menu-btn span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background-color: var(--color-primary);
+      transition: var(--transition-base);
     }
 
-
-    .age-track {
-
-      height: 9px;
-
-      background: #e3e9ec;
-
-      overflow: hidden;
-
+    .menu-btn.is-active span:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
     }
 
-
-    .age-bar {
-
-      width: 0;
-
-      height: 100%;
-
-      background: var(--main);
-
-      transition:
-        width 1.1s cubic-bezier(.22,.61,.36,1);
-
+    .menu-btn.is-active span:nth-child(2) {
+      opacity: 0;
     }
 
-
-    .age-row:nth-child(even)
-    .age-bar {
-
-      background: var(--sub);
-
+    .menu-btn.is-active span:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
     }
 
-
-    .age-percent {
-
-      color: var(--main);
-
-      font-size: 13px;
-
-      font-weight: 800;
-
-      text-align: right;
-
+    @media (max-width: 991px) {
+      .header__nav {
+        display: none;
+      }
+      .menu-btn {
+        display: flex;
+      }
     }
 
-
-
-    /* 未経験 */
-
-    .big-stat {
-
-      font-size:
-        clamp(58px,6vw,90px);
-
-      font-weight: 800;
-
-      line-height: 1;
-
-      letter-spacing: -.04em;
-
-    }
-
-
-    .big-stat small {
-
-      font-size: .35em;
-
-      margin-left: 3px;
-
-    }
-
-
-    .stat-caption {
-
-      margin-top: 17px;
-
-      color: #718087;
-
-      font-size: 13px;
-
-    }
-
-
-    .unexperienced
-    .stat-caption {
-
-      color: #cde4eb;
-
-    }
-
-
-    .yellow-line {
-
-      width: 45px;
-      height: 5px;
-
-      margin-top: 22px;
-
-      background: var(--accent);
-
-    }
-
-
-
-    /* 勤続年数 */
-
-    .tenure-number {
-
-      color: var(--main);
-
-      font-size:
-        clamp(58px,6vw,86px);
-
-      font-weight: 800;
-
-      line-height: 1;
-
-    }
-
-
-    .tenure-number small {
-
-      font-size: 24px;
-
-    }
-
-
-
-    /* 雇用形態 */
-
-    .employment-bars {
-
-      margin-top: 20px;
-
-    }
-
-
-    .employment-item {
-
-      margin-bottom: 20px;
-
-    }
-
-
-    .employment-label {
-
+    /* Mobile Drawer */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background-color: var(--color-white);
+      z-index: 999;
       display: flex;
-
-      justify-content: space-between;
-
-      margin-bottom: 8px;
-
-      color: #5e6c74;
-
-      font-size: 12px;
-
+      flex-direction: column;
+      padding: 100px 32px 40px;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow-y: auto;
     }
 
-
-    .employment-label strong {
-
-      color: var(--main);
-
-      font-size: 18px;
-
+    .mobile-menu.is-open {
+      transform: translateX(0);
     }
 
+    .mobile-menu__list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
 
-    .employment-track {
+    .mobile-menu__link {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--color-primary);
+      display: block;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--color-gray-border);
+    }
 
-      height: 12px;
-
-      background: #e2e9ec;
-
+    /* ==========================================================================
+       2. HERO SECTION
+       ========================================================================== */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 680px;
+      display: flex;
+      align-items: center;
       overflow: hidden;
-
+      padding-top: var(--header-h);
     }
 
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
 
-    .employment-bar {
+    .hero__slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.06);
+      transition: opacity 1.8s ease, transform 6s cubic-bezier(0.25, 1, 0.5, 1);
+    }
 
+    .hero__slide.is-active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .hero__slide::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.85) 45%, rgba(255,255,255,0.3) 100%);
+    }
+
+    @media (max-width: 768px) {
+      .hero__slide::after {
+        background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.7) 100%);
+      }
+    }
+
+    .hero__inner {
+      position: relative;
+      z-index: 2;
+      max-width: 720px;
+    }
+
+    .hero__badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 14px;
+      background-color: var(--color-primary-light);
+      color: var(--color-primary);
+      font-family: var(--font-en);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      margin-bottom: 20px;
+      border-left: 3px solid var(--color-secondary);
+    }
+
+    .hero__title {
+      font-size: 3.25rem;
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--color-primary);
+      margin-bottom: 24px;
+      letter-spacing: 0.05em;
+    }
+
+    @media (max-width: 768px) {
+      .hero__title {
+        font-size: 2.25rem;
+      }
+    }
+
+    .hero__text {
+      font-size: 1.0625rem;
+      line-height: 1.9;
+      color: var(--color-text-main);
+      margin-bottom: 36px;
+    }
+
+    .hero__note {
+      display: block;
+      margin-top: 14px;
+      font-weight: 700;
+      color: var(--color-primary);
+    }
+
+    .hero__ctas {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .hero__dots {
+      position: absolute;
+      bottom: 40px;
+      right: 40px;
+      z-index: 2;
+      display: flex;
+      gap: 12px;
+    }
+
+    .hero__dot {
+      width: 32px;
+      height: 3px;
+      background-color: rgba(0, 84, 151, 0.25);
+      border-radius: 2px;
+      transition: var(--transition-base);
+    }
+
+    .hero__dot.is-active {
+      background-color: var(--color-primary);
+      width: 48px;
+    }
+
+    /* ==========================================================================
+       3. MESSAGE SECTION
+       ========================================================================== */
+    .message-card {
+      background-color: var(--color-white);
+      border: 1px solid var(--color-gray-border);
+      padding: 64px 48px;
+      position: relative;
+      box-shadow: var(--shadow-sm);
+    }
+
+    @media (max-width: 768px) {
+      .message-card {
+        padding: 40px 24px;
+      }
+    }
+
+    .message-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
       height: 100%;
-
-      width: 0;
-
-      background: var(--main);
-
-      transition:
-        width 1.2s ease;
-
+      background-color: var(--color-secondary);
     }
 
-
-    .employment-item:nth-child(2)
-    .employment-bar {
-
-      background: var(--sub);
-
+    .message__lead {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: 28px;
+      line-height: 1.4;
     }
 
-
-
-    /* 社員数・創業 */
-
-    .mega-stat {
-
-      color: var(--main);
-
-      font-size:
-        clamp(68px,8vw,110px);
-
-      line-height: 1;
-
-      font-weight: 800;
-
-      letter-spacing: -.055em;
-
+    @media (max-width: 768px) {
+      .message__lead {
+        font-size: 1.375rem;
+      }
     }
 
-
-    .mega-stat small {
-
-      font-size: 20px;
-
-      letter-spacing: 0;
-
+    .message__body {
+      font-size: 1.0625rem;
+      line-height: 2;
+      color: var(--color-text-main);
+      margin-bottom: 32px;
     }
 
-
-    .staff-total::before {
-
-      content: "PEOPLE";
-
-      position: absolute;
-
-      right: -10px;
-      bottom: -18px;
-
-      color: rgba(0,84,151,.045);
-
-      font-size: 90px;
-
-      font-weight: 900;
-
+    .message__highlight {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      padding: 16px 24px;
+      background-color: var(--color-primary-light);
+      border-radius: 4px;
+      display: inline-block;
     }
 
-
-    .founded::before {
-
-      content: "SINCE";
-
-      position: absolute;
-
-      right: -5px;
-      bottom: -20px;
-
-      color: rgba(32,164,175,.06);
-
-      font-size: 90px;
-
-      font-weight: 900;
-
+    @media (max-width: 768px) {
+      .message__highlight {
+        font-size: 1.0625rem;
+        display: block;
+      }
     }
 
-
-
-    /* =========================================================
-       MVV
-    ========================================================= */
-
-    .mvv-section {
-
-      background: var(--main);
-
-      color: white;
-
-    }
-
-
-    .mvv-section
-    .section-kicker {
-
-      color: #8ed2d7;
-
-    }
-
-
-    .mvv-section
-    .section-title {
-
-      color: white;
-
-    }
-
-
-    .mvv-grid {
-
+    /* ==========================================================================
+       4. ABOUT OHFAS
+       ========================================================================== */
+    .about__grid {
       display: grid;
-
-      grid-template-columns:
-        repeat(3,1fr);
-
-      margin-top: 60px;
-
-      border-top:
-        1px solid rgba(255,255,255,.25);
-
-      border-left:
-        1px solid rgba(255,255,255,.25);
-
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
     }
 
+    @media (max-width: 991px) {
+      .about__grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+
+    .about__copy {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      line-height: 1.4;
+      margin-bottom: 24px;
+    }
+
+    .about__desc {
+      font-size: 1.0625rem;
+      line-height: 1.9;
+      color: var(--color-text-sub);
+    }
+
+    .about__visual {
+      position: relative;
+      padding-left: 20px;
+      padding-top: 20px;
+    }
+
+    .about__visual::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 80%;
+      height: 80%;
+      border: 2px solid var(--color-secondary);
+      z-index: 0;
+    }
+
+    .about__visual img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      box-shadow: var(--shadow-md);
+    }
+
+    /* ==========================================================================
+       5. NUMBERS (DASHBOARD)
+       ========================================================================== */
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 24px;
+    }
+
+    .dash-card {
+      background: var(--color-white);
+      border: 1px solid var(--color-gray-border);
+      padding: 32px 28px;
+      border-radius: 4px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .dash-card--span-6 { grid-column: span 6; }
+    .dash-card--span-4 { grid-column: span 4; }
+    .dash-card--span-3 { grid-column: span 3; }
+
+    @media (max-width: 991px) {
+      .dash-card--span-6,
+      .dash-card--span-4,
+      .dash-card--span-3 {
+        grid-column: span 6;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .dash-card--span-6,
+      .dash-card--span-4,
+      .dash-card--span-3 {
+        grid-column: span 12;
+      }
+    }
+
+    .dash-card__label {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dash-card__label::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background-color: var(--color-secondary);
+      border-radius: 50%;
+    }
+
+    .dash-metric {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .dash-metric__num {
+      font-family: var(--font-en);
+      font-size: 3.5rem;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--color-primary);
+    }
+
+    .dash-metric__unit {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--color-text-sub);
+    }
+
+    /* Pie Chart: Gender */
+    .pie-wrap {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .pie-chart {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: conic-gradient(
+        var(--color-primary) 0deg,
+        var(--color-primary) 0deg,
+        var(--color-secondary) 0deg,
+        var(--color-secondary) 360deg
+      );
+      transition: background 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .pie-chart::after {
+      content: '';
+      position: absolute;
+      inset: 22px;
+      background-color: var(--color-white);
+      border-radius: 50%;
+    }
+
+    .pie-legend {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .pie-legend__item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9375rem;
+      font-weight: 600;
+    }
+
+    .pie-legend__color {
+      width: 12px;
+      height: 12px;
+      border-radius: 2px;
+    }
+
+    .pie-legend__color--men { background-color: var(--color-primary); }
+    .pie-legend__color--women { background-color: var(--color-secondary); }
+
+    /* Bar Charts */
+    .bar-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .bar-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .bar-item__meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--color-text-sub);
+    }
+
+    .bar-track {
+      width: 100%;
+      height: 8px;
+      background-color: var(--color-gray-border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      background-color: var(--color-primary);
+      width: 0%;
+      transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+      border-radius: 4px;
+    }
+
+    .bar-fill--secondary {
+      background-color: var(--color-secondary);
+    }
+
+    /* ==========================================================================
+       6. MVV SECTION
+       ========================================================================== */
+    .mvv-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    @media (max-width: 991px) {
+      .mvv-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+    }
 
     .mvv-card {
-
-      min-height: 320px;
-
-      padding: 34px;
-
-      border-right:
-        1px solid rgba(255,255,255,.25);
-
-      border-bottom:
-        1px solid rgba(255,255,255,.25);
-
-      transition: .3s;
-
-    }
-
-
-    .mvv-card:hover {
-
-      background:
-        rgba(32,164,175,.18);
-
-      transform:
-        translateY(-4px);
-
-    }
-
-
-    .mvv-num {
-
-      color: #8eb4cb;
-
-      font-size: 14px;
-
-      margin-bottom: 42px;
-
-    }
-
-
-    .mvv-label {
-
-      color: #8ed2d7;
-
-      font-size: 11px;
-
-      font-weight: 800;
-
-      letter-spacing: .15em;
-
-      margin-bottom: 20px;
-
-    }
-
-
-    .mvv-card h3 {
-
-      font-size: 22px;
-
-      line-height: 1.65;
-
-    }
-
-
-    .mvv-card ul {
-
-      list-style: none;
-
-    }
-
-
-    .mvv-card li {
-
+      background-color: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 40px 32px;
+      border-radius: 4px;
       position: relative;
-
-      padding:
-        10px 0 10px 18px;
-
-      border-bottom:
-        1px solid rgba(255,255,255,.17);
-
-      font-size: 14px;
-
     }
 
+    .mvv-card__tag {
+      font-family: var(--font-en);
+      font-size: 1.125rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--color-accent);
+      margin-bottom: 16px;
+      display: block;
+    }
 
-    .mvv-card li::before {
+    .mvv-card__title {
+      font-size: 1.375rem;
+      font-weight: 700;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
 
-      content: "";
+    .mvv-card__list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.9375rem;
+    }
 
+    .mvv-card__list li {
+      position: relative;
+      padding-left: 16px;
+    }
+
+    .mvv-card__list li::before {
+      content: '・';
       position: absolute;
-
       left: 0;
-      top: 20px;
+      color: var(--color-accent);
+    }
 
-      width: 7px;
-      height: 7px;
+    /* ==========================================================================
+       7. HISTORY SECTION (TIMELINE)
+       ========================================================================== */
+    .timeline {
+      position: relative;
+      max-width: 860px;
+      margin-inline: auto;
+      padding-block: 20px;
+    }
 
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 140px;
+      width: 2px;
+      background-color: var(--color-gray-border);
+    }
+
+    @media (max-width: 768px) {
+      .timeline::before {
+        left: 20px;
+      }
+    }
+
+    .timeline__item {
+      display: flex;
+      margin-bottom: 48px;
+      position: relative;
+    }
+
+    .timeline__item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline__year {
+      width: 140px;
+      font-family: var(--font-en);
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      padding-right: 36px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 768px) {
+      .timeline__year {
+        width: auto;
+        padding-left: 44px;
+        padding-right: 0;
+        text-align: left;
+        margin-bottom: 8px;
+      }
+      .timeline__item {
+        flex-direction: column;
+      }
+    }
+
+    .timeline__dot {
+      position: absolute;
+      left: 135px;
+      top: 8px;
+      width: 12px;
+      height: 12px;
       border-radius: 50%;
-
-      background: var(--accent);
-
+      background-color: var(--color-secondary);
+      border: 3px solid var(--color-white);
+      box-shadow: 0 0 0 2px var(--color-secondary);
+      z-index: 1;
     }
 
-
-
-    /* =========================================================
-       HISTORY
-    ========================================================= */
-
-    .history-section {
-
-      background: white;
-
+    @media (max-width: 768px) {
+      .timeline__dot {
+        left: 15px;
+      }
     }
 
-
-    .history-timeline {
-
-      margin-top: 70px;
-
-      border-top:
-        1px solid var(--main);
-
+    .timeline__content {
+      padding-left: 36px;
+      flex-grow: 1;
     }
 
-
-    .history-item {
-
-      display: grid;
-
-      grid-template-columns:
-        150px 1fr;
-
-      gap: 40px;
-
-      padding:
-        32px 0;
-
-      border-bottom:
-        1px solid #dfe5e8;
-
-      transition: .3s;
-
+    @media (max-width: 768px) {
+      .timeline__content {
+        padding-left: 44px;
+      }
     }
 
-
-    .history-item:hover {
-
-      padding-left: 10px;
-
-    }
-
-
-    .history-year {
-
-      color: var(--main);
-
-      font-size: 28px;
-
-      font-weight: 800;
-
-    }
-
-
-    .history-content h3 {
-
-      color: var(--dark);
-
-      font-size: 21px;
-
+    .timeline__title {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--color-text-main);
       margin-bottom: 8px;
-
     }
 
-
-    .history-content p {
-
-      color: #66757d;
-
-      font-size: 14px;
-
+    .timeline__desc {
+      font-size: 0.9375rem;
+      color: var(--color-text-sub);
+      line-height: 1.8;
     }
 
-
-
-    /* =========================================================
-       JOBS
-    ========================================================= */
-
-    .jobs-section {
-
-      background: #f3f7f8;
-
-    }
-
-
+    /* ==========================================================================
+       8. OUR JOB
+       ========================================================================== */
     .job-grid {
-
       display: grid;
-
-      grid-template-columns:
-        repeat(3,1fr);
-
-      gap: 28px;
-
-      margin-top: 60px;
-
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
     }
 
+    @media (max-width: 991px) {
+      .job-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .job-grid {
+        grid-template-columns: 1fr;
+      }
+    }
 
     .job-card {
-
+      background-color: var(--color-white);
+      border: 1px solid var(--color-gray-border);
       overflow: hidden;
-
-      background: white;
-
-      border:
-        1px solid var(--gray);
-
-      transition: .35s;
-
+      border-radius: 4px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition-base);
     }
-
 
     .job-card:hover {
-
-      transform:
-        translateY(-7px);
-
-      border-color:
-        var(--sub);
-
-      box-shadow:
-        0 18px 40px rgba(0,84,151,.10);
-
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
     }
 
-
-    .job-photo {
-
-      height: 245px;
-
-      object-fit: cover;
-
-      filter:
-        grayscale(28%);
-
-      transition: .5s;
-
-    }
-
-
-    .job-card:hover
-    .job-photo {
-
-      filter:
-        grayscale(0%);
-
-      transform:
-        scale(1.035);
-
-    }
-
-
-    .job-content {
-
-      padding: 24px;
-
-    }
-
-
-    .job-line {
-
-      width: 36px;
-      height: 3px;
-
-      margin-bottom: 16px;
-
-      background: var(--accent);
-
-    }
-
-
-    .job-content h3 {
-
-      color: var(--main);
-
-      font-size: 21px;
-
-      margin-bottom: 8px;
-
-    }
-
-
-    .job-content p {
-
-      color: #68767e;
-
-      font-size: 13px;
-
-    }
-
-
-
-    /* =========================================================
-       PEOPLE
-    ========================================================= */
-
-    .people-section {
-
-      background: white;
-
-    }
-
-
-    .people-controls {
-
-      display: flex;
-
-      justify-content: flex-end;
-
-      gap: 8px;
-
-      margin-top: -45px;
-
-    }
-
-
-    .people-control {
-
-      width: 46px;
-      height: 46px;
-
-      border:
-        1px solid var(--gray);
-
-      background: white;
-
-      color: var(--main);
-
-      font-size: 20px;
-
-      cursor: pointer;
-
-      transition: .3s;
-
-    }
-
-
-    .people-control:hover {
-
-      background: var(--main);
-
-      color: white;
-
-    }
-
-
-    .people-slider {
-
-      display: flex;
-
-      gap: 28px;
-
-      margin-top: 60px;
-
-      padding-bottom: 20px;
-
-      overflow-x: auto;
-
-      scroll-behavior: smooth;
-
-      scroll-snap-type:
-        x mandatory;
-
-      scrollbar-width: none;
-
-    }
-
-
-    .people-slider::-webkit-scrollbar {
-
-      display: none;
-
-    }
-
-
-    .people-card {
-
-      flex:
-        0 0 290px;
-
-      scroll-snap-align: start;
-
-    }
-
-
-    .people-photo-wrap {
-
-      position: relative;
-
-      width: 290px;
-      height: 360px;
-
-      margin-bottom: 18px;
-
+    .job-card__img-wrap {
       overflow: hidden;
-
-      background: #edf2f4;
-
+      position: relative;
+      aspect-ratio: 16 / 10;
     }
 
-
-    .people-photo {
-
+    .job-card__img {
+      width: 100%;
       height: 100%;
-
       object-fit: cover;
-
-      object-position: center top;
-
-      filter:
-        grayscale(50%);
-
-      transition: .45s;
-
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-
-    .people-card:hover
-    .people-photo {
-
-      filter:
-        grayscale(0%);
-
-      transform:
-        scale(1.025);
-
+    .job-card:hover .job-card__img {
+      transform: scale(1.08);
     }
 
-
-    .people-plus {
-
-      position: absolute;
-
-      right: 12px;
-      bottom: 12px;
-
-      width: 42px;
-      height: 42px;
-
-      display: flex;
-
-      align-items: center;
-      justify-content: center;
-
-      border-radius: 50%;
-
-      background: var(--main);
-
-      color: white;
-
-      font-size: 18px;
-
-      transition: .3s;
-
-    }
-
-
-    .people-card:hover
-    .people-plus {
-
-      background: var(--sub);
-
-      transform:
-        rotate(90deg);
-
-    }
-
-
-    .people-job {
-
-      color: var(--sub);
-
-      font-size: 11px;
-
-      font-weight: 700;
-
-      letter-spacing: .08em;
-
-    }
-
-
-    .people-card h3 {
-
-      color: var(--dark);
-
-      margin-top: 8px;
-
-      font-size: 18px;
-
-      line-height: 1.55;
-
-    }
-
-
-    .people-note {
-
-      color: #76838a;
-
-      margin-top: 6px;
-
-      font-size: 12px;
-
-    }
-
-
-
-    /* =========================================================
-       AREA
-    ========================================================= */
-
-    .area-section {
-
-      background: var(--main);
-
-      color: white;
-
-    }
-
-
-    .area-section
-    .section-kicker {
-
-      color: #8ed2d7;
-
-    }
-
-
-    .area-section
-    .section-title {
-
-      color: white;
-
-    }
-
-
-    .area-section
-    .section-lead {
-
-      color: #c8dce7;
-
-    }
-
-
-    .area-grid {
-
-      display: grid;
-
-      grid-template-columns:
-        repeat(3,1fr);
-
-      margin-top: 60px;
-
-      border-top:
-        1px solid rgba(255,255,255,.23);
-
-      border-left:
-        1px solid rgba(255,255,255,.23);
-
-    }
-
-
-    .area-card {
-
-      position: relative;
-
-      min-height: 180px;
-
+    .job-card__body {
       padding: 24px;
-
-      background: transparent;
-
-      color: white;
-
-      border: none;
-
-      border-right:
-        1px solid rgba(255,255,255,.23);
-
-      border-bottom:
-        1px solid rgba(255,255,255,.23);
-
-      text-align: left;
-
-      cursor: pointer;
-
-      transition: .3s;
-
     }
 
-
-    .area-card:hover,
-    .area-card.active {
-
-      background: white;
-
-      color: var(--main);
-
-      transform:
-        translateY(-4px);
-
-    }
-
-
-    .area-small {
-
-      display: block;
-
-      color: #8bd0d6;
-
-      font-size: 10px;
-
-      letter-spacing: .15em;
-
-      margin-bottom: 12px;
-
-    }
-
-
-    .area-name {
-
-      display: block;
-
-      font-size: 22px;
-
-      font-weight: 750;
-
-    }
-
-
-    .area-jobs {
-
-      display: block;
-
-      margin-top: 10px;
-
-      color: #c6dae6;
-
-      font-size: 12px;
-
-    }
-
-
-    .area-card:hover
-    .area-jobs,
-    .area-card.active
-    .area-jobs {
-
-      color: #67757d;
-
-    }
-
-
-    .area-arrow {
-
-      position: absolute;
-
-      right: 20px;
-      bottom: 18px;
-
-      color: var(--accent);
-
-      font-size: 24px;
-
-    }
-
-
-
-    /* =========================================================
-       RECRUIT
-    ========================================================= */
-
-    .recruit-section {
-
-      background: white;
-
-    }
-
-
-    .recruit-header {
-
-      display: flex;
-
-      align-items: flex-end;
-
-      justify-content: space-between;
-
-      gap: 30px;
-
-    }
-
-
-    .selected-area {
-
-      padding:
-        8px 12px;
-
-      background: #eaf6f7;
-
-      color: var(--main);
-
-      border-left:
-        3px solid var(--sub);
-
-      font-size: 12px;
-
+    .job-card__title {
+      font-size: 1.25rem;
       font-weight: 700;
-
+      color: var(--color-primary);
+      margin-bottom: 8px;
     }
 
-
-    .filter-title {
-
-      margin-top: 40px;
-
-      margin-bottom: 12px;
-
-      color: #718087;
-
-      font-size: 12px;
-
+    .job-card__desc {
+      font-size: 0.875rem;
+      color: var(--color-text-sub);
+      line-height: 1.7;
     }
 
-
-    .filter-buttons {
-
-      display: flex;
-
-      flex-wrap: wrap;
-
-      gap: 8px;
-
-      margin-bottom: 40px;
-
-    }
-
-
-    .filter-button {
-
-      padding:
-        9px 15px;
-
-      background: white;
-
-      color: #58676f;
-
-      border:
-        1px solid var(--gray);
-
-      font-size: 12px;
-
-      cursor: pointer;
-
-      transition: .3s;
-
-    }
-
-
-    .filter-button:hover {
-
-      color: var(--sub);
-
-      border-color: var(--sub);
-
-    }
-
-
-    .filter-button.active {
-
-      background: var(--main);
-
-      color: white;
-
-      border-color: var(--main);
-
-    }
-
-
-    .recruit-list {
-
-      border-top:
-        1px solid var(--main);
-
-    }
-
-
-    .recruit-card {
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: space-between;
-
-      gap: 20px;
-
-      padding:
-        25px 0;
-
-      border-bottom:
-        1px solid #dfe5e8;
-
-      transition: .3s;
-
-    }
-
-
-    .recruit-card:hover {
-
-      padding-left: 12px;
-
-      background: #f8fbfc;
-
-    }
-
-
-    .recruit-card.hidden {
-
-      display: none;
-
-    }
-
-
-    .recruit-info h3 {
-
-      color: var(--dark);
-
-      margin-bottom: 5px;
-
-      font-size: 19px;
-
-    }
-
-
-    .recruit-info > span {
-
-      color: #758188;
-
-      font-size: 12px;
-
-    }
-
-
-    .job-tags {
-
-      display: flex;
-
-      flex-wrap: wrap;
-
-      gap: 6px;
-
-      margin-top: 8px;
-
-    }
-
-
-    .job-tag {
-
-      padding:
-        3px 7px;
-
-      background: #edf5f6;
-
-      color: var(--sub);
-
-      font-size: 10px;
-
-      font-weight: 700;
-
-    }
-
-
-    .detail-button {
-
-      color: var(--main);
-
-      font-size: 13px;
-
-      font-weight: 700;
-
-    }
-
-
-    .detail-button::after {
-
-      content: " →";
-
-    }
-
-
-    .no-jobs {
-
-      display: none;
-
-      padding: 30px;
-
-      background: #f3f7f8;
-
-      color: #6f7d84;
-
-      text-align: center;
-
-    }
-
-
-    .no-jobs.show {
-
-      display: block;
-
-    }
-
-
-
-    /* =========================================================
-       FLOW
-    ========================================================= */
-
-    .flow-section {
-
-      background: #edf4f6;
-
-    }
-
-
-    .flow-grid {
-
-      display: grid;
-
-      grid-template-columns:
-        repeat(4,1fr);
-
-      margin-top: 55px;
-
-      border-top:
-        1px solid var(--gray);
-
-      border-left:
-        1px solid var(--gray);
-
-    }
-
-
-    .flow-card {
-
-      min-height: 220px;
-
-      padding: 28px;
-
-      background:
-        rgba(255,255,255,.60);
-
-      border-right:
-        1px solid var(--gray);
-
-      border-bottom:
-        1px solid var(--gray);
-
-      transition: .3s;
-
-    }
-
-
-    .flow-card:hover {
-
-      background: white;
-
-      transform:
-        translateY(-4px);
-
-    }
-
-
-    .flow-num {
-
-      color: var(--sub);
-
-      font-size: 12px;
-
-      font-weight: 700;
-
-      margin-bottom: 28px;
-
-    }
-
-
-    .flow-card h3 {
-
-      color: var(--main);
-
-      font-size: 17px;
-
-      margin-bottom: 10px;
-
-    }
-
-
-    .flow-card p {
-
-      color: #6e7b82;
-
-      font-size: 12px;
-
-    }
-
-
-
-    /* =========================================================
-       LINE
-    ========================================================= */
-
-    .cta-section {
-
-      background:
-        linear-gradient(
-          135deg,
-          #004474 0%,
-          var(--main) 55%,
-          #167d90 100%
-        );
-
-      color: white;
-
-    }
-
-
-    .cta-mini {
-
-      color: #9bd1d7;
-
-      font-size: 12px;
-
-      margin-bottom: 10px;
-
-    }
-
-
-    .cta-title {
-
+    /* ==========================================================================
+       9. STAFF INTERVIEW
+       ========================================================================== */
+    .staff-slider-container {
       position: relative;
-
-      width: fit-content;
-
-      font-size:
-        clamp(55px,7vw,100px);
-
-      line-height: 1;
-
-      letter-spacing: -.05em;
-
-      margin-bottom: 30px;
-
+      overflow: hidden;
+      padding: 10px 4px 40px;
     }
 
+    .staff-track {
+      display: flex;
+      gap: 24px;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: grab;
+    }
 
-    .cta-title::after {
+    .staff-track:active {
+      cursor: grabbing;
+    }
 
-      content: "";
+    .staff-card {
+      flex: 0 0 calc(33.333% - 16px);
+      min-width: 280px;
+      background-color: var(--color-white);
+      border: 1px solid var(--color-gray-border);
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      transition: var(--transition-base);
+      display: flex;
+      flex-direction: column;
+    }
 
+    @media (max-width: 991px) {
+      .staff-card {
+        flex: 0 0 calc(50% - 12px);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .staff-card {
+        flex: 0 0 85%;
+      }
+    }
+
+    .staff-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--color-secondary);
+    }
+
+    .staff-card__img-wrap {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+    }
+
+    .staff-card__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .staff-card:hover .staff-card__img {
+      transform: scale(1.05);
+    }
+
+    .staff-card__role-tag {
       position: absolute;
-
-      left: 0;
-      bottom: -9px;
-
-      width: 100%;
-      height: 6px;
-
-      background: var(--accent);
-
+      bottom: 12px;
+      left: 12px;
+      background-color: rgba(0, 84, 151, 0.9);
+      color: var(--color-white);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 2px;
     }
 
-
-    .cta-text {
-
-      max-width: 650px;
-
-      color: #d6e7ef;
-
-      line-height: 2;
-
+    .staff-card__content {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: space-between;
     }
 
-
-    .line-contact-box {
-
-      max-width: 860px;
-
-      display: grid;
-
-      grid-template-columns:
-        1fr auto 1fr;
-
-      align-items: center;
-
-      gap: 35px;
-
-      margin-top: 40px;
-
-      padding: 38px;
-
-      background: white;
-
-      color: #111;
-
-      box-shadow:
-        0 25px 60px rgba(0,0,0,.14);
-
-    }
-
-
-    .line-button-area,
-    .line-qr-area {
-
-      text-align: center;
-
-    }
-
-
-    .line-guide-title {
-
-      color: var(--main);
-
-      font-size: 14px;
-
+    .staff-card__quote {
+      font-size: 1rem;
       font-weight: 700;
-
+      color: var(--color-text-main);
       margin-bottom: 16px;
-
+      line-height: 1.5;
     }
 
-
-    .line-button {
-
-      width: 100%;
-      min-height: 58px;
-
+    .staff-card__link {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--color-secondary);
       display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
 
+    .staff-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    .staff-btn {
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--color-gray-border);
+      background-color: var(--color-white);
+      border-radius: 50%;
+      display: flex;
       align-items: center;
       justify-content: center;
+      color: var(--color-primary);
+      transition: var(--transition-base);
+    }
 
-      padding:
-        0 22px;
+    .staff-btn:hover {
+      background-color: var(--color-primary);
+      color: var(--color-white);
+      border-color: var(--color-primary);
+    }
 
-      background: var(--main);
+    /* Staff Modal */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(10, 25, 40, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
 
-      color: white;
+    .modal.is-open {
+      opacity: 1;
+      visibility: visible;
+    }
 
-      border-radius: 999px;
+    .modal__dialog {
+      background-color: var(--color-white);
+      width: 100%;
+      max-width: 760px;
+      max-height: 90vh;
+      border-radius: 4px;
+      overflow-y: auto;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+    }
 
-      font-size: 14px;
+    .modal.is-open .modal__dialog {
+      transform: translateY(0);
+    }
 
+    .modal__close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: var(--color-primary);
+      z-index: 10;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .modal__header {
+      position: relative;
+      height: 260px;
+    }
+
+    .modal__header img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .modal__header-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.7) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 24px;
+      color: var(--color-white);
+    }
+
+    .modal__role {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--color-accent);
+      margin-bottom: 4px;
+    }
+
+    .modal__name {
+      font-size: 1.5rem;
       font-weight: 700;
-
-      transition: .3s;
-
     }
 
-
-    .line-button:hover {
-
-      background: var(--sub);
-
-      transform:
-        translateY(-3px);
-
+    .modal__body {
+      padding: 32px;
     }
 
-
-    .line-guide-small {
-
-      color: #77848b;
-
-      margin-top: 12px;
-
-      font-size: 11px;
-
+    .modal__qna {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
     }
 
-
-    .line-divider {
-
-      color: var(--sub);
-
-      font-size: 11px;
-
+    .modal__qna-item h4 {
+      font-size: 1.0625rem;
       font-weight: 700;
-
+      color: var(--color-primary);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-
-    .line-qr {
-
-      width: 155px;
-      height: 155px;
-
-      margin: 0 auto;
-
-      object-fit: contain;
-
-      border:
-        1px solid #dce4e8;
-
+    .modal__qna-item h4::before {
+      content: 'Q.';
+      color: var(--color-secondary);
+      font-family: var(--font-en);
     }
 
+    .modal__qna-item p {
+      font-size: 0.9375rem;
+      color: var(--color-text-sub);
+      line-height: 1.8;
+      padding-left: 24px;
+    }
 
+    /* ==========================================================================
+       10. AREA & 11. JOBS
+       ========================================================================== */
+    .filter-panel {
+      background-color: var(--color-white);
+      border: 1px solid var(--color-gray-border);
+      padding: 32px;
+      border-radius: 4px;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow-sm);
+    }
 
-    /* =========================================================
-       FOOTER
-    ========================================================= */
+    @media (max-width: 768px) {
+      .filter-panel {
+        padding: 20px;
+      }
+    }
 
-    footer {
+    .filter-group {
+      margin-bottom: 20px;
+    }
 
-      padding:
-        50px 7%;
+    .filter-group:last-child {
+      margin-bottom: 0;
+    }
 
-      background: #073b5d;
+    .filter-group__label {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: 12px;
+      display: block;
+    }
 
-      color: white;
+    .filter-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
 
+    .filter-btn {
+      padding: 8px 18px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      border-radius: 20px;
+      background-color: var(--color-gray-light);
+      border: 1px solid var(--color-gray-border);
+      color: var(--color-text-sub);
+      transition: var(--transition-base);
+    }
+
+    .filter-btn:hover {
+      border-color: var(--color-secondary);
+      color: var(--color-secondary);
+    }
+
+    .filter-btn.is-active {
+      background-color: var(--color-primary);
+      border-color: var(--color-primary);
+      color: var(--color-white);
+    }
+
+    .jobs-status {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      font-size: 0.9375rem;
+      color: var(--color-text-sub);
+    }
+
+    .jobs-count {
+      font-weight: 700;
+      color: var(--color-primary);
+      font-size: 1.25rem;
+      font-family: var(--font-en);
+    }
+
+    .job-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .job-item {
+      background-color: var(--color-white);
+      border: 1px solid var(--color-gray-border);
+      border-radius: 4px;
+      padding: 24px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: var(--transition-base);
+    }
+
+    @media (max-width: 768px) {
+      .job-item {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+        gap: 16px;
+      }
+    }
+
+    .job-item:hover {
+      border-color: var(--color-secondary);
+      transform: translateX(4px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .job-item__main {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .job-item__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .badge-tag {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 2px;
+    }
+
+    .badge-tag--type {
+      background-color: var(--color-primary-light);
+      color: var(--color-primary);
+    }
+
+    .badge-tag--area {
+      background-color: var(--color-gray-light);
+      color: var(--color-text-sub);
+    }
+
+    .job-item__title {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--color-text-main);
+    }
+
+    .job-item__action {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--color-secondary);
+      white-space: nowrap;
+    }
+
+    .jobs-empty {
+      background-color: var(--color-white);
+      border: 1px dashed var(--color-gray-border);
+      padding: 48px 24px;
       text-align: center;
-
+      border-radius: 4px;
+      display: none;
     }
 
-
-    .footer-logo {
-
-      display: inline-block;
-
-      padding:
-        12px 18px;
-
-      margin-bottom: 14px;
-
-      background: white;
-
+    .jobs-empty.is-show {
+      display: block;
     }
 
-
-    .footer-logo img {
-
-      width: 145px;
-
+    .jobs-empty__title {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: 12px;
     }
 
-
-    footer p {
-
-      color: #90afc2;
-
-      font-size: 10px;
-
+    .jobs-empty__desc {
+      font-size: 0.9375rem;
+      color: var(--color-text-sub);
+      margin-bottom: 24px;
     }
 
+    /* ==========================================================================
+       12. STEP FLOW
+       ========================================================================== */
+    .step-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      position: relative;
+    }
 
-
-    /* =========================================================
-       MOBILE
-    ========================================================= */
-
-    @media(max-width:900px) {
-
-      .site-header {
-
-        height: 68px;
-
+    @media (max-width: 991px) {
+      .step-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
+    }
 
-
-      .logo img {
-
-        width: 135px;
-
+    @media (max-width: 640px) {
+      .step-grid {
+        grid-template-columns: 1fr;
       }
+    }
 
+    .step-card {
+      background-color: var(--color-white);
+      border: 1px solid var(--color-gray-border);
+      padding: 32px 24px;
+      border-radius: 4px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
 
-      .menu-button {
+    .step-card__num {
+      font-family: var(--font-en);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--color-secondary);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
 
-        display: block;
+    .step-card__title {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: 12px;
+    }
 
+    .step-card__desc {
+      font-size: 0.875rem;
+      color: var(--color-text-sub);
+      line-height: 1.7;
+    }
+
+    /* ==========================================================================
+       13. FAQ (ACCORDION)
+       ========================================================================== */
+    .faq-list {
+      max-width: 860px;
+      margin-inline: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .faq-item {
+      background-color: var(--color-white);
+      border: 1px solid var(--color-gray-border);
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .faq-question {
+      width: 100%;
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      text-align: left;
+      font-size: 1.0625rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      transition: background-color 0.2s ease;
+    }
+
+    .faq-question:hover {
+      background-color: var(--color-gray-light);
+    }
+
+    .faq-question__text {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .faq-question__text::before {
+      content: 'Q';
+      font-family: var(--font-en);
+      font-weight: 700;
+      color: var(--color-secondary);
+      font-size: 1.25rem;
+    }
+
+    .faq-icon {
+      width: 20px;
+      height: 20px;
+      position: relative;
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-icon::before,
+    .faq-icon::after {
+      content: '';
+      position: absolute;
+      background-color: var(--color-primary);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .faq-icon::before {
+      width: 14px;
+      height: 2px;
+    }
+
+    .faq-icon::after {
+      width: 2px;
+      height: 14px;
+      transition: opacity 0.3s ease;
+    }
+
+    .faq-item.is-active .faq-icon {
+      transform: rotate(180deg);
+    }
+
+    .faq-item.is-active .faq-icon::after {
+      opacity: 0;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease-out;
+      background-color: var(--color-gray-light);
+    }
+
+    .faq-answer__inner {
+      padding: 20px 28px 24px 56px;
+      font-size: 0.9375rem;
+      color: var(--color-text-sub);
+      line-height: 1.8;
+      border-top: 1px solid var(--color-gray-border);
+    }
+
+    @media (max-width: 768px) {
+      .faq-answer__inner {
+        padding-left: 28px;
       }
+    }
 
+    /* ==========================================================================
+       14. LINE CTA
+       ========================================================================== */
+    .cta-box {
+      background: linear-gradient(135deg, #005497 0%, #003660 100%);
+      color: var(--color-white);
+      border-radius: 8px;
+      padding: 64px 48px;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
 
-      .nav {
+    @media (max-width: 768px) {
+      .cta-box {
+        padding: 40px 24px;
+      }
+    }
 
-        position: absolute;
+    .cta-box__grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: center;
+    }
 
-        top: 68px;
-        left: 0;
+    @media (max-width: 991px) {
+      .cta-box__grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        text-align: center;
+      }
+    }
 
-        width: 100%;
+    .cta-box__lead {
+      font-family: var(--font-en);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--color-accent);
+      margin-bottom: 8px;
+    }
 
-        display: none;
+    .cta-box__title {
+      font-size: 2.25rem;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 16px;
+    }
 
+    @media (max-width: 768px) {
+      .cta-box__title {
+        font-size: 1.75rem;
+      }
+    }
+
+    .cta-box__text {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.8;
+    }
+
+    .cta-box__action {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .cta-qr-box {
+      background-color: var(--color-white);
+      padding: 12px;
+      border-radius: 6px;
+      box-shadow: var(--shadow-sm);
+      text-align: center;
+    }
+
+    .cta-qr-box img {
+      width: 140px;
+      height: 140px;
+      display: block;
+    }
+
+    .cta-qr-box span {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--color-primary);
+      font-weight: 600;
+      margin-top: 6px;
+    }
+
+    @media (max-width: 768px) {
+      .cta-qr-box {
+        display: none; /* Hide QR on mobile */
+      }
+    }
+
+    /* ==========================================================================
+       15. FOOTER
+       ========================================================================== */
+    .footer {
+      background-color: #0b1c2b;
+      color: var(--color-white);
+      padding-top: 64px;
+      padding-bottom: 40px;
+      font-size: 0.875rem;
+    }
+
+    .footer__inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 48px;
+      gap: 32px;
+    }
+
+    @media (max-width: 768px) {
+      .footer__inner {
         flex-direction: column;
-
-        align-items: flex-start;
-
-        padding: 28px;
-
-        background: white;
-
-        box-shadow:
-          0 16px 30px rgba(0,84,151,.08);
-
       }
-
-
-      .nav.open {
-
-        display: flex;
-
-      }
-
-
-      .hero {
-
-        min-height: 820px;
-
-        padding-top: 68px;
-
-      }
-
-
-      .hero-inner {
-
-        width:
-          calc(100% - 38px);
-
-        min-height: 752px;
-
-      }
-
-
-      .hero-copy {
-
-        width: 100%;
-
-      }
-
-
-      .hero-title {
-
-        font-size: 54px;
-
-      }
-
-
-      .hero-overlay {
-
-        background:
-          rgba(255,255,255,.86);
-
-      }
-
-
-      .section {
-
-        padding:
-          78px 6%;
-
-      }
-
-
-      .message-layout,
-      .about-grid,
-      .mvv-grid,
-      .job-grid,
-      .area-grid,
-      .flow-grid {
-
-        grid-template-columns: 1fr;
-
-      }
-
-
-      .message-big {
-
-        position: static;
-
-      }
-
-
-      .about-keywords {
-
-        grid-template-columns: 1fr;
-
-      }
-
-
-      .data-heading {
-
-        display: block;
-
-      }
-
-
-      .data-heading-note {
-
-        margin-top: 18px;
-
-      }
-
-
-      .data-grid {
-
-        grid-template-columns: 1fr;
-
-      }
-
-
-      .data-card.gender,
-      .data-card.age,
-      .data-card.unexperienced,
-      .data-card.tenure,
-      .data-card.employment,
-      .data-card.staff-total,
-      .data-card.founded {
-
-        grid-column: auto;
-
-      }
-
-
-      .gender-layout {
-
-        flex-direction: column;
-
-        align-items: flex-start;
-
-      }
-
-
-      .history-item {
-
-        grid-template-columns: 1fr;
-
+    }
+
+    .footer__brand h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .footer__brand p {
+      color: var(--color-gray);
+      font-size: 0.8125rem;
+      line-height: 1.6;
+    }
+
+    .footer__links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px 32px;
+    }
+
+    .footer__link {
+      color: var(--color-gray);
+    }
+
+    .footer__link:hover {
+      color: var(--color-white);
+    }
+
+    .footer__copyright {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 24px;
+      text-align: center;
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.6);
+      font-family: var(--font-en);
+    }
+
+    /* ==========================================================================
+       MOBILE BOTTOM FIXED CTA
+       ========================================================================== */
+    .mobile-fixed-cta {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 -4px 16px rgba(0,0,0,0.08);
+      z-index: 990;
+      padding: 10px 16px;
+    }
+
+    @media (max-width: 768px) {
+      .mobile-fixed-cta {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         gap: 10px;
-
       }
-
-
-      .people-controls {
-
-        margin-top: 22px;
-
-        justify-content: flex-start;
-
-      }
-
-
-      .people-card {
-
-        flex-basis: 260px;
-
-      }
-
-
-      .people-photo-wrap {
-
-        width: 260px;
-        height: 320px;
-
-      }
-
-
-      .recruit-header {
-
-        display: block;
-
-      }
-
-
-      .selected-area {
-
-        display: inline-block;
-
-        margin-top: 18px;
-
-      }
-
-
-      .recruit-card {
-
-        flex-direction: column;
-
-        align-items: flex-start;
-
-      }
-
-
-      .line-contact-box {
-
-        grid-template-columns: 1fr;
-
-        gap: 20px;
-
-        padding: 28px 20px;
-
-      }
-
-
-      .line-divider,
-      .line-qr-area {
-
-        display: none;
-
-      }
-
     }
 
+    .mobile-fixed-cta .btn {
+      padding: 12px 8px;
+      font-size: 0.875rem;
+      width: 100%;
+    }
+
+    /* Prefers-reduced-motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
   </style>
 </head>
-
-
 <body>
 
-
-  <!-- =======================================================
-       HEADER
-  ======================================================== -->
-
-  <header class="site-header" id="header">
-
-    <a href="#" class="logo">
-
-      <img
-        src="logo.png"
-        alt="株式会社オーファス"
-      >
-
-    </a>
-
-
-    <button
-      class="menu-button"
-      id="menuButton"
-      aria-label="メニューを開く"
-    >
-      ☰
-    </button>
-
-
-    <nav class="nav" id="nav">
-
-      <a href="#message">
-        紹介を受けた方へ
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="#hero" class="header__logo" aria-label="株式会社オーファス リファラル採用トップ">
+        <img src="logo.png" alt="株式会社オーファス OHFAS" width="120" height="36">
+        <div class="header__logo-text">
+          <span class="header__logo-sub">REFERRAL RECRUITING</span>
+          <span class="header__logo-main">採用特設サイト</span>
+        </div>
       </a>
 
-      <a href="#about">
-        会社を知る
-      </a>
+      <nav class="header__nav" aria-label="メインナビゲーション">
+        <ul class="nav-list">
+          <li><a href="#message" class="nav-link">ご挨拶</a></li>
+          <li><a href="#about" class="nav-link">オーファスとは</a></li>
+          <li><a href="#numbers" class="nav-link">数字で見る</a></li>
+          <li><a href="#history" class="nav-link">歩み</a></li>
+          <li><a href="#job" class="nav-link">お仕事</a></li>
+          <li><a href="#interview" class="nav-link">社員紹介</a></li>
+          <li><a href="#openings" class="nav-link">求人一覧</a></li>
+          <li><a href="#faq" class="nav-link">FAQ</a></li>
+        </ul>
+        <a href="https://lin.ee/UM4EIXgs" target="_blank" rel="noopener noreferrer" class="btn btn-line header__line-btn">
+          <span>LINEで相談する</span>
+        </a>
+      </nav>
 
-      <a href="#data">
-        数字で見る
-      </a>
-
-      <a href="#jobs">
-        仕事を知る
-      </a>
-
-      <a href="#people">
-        働く人を知る
-      </a>
-
-      <a href="#area">
-        エリアから探す
-      </a>
-
-      <a href="#contact" class="nav-line">
-        LINEで話す
-      </a>
-
-    </nav>
-
+      <button type="button" class="menu-btn" id="menuToggle" aria-expanded="false" aria-label="メニューを開閉する">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
   </header>
 
-
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <ul class="mobile-menu__list">
+      <li><a href="#message" class="mobile-menu__link">ご挨拶</a></li>
+      <li><a href="#about" class="mobile-menu__link">オーファスとは</a></li>
+      <li><a href="#numbers" class="mobile-menu__link">数字で見るオーファス</a></li>
+      <li><a href="#history" class="mobile-menu__link">オーファスの歩み</a></li>
+      <li><a href="#job" class="mobile-menu__link">お仕事紹介</a></li>
+      <li><a href="#interview" class="mobile-menu__link">スタッフインタビュー</a></li>
+      <li><a href="#openings" class="mobile-menu__link">現在募集中のお仕事</a></li>
+      <li><a href="#flow" class="mobile-menu__link">紹介を受けてからの流れ</a></li>
+      <li><a href="#faq" class="mobile-menu__link">よくあるご質問</a></li>
+    </ul>
+    <a href="https://lin.ee/UM4EIXgs" target="_blank" rel="noopener noreferrer" class="btn btn-line" style="width: 100%;">
+      <span>公式LINEで気軽に聞いてみる</span>
+    </a>
+  </div>
 
   <main>
-
-
-    <!-- =====================================================
-         HERO
-    ====================================================== -->
-
-    <section class="hero">
-
-      <div class="hero-bg">
-
-        <div class="hero-slide active">
-
-          <img
-            src="hero01.jpg"
-            alt=""
-          >
-
-        </div>
-
-
-        <div class="hero-slide">
-
-          <img
-            src="hero02.jpg"
-            alt=""
-          >
-
-        </div>
-
-
-        <div class="hero-slide">
-
-          <img
-            src="hero03.jpg"
-            alt=""
-          >
-
-        </div>
-
+    <section class="hero" id="hero" aria-label="ファーストビュー">
+      <div class="hero__bg" aria-hidden="true">
+        <div class="hero__slide is-active" style="background-image: url('hero01.jpg');"></div>
+        <div class="hero__slide" style="background-image: url('hero02.jpg');"></div>
+        <div class="hero__slide" style="background-image: url('hero03.jpg');"></div>
       </div>
 
-
-      <div class="hero-overlay"></div>
-
-
-      <div class="hero-inner">
-
-        <div class="hero-copy">
-
-          <div class="hero-kicker">
-            OHFAS REFERRAL RECRUITING
-          </div>
-
-
-          <h1 class="hero-title">
-            このご縁に、<br>
-            ありがとう。
+      <div class="container">
+        <div class="hero__inner">
+          <div class="hero__badge">OHFAS REFERRAL RECRUITING</div>
+          <h1 class="hero__title">
+            このご縁に、<br>ありがとう。
           </h1>
-
-
-          <p class="hero-lead">
-
-            社員・スタッフから紹介を受けて、<br>
-            このページをご覧いただいたあなたへ。
-
-          </p>
-
-
-          <p class="hero-text">
-
-            今すぐ転職を考えている方も、<br>
-            まだそこまで考えていない方も。<br>
-
-            まずは気軽に、
-            オーファスのことを知ってみませんか？
-
-          </p>
-
-
-          <div class="hero-note">
-
-            応募する前に、
-            「知る」だけでも大丈夫です。
-
-          </div>
-
-
-          <div class="hero-actions">
-
-            <a
-              href="#about"
-              class="btn-main"
-            >
-              オーファスを知る
-            </a>
-
-
-            <a
-              href="#area"
-              class="btn-sub"
-            >
-              近くの仕事を探す
-            </a>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="hero-dots">
-
-        <button
-          class="hero-dot active"
-          data-slide="0"
-          aria-label="1枚目"
-        ></button>
-
-        <button
-          class="hero-dot"
-          data-slide="1"
-          aria-label="2枚目"
-        ></button>
-
-        <button
-          class="hero-dot"
-          data-slide="2"
-          aria-label="3枚目"
-        ></button>
-
-      </div>
-
-
-      <div class="hero-bottom-line"></div>
-
-    </section>
-
-
-
-    <!-- =====================================================
-         MESSAGE
-    ====================================================== -->
-
-    <section
-      class="section message-section reveal"
-      id="message"
-    >
-
-      <div class="section-inner">
-
-        <div class="message-layout">
-
-          <div class="message-big">
-
-            <span>
-              ありがとう
-            </span><br>
-
-            から始まる、<br>
-            新しいご縁。
-
-          </div>
-
-
-          <div class="message-card">
-
-            <h3>
-
-              人とのつながりを、<br>
-              大切にした採用です。
-
-            </h3>
-
-
-            <p>
-
-              オーファスでは、
-              私たちのことをよく知る社員・スタッフから、
-
-              大切な友人や知人をご紹介いただく
-              「リファラル採用」を行っています。
-
-            </p>
-
-
-            <p>
-
-              あなたにこのページが届いたのも、
-
-              誰かが
-              「オーファスに合うかもしれない」と
-              思ってくれたからかもしれません。
-
-            </p>
-
-
-            <p>
-
-              だからといって、
-              すぐに応募や転職を決める必要はありません。
-
-            </p>
-
-
-            <p>
-
-              まずは会社のこと。
-              働く人のこと。
-              仕事のこと。<br>
-
-              少しずつ知ってもらえたら嬉しいです。
-
-            </p>
-
-
-            <div class="message-highlight">
-
-              「ちょっと気になる」
-              からで大丈夫です。
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =====================================================
-         ABOUT
-    ====================================================== -->
-
-    <section
-      class="section about-section reveal"
-      id="about"
-    >
-
-      <div class="section-inner">
-
-        <span class="section-kicker">
-          ABOUT OHFAS
-        </span>
-
-
-        <h2 class="section-title">
-          オーファスって？
-        </h2>
-
-
-        <div class="section-line"></div>
-
-
-        <div class="about-grid">
-
-          <div class="about-copy">
-
-            <h3>
-
-              建物を守る。<br>
-              その先の安心を支える。
-
-            </h3>
-
-
-            <p>
-
-              オーファスは、
-              建物の安全・快適な環境を支える
-              総合ビルメンテナンス会社です。
-
-            </p>
-
-
-            <p>
-
-              清掃、設備管理、警備、顧客管理など、
-              さまざまな仕事を通して、
-
-              地域の暮らしや社会を支えています。
-
-            </p>
-
-          </div>
-
-
-          <div class="about-keywords">
-
-
-            <div class="about-keyword">
-
-              <span class="about-keyword-number">
-                熊本
-              </span>
-
-              <span class="about-keyword-text">
-                を中心に展開
-              </span>
-
-            </div>
-
-
-            <div class="about-keyword">
-
-              <span class="about-keyword-number">
-                1948
-              </span>
-
-              <span class="about-keyword-text">
-                SINCE
-              </span>
-
-            </div>
-
-
-            <div class="about-keyword">
-
-              <span class="about-keyword-number">
-                635
-              </span>
-
-              <span class="about-keyword-text">
-                PEOPLE
-              </span>
-
-            </div>
-
-
-            <div class="about-keyword">
-
-              <span class="about-keyword-number">
-                未来へ
-              </span>
-
-              <span class="about-keyword-text">
-                BUILDING THE FUTURE
-              </span>
-
-            </div>
-
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =====================================================
-         数字で見るオーファス
-    ====================================================== -->
-
-    <section
-      class="section data-section reveal"
-      id="data"
-    >
-
-      <div class="section-inner">
-
-
-        <div class="data-heading">
-
-          <div>
-
-            <span class="section-kicker">
-              OHFAS BY THE NUMBERS
-            </span>
-
-
-            <h2 class="section-title">
-              数字で見るオーファス
-            </h2>
-
-
-            <div class="section-line"></div>
-
-          </div>
-
-
-          <p class="data-heading-note">
-
-            どんな人たちが働いている？<br>
-
-            オーファスのことを、
-            いくつかの数字からご紹介します。
-
-          </p>
-
-        </div>
-
-
-
-        <div class="data-grid">
-
-
-          <!-- 男女比 -->
-
-          <article class="data-card gender">
-
-            <div class="data-label">
-              DATA 01
-            </div>
-
-            <h3 class="data-title">
-              男女比
-            </h3>
-
-
-            <div class="gender-layout">
-
-              <div
-                class="gender-chart"
-                id="genderChart"
-              >
-
-                <div class="gender-center">
-
-                  <strong>
-                    55:45
-                  </strong>
-
-                  <span>
-                    MEN / WOMEN
-                  </span>
-
-                </div>
-
-              </div>
-
-
-              <div class="gender-legend">
-
-                <div class="gender-row">
-
-                  <span>
-                    男性
-                  </span>
-
-                  <strong>
-                    55%
-                  </strong>
-
-                </div>
-
-
-                <div class="gender-row">
-
-                  <span>
-                    女性
-                  </span>
-
-                  <strong>
-                    45%
-                  </strong>
-
-                </div>
-
-              </div>
-
-            </div>
-
-          </article>
-
-
-
-          <!-- 年代 -->
-
-          <article class="data-card age">
-
-            <div class="data-label">
-              DATA 02
-            </div>
-
-            <h3 class="data-title">
-              年代構成
-            </h3>
-
-
-            <div class="age-list">
-
-
-              <div class="age-row">
-
-                <span class="age-name">
-                  20代
-                </span>
-
-                <div class="age-track">
-
-                  <div
-                    class="age-bar"
-                    data-width="15"
-                  ></div>
-
-                </div>
-
-                <span class="age-percent">
-                  15%
-                </span>
-
-              </div>
-
-
-              <div class="age-row">
-
-                <span class="age-name">
-                  30代
-                </span>
-
-                <div class="age-track">
-
-                  <div
-                    class="age-bar"
-                    data-width="18"
-                  ></div>
-
-                </div>
-
-                <span class="age-percent">
-                  18%
-                </span>
-
-              </div>
-
-
-              <div class="age-row">
-
-                <span class="age-name">
-                  40代
-                </span>
-
-                <div class="age-track">
-
-                  <div
-                    class="age-bar"
-                    data-width="26"
-                  ></div>
-
-                </div>
-
-                <span class="age-percent">
-                  26%
-                </span>
-
-              </div>
-
-
-              <div class="age-row">
-
-                <span class="age-name">
-                  50代
-                </span>
-
-                <div class="age-track">
-
-                  <div
-                    class="age-bar"
-                    data-width="29"
-                  ></div>
-
-                </div>
-
-                <span class="age-percent">
-                  29%
-                </span>
-
-              </div>
-
-
-              <div class="age-row">
-
-                <span class="age-name">
-                  60代以上
-                </span>
-
-                <div class="age-track">
-
-                  <div
-                    class="age-bar"
-                    data-width="12"
-                  ></div>
-
-                </div>
-
-                <span class="age-percent">
-                  12%
-                </span>
-
-              </div>
-
-
-            </div>
-
-          </article>
-
-
-
-          <!-- 未経験 -->
-
-          <article class="data-card unexperienced">
-
-            <div class="data-label">
-              DATA 03
-            </div>
-
-            <h3 class="data-title">
-              未経験スタート率
-            </h3>
-
-
-            <div>
-
-              <span
-                class="big-stat counter"
-                data-target="80"
-                data-suffix="%"
-              >
-                0%
-              </span>
-
-            </div>
-
-
-            <p class="stat-caption">
-
-              多くのスタッフが、
-              未経験からスタートしています。
-
-            </p>
-
-
-            <div class="yellow-line"></div>
-
-          </article>
-
-
-
-          <!-- 勤続年数 -->
-
-          <article class="data-card tenure">
-
-            <div class="data-label">
-              DATA 04
-            </div>
-
-            <h3 class="data-title">
-              平均勤続年数
-            </h3>
-
-
-            <div>
-
-              <span
-                class="tenure-number counter"
-                data-target="5"
-                data-suffix="年"
-              >
-                0年
-              </span>
-
-            </div>
-
-
-            <p class="stat-caption">
-
-              さまざまな働き方で、
-              長く活躍するスタッフがいます。
-
-            </p>
-
-          </article>
-
-
-
-          <!-- 雇用形態 -->
-
-          <article class="data-card employment">
-
-            <div class="data-label">
-              DATA 05
-            </div>
-
-            <h3 class="data-title">
-              雇用形態
-            </h3>
-
-
-            <div class="employment-bars">
-
-
-              <div class="employment-item">
-
-                <div class="employment-label">
-
-                  <span>
-                    正社員
-                  </span>
-
-                  <strong>
-                    30%
-                  </strong>
-
-                </div>
-
-
-                <div class="employment-track">
-
-                  <div
-                    class="employment-bar"
-                    data-width="30"
-                  ></div>
-
-                </div>
-
-              </div>
-
-
-              <div class="employment-item">
-
-                <div class="employment-label">
-
-                  <span>
-                    パート・アルバイト等
-                  </span>
-
-                  <strong>
-                    70%
-                  </strong>
-
-                </div>
-
-
-                <div class="employment-track">
-
-                  <div
-                    class="employment-bar"
-                    data-width="70"
-                  ></div>
-
-                </div>
-
-              </div>
-
-
-            </div>
-
-          </article>
-
-
-
-          <!-- 社員数 -->
-
-          <article class="data-card staff-total">
-
-            <div class="data-label">
-              DATA 06
-            </div>
-
-            <h3 class="data-title">
-              社員・スタッフ数
-            </h3>
-
-
-            <div>
-
-              <span
-                class="mega-stat counter"
-                data-target="635"
-                data-suffix="名"
-              >
-                0名
-              </span>
-
-            </div>
-
-
-            <p class="stat-caption">
-
-              さまざまな職種・勤務地で、
-              多くのスタッフが活躍しています。
-
-            </p>
-
-          </article>
-
-
-
-          <!-- 創業 -->
-
-          <article class="data-card founded">
-
-            <div class="data-label">
-              DATA 07
-            </div>
-
-            <h3 class="data-title">
-              創業
-            </h3>
-
-
-            <div>
-
-              <span
-                class="mega-stat counter"
-                data-target="1948"
-              >
-                0
-              </span>
-
-            </div>
-
-
-            <p class="stat-caption">
-
-              1948年から地域とともに。
-              長い歴史を次の未来へつないでいきます。
-
-            </p>
-
-          </article>
-
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =====================================================
-         MVV
-    ====================================================== -->
-
-    <section class="section mvv-section reveal">
-
-      <div class="section-inner">
-
-        <span class="section-kicker">
-          MISSION / VISION / VALUE
-        </span>
-
-
-        <h2 class="section-title">
-          私たちが大切にしていること
-        </h2>
-
-
-        <div class="section-line"></div>
-
-
-        <div class="mvv-grid">
-
-
-          <div class="mvv-card">
-
-            <div class="mvv-num">
-              01
-            </div>
-
-            <div class="mvv-label">
-              MISSION
-            </div>
-
-            <h3>
-
-              建物を未来へつなぐ仕事で<br>
-              社会に貢献する
-
-            </h3>
-
-          </div>
-
-
-
-          <div class="mvv-card">
-
-            <div class="mvv-num">
-              02
-            </div>
-
-            <div class="mvv-label">
-              VISION
-            </div>
-
-            <h3>
-
-              選ばれ続ける<br>
-              環境ソリューション<br>
-              パートナーに
-
-            </h3>
-
-          </div>
-
-
-
-          <div class="mvv-card">
-
-            <div class="mvv-num">
-              03
-            </div>
-
-            <div class="mvv-label">
-              VALUE
-            </div>
-
-            <ul>
-
-              <li>
-                ありがとうをつなぐ仕事を
-              </li>
-
-              <li>
-                変化に気づき速やかに対応する
-              </li>
-
-              <li>
-                まごころで応える
-              </li>
-
-            </ul>
-
-          </div>
-
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =====================================================
-         HISTORY
-    ====================================================== -->
-
-    <section class="section history-section reveal">
-
-      <div class="section-inner">
-
-        <span class="section-kicker">
-          HISTORY
-        </span>
-
-
-        <h2 class="section-title">
-          オーファスの歩み
-        </h2>
-
-
-        <div class="section-line"></div>
-
-
-        <p class="section-lead">
-
-          1948年から、
-          時代と地域に合わせて
-          仕事の幅を広げてきました。
-
-        </p>
-
-
-        <div class="history-timeline">
-
-
-          <div class="history-item">
-
-            <div class="history-year">
-              1948
-            </div>
-
-            <div class="history-content">
-
-              <h3>
-                「大成産業」として創業
-              </h3>
-
-              <p>
-
-                逓信省（旧・郵政省）への
-                物資納入から、
-
-                オーファスの歴史が始まりました。
-
-              </p>
-
-            </div>
-
-          </div>
-
-
-
-          <div class="history-item">
-
-            <div class="history-year">
-              1953
-            </div>
-
-            <div class="history-content">
-
-              <h3>
-                熊本大水害をきっかけに
-              </h3>
-
-              <p>
-
-                建物の清掃や設備管理などを手掛ける
-                ビルメンテナンス業へ本格的に進出。
-
-                「大森産業」へ社名を変更しました。
-
-              </p>
-
-            </div>
-
-          </div>
-
-
-
-          <div class="history-item">
-
-            <div class="history-year">
-              長年
-            </div>
-
-            <div class="history-content">
-
-              <h3>
-                事業の幅を広げる
-              </h3>
-
-              <p>
-
-                ビルメンテナンスに加え、
-
-                コンビニ運営、
-                清掃資機材販売、
-                環境衛生、工事、
-
-                アウトソーシングなどへ展開。
-
-              </p>
-
-            </div>
-
-          </div>
-
-
-
-          <div class="history-item">
-
-            <div class="history-year">
-              2021
-            </div>
-
-            <div class="history-content">
-
-              <h3>
-                新しいオーファスへ
-              </h3>
-
-              <p>
-
-                グループ体制を再編し、
-                「OHFASホールディングス」へ。
-
-                大森産業も
-                「オーファス」へ社名を一新しました。
-
-              </p>
-
-            </div>
-
-          </div>
-
-
-
-          <div class="history-item">
-
-            <div class="history-year">
-              2026
-            </div>
-
-            <div class="history-content">
-
-              <h3>
-                創業約78年。次の未来へ。
-              </h3>
-
-              <p>
-
-                社員・スタッフ約635名。
-
-                地域に根ざした企業として、
-                今も進化を続けています。
-
-              </p>
-
-            </div>
-
-          </div>
-
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =====================================================
-         JOBS
-    ====================================================== -->
-
-    <section
-      class="section jobs-section reveal"
-      id="jobs"
-    >
-
-      <div class="section-inner">
-
-        <span class="section-kicker">
-          OUR JOB
-        </span>
-
-
-        <h2 class="section-title">
-          仕事はいろいろ。
-        </h2>
-
-
-        <div class="section-line"></div>
-
-
-        <p class="section-lead">
-
-          経験を活かせる仕事も、
-          未経験から始められる仕事もあります。
-
-        </p>
-
-
-
-        <div class="job-grid">
-
-
-          <article class="job-card">
-
-            <img
-              src="job-equipment.jpg"
-              alt="設備管理"
-              class="job-photo"
-            >
-
-            <div class="job-content">
-
-              <div class="job-line"></div>
-
-              <h3>
-                設備管理
-              </h3>
-
-              <p>
-
-                建物の電気・空調・給排水などの
-                点検や保守管理を行います。
-
-              </p>
-
-            </div>
-
-          </article>
-
-
-
-          <article class="job-card">
-
-            <img
-              src="job-cleaning.jpg"
-              alt="清掃"
-              class="job-photo"
-            >
-
-            <div class="job-content">
-
-              <div class="job-line"></div>
-
-              <h3>
-                清掃
-              </h3>
-
-              <p>
-
-                オフィスや公共施設などの
-                快適な環境を支える仕事です。
-
-              </p>
-
-            </div>
-
-          </article>
-
-
-
-          <article class="job-card">
-
-            <img
-              src="job-security.jpg"
-              alt="警備"
-              class="job-photo"
-            >
-
-            <div class="job-content">
-
-              <div class="job-line"></div>
-
-              <h3>
-                警備
-              </h3>
-
-              <p>
-
-                施設やイベントで、
-                人と建物の安全を守ります。
-
-              </p>
-
-            </div>
-
-          </article>
-
-
-
-          <article class="job-card">
-
-            <img
-              src="job-sales.jpg"
-              alt="企画・顧客管理"
-              class="job-photo"
-            >
-
-            <div class="job-content">
-
-              <div class="job-line"></div>
-
-              <h3>
-                企画・顧客管理
-              </h3>
-
-              <p>
-
-                お客様と現場をつなぎながら、
-                建物管理を支えます。
-
-              </p>
-
-            </div>
-
-          </article>
-
-
-
-          <article class="job-card">
-
-            <img
-              src="job-telephone.jpg"
-              alt="電話交換"
-              class="job-photo"
-            >
-
-            <div class="job-content">
-
-              <div class="job-line"></div>
-
-              <h3>
-                電話交換
-              </h3>
-
-              <p>
-
-                電話を適切な部署へつなぎ、
-                施設の窓口を支えます。
-
-              </p>
-
-            </div>
-
-          </article>
-
-
-
-          <article class="job-card">
-
-            <img
-              src="job-labor.jpg"
-              alt="労務管理"
-              class="job-photo"
-            >
-
-            <div class="job-content">
-
-              <div class="job-line"></div>
-
-              <h3>
-                労務管理
-              </h3>
-
-              <p>
-
-                スタッフが安心して働けるよう、
-                労務や各種手続きを支えます。
-
-              </p>
-
-            </div>
-
-          </article>
-
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =====================================================
-         PEOPLE
-    ====================================================== -->
-
-    <section
-      class="section people-section reveal"
-      id="people"
-    >
-
-      <div class="section-inner">
-
-        <span class="section-kicker">
-          STAFF INTERVIEW
-        </span>
-
-
-        <h2 class="section-title">
-          働く人をのぞいてみる
-        </h2>
-
-
-        <div class="section-line"></div>
-
-
-        <p class="section-lead">
-
-          入社のきっかけや仕事のリアルを、
-          実際に働くスタッフに聞きました。
-
-        </p>
-
-
-
-        <div class="people-controls">
-
-          <button
-            class="people-control"
-            id="peoplePrev"
-            aria-label="前へ"
-          >
-            ←
-          </button>
-
-          <button
-            class="people-control"
-            id="peopleNext"
-            aria-label="次へ"
-          >
-            →
-          </button>
-
-        </div>
-
-
-
-        <div
-          class="people-slider"
-          id="peopleSlider"
-        >
-
-
-          <a href="#" class="people-card">
-
-            <div class="people-photo-wrap">
-
-              <img
-                src="staff01.jpg"
-                alt="清掃スタッフ"
-                class="people-photo"
-              >
-
-              <div class="people-plus">
-                +
-              </div>
-
-            </div>
-
-            <span class="people-job">
-              CLEANING STAFF
-            </span>
-
-            <h3>
-              「ありがとう」がやりがいになる仕事。
-            </h3>
-
-            <p class="people-note">
-              毎日の仕事のリアルを聞きました。
-            </p>
-
-          </a>
-
-
-
-          <a href="#" class="people-card">
-
-            <div class="people-photo-wrap">
-
-              <img
-                src="staff02.jpg"
-                alt="警備スタッフ"
-                class="people-photo"
-              >
-
-              <div class="people-plus">
-                +
-              </div>
-
-            </div>
-
-            <span class="people-job">
-              SECURITY STAFF
-            </span>
-
-            <h3>
-              安心をつくることが、私たちの役割。
-            </h3>
-
-            <p class="people-note">
-              人や施設を守る仕事について。
-            </p>
-
-          </a>
-
-
-
-          <a href="#" class="people-card">
-
-            <div class="people-photo-wrap">
-
-              <img
-                src="staff03.jpg"
-                alt="設備管理スタッフ"
-                class="people-photo"
-              >
-
-              <div class="people-plus">
-                +
-              </div>
-
-            </div>
-
-            <span class="people-job">
-              FACILITY STAFF
-            </span>
-
-            <h3>
-              建物の当たり前を、毎日支える。
-            </h3>
-
-            <p class="people-note">
-              設備を守る仕事について。
-            </p>
-
-          </a>
-
-
-
-          <a href="#" class="people-card">
-
-            <div class="people-photo-wrap">
-
-              <img
-                src="staff04.jpg"
-                alt="電話交換スタッフ"
-                class="people-photo"
-              >
-
-              <div class="people-plus">
-                +
-              </div>
-
-            </div>
-
-            <span class="people-job">
-              TELEPHONE STAFF
-            </span>
-
-            <h3>
-              仕事と好きなことを両立できる働き方。
-            </h3>
-
-            <p class="people-note">
-              自分らしい働き方について。
-            </p>
-
-          </a>
-
-
-
-          <a href="#" class="people-card">
-
-            <div class="people-photo-wrap">
-
-              <img
-                src="staff05.jpg"
-                alt="企画・顧客管理スタッフ"
-                class="people-photo"
-              >
-
-              <div class="people-plus">
-                +
-              </div>
-
-            </div>
-
-            <span class="people-job">
-              ACCOUNT STAFF
-            </span>
-
-            <h3>
-              お客様と現場をつなぐ、調整役として。
-            </h3>
-
-            <p class="people-note">
-              幅広い仕事の魅力について。
-            </p>
-
-          </a>
-
-
-
-          <a href="#" class="people-card">
-
-            <div class="people-photo-wrap">
-
-              <img
-                src="staff06.jpg"
-                alt="労務管理スタッフ"
-                class="people-photo"
-              >
-
-              <div class="people-plus">
-                +
-              </div>
-
-            </div>
-
-            <span class="people-job">
-              HR STAFF
-            </span>
-
-            <h3>
-              働く人を支えることも、大切な仕事。
-            </h3>
-
-            <p class="people-note">
-              本社からスタッフを支えています。
-            </p>
-
-          </a>
-
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =====================================================
-         AREA
-    ====================================================== -->
-
-    <section
-      class="section area-section reveal"
-      id="area"
-    >
-
-      <div class="section-inner">
-
-        <span class="section-kicker">
-          AREA
-        </span>
-
-
-        <h2 class="section-title">
-          あなたの街から探す
-        </h2>
-
-
-        <div class="section-line"></div>
-
-
-        <p class="section-lead">
-
-          仕事内容も大切だけど、
-          毎日の「通いやすさ」も大切。<br>
-
-          気になるエリアから
-          仕事を探してみてください。
-
-        </p>
-
-
-
-        <div class="area-grid">
-
-
-          <button
-            class="area-card active"
-            data-area="all"
-            data-label="すべてのエリア"
-          >
-
-            <span class="area-small">
-              ALL AREA
-            </span>
-
-            <span class="area-name">
-              すべてのエリア
-            </span>
-
-            <span class="area-jobs">
-              熊本県内のお仕事を見る
-            </span>
-
-            <span class="area-arrow">
-              →
-            </span>
-
-          </button>
-
-
-
-          <button
-            class="area-card"
-            data-area="central"
-            data-label="熊本市中央区"
-          >
-
-            <span class="area-small">
-              KUMAMOTO CITY
-            </span>
-
-            <span class="area-name">
-              熊本市中央区
-            </span>
-
-            <span class="area-jobs">
-              設備管理・電話交換・清掃など
-            </span>
-
-            <span class="area-arrow">
-              →
-            </span>
-
-          </button>
-
-
-
-          <button
-            class="area-card"
-            data-area="east"
-            data-label="熊本市東区"
-          >
-
-            <span class="area-small">
-              KUMAMOTO CITY
-            </span>
-
-            <span class="area-name">
-              熊本市東区
-            </span>
-
-            <span class="area-jobs">
-              清掃・警備など
-            </span>
-
-            <span class="area-arrow">
-              →
-            </span>
-
-          </button>
-
-
-
-          <button
-            class="area-card"
-            data-area="mashiki"
-            data-label="益城・上益城"
-          >
-
-            <span class="area-small">
-              KAMIMASHIKI
-            </span>
-
-            <span class="area-name">
-              益城・上益城
-            </span>
-
-            <span class="area-jobs">
-              設備管理・清掃など
-            </span>
-
-            <span class="area-arrow">
-              →
-            </span>
-
-          </button>
-
-
-
-          <button
-            class="area-card"
-            data-area="kikuyo"
-            data-label="菊陽・大津"
-          >
-
-            <span class="area-small">
-              KIKUYO / OZU
-            </span>
-
-            <span class="area-name">
-              菊陽・大津
-            </span>
-
-            <span class="area-jobs">
-              清掃・設備管理・警備など
-            </span>
-
-            <span class="area-arrow">
-              →
-            </span>
-
-          </button>
-
-
-
-          <button
-            class="area-card"
-            data-area="other"
-            data-label="その他熊本県内"
-          >
-
-            <span class="area-small">
-              OTHER AREA
-            </span>
-
-            <span class="area-name">
-              その他熊本県内
-            </span>
-
-            <span class="area-jobs">
-              その他の勤務地を見る
-            </span>
-
-            <span class="area-arrow">
-              →
-            </span>
-
-          </button>
-
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =====================================================
-         RECRUIT
-    ====================================================== -->
-
-    <section
-      class="section recruit-section reveal"
-      id="recruit"
-    >
-
-      <div class="section-inner">
-
-        <div class="recruit-header">
-
-          <div>
-
-            <span class="section-kicker">
-              RECRUIT
-            </span>
-
-
-            <h2 class="section-title">
-              現在募集中のお仕事
-            </h2>
-
-
-            <div class="section-line"></div>
-
-
-            <p class="section-lead">
-
-              エリアと職種を組み合わせて、
-              気になる仕事を探せます。
-
-            </p>
-
-          </div>
-
-
-          <div
-            class="selected-area"
-            id="selectedArea"
-          >
-            表示中：すべてのエリア
-          </div>
-
-        </div>
-
-
-
-        <p class="filter-title">
-          職種でも絞り込めます
-        </p>
-
-
-
-        <div class="filter-buttons">
-
-          <button
-            class="filter-button active"
-            data-filter="all"
-          >
-            すべて
-          </button>
-
-          <button
-            class="filter-button"
-            data-filter="cleaning"
-          >
-            清掃
-          </button>
-
-          <button
-            class="filter-button"
-            data-filter="equipment"
-          >
-            設備管理
-          </button>
-
-          <button
-            class="filter-button"
-            data-filter="security"
-          >
-            警備
-          </button>
-
-          <button
-            class="filter-button"
-            data-filter="office"
-          >
-            本社スタッフ
-          </button>
-
-          <button
-            class="filter-button"
-            data-filter="telephone"
-          >
-            電話交換
-          </button>
-
-        </div>
-
-
-
-        <div class="recruit-list">
-
-
-          <div
-            class="recruit-card"
-            data-area="central"
-            data-category="equipment"
-          >
-
-            <div class="recruit-info">
-
-              <h3>
-                設備管理スタッフ
-              </h3>
-
-              <span>
-                正社員 ｜ 熊本市中央区
-              </span>
-
-              <div class="job-tags">
-
-                <span class="job-tag">
-                  設備管理
-                </span>
-
-                <span class="job-tag">
-                  正社員
-                </span>
-
-              </div>
-
-            </div>
-
-            <a href="#" class="detail-button">
-              詳しく見る
-            </a>
-
-          </div>
-
-
-
-          <div
-            class="recruit-card"
-            data-area="central"
-            data-category="telephone"
-          >
-
-            <div class="recruit-info">
-
-              <h3>
-                電話交換スタッフ
-              </h3>
-
-              <span>
-                パート・アルバイト ｜ 熊本市中央区
-              </span>
-
-            </div>
-
-            <a href="#" class="detail-button">
-              詳しく見る
-            </a>
-
-          </div>
-
-
-
-          <div
-            class="recruit-card"
-            data-area="east"
-            data-category="cleaning"
-          >
-
-            <div class="recruit-info">
-
-              <h3>
-                清掃スタッフ
-              </h3>
-
-              <span>
-                パート ｜ 熊本市東区
-              </span>
-
-            </div>
-
-            <a href="#" class="detail-button">
-              詳しく見る
-            </a>
-
-          </div>
-
-
-
-          <div
-            class="recruit-card"
-            data-area="east"
-            data-category="security"
-          >
-
-            <div class="recruit-info">
-
-              <h3>
-                警備スタッフ
-              </h3>
-
-              <span>
-                正社員・アルバイト ｜ 熊本市東区
-              </span>
-
-            </div>
-
-            <a href="#" class="detail-button">
-              詳しく見る
-            </a>
-
-          </div>
-
-
-
-          <div
-            class="recruit-card"
-            data-area="mashiki"
-            data-category="equipment"
-          >
-
-            <div class="recruit-info">
-
-              <h3>
-                設備管理スタッフ
-              </h3>
-
-              <span>
-                正社員 ｜ 益城・上益城
-              </span>
-
-            </div>
-
-            <a href="#" class="detail-button">
-              詳しく見る
-            </a>
-
-          </div>
-
-
-
-          <div
-            class="recruit-card"
-            data-area="kikuyo"
-            data-category="cleaning"
-          >
-
-            <div class="recruit-info">
-
-              <h3>
-                清掃スタッフ
-              </h3>
-
-              <span>
-                パート ｜ 菊陽・大津
-              </span>
-
-            </div>
-
-            <a href="#" class="detail-button">
-              詳しく見る
-            </a>
-
-          </div>
-
-
-
-          <div
-            class="recruit-card"
-            data-area="other"
-            data-category="office"
-          >
-
-            <div class="recruit-info">
-
-              <h3>
-                企画・顧客管理スタッフ
-              </h3>
-
-              <span>
-                正社員 ｜ 熊本県内
-              </span>
-
-            </div>
-
-            <a href="#" class="detail-button">
-              詳しく見る
-            </a>
-
-          </div>
-
-
-
-          <div
-            class="recruit-card"
-            data-area="other"
-            data-category="office"
-          >
-
-            <div class="recruit-info">
-
-              <h3>
-                労務管理スタッフ
-              </h3>
-
-              <span>
-                正社員 ｜ 熊本県内
-              </span>
-
-            </div>
-
-            <a href="#" class="detail-button">
-              詳しく見る
-            </a>
-
-          </div>
-
-
-        </div>
-
-
-        <div
-          class="no-jobs"
-          id="noJobs"
-        >
-          現在、この条件で表示できる求人はありません。
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =====================================================
-         FLOW
-    ====================================================== -->
-
-    <section class="section flow-section reveal">
-
-      <div class="section-inner">
-
-        <span class="section-kicker">
-          FLOW
-        </span>
-
-
-        <h2 class="section-title">
-          紹介を受けてからの流れ
-        </h2>
-
-
-        <div class="section-line"></div>
-
-
-
-        <div class="flow-grid">
-
-
-          <div class="flow-card">
-
-            <div class="flow-num">
-              01
-            </div>
-
-            <h3>
-              このページを見る
-            </h3>
-
-            <p>
-              まずはオーファスについて知ってください。
-            </p>
-
-          </div>
-
-
-
-          <div class="flow-card">
-
-            <div class="flow-num">
-              02
-            </div>
-
-            <h3>
-              近くの仕事を探す
-            </h3>
-
-            <p>
-              通いやすいエリアから仕事を探せます。
-            </p>
-
-          </div>
-
-
-
-          <div class="flow-card">
-
-            <div class="flow-num">
-              03
-            </div>
-
-            <h3>
-              LINEで聞いてみる
-            </h3>
-
-            <p>
-              応募前の相談や質問も気軽にできます。
-            </p>
-
-          </div>
-
-
-
-          <div class="flow-card">
-
-            <div class="flow-num">
-              04
-            </div>
-
-            <h3>
-              希望すれば選考へ
-            </h3>
-
-            <p>
-              納得した上で選考に進んでいただきます。
-            </p>
-
-          </div>
-
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =====================================================
-         LINE
-    ====================================================== -->
-
-    <section
-      class="section cta-section reveal"
-      id="contact"
-    >
-
-      <div class="section-inner">
-
-        <p class="cta-mini">
-          まだ応募じゃなくて大丈夫。
-        </p>
-
-
-        <h2 class="cta-title">
-          LET'S TALK.
-        </h2>
-
-
-        <p class="cta-text">
-
-          仕事内容や働き方、
-          職場の雰囲気など、
-
-          気になることがあれば
-          LINEからお気軽にご相談ください。
-
-        </p>
-
-
-
-        <div class="line-contact-box">
-
-
-          <div class="line-button-area">
-
-            <p class="line-guide-title">
-              スマホで見ている方
-            </p>
-
-
-            <a
-              href="https://lin.ee/UM4EIXgs"
-              class="line-button"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-
-              LINEで気軽に話してみる →
-
-            </a>
-
-
-            <p class="line-guide-small">
-
-              タップするとLINEが開きます
-
-            </p>
-
-          </div>
-
-
-
-          <div class="line-divider">
-            OR
-          </div>
-
-
-
-          <div class="line-qr-area">
-
-            <p class="line-guide-title">
-              パソコンで見ている方
-            </p>
-
-
-            <img
-              src="line-qr.png"
-              alt="オーファス公式LINE QRコード"
-              class="line-qr"
-            >
-
-
-            <p class="line-guide-small">
-
-              スマホでQRコードを読み取ってください
-
-            </p>
-
-          </div>
-
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-  </main>
-
-
-
-  <!-- =======================================================
-       FOOTER
-  ======================================================== -->
-
-  <footer>
-
-    <div class="footer-logo">
-
-      <img
-        src="logo.png"
-        alt="株式会社オーファス"
-      >
-
-    </div>
-
-
-    <p>
-
-      © OHFAS CO., LTD.
-      All Rights Reserved.
-
-    </p>
-
-  </footer>
-
-
-
-  <!-- =======================================================
-       JAVASCRIPT
-  ======================================================== -->
-
-  <script>
-
-
-    /* =======================================================
-       HERO SLIDESHOW
-    ======================================================== */
-
-    const slides =
-      document.querySelectorAll(
-        ".hero-slide"
-      );
-
-
-    const dots =
-      document.querySelectorAll(
-        ".hero-dot"
-      );
-
-
-    let currentSlide = 0;
-
-    let slideTimer;
-
-
-    function showSlide(index) {
-
-      slides.forEach(
-        slide =>
-          slide.classList.remove(
-            "active"
-          )
-      );
-
-
-      dots.forEach(
-        dot =>
-          dot.classList.remove(
-            "active"
-          )
-      );
-
-
-      slides[index]
-        .classList
-        .add("active");
-
-
-      dots[index]
-        .classList
-        .add("active");
-
-
-      currentSlide =
-        index;
-
-    }
-
-
-
-    function nextSlide() {
-
-      const next =
-
-        (currentSlide + 1) %
-        slides.length;
-
-
-      showSlide(next);
-
-    }
-
-
-
-    function startSlide() {
-
-      slideTimer =
-
-        setInterval(
-          nextSlide,
-          5000
-        );
-
-    }
-
-
-
-    dots.forEach(
-      dot => {
-
-        dot.addEventListener(
-          "click",
-          () => {
-
-            clearInterval(
-              slideTimer
-            );
-
-
-            showSlide(
-              Number(
-                dot.dataset.slide
-              )
-            );
-
-
-            startSlide();
-
-          }
-        );
-
-      }
-    );
-
-
-    startSlide();
-
-
-
-    /* =======================================================
-       HEADER
-    ======================================================== */
-
-    const header =
-      document.getElementById(
-        "header"
-      );
-
-
-    window.addEventListener(
-      "scroll",
-      () => {
-
-        if (
-          window.scrollY > 40
-        ) {
-
-          header
-            .classList
-            .add("scrolled");
-
-        } else {
-
-          header
-            .classList
-            .remove("scrolled");
-
-        }
-
-      }
-    );
-
-
-
-    /* =======================================================
-       MOBILE NAV
-    ======================================================== */
-
-    const menuButton =
-      document.getElementById(
-        "menuButton"
-      );
-
-
-    const nav =
-      document.getElementById(
-        "nav"
-      );
-
-
-    menuButton.addEventListener(
-      "click",
-      () => {
-
-        nav.classList.toggle(
-          "open"
-        );
-
-      }
-    );
-
-
-    document
-      .querySelectorAll(
-        "#nav a"
-      )
-      .forEach(
-        link => {
-
-          link.addEventListener(
-            "click",
-            () => {
-
-              nav.classList.remove(
-                "open"
-              );
-
-            }
-          );
-
-        }
-      );
-
-
-
-    /* =======================================================
-       REVEAL
-    ======================================================== */
-
-    const revealItems =
-      document.querySelectorAll(
-        ".reveal"
-      );
-
-
-    const revealObserver =
-      new IntersectionObserver(
-
-        entries => {
-
-          entries.forEach(
-            entry => {
-
-              if (
-                entry.isIntersecting
-              ) {
-
-                entry
-                  .target
-                  .classList
-                  .add("show");
-
-
-                revealObserver
-                  .unobserve(
-                    entry.target
-                  );
-
-              }
-
-            }
-          );
-
-        },
-
-        {
-          threshold: .1
-        }
-
-      );
-
-
-    revealItems.forEach(
-      item =>
-        revealObserver
-          .observe(item)
-    );
-
-
-
-    /* =======================================================
-       NUMBER COUNTERS
-    ======================================================== */
-
-    const counters =
-      document.querySelectorAll(
-        ".counter"
-      );
-
-
-    const counterObserver =
-      new IntersectionObserver(
-
-        entries => {
-
-          entries.forEach(
-            entry => {
-
-              if (
-                !entry.isIntersecting
-              ) {
-                return;
-              }
-
-
-              const element =
-                entry.target;
-
-
-              const target =
-                Number(
-                  element.dataset.target
-                );
-
-
-              const suffix =
-                element.dataset.suffix || "";
-
-
-              const duration =
-                1300;
-
-
-              const start =
-                performance.now();
-
-
-
-              function animate(now) {
-
-                const progress =
-                  Math.min(
-                    (now - start)
-                    / duration,
-                    1
-                  );
-
-
-                const ease =
-                  1 -
-                  Math.pow(
-                    1 - progress,
-                    3
-                  );
-
-
-                const value =
-                  Math.round(
-                    target * ease
-                  );
-
-
-                element.textContent =
-
-                  value +
-                  suffix;
-
-
-                if (
-                  progress < 1
-                ) {
-
-                  requestAnimationFrame(
-                    animate
-                  );
-
-                }
-
-              }
-
-
-              requestAnimationFrame(
-                animate
-              );
-
-
-              counterObserver
-                .unobserve(
-                  element
-                );
-
-            }
-          );
-
-        },
-
-        {
-          threshold: .4
-        }
-
-      );
-
-
-    counters.forEach(
-      counter =>
-        counterObserver
-          .observe(counter)
-    );
-
-
-
-    /* =======================================================
-       DATA GRAPH ANIMATION
-    ======================================================== */
-
-    const dataSection =
-      document.getElementById(
-        "data"
-      );
-
-
-    const dataObserver =
-      new IntersectionObserver(
-
-        entries => {
-
-          entries.forEach(
-            entry => {
-
-              if (
-                !entry.isIntersecting
-              ) {
-                return;
-              }
-
-
-              /* 男女比 */
-
-              const genderChart =
-                document.getElementById(
-                  "genderChart"
-                );
-
-
-              setTimeout(
-                () => {
-
-                  genderChart.style.background =
-
-                    `conic-gradient(
-                      #005497 0deg,
-                      #005497 198deg,
-                      #20a4af 198deg,
-                      #20a4af 360deg
-                    )`;
-
-                },
-                150
-              );
-
-
-
-              /* 年代 */
-
-              const ageBars =
-                document
-                  .querySelectorAll(
-                    ".age-bar"
-                  );
-
-
-              ageBars.forEach(
-                (bar,index) => {
-
-                  setTimeout(
-                    () => {
-
-                      bar.style.width =
-                        bar.dataset.width
-                        + "%";
-
-                    },
-
-                    200 +
-                    index * 100
-                  );
-
-                }
-              );
-
-
-
-              /* 雇用形態 */
-
-              const employmentBars =
-                document
-                  .querySelectorAll(
-                    ".employment-bar"
-                  );
-
-
-              employmentBars.forEach(
-                (bar,index) => {
-
-                  setTimeout(
-                    () => {
-
-                      bar.style.width =
-                        bar.dataset.width
-                        + "%";
-
-                    },
-
-                    300 +
-                    index * 150
-                  );
-
-                }
-              );
-
-
-              dataObserver
-                .unobserve(
-                  dataSection
-                );
-
-            }
-          );
-
-        },
-
-        {
-          threshold: .15
-        }
-
-      );
-
-
-    dataObserver
-      .observe(
-        dataSection
-      );
-
-
-
-    /* =======================================================
-       PEOPLE SLIDER
-    ======================================================== */
-
-    const peopleSlider =
-      document.getElementById(
-        "peopleSlider"
-      );
-
-
-    const peoplePrev =
-      document.getElementById(
-        "peoplePrev"
-      );
-
-
-    const peopleNext =
-      document.getElementById(
-        "peopleNext"
-      );
-
-
-    peoplePrev.addEventListener(
-      "click",
-      () => {
-
-        peopleSlider.scrollBy({
-
-          left: -320,
-
-          behavior: "smooth"
-
-        });
-
-      }
-    );
-
-
-    peopleNext.addEventListener(
-      "click",
-      () => {
-
-        peopleSlider.scrollBy({
-
-          left: 320,
-
-          behavior: "smooth"
-
-        });
-
-      }
-    );
-
-
-
-    /* =======================================================
-       AREA + JOB FILTER
-    ======================================================== */
-
-    const areaButtons =
-      document.querySelectorAll(
-        ".area-card"
-      );
-
-
-    const filterButtons =
-      document.querySelectorAll(
-        ".filter-button"
-      );
-
-
-    const recruitCards =
-      document.querySelectorAll(
-        ".recruit-card"
-      );
-
-
-    const selectedArea =
-      document.getElementById(
-        "selectedArea"
-      );
-
-
-    const noJobs =
-      document.getElementById(
-        "noJobs"
-      );
-
-
-    let currentArea =
-      "all";
-
-
-    let currentFilter =
-      "all";
-
-
-
-    function updateJobs() {
-
-      let visibleCount = 0;
-
-
-      recruitCards.forEach(
-        card => {
-
-          const areaMatch =
-
-            currentArea === "all"
-
-            ||
-
-            card.dataset.area ===
-            currentArea;
-
-
-          const filterMatch =
-
-            currentFilter === "all"
-
-            ||
-
-            card.dataset.category ===
-            currentFilter;
-
-
-          if (
-            areaMatch &&
-            filterMatch
-          ) {
-
-            card.classList.remove(
-              "hidden"
-            );
-
-
-            visibleCount++;
-
-          } else {
-
-            card.classList.add(
-              "hidden"
-            );
-
-          }
-
-        }
-      );
-
-
-      if (
-        visibleCount === 0
-      ) {
-
-        noJobs
-          .classList
-          .add("show");
-
-      } else {
-
-        noJobs
-          .classList
-          .remove("show");
-
-      }
-
-    }
-
-
-
-    areaButtons.forEach(
-      button => {
-
-        button.addEventListener(
-          "click",
-          () => {
-
-            areaButtons.forEach(
-              btn =>
-                btn
-                  .classList
-                  .remove(
-                    "active"
-                  )
-            );
-
-
-            button
-              .classList
-              .add("active");
-
-
-            currentArea =
-              button.dataset.area;
-
-
-            selectedArea.textContent =
-
-              "表示中：" +
-              button.dataset.label;
-
-
-            updateJobs();
-
-
-            setTimeout(
-              () => {
-
-                document
-                  .getElementById(
-                    "recruit"
-                  )
-                  .scrollIntoView({
-
-                    behavior:
-                      "smooth",
-
-                    block:
-                      "start"
-
-                  });
-
-              },
-              150
-            );
-
-          }
-        );
-
-      }
-    );
-
-
-
-    filterButtons.forEach(
-      button => {
-
-        button.addEventListener(
-          "click",
-          () => {
-
-            filterButtons.forEach(
-              btn =>
-                btn
-                  .classList
-                  .remove(
-                    "active"
-                  )
-            );
-
-
-            button
-              .classList
-              .add("active");
-
-
-            currentFilter =
-              button.dataset.filter;
-
-
-            updateJobs();
-
-          }
-        );
-
-      }
-    );
-
-
-    updateJobs();
-
-
-  </script>
-
-
-</body>
-
-</html>
