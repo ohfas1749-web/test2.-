@@ -8,9 +8,9 @@
   <title>オーファス リファラル採用｜紹介を受けた方へ</title>
 
   <style>
-    /* =========================================
-       RESET / BASE
-    ========================================= */
+    /* =========================================================
+       BASE
+    ========================================================= */
 
     * {
       box-sizing: border-box;
@@ -39,12 +39,15 @@
     }
 
     :root {
+      --main: #005497;
+      --sub: #20a4af;
+      --gray: #c7ced3;
+      --accent: #ffef00;
+
       --black: #111111;
-      --dark: #1b1b1b;
-      --gray-dark: #555555;
-      --gray: #999999;
-      --line: #d9d9d9;
-      --light: #f4f4f4;
+      --text: #333333;
+      --muted: #66727a;
+      --light: #f5f8fa;
       --white: #ffffff;
     }
 
@@ -62,9 +65,14 @@
       font-family: inherit;
     }
 
-    /* =========================================
+    section {
+      scroll-margin-top: 80px;
+    }
+
+
+    /* =========================================================
        HEADER
-    ========================================= */
+    ========================================================= */
 
     .site-header {
       position: fixed;
@@ -80,18 +88,21 @@
 
       padding: 0 5%;
 
-      background: rgba(255,255,255,.96);
-      border-bottom: 1px solid var(--line);
-      backdrop-filter: blur(12px);
+      background: rgba(255,255,255,.95);
+      backdrop-filter: blur(14px);
+
+      border-bottom: 1px solid rgba(0,84,151,.12);
 
       z-index: 1000;
 
-      transition: .3s;
+      transition:
+        height .3s ease,
+        box-shadow .3s ease;
     }
 
     .site-header.scrolled {
       height: 66px;
-      box-shadow: 0 8px 25px rgba(0,0,0,.05);
+      box-shadow: 0 8px 30px rgba(0,84,151,.08);
     }
 
     .logo img {
@@ -101,25 +112,37 @@
     .nav {
       display: flex;
       align-items: center;
-      gap: 26px;
+      gap: 24px;
     }
 
     .nav a {
       position: relative;
+
       font-size: 13px;
       font-weight: 700;
-      letter-spacing: .02em;
+
+      color: #26343c;
+
+      transition: color .3s ease;
     }
 
-    .nav a::after {
+    .nav a:not(.nav-line)::after {
       content: "";
+
       position: absolute;
       left: 0;
-      bottom: -6px;
+      bottom: -7px;
+
       width: 0;
-      height: 1px;
-      background: #111;
-      transition: .3s;
+      height: 3px;
+
+      background: var(--accent);
+
+      transition: width .3s ease;
+    }
+
+    .nav a:hover {
+      color: var(--main);
     }
 
     .nav a:hover::after {
@@ -128,45 +151,67 @@
 
     .nav-line {
       padding: 11px 20px;
-      background: #111;
-      color: #fff;
+
+      background: var(--main);
+      color: white !important;
+
+      border-radius: 999px;
+
+      transition:
+        background .3s ease,
+        transform .3s ease;
     }
 
-    .nav-line::after {
-      display: none;
+    .nav-line:hover {
+      background: var(--sub);
+      transform: translateY(-2px);
     }
 
     .menu-button {
       display: none;
-      background: none;
+
       border: none;
+      background: none;
+
+      color: var(--main);
+
       font-size: 28px;
+
       cursor: pointer;
     }
 
-    /* =========================================
+
+    /* =========================================================
        HERO
-    ========================================= */
+    ========================================================= */
 
     .hero {
       position: relative;
+
       min-height: 900px;
+
       padding-top: 76px;
+
       overflow: hidden;
-      background: #111;
+
+      background: #eef5f8;
     }
 
     .hero-bg {
       position: absolute;
       inset: 0;
+
       z-index: 0;
     }
 
     .hero-slide {
       position: absolute;
       inset: 0;
+
       opacity: 0;
-      transition: opacity 1.2s ease;
+
+      transition:
+        opacity 1.25s ease;
     }
 
     .hero-slide.active {
@@ -176,11 +221,14 @@
     .hero-slide img {
       width: 100%;
       height: 100%;
+
       object-fit: cover;
       object-position: center;
-      filter: grayscale(100%);
-      transform: scale(1.04);
-      transition: transform 7s ease;
+
+      transform: scale(1.05);
+
+      transition:
+        transform 7s ease;
     }
 
     .hero-slide.active img {
@@ -190,20 +238,46 @@
     .hero-overlay {
       position: absolute;
       inset: 0;
+
       z-index: 1;
 
       background:
         linear-gradient(
           90deg,
-          rgba(255,255,255,.98) 0%,
+          rgba(255,255,255,.99) 0%,
           rgba(255,255,255,.97) 32%,
-          rgba(255,255,255,.80) 53%,
-          rgba(255,255,255,.20) 100%
+          rgba(255,255,255,.86) 50%,
+          rgba(255,255,255,.38) 72%,
+          rgba(255,255,255,.14) 100%
         );
+    }
+
+    .hero-accent-line {
+      position: absolute;
+
+      left: 0;
+      bottom: 0;
+
+      width: 100%;
+      height: 7px;
+
+      background:
+        linear-gradient(
+          90deg,
+          var(--main) 0%,
+          var(--main) 55%,
+          var(--sub) 55%,
+          var(--sub) 88%,
+          var(--accent) 88%,
+          var(--accent) 100%
+        );
+
+      z-index: 3;
     }
 
     .hero-inner {
       position: relative;
+
       z-index: 2;
 
       width: min(1180px, calc(100% - 70px));
@@ -216,48 +290,115 @@
     }
 
     .hero-copy {
-      width: 60%;
+      width: 58%;
+
       padding: 100px 0 80px;
     }
 
     .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+
+      color: var(--sub);
+
       font-size: 12px;
       font-weight: 800;
+
       letter-spacing: .20em;
+
       margin-bottom: 28px;
     }
 
+    .hero-kicker::before {
+      content: "";
+
+      width: 40px;
+      height: 2px;
+
+      background: var(--main);
+    }
+
     .hero-title {
-      font-size: clamp(60px, 6vw, 95px);
+      position: relative;
+
+      width: fit-content;
+
+      color: var(--main);
+
+      font-size: clamp(60px,6vw,94px);
       line-height: 1.04;
+
       letter-spacing: -.05em;
       font-weight: 800;
+
       margin-bottom: 38px;
     }
 
+    .hero-title::after {
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+      bottom: -8px;
+
+      width: 100%;
+      height: 8px;
+
+      background: var(--accent);
+
+      transform: scaleX(0);
+      transform-origin: left;
+
+      animation: drawMarker 1s ease .45s forwards;
+    }
+
+    @keyframes drawMarker {
+      to {
+        transform: scaleX(1);
+      }
+    }
+
     .hero-lead {
-      max-width: 560px;
+      max-width: 570px;
+
+      color: #1a3445;
+
       font-size: 18px;
       font-weight: 600;
+
       line-height: 2;
+
       margin-bottom: 24px;
     }
 
     .hero-text {
       max-width: 560px;
-      color: #444;
+
+      color: #58666f;
+
       font-size: 15px;
+
       line-height: 2;
+
       margin-bottom: 30px;
     }
 
     .hero-note {
       display: inline-block;
-      padding: 11px 15px;
-      border: 1px solid #111;
-      background: rgba(255,255,255,.93);
+
+      padding: 11px 16px;
+
+      background: rgba(255,255,255,.94);
+
+      border-left: 4px solid var(--accent);
+
+      box-shadow: 0 8px 24px rgba(0,84,151,.08);
+
       font-size: 13px;
       font-weight: 700;
+
       margin-bottom: 30px;
     }
 
@@ -277,63 +418,95 @@
 
       padding: 0 26px;
 
-      border: 1px solid #111;
+      border-radius: 999px;
 
       font-size: 14px;
       font-weight: 700;
 
-      transition: .3s;
+      transition:
+        transform .3s ease,
+        background .3s ease,
+        color .3s ease,
+        box-shadow .3s ease;
     }
 
     .btn-main {
-      background: #111;
-      color: #fff;
+      background: var(--main);
+      color: white;
+
+      border: 1px solid var(--main);
     }
 
     .btn-sub {
-      background: #fff;
-      color: #111;
+      background: rgba(255,255,255,.9);
+
+      color: var(--main);
+
+      border: 1px solid var(--main);
     }
 
-    .btn-main:hover,
+    .btn-main:hover {
+      background: var(--sub);
+
+      border-color: var(--sub);
+
+      transform: translateY(-3px);
+
+      box-shadow: 0 12px 25px rgba(0,84,151,.16);
+    }
+
     .btn-sub:hover {
+      background: var(--main);
+      color: white;
+
       transform: translateY(-3px);
     }
 
     .hero-dots {
       position: absolute;
-      right: 5%;
-      bottom: 35px;
 
-      z-index: 3;
+      right: 5%;
+      bottom: 36px;
+
+      z-index: 4;
 
       display: flex;
       gap: 8px;
     }
 
     .hero-dot {
-      width: 8px;
-      height: 8px;
-      border: none;
+      width: 9px;
+      height: 9px;
+
+      border: 1px solid var(--main);
       border-radius: 50%;
-      background: rgba(255,255,255,.6);
+
+      background: white;
+
       cursor: pointer;
+
       transition: .3s;
     }
 
     .hero-dot.active {
-      width: 28px;
+      width: 30px;
+
       border-radius: 999px;
-      background: #fff;
+
+      background: var(--main);
     }
 
-    /* =========================================
+
+    /* =========================================================
        COMMON
-    ========================================= */
+    ========================================================= */
 
     .section {
       position: relative;
+
       padding: 110px 7%;
+
+      overflow: hidden;
     }
 
     .section-inner {
@@ -343,50 +516,83 @@
 
     .section-kicker {
       display: inline-block;
+
+      color: var(--sub);
+
       font-size: 12px;
-      font-weight: 700;
+      font-weight: 800;
+
       letter-spacing: .18em;
-      color: #666;
-      margin-bottom: 10px;
+
+      margin-bottom: 12px;
     }
 
     .section-title {
-      font-size: clamp(38px, 4vw, 60px);
+      color: var(--main);
+
+      font-size: clamp(38px,4vw,60px);
       line-height: 1.25;
+
       letter-spacing: -.03em;
-      font-weight: 700;
+      font-weight: 750;
     }
 
     .section-lead {
       max-width: 720px;
+
       margin-top: 18px;
-      color: #666;
+
+      color: var(--muted);
+
       line-height: 2;
     }
 
+    .section-line {
+      width: 54px;
+      height: 3px;
+
+      margin-top: 20px;
+
+      background: var(--accent);
+    }
+
+
+    /* =========================================================
+       REVEAL
+    ========================================================= */
+
     .reveal {
       opacity: 0;
-      transform: translateY(28px);
-      transition: .7s ease;
+
+      transform: translateY(30px);
+
+      transition:
+        opacity .8s ease,
+        transform .8s ease;
     }
 
     .reveal.show {
       opacity: 1;
+
       transform: translateY(0);
     }
 
-    /* =========================================
+
+    /* =========================================================
        MESSAGE
-    ========================================= */
+    ========================================================= */
 
     .message-section {
-      background: #fff;
+      background: white;
     }
 
     .message-layout {
       display: grid;
+
       grid-template-columns: .85fr 1.15fr;
-      gap: 70px;
+
+      gap: 75px;
+
       align-items: start;
     }
 
@@ -394,132 +600,231 @@
       position: sticky;
       top: 120px;
 
-      font-size: clamp(42px, 5vw, 72px);
+      color: var(--main);
+
+      font-size: clamp(42px,5vw,72px);
       line-height: 1.15;
-      font-weight: 700;
+
       letter-spacing: -.03em;
+      font-weight: 750;
+    }
+
+    .message-big span {
+      position: relative;
+
+      display: inline-block;
+    }
+
+    .message-big span::after {
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+      bottom: -4px;
+
+      width: 100%;
+      height: 6px;
+
+      background: var(--accent);
     }
 
     .message-card {
-      padding: 44px 0;
-      border-top: 1px solid #111;
-      border-bottom: 1px solid #111;
+      padding: 46px 0;
+
+      border-top: 1px solid var(--gray);
+      border-bottom: 1px solid var(--gray);
     }
 
     .message-card h3 {
-      font-size: 27px;
+      color: #19384b;
+
+      font-size: 28px;
       line-height: 1.55;
-      margin-bottom: 22px;
+
+      margin-bottom: 24px;
     }
 
     .message-card p {
-      color: #555;
+      color: #5d6971;
+
       margin-bottom: 14px;
     }
 
     .message-highlight {
       display: inline-block;
+
       margin-top: 18px;
-      padding-bottom: 3px;
-      border-bottom: 1px solid #111;
+
+      padding: 10px 15px;
+
+      background: #eef7f8;
+
+      border-left: 4px solid var(--sub);
+
+      color: var(--main);
+
       font-weight: 700;
     }
 
-    /* =========================================
+
+    /* =========================================================
        ABOUT
-    ========================================= */
+    ========================================================= */
 
     .about-section {
-      background: var(--light);
+      background:
+        linear-gradient(
+          135deg,
+          #f6f9fa 0%,
+          #eef5f7 100%
+        );
     }
 
     .about-grid {
       display: grid;
+
       grid-template-columns: 1fr 1fr;
+
       gap: 60px;
+
       margin-top: 60px;
+
       align-items: start;
     }
 
     .about-copy h3 {
+      color: #17384d;
+
       font-size: 33px;
       line-height: 1.5;
+
       margin-bottom: 20px;
     }
 
     .about-copy p {
-      color: #555;
+      color: #59666e;
+
       margin-bottom: 14px;
     }
 
     .number-grid {
       display: grid;
+
       grid-template-columns: 1fr 1fr;
-      border-top: 1px solid #111;
-      border-left: 1px solid #111;
+
+      border-top: 1px solid var(--gray);
+      border-left: 1px solid var(--gray);
     }
 
     .number-card {
-      min-height: 150px;
-      padding: 24px;
-      border-right: 1px solid #111;
-      border-bottom: 1px solid #111;
-      background: transparent;
+      min-height: 155px;
+
+      padding: 25px;
+
+      border-right: 1px solid var(--gray);
+      border-bottom: 1px solid var(--gray);
+
+      background: rgba(255,255,255,.75);
+
+      transition:
+        background .3s ease,
+        transform .3s ease;
+    }
+
+    .number-card:hover {
+      background: white;
+
+      transform: translateY(-4px);
     }
 
     .number-big {
       display: block;
+
+      color: var(--main);
+
       font-size: 42px;
       line-height: 1;
-      font-weight: 700;
+
+      font-weight: 800;
+
       margin-bottom: 12px;
     }
 
     .number-label {
+      color: var(--sub);
+
       font-size: 12px;
-      color: #666;
+      font-weight: 700;
     }
 
-    /* =========================================
+
+    /* =========================================================
        MVV
-    ========================================= */
+    ========================================================= */
 
     .mvv-section {
-      background: #111;
-      color: #fff;
+      background: var(--main);
+
+      color: white;
     }
 
     .mvv-section .section-kicker {
-      color: #aaa;
+      color: #8bd1d6;
+    }
+
+    .mvv-section .section-title {
+      color: white;
     }
 
     .mvv-grid {
       display: grid;
+
       grid-template-columns: repeat(3,1fr);
+
       gap: 0;
+
       margin-top: 60px;
-      border-top: 1px solid #555;
-      border-left: 1px solid #555;
+
+      border-top: 1px solid rgba(255,255,255,.28);
+      border-left: 1px solid rgba(255,255,255,.28);
     }
 
     .mvv-card {
       min-height: 320px;
+
       padding: 34px;
-      border-right: 1px solid #555;
-      border-bottom: 1px solid #555;
+
+      border-right: 1px solid rgba(255,255,255,.28);
+      border-bottom: 1px solid rgba(255,255,255,.28);
+
+      transition:
+        background .3s ease,
+        transform .3s ease;
+    }
+
+    .mvv-card:hover {
+      background: rgba(32,164,175,.18);
+
+      transform: translateY(-5px);
     }
 
     .mvv-num {
+      color: #8eb2c9;
+
       font-size: 14px;
-      color: #777;
-      margin-bottom: 40px;
+
+      margin-bottom: 42px;
     }
 
     .mvv-label {
+      color: #89d3d8;
+
       font-size: 11px;
       font-weight: 700;
+
       letter-spacing: .16em;
-      color: #aaa;
+
       margin-bottom: 20px;
     }
 
@@ -533,81 +838,141 @@
     }
 
     .mvv-card li {
-      padding: 10px 0;
-      border-bottom: 1px solid #333;
+      position: relative;
+
+      padding: 10px 0 10px 18px;
+
+      border-bottom: 1px solid rgba(255,255,255,.18);
+
       font-size: 14px;
     }
 
-    /* =========================================
+    .mvv-card li::before {
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+      top: 20px;
+
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+
+      background: var(--accent);
+    }
+
+
+    /* =========================================================
        HISTORY
-    ========================================= */
+    ========================================================= */
 
     .history-section {
-      background: #fff;
+      background: white;
     }
 
     .history-timeline {
       margin-top: 70px;
-      border-top: 1px solid #111;
+
+      border-top: 1px solid var(--main);
     }
 
     .history-item {
       display: grid;
+
       grid-template-columns: 150px 1fr;
+
       gap: 40px;
-      padding: 30px 0;
-      border-bottom: 1px solid #ddd;
+
+      padding: 32px 0;
+
+      border-bottom: 1px solid #dfe5e8;
+
+      transition: padding-left .3s ease;
+    }
+
+    .history-item:hover {
+      padding-left: 8px;
     }
 
     .history-year {
+      color: var(--main);
+
       font-size: 28px;
-      font-weight: 700;
+      font-weight: 800;
     }
 
     .history-content h3 {
+      color: #1a394c;
+
       font-size: 21px;
+
       margin-bottom: 8px;
     }
 
     .history-content p {
-      color: #666;
+      color: #65727a;
+
       font-size: 14px;
     }
 
-    /* =========================================
+
+    /* =========================================================
        JOBS
-    ========================================= */
+    ========================================================= */
 
     .jobs-section {
-      background: #f7f7f7;
+      background: #f4f8f9;
     }
 
     .job-grid {
       display: grid;
+
       grid-template-columns: repeat(3,1fr);
-      gap: 30px;
+
+      gap: 28px;
+
       margin-top: 60px;
     }
 
     .job-card {
-      background: #fff;
-      border: 1px solid #d8d8d8;
-      transition: .3s;
+      background: white;
+
+      border: 1px solid var(--gray);
+
+      overflow: hidden;
+
+      transition:
+        transform .35s ease,
+        box-shadow .35s ease,
+        border-color .35s ease;
     }
 
     .job-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-7px);
+
+      border-color: var(--sub);
+
+      box-shadow: 0 18px 40px rgba(0,84,151,.10);
     }
 
     .job-photo {
       width: 100%;
       height: 245px;
+
       object-fit: cover;
-      filter: grayscale(100%);
-      transition: .4s;
+
+      filter: grayscale(30%);
+
+      transition:
+        transform .5s ease,
+        filter .5s ease;
     }
 
     .job-card:hover .job-photo {
+      transform: scale(1.035);
+
       filter: grayscale(0%);
     }
 
@@ -616,34 +981,87 @@
     }
 
     .job-content h3 {
+      color: var(--main);
+
       font-size: 21px;
+
       margin-bottom: 8px;
     }
 
     .job-content p {
-      color: #666;
+      color: #68747b;
+
       font-size: 13px;
     }
 
-    .job-no {
-      display: none;
+    .job-topline {
+      width: 36px;
+      height: 3px;
+
+      margin-bottom: 16px;
+
+      background: var(--accent);
     }
 
-    /* =========================================
+
+    /* =========================================================
        PEOPLE
-    ========================================= */
+    ========================================================= */
 
     .people-section {
-      background: #fff;
+      background: white;
+    }
+
+    .people-controls {
+      display: flex;
+
+      justify-content: flex-end;
+
+      gap: 8px;
+
+      margin-top: -45px;
+    }
+
+    .people-control {
+      width: 46px;
+      height: 46px;
+
+      border: 1px solid var(--gray);
+
+      background: white;
+
+      color: var(--main);
+
+      font-size: 20px;
+
+      cursor: pointer;
+
+      transition: .3s;
+    }
+
+    .people-control:hover {
+      background: var(--main);
+
+      color: white;
+
+      border-color: var(--main);
     }
 
     .people-slider {
       display: flex;
+
       gap: 28px;
+
       overflow-x: auto;
+
       margin-top: 60px;
+
       padding-bottom: 20px;
+
       scroll-snap-type: x mandatory;
+
+      scroll-behavior: smooth;
+
       scrollbar-width: none;
     }
 
@@ -653,40 +1071,48 @@
 
     .people-card {
       flex: 0 0 290px;
+
       scroll-snap-align: start;
     }
 
     .people-photo-wrap {
       position: relative;
+
       width: 290px;
       height: 360px;
-      margin-bottom: 18px;
-      overflow: hidden;
-      background: #eee;
-    }
 
-    .people-photo-bg {
-      display: none;
+      margin-bottom: 18px;
+
+      overflow: hidden;
+
+      background: #edf2f4;
     }
 
     .people-photo {
       width: 100%;
       height: 100%;
+
       object-fit: cover;
       object-position: center top;
-      filter: grayscale(100%);
-      transition: .4s;
+
+      filter: grayscale(55%);
+
+      transition:
+        filter .45s ease,
+        transform .45s ease;
     }
 
     .people-card:hover .people-photo {
       filter: grayscale(0%);
-      transform: scale(1.02);
+
+      transform: scale(1.025);
     }
 
     .people-plus {
       position: absolute;
-      right: 10px;
-      bottom: 10px;
+
+      right: 12px;
+      bottom: 12px;
 
       width: 42px;
       height: 42px;
@@ -695,189 +1121,275 @@
       align-items: center;
       justify-content: center;
 
-      background: #111;
-      color: #fff;
+      background: var(--main);
+      color: white;
+
+      border-radius: 50%;
 
       font-size: 18px;
+
+      transition:
+        background .3s ease,
+        transform .3s ease;
+    }
+
+    .people-card:hover .people-plus {
+      background: var(--sub);
+
+      transform: rotate(90deg);
     }
 
     .people-job {
       display: inline-block;
+
+      color: var(--sub);
+
       font-size: 11px;
-      color: #666;
+      font-weight: 700;
+
       letter-spacing: .08em;
+
       margin-bottom: 8px;
     }
 
     .people-card h3 {
+      color: #17384d;
+
       font-size: 18px;
       line-height: 1.55;
+
       margin-bottom: 6px;
     }
 
     .people-note {
-      color: #777;
+      color: #738087;
+
       font-size: 12px;
     }
 
-    /* =========================================
+
+    /* =========================================================
        AREA
-    ========================================= */
+    ========================================================= */
 
     .area-section {
-      background: #111;
-      color: #fff;
+      background: var(--main);
+
+      color: white;
     }
 
     .area-section .section-kicker {
-      color: #999;
+      color: #90d2d7;
+    }
+
+    .area-section .section-title {
+      color: white;
     }
 
     .area-section .section-lead {
-      color: #aaa;
+      color: #c7dce8;
     }
 
     .area-grid {
       margin-top: 60px;
+
       display: grid;
+
       grid-template-columns: repeat(3,1fr);
-      border-top: 1px solid #444;
-      border-left: 1px solid #444;
+
+      border-top: 1px solid rgba(255,255,255,.24);
+      border-left: 1px solid rgba(255,255,255,.24);
     }
 
     .area-card {
       position: relative;
+
       min-height: 180px;
 
       padding: 24px;
 
       background: transparent;
-      color: #fff;
+
+      color: white;
 
       border: none;
-      border-right: 1px solid #444;
-      border-bottom: 1px solid #444;
+      border-right: 1px solid rgba(255,255,255,.24);
+      border-bottom: 1px solid rgba(255,255,255,.24);
 
       text-align: left;
 
       cursor: pointer;
 
-      transition: .3s;
+      transition:
+        background .3s ease,
+        color .3s ease,
+        transform .3s ease;
     }
 
     .area-card:hover,
     .area-card.active {
-      background: #fff;
-      color: #111;
+      background: white;
+
+      color: var(--main);
+
+      transform: translateY(-4px);
     }
 
     .area-small {
       display: block;
+
+      color: #8bd0d6;
+
       font-size: 10px;
+
       letter-spacing: .15em;
-      color: #888;
+
       margin-bottom: 12px;
     }
 
     .area-card:hover .area-small,
     .area-card.active .area-small {
-      color: #555;
+      color: var(--sub);
     }
 
     .area-name {
       display: block;
+
       font-size: 22px;
-      font-weight: 700;
+      font-weight: 750;
     }
 
     .area-jobs {
       display: block;
+
       margin-top: 10px;
-      color: #aaa;
+
+      color: #c6dae6;
+
       font-size: 12px;
     }
 
     .area-card:hover .area-jobs,
     .area-card.active .area-jobs {
-      color: #555;
+      color: #65737a;
     }
 
     .area-arrow {
       position: absolute;
+
       right: 20px;
       bottom: 18px;
-      font-size: 22px;
+
+      color: var(--accent);
+
+      font-size: 24px;
+      font-weight: 700;
     }
 
-    /* =========================================
+
+    /* =========================================================
        RECRUIT
-    ========================================= */
+    ========================================================= */
 
     .recruit-section {
-      background: #fff;
+      background: white;
     }
 
     .recruit-header-row {
       display: flex;
+
       justify-content: space-between;
       align-items: flex-end;
+
       gap: 30px;
     }
 
     .selected-area {
+      padding: 8px 12px;
+
+      background: #eef7f8;
+
+      color: var(--main);
+
+      border-left: 3px solid var(--sub);
+
       font-size: 12px;
-      color: #666;
+      font-weight: 700;
     }
 
     .filter-title {
       margin-top: 40px;
       margin-bottom: 12px;
+
+      color: #718087;
+
       font-size: 12px;
-      color: #777;
     }
 
     .filter-buttons {
       display: flex;
       flex-wrap: wrap;
+
       gap: 8px;
+
       margin-bottom: 40px;
     }
 
     .filter-button {
       padding: 9px 15px;
-      border: 1px solid #bbb;
-      background: #fff;
+
+      border: 1px solid var(--gray);
+
+      background: white;
+
+      color: #536068;
+
       font-size: 12px;
+
       cursor: pointer;
+
       transition: .3s;
     }
 
-    .filter-button:hover,
+    .filter-button:hover {
+      border-color: var(--sub);
+
+      color: var(--sub);
+    }
+
     .filter-button.active {
-      background: #111;
-      color: #fff;
-      border-color: #111;
+      background: var(--main);
+
+      color: white;
+
+      border-color: var(--main);
     }
 
     .recruit-list {
-      border-top: 1px solid #111;
+      border-top: 1px solid var(--main);
     }
 
     .recruit-card {
       display: flex;
+
       justify-content: space-between;
       align-items: center;
+
       gap: 20px;
 
-      padding: 24px 0;
+      padding: 25px 0;
 
-      border-bottom: 1px solid #ddd;
+      border-bottom: 1px solid #dfe5e8;
 
-      transition: .3s;
+      transition:
+        padding-left .3s ease,
+        background .3s ease;
     }
 
     .recruit-card:hover {
-      padding-left: 10px;
+      padding-left: 12px;
+
+      background: #f8fbfc;
     }
 
     .recruit-card.hidden {
@@ -885,31 +1397,52 @@
     }
 
     .recruit-info h3 {
+      color: #163a50;
+
       font-size: 19px;
+
       margin-bottom: 5px;
     }
 
     .recruit-info > span {
-      color: #777;
+      color: #758188;
+
       font-size: 12px;
     }
 
     .job-tags {
       display: flex;
+      flex-wrap: wrap;
+
       gap: 6px;
+
       margin-top: 8px;
     }
 
     .job-tag {
       padding: 3px 7px;
-      background: #eee;
+
+      background: #edf5f6;
+
+      color: var(--sub);
+
       font-size: 10px;
+      font-weight: 700;
     }
 
     .detail-button {
+      color: var(--main);
+
       font-size: 13px;
       font-weight: 700;
+
       white-space: nowrap;
+
+      transition: color .3s ease;
+    }
+
+    .detail-button:hover {
+      color: var(--sub);
     }
 
     .detail-button::after {
@@ -918,98 +1451,168 @@
 
     .no-jobs {
       display: none;
+
       padding: 30px;
-      background: #f3f3f3;
+
+      background: #f4f7f8;
+
+      color: #6f7c83;
+
       text-align: center;
-      color: #666;
     }
 
     .no-jobs.show {
       display: block;
     }
 
-    /* =========================================
+
+    /* =========================================================
        FLOW
-    ========================================= */
+    ========================================================= */
 
     .flow-section {
-      background: #f4f4f4;
+      background: #eef4f6;
     }
 
     .flow-grid {
       display: grid;
+
       grid-template-columns: repeat(4,1fr);
+
       gap: 0;
+
       margin-top: 55px;
-      border-top: 1px solid #111;
-      border-left: 1px solid #111;
+
+      border-top: 1px solid var(--gray);
+      border-left: 1px solid var(--gray);
     }
 
     .flow-card {
       min-height: 220px;
+
       padding: 28px;
-      border-right: 1px solid #111;
-      border-bottom: 1px solid #111;
-      background: transparent;
+
+      border-right: 1px solid var(--gray);
+      border-bottom: 1px solid var(--gray);
+
+      background: rgba(255,255,255,.62);
+
+      transition:
+        background .3s ease,
+        transform .3s ease;
+    }
+
+    .flow-card:hover {
+      background: white;
+
+      transform: translateY(-4px);
     }
 
     .flow-num {
+      color: var(--sub);
+
       font-size: 12px;
-      color: #777;
+      font-weight: 700;
+
       margin-bottom: 28px;
     }
 
     .flow-card h3 {
+      color: var(--main);
+
       font-size: 17px;
+
       margin-bottom: 10px;
     }
 
     .flow-card p {
-      color: #666;
+      color: #6d7980;
+
       font-size: 12px;
     }
 
-    /* =========================================
+
+    /* =========================================================
        LINE CTA
-    ========================================= */
+    ========================================================= */
 
     .cta-section {
-      background: #111;
-      color: #fff;
-    }
+      background:
+        linear-gradient(
+          135deg,
+          #004578 0%,
+          #005497 55%,
+          #187e91 100%
+        );
 
-    .cta-title {
-      font-size: clamp(54px, 7vw, 100px);
-      line-height: 1;
-      letter-spacing: -.05em;
-      margin-bottom: 25px;
+      color: white;
     }
 
     .cta-mini {
-      color: #aaa;
+      color: #9bd1d7;
+
       font-size: 12px;
+
       margin-bottom: 10px;
+    }
+
+    .cta-title {
+      font-size: clamp(54px,7vw,100px);
+      line-height: 1;
+
+      letter-spacing: -.05em;
+
+      margin-bottom: 25px;
+    }
+
+    .cta-title span {
+      position: relative;
+    }
+
+    .cta-title span::after {
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+      bottom: -8px;
+
+      width: 100%;
+      height: 6px;
+
+      background: var(--accent);
     }
 
     .cta-text {
       max-width: 650px;
-      color: #ccc;
+
+      color: #d4e6ef;
+
       line-height: 2;
+
       margin-bottom: 28px;
     }
 
     .line-contact-box {
       max-width: 860px;
+
       margin-top: 35px;
+
       padding: 38px;
 
       display: grid;
+
       grid-template-columns: 1fr auto 1fr;
+
       gap: 35px;
+
       align-items: center;
 
-      background: #fff;
+      background: white;
+
       color: #111;
+
+      box-shadow: 0 25px 60px rgba(0,0,0,.14);
     }
 
     .line-button-area,
@@ -1018,59 +1621,91 @@
     }
 
     .line-guide-title {
+      color: var(--main);
+
       font-size: 14px;
       font-weight: 700;
+
       margin-bottom: 16px;
     }
 
     .line-button {
       display: inline-flex;
+
       align-items: center;
       justify-content: center;
 
       width: 100%;
       min-height: 58px;
 
-      background: #111;
-      color: #fff;
+      background: var(--main);
+
+      color: white;
+
+      border-radius: 999px;
 
       font-size: 14px;
       font-weight: 700;
+
+      transition:
+        background .3s ease,
+        transform .3s ease;
+    }
+
+    .line-button:hover {
+      background: var(--sub);
+
+      transform: translateY(-3px);
     }
 
     .line-guide-small {
       margin-top: 12px;
+
+      color: #77838a;
+
       font-size: 11px;
-      color: #777;
     }
 
     .line-divider {
+      color: var(--sub);
+
       font-size: 11px;
-      color: #aaa;
+      font-weight: 700;
     }
 
     .line-qr {
       width: 155px;
       height: 155px;
+
       object-fit: contain;
+
       margin: 0 auto;
+
+      border: 1px solid #dce3e7;
     }
 
-    /* =========================================
+
+    /* =========================================================
        FOOTER
-    ========================================= */
+    ========================================================= */
 
     footer {
       padding: 50px 7%;
-      background: #000;
-      color: #fff;
+
+      background: #093a5c;
+
+      color: white;
+
       text-align: center;
     }
 
     .footer-logo {
       display: inline-block;
-      background: #fff;
+
+      background: white;
+
       padding: 12px 18px;
+
       margin-bottom: 14px;
     }
 
@@ -1079,13 +1714,15 @@
     }
 
     footer p {
+      color: #8fb0c4;
+
       font-size: 10px;
-      color: #888;
     }
 
-    /* =========================================
+
+    /* =========================================================
        MOBILE
-    ========================================= */
+    ========================================================= */
 
     @media (max-width: 900px) {
 
@@ -1103,6 +1740,7 @@
 
       .nav {
         position: absolute;
+
         top: 68px;
         left: 0;
 
@@ -1110,12 +1748,18 @@
 
         display: none;
         flex-direction: column;
+
         align-items: flex-start;
+
+        gap: 20px;
 
         padding: 28px;
 
-        background: #fff;
-        border-bottom: 1px solid #ddd;
+        background: white;
+
+        border-bottom: 1px solid var(--gray);
+
+        box-shadow: 0 16px 30px rgba(0,84,151,.08);
       }
 
       .nav.open {
@@ -1124,11 +1768,13 @@
 
       .hero {
         min-height: 820px;
+
         padding-top: 68px;
       }
 
       .hero-inner {
         width: calc(100% - 38px);
+
         min-height: 752px;
       }
 
@@ -1141,7 +1787,7 @@
       }
 
       .hero-overlay {
-        background: rgba(255,255,255,.84);
+        background: rgba(255,255,255,.86);
       }
 
       .section {
@@ -1167,6 +1813,7 @@
 
       .history-item {
         grid-template-columns: 1fr;
+
         gap: 10px;
       }
 
@@ -1180,7 +1827,14 @@
 
       .recruit-card {
         flex-direction: column;
+
         align-items: flex-start;
+      }
+
+      .people-controls {
+        margin-top: 22px;
+
+        justify-content: flex-start;
       }
 
       .people-card {
@@ -1194,7 +1848,9 @@
 
       .line-contact-box {
         grid-template-columns: 1fr;
+
         gap: 20px;
+
         padding: 28px 20px;
       }
 
@@ -1202,12 +1858,15 @@
       .line-qr-area {
         display: none;
       }
+
     }
 
   </style>
 </head>
 
+
 <body>
+
 
 <header class="site-header" id="header">
 
@@ -1215,19 +1874,39 @@
     <img src="logo.png" alt="株式会社オーファス">
   </a>
 
-  <button class="menu-button" id="menuButton">
+  <button class="menu-button" id="menuButton" aria-label="メニューを開く">
     ☰
   </button>
 
   <nav class="nav" id="nav">
 
-    <a href="#message">紹介を受けた方へ</a>
-    <a href="#about">会社を知る</a>
-    <a href="#jobs">仕事を知る</a>
-    <a href="#people">働く人を知る</a>
-    <a href="#area">エリアから探す</a>
-    <a href="#recruit">募集職種</a>
-    <a href="#contact" class="nav-line">LINEで話す</a>
+    <a href="#message">
+      紹介を受けた方へ
+    </a>
+
+    <a href="#about">
+      会社を知る
+    </a>
+
+    <a href="#jobs">
+      仕事を知る
+    </a>
+
+    <a href="#people">
+      働く人を知る
+    </a>
+
+    <a href="#area">
+      エリアから探す
+    </a>
+
+    <a href="#recruit">
+      募集職種
+    </a>
+
+    <a href="#contact" class="nav-line">
+      LINEで話す
+    </a>
 
   </nav>
 
@@ -1236,7 +1915,10 @@
 
 <main>
 
-  <!-- HERO -->
+
+  <!-- ======================================================
+       HERO
+  ======================================================= -->
 
   <section class="hero">
 
@@ -1277,8 +1959,10 @@
         </p>
 
         <p class="hero-text">
-          今すぐ転職を考えている方も、まだそこまで考えていない方も。<br>
-          まずは気軽に、オーファスのことを知ってみませんか？
+          今すぐ転職を考えている方も、
+          まだそこまで考えていない方も。<br>
+          まずは気軽に、
+          オーファスのことを知ってみませんか？
         </p>
 
         <div class="hero-note">
@@ -1303,16 +1987,34 @@
 
     <div class="hero-dots">
 
-      <button class="hero-dot active" data-slide="0"></button>
-      <button class="hero-dot" data-slide="1"></button>
-      <button class="hero-dot" data-slide="2"></button>
+      <button
+        class="hero-dot active"
+        data-slide="0"
+        aria-label="1枚目"
+      ></button>
+
+      <button
+        class="hero-dot"
+        data-slide="1"
+        aria-label="2枚目"
+      ></button>
+
+      <button
+        class="hero-dot"
+        data-slide="2"
+        aria-label="3枚目"
+      ></button>
 
     </div>
+
+    <div class="hero-accent-line"></div>
 
   </section>
 
 
-  <!-- MESSAGE -->
+  <!-- ======================================================
+       MESSAGE
+  ======================================================= -->
 
   <section class="section message-section reveal" id="message">
 
@@ -1321,7 +2023,8 @@
       <div class="message-layout">
 
         <div class="message-big">
-          ありがとうから始まる、<br>
+          <span>ありがとう</span><br>
+          から始まる、<br>
           新しいご縁。
         </div>
 
@@ -1333,17 +2036,21 @@
           </h3>
 
           <p>
-            オーファスでは、私たちのことをよく知る社員・スタッフから、
-            大切な友人や知人をご紹介いただく「リファラル採用」を行っています。
+            オーファスでは、
+            私たちのことをよく知る社員・スタッフから、
+            大切な友人や知人をご紹介いただく
+            「リファラル採用」を行っています。
           </p>
 
           <p>
             あなたにこのページが届いたのも、
-            誰かが「オーファスに合うかもしれない」と思ってくれたからかもしれません。
+            誰かが「オーファスに合うかもしれない」と
+            思ってくれたからかもしれません。
           </p>
 
           <p>
-            だからといって、すぐに応募や転職を決める必要はありません。
+            だからといって、
+            すぐに応募や転職を決める必要はありません。
           </p>
 
           <p>
@@ -1364,7 +2071,9 @@
   </section>
 
 
-  <!-- ABOUT -->
+  <!-- ======================================================
+       ABOUT
+  ======================================================= -->
 
   <section class="section about-section reveal" id="about">
 
@@ -1378,6 +2087,8 @@
         オーファスって？
       </h2>
 
+      <div class="section-line"></div>
+
       <div class="about-grid">
 
         <div class="about-copy">
@@ -1388,7 +2099,8 @@
           </h3>
 
           <p>
-            オーファスは、建物の安全・快適な環境を支える
+            オーファスは、
+            建物の安全・快適な環境を支える
             総合ビルメンテナンス会社です。
           </p>
 
@@ -1400,26 +2112,71 @@
 
         </div>
 
+
         <div class="number-grid">
 
           <div class="number-card">
-            <span class="number-big">1948</span>
-            <span class="number-label">創業</span>
+
+            <span
+              class="number-big counter"
+              data-target="1948"
+              data-format="year"
+            >
+              0
+            </span>
+
+            <span class="number-label">
+              創業
+            </span>
+
           </div>
 
-          <div class="number-card">
-            <span class="number-big">約78年</span>
-            <span class="number-label">地域とともに</span>
-          </div>
 
           <div class="number-card">
-            <span class="number-big">600+</span>
-            <span class="number-label">社員・スタッフ</span>
+
+            <span
+              class="number-big counter"
+              data-target="78"
+              data-prefix="約"
+              data-suffix="年"
+            >
+              0
+            </span>
+
+            <span class="number-label">
+              地域とともに
+            </span>
+
           </div>
 
+
           <div class="number-card">
-            <span class="number-big">熊本</span>
-            <span class="number-label">を中心に展開</span>
+
+            <span
+              class="number-big counter"
+              data-target="600"
+              data-suffix="+"
+            >
+              0
+            </span>
+
+            <span class="number-label">
+              社員・スタッフ
+            </span>
+
+          </div>
+
+
+          <div class="number-card">
+
+            <span class="number-big">
+              熊本
+            </span>
+
+            <span class="number-label">
+              を中心に展開
+            </span>
+
           </div>
 
         </div>
@@ -1431,7 +2188,9 @@
   </section>
 
 
-  <!-- MVV -->
+  <!-- ======================================================
+       MVV
+  ======================================================= -->
 
   <section class="section mvv-section reveal">
 
@@ -1445,11 +2204,16 @@
         私たちが大切にしていること
       </h2>
 
+      <div class="section-line"></div>
+
+
       <div class="mvv-grid">
 
         <div class="mvv-card">
 
-          <div class="mvv-num">01</div>
+          <div class="mvv-num">
+            01
+          </div>
 
           <div class="mvv-label">
             MISSION
@@ -1462,9 +2226,12 @@
 
         </div>
 
+
         <div class="mvv-card">
 
-          <div class="mvv-num">02</div>
+          <div class="mvv-num">
+            02
+          </div>
 
           <div class="mvv-label">
             VISION
@@ -1478,9 +2245,12 @@
 
         </div>
 
+
         <div class="mvv-card">
 
-          <div class="mvv-num">03</div>
+          <div class="mvv-num">
+            03
+          </div>
 
           <div class="mvv-label">
             VALUE
@@ -1501,7 +2271,9 @@
   </section>
 
 
-  <!-- HISTORY -->
+  <!-- ======================================================
+       HISTORY
+  ======================================================= -->
 
   <section class="section history-section reveal">
 
@@ -1515,9 +2287,13 @@
         オーファスの歩み
       </h2>
 
+      <div class="section-line"></div>
+
       <p class="section-lead">
-        1948年から、時代と地域に合わせて仕事の幅を広げてきました。
+        1948年から、
+        時代と地域に合わせて仕事の幅を広げてきました。
       </p>
+
 
       <div class="history-timeline">
 
@@ -1542,6 +2318,7 @@
 
         </div>
 
+
         <div class="history-item">
 
           <div class="history-year">
@@ -1564,6 +2341,7 @@
 
         </div>
 
+
         <div class="history-item">
 
           <div class="history-year">
@@ -1578,13 +2356,14 @@
 
             <p>
               ビルメンテナンスに加え、
-              コンビニ運営、清掃資機材販売、環境衛生、
-              工事、アウトソーシングなどへ展開。
+              コンビニ運営、清掃資機材販売、
+              環境衛生、工事、アウトソーシングなどへ展開。
             </p>
 
           </div>
 
         </div>
+
 
         <div class="history-item">
 
@@ -1608,6 +2387,7 @@
 
         </div>
 
+
         <div class="history-item">
 
           <div class="history-year">
@@ -1622,7 +2402,8 @@
 
             <p>
               社員600名以上。
-              地域に根ざした企業として、今も進化を続けています。
+              地域に根ざした企業として、
+              今も進化を続けています。
             </p>
 
           </div>
@@ -1636,7 +2417,9 @@
   </section>
 
 
-  <!-- JOB -->
+  <!-- ======================================================
+       JOBS
+  ======================================================= -->
 
   <section class="section jobs-section reveal" id="jobs">
 
@@ -1650,9 +2433,13 @@
         仕事はいろいろ。
       </h2>
 
+      <div class="section-line"></div>
+
       <p class="section-lead">
-        経験を活かせる仕事も、未経験から始められる仕事もあります。
+        経験を活かせる仕事も、
+        未経験から始められる仕事もあります。
       </p>
+
 
       <div class="job-grid">
 
@@ -1665,14 +2452,22 @@
           >
 
           <div class="job-content">
-            <h3>設備管理</h3>
+
+            <div class="job-topline"></div>
+
+            <h3>
+              設備管理
+            </h3>
+
             <p>
               建物の電気・空調・給排水などの
               点検や保守管理を行います。
             </p>
+
           </div>
 
         </article>
+
 
         <article class="job-card">
 
@@ -1683,14 +2478,22 @@
           >
 
           <div class="job-content">
-            <h3>清掃</h3>
+
+            <div class="job-topline"></div>
+
+            <h3>
+              清掃
+            </h3>
+
             <p>
               オフィスや公共施設などの
               快適な環境を支える仕事です。
             </p>
+
           </div>
 
         </article>
+
 
         <article class="job-card">
 
@@ -1701,14 +2504,22 @@
           >
 
           <div class="job-content">
-            <h3>警備</h3>
+
+            <div class="job-topline"></div>
+
+            <h3>
+              警備
+            </h3>
+
             <p>
               施設やイベントで、
               人と建物の安全を守ります。
             </p>
+
           </div>
 
         </article>
+
 
         <article class="job-card">
 
@@ -1719,14 +2530,22 @@
           >
 
           <div class="job-content">
-            <h3>企画・顧客管理</h3>
+
+            <div class="job-topline"></div>
+
+            <h3>
+              企画・顧客管理
+            </h3>
+
             <p>
               お客様と現場をつなぎながら、
               建物管理を支えます。
             </p>
+
           </div>
 
         </article>
+
 
         <article class="job-card">
 
@@ -1737,14 +2556,22 @@
           >
 
           <div class="job-content">
-            <h3>電話交換</h3>
+
+            <div class="job-topline"></div>
+
+            <h3>
+              電話交換
+            </h3>
+
             <p>
               電話を適切な部署へつなぎ、
               施設の窓口を支えます。
             </p>
+
           </div>
 
         </article>
+
 
         <article class="job-card">
 
@@ -1755,11 +2582,18 @@
           >
 
           <div class="job-content">
-            <h3>労務管理</h3>
+
+            <div class="job-topline"></div>
+
+            <h3>
+              労務管理
+            </h3>
+
             <p>
               スタッフが安心して働けるよう、
               労務や各種手続きを支えます。
             </p>
+
           </div>
 
         </article>
@@ -1771,7 +2605,9 @@
   </section>
 
 
-  <!-- PEOPLE -->
+  <!-- ======================================================
+       PEOPLE
+  ======================================================= -->
 
   <section class="section people-section reveal" id="people">
 
@@ -1785,12 +2621,36 @@
         働く人をのぞいてみる
       </h2>
 
+      <div class="section-line"></div>
+
       <p class="section-lead">
         入社のきっかけや仕事のリアルを、
         実際に働くスタッフに聞きました。
       </p>
 
-      <div class="people-slider">
+
+      <div class="people-controls">
+
+        <button
+          class="people-control"
+          id="peoplePrev"
+          aria-label="前へ"
+        >
+          ←
+        </button>
+
+        <button
+          class="people-control"
+          id="peopleNext"
+          aria-label="次へ"
+        >
+          →
+        </button>
+
+      </div>
+
+
+      <div class="people-slider" id="peopleSlider">
 
         <a href="#" class="people-card">
 
@@ -1809,7 +2669,7 @@
           </div>
 
           <span class="people-job">
-            清掃スタッフ
+            CLEANING STAFF
           </span>
 
           <h3>
@@ -1821,6 +2681,7 @@
           </p>
 
         </a>
+
 
         <a href="#" class="people-card">
 
@@ -1839,7 +2700,7 @@
           </div>
 
           <span class="people-job">
-            警備スタッフ
+            SECURITY STAFF
           </span>
 
           <h3>
@@ -1851,6 +2712,7 @@
           </p>
 
         </a>
+
 
         <a href="#" class="people-card">
 
@@ -1869,7 +2731,7 @@
           </div>
 
           <span class="people-job">
-            設備管理
+            FACILITY STAFF
           </span>
 
           <h3>
@@ -1881,6 +2743,7 @@
           </p>
 
         </a>
+
 
         <a href="#" class="people-card">
 
@@ -1899,7 +2762,7 @@
           </div>
 
           <span class="people-job">
-            電話交換
+            TELEPHONE STAFF
           </span>
 
           <h3>
@@ -1912,13 +2775,14 @@
 
         </a>
 
+
         <a href="#" class="people-card">
 
           <div class="people-photo-wrap">
 
             <img
               src="staff05.jpg"
-              alt="企画・顧客管理"
+              alt="企画・顧客管理スタッフ"
               class="people-photo"
             >
 
@@ -1929,7 +2793,7 @@
           </div>
 
           <span class="people-job">
-            企画・顧客管理
+            ACCOUNT STAFF
           </span>
 
           <h3>
@@ -1942,13 +2806,14 @@
 
         </a>
 
+
         <a href="#" class="people-card">
 
           <div class="people-photo-wrap">
 
             <img
               src="staff06.jpg"
-              alt="労務管理"
+              alt="労務管理スタッフ"
               class="people-photo"
             >
 
@@ -1959,7 +2824,7 @@
           </div>
 
           <span class="people-job">
-            労務管理
+            HR STAFF
           </span>
 
           <h3>
@@ -1979,7 +2844,9 @@
   </section>
 
 
-  <!-- AREA -->
+  <!-- ======================================================
+       AREA
+  ======================================================= -->
 
   <section class="section area-section reveal" id="area">
 
@@ -1993,10 +2860,14 @@
         あなたの街から探す
       </h2>
 
+      <div class="section-line"></div>
+
       <p class="section-lead">
-        仕事内容も大切だけど、毎日の「通いやすさ」も大切。
+        仕事内容も大切だけど、
+        毎日の「通いやすさ」も大切。<br>
         気になるエリアから仕事を探してみてください。
       </p>
+
 
       <div class="area-grid">
 
@@ -2024,6 +2895,7 @@
 
         </button>
 
+
         <button
           class="area-card"
           data-area="central"
@@ -2047,6 +2919,7 @@
           </span>
 
         </button>
+
 
         <button
           class="area-card"
@@ -2072,6 +2945,7 @@
 
         </button>
 
+
         <button
           class="area-card"
           data-area="mashiki"
@@ -2096,6 +2970,7 @@
 
         </button>
 
+
         <button
           class="area-card"
           data-area="kikuyo"
@@ -2119,6 +2994,7 @@
           </span>
 
         </button>
+
 
         <button
           class="area-card"
@@ -2151,7 +3027,9 @@
   </section>
 
 
-  <!-- RECRUIT -->
+  <!-- ======================================================
+       RECRUIT
+  ======================================================= -->
 
   <section class="section recruit-section reveal" id="recruit">
 
@@ -2169,6 +3047,8 @@
             現在募集中のお仕事
           </h2>
 
+          <div class="section-line"></div>
+
           <p class="section-lead">
             エリアと職種を組み合わせて、
             気になる仕事を探せます。
@@ -2176,46 +3056,64 @@
 
         </div>
 
-        <div
-          class="selected-area"
-          id="selectedArea"
-        >
+        <div class="selected-area" id="selectedArea">
           表示中：すべてのエリア
         </div>
 
       </div>
 
+
       <p class="filter-title">
         職種でも絞り込めます
       </p>
 
+
       <div class="filter-buttons">
 
-        <button class="filter-button active" data-filter="all">
+        <button
+          class="filter-button active"
+          data-filter="all"
+        >
           すべて
         </button>
 
-        <button class="filter-button" data-filter="cleaning">
+        <button
+          class="filter-button"
+          data-filter="cleaning"
+        >
           清掃
         </button>
 
-        <button class="filter-button" data-filter="equipment">
+        <button
+          class="filter-button"
+          data-filter="equipment"
+        >
           設備管理
         </button>
 
-        <button class="filter-button" data-filter="security">
+        <button
+          class="filter-button"
+          data-filter="security"
+        >
           警備
         </button>
 
-        <button class="filter-button" data-filter="office">
+        <button
+          class="filter-button"
+          data-filter="office"
+        >
           本社スタッフ
         </button>
 
-        <button class="filter-button" data-filter="telephone">
+        <button
+          class="filter-button"
+          data-filter="telephone"
+        >
           電話交換
         </button>
 
       </div>
+
 
       <div class="recruit-list">
 
@@ -2255,6 +3153,7 @@
 
         </div>
 
+
         <div
           class="recruit-card"
           data-area="central"
@@ -2278,6 +3177,7 @@
           </a>
 
         </div>
+
 
         <div
           class="recruit-card"
@@ -2303,6 +3203,7 @@
 
         </div>
 
+
         <div
           class="recruit-card"
           data-area="east"
@@ -2326,6 +3227,7 @@
           </a>
 
         </div>
+
 
         <div
           class="recruit-card"
@@ -2351,6 +3253,7 @@
 
         </div>
 
+
         <div
           class="recruit-card"
           data-area="kikuyo"
@@ -2375,6 +3278,7 @@
 
         </div>
 
+
         <div
           class="recruit-card"
           data-area="other"
@@ -2398,6 +3302,7 @@
           </a>
 
         </div>
+
 
         <div
           class="recruit-card"
@@ -2425,6 +3330,7 @@
 
       </div>
 
+
       <div class="no-jobs" id="noJobs">
         現在、この条件で表示できる求人はありません。
       </div>
@@ -2434,7 +3340,9 @@
   </section>
 
 
-  <!-- FLOW -->
+  <!-- ======================================================
+       FLOW
+  ======================================================= -->
 
   <section class="section flow-section reveal">
 
@@ -2447,6 +3355,9 @@
       <h2 class="section-title">
         紹介を受けてからの流れ
       </h2>
+
+      <div class="section-line"></div>
+
 
       <div class="flow-grid">
 
@@ -2466,6 +3377,7 @@
 
         </div>
 
+
         <div class="flow-card">
 
           <div class="flow-num">
@@ -2482,6 +3394,7 @@
 
         </div>
 
+
         <div class="flow-card">
 
           <div class="flow-num">
@@ -2497,6 +3410,7 @@
           </p>
 
         </div>
+
 
         <div class="flow-card">
 
@@ -2521,7 +3435,9 @@
   </section>
 
 
-  <!-- LINE CTA -->
+  <!-- ======================================================
+       LINE
+  ======================================================= -->
 
   <section class="section cta-section reveal" id="contact">
 
@@ -2532,13 +3448,16 @@
       </p>
 
       <h2 class="cta-title">
-        LET'S TALK.
+        <span>LET'S TALK.</span>
       </h2>
 
       <p class="cta-text">
-        仕事内容や働き方、職場の雰囲気など、
-        気になることがあればLINEからお気軽にご相談ください。
+        仕事内容や働き方、
+        職場の雰囲気など、
+        気になることがあれば
+        LINEからお気軽にご相談ください。
       </p>
+
 
       <div class="line-contact-box">
 
@@ -2563,9 +3482,11 @@
 
         </div>
 
+
         <div class="line-divider">
           OR
         </div>
+
 
         <div class="line-qr-area">
 
@@ -2591,6 +3512,7 @@
 
   </section>
 
+
 </main>
 
 
@@ -2613,7 +3535,10 @@
 
 
 <script>
-  /* HERO SLIDESHOW */
+
+  /* =========================================================
+     HERO SLIDESHOW
+  ========================================================= */
 
   const slides =
     document.querySelectorAll(".hero-slide");
@@ -2622,7 +3547,6 @@
     document.querySelectorAll(".hero-dot");
 
   let currentSlide = 0;
-
   let slideTimer;
 
 
@@ -2641,6 +3565,7 @@
     dots[index].classList.add("active");
 
     currentSlide = index;
+
   }
 
 
@@ -2650,6 +3575,7 @@
       (currentSlide + 1) % slides.length;
 
     showSlide(next);
+
   }
 
 
@@ -2657,6 +3583,7 @@
 
     slideTimer =
       setInterval(nextSlide, 5000);
+
   }
 
 
@@ -2674,6 +3601,7 @@
           );
 
           startSlide();
+
         }
       );
 
@@ -2684,26 +3612,35 @@
   startSlide();
 
 
-  /* HEADER */
+  /* =========================================================
+     HEADER
+  ========================================================= */
 
   const header =
     document.getElementById("header");
+
 
   window.addEventListener(
     "scroll",
     () => {
 
       if (window.scrollY > 40) {
+
         header.classList.add("scrolled");
+
       } else {
+
         header.classList.remove("scrolled");
+
       }
 
     }
   );
 
 
-  /* MOBILE MENU */
+  /* =========================================================
+     MOBILE MENU
+  ========================================================= */
 
   const menuButton =
     document.getElementById("menuButton");
@@ -2711,10 +3648,13 @@
   const nav =
     document.getElementById("nav");
 
+
   menuButton.addEventListener(
     "click",
     () => {
+
       nav.classList.toggle("open");
+
     }
   );
 
@@ -2727,7 +3667,9 @@
         link.addEventListener(
           "click",
           () => {
+
             nav.classList.remove("open");
+
           }
         );
 
@@ -2735,12 +3677,15 @@
     );
 
 
-  /* SCROLL REVEAL */
+  /* =========================================================
+     REVEAL
+  ========================================================= */
 
-  const reveals =
+  const revealItems =
     document.querySelectorAll(".reveal");
 
-  const observer =
+
+  const revealObserver =
     new IntersectionObserver(
       entries => {
 
@@ -2748,7 +3693,13 @@
           entry => {
 
             if (entry.isIntersecting) {
+
               entry.target.classList.add("show");
+
+              revealObserver.unobserve(
+                entry.target
+              );
+
             }
 
           }
@@ -2756,36 +3707,207 @@
 
       },
       {
-        threshold: .1
+        threshold: .12
       }
     );
 
-  reveals.forEach(
-    item => observer.observe(item)
+
+  revealItems.forEach(
+    item => revealObserver.observe(item)
   );
 
 
-  /* AREA + JOB FILTER */
+  /* =========================================================
+     COUNTER
+  ========================================================= */
+
+  const counters =
+    document.querySelectorAll(".counter");
+
+
+  const counterObserver =
+    new IntersectionObserver(
+      entries => {
+
+        entries.forEach(
+          entry => {
+
+            if (!entry.isIntersecting) {
+              return;
+            }
+
+            const el =
+              entry.target;
+
+            const target =
+              Number(el.dataset.target);
+
+            const prefix =
+              el.dataset.prefix || "";
+
+            const suffix =
+              el.dataset.suffix || "";
+
+            const format =
+              el.dataset.format || "";
+
+            const duration =
+              1300;
+
+            const startTime =
+              performance.now();
+
+
+            function animateCounter(now) {
+
+              const progress =
+                Math.min(
+                  (now - startTime) / duration,
+                  1
+                );
+
+              const eased =
+                1 -
+                Math.pow(
+                  1 - progress,
+                  3
+                );
+
+              const value =
+                Math.round(
+                  target * eased
+                );
+
+
+              if (format === "year") {
+
+                el.textContent =
+                  value;
+
+              } else {
+
+                el.textContent =
+                  prefix +
+                  value +
+                  suffix;
+
+              }
+
+
+              if (progress < 1) {
+
+                requestAnimationFrame(
+                  animateCounter
+                );
+
+              }
+
+            }
+
+
+            requestAnimationFrame(
+              animateCounter
+            );
+
+            counterObserver.unobserve(el);
+
+          }
+        );
+
+      },
+      {
+        threshold: .5
+      }
+    );
+
+
+  counters.forEach(
+    counter =>
+      counterObserver.observe(counter)
+  );
+
+
+  /* =========================================================
+     PEOPLE SLIDER
+  ========================================================= */
+
+  const peopleSlider =
+    document.getElementById(
+      "peopleSlider"
+    );
+
+  const peoplePrev =
+    document.getElementById(
+      "peoplePrev"
+    );
+
+  const peopleNext =
+    document.getElementById(
+      "peopleNext"
+    );
+
+
+  peoplePrev.addEventListener(
+    "click",
+    () => {
+
+      peopleSlider.scrollBy({
+        left: -320,
+        behavior: "smooth"
+      });
+
+    }
+  );
+
+
+  peopleNext.addEventListener(
+    "click",
+    () => {
+
+      peopleSlider.scrollBy({
+        left: 320,
+        behavior: "smooth"
+      });
+
+    }
+  );
+
+
+  /* =========================================================
+     AREA + JOB FILTER
+  ========================================================= */
 
   const areaButtons =
-    document.querySelectorAll(".area-card");
+    document.querySelectorAll(
+      ".area-card"
+    );
 
   const filterButtons =
-    document.querySelectorAll(".filter-button");
+    document.querySelectorAll(
+      ".filter-button"
+    );
 
   const recruitCards =
-    document.querySelectorAll(".recruit-card");
+    document.querySelectorAll(
+      ".recruit-card"
+    );
 
   const selectedArea =
-    document.getElementById("selectedArea");
+    document.getElementById(
+      "selectedArea"
+    );
 
   const noJobs =
-    document.getElementById("noJobs");
+    document.getElementById(
+      "noJobs"
+    );
 
 
-  let currentArea = "all";
+  let currentArea =
+    "all";
 
-  let currentFilter = "all";
+  let currentFilter =
+    "all";
 
 
   function updateJobs() {
@@ -2797,23 +3919,37 @@
       card => {
 
         const areaMatch =
+
           currentArea === "all" ||
-          card.dataset.area === currentArea;
+
+          card.dataset.area ===
+          currentArea;
+
 
         const filterMatch =
+
           currentFilter === "all" ||
-          card.dataset.category === currentFilter;
+
+          card.dataset.category ===
+          currentFilter;
 
 
-        if (areaMatch && filterMatch) {
+        if (
+          areaMatch &&
+          filterMatch
+        ) {
 
-          card.classList.remove("hidden");
+          card.classList.remove(
+            "hidden"
+          );
 
           visibleCount++;
 
         } else {
 
-          card.classList.add("hidden");
+          card.classList.add(
+            "hidden"
+          );
 
         }
 
@@ -2842,24 +3978,44 @@
         () => {
 
           areaButtons.forEach(
-            btn => btn.classList.remove("active")
+            btn =>
+              btn.classList.remove(
+                "active"
+              )
           );
 
-          button.classList.add("active");
+
+          button.classList.add(
+            "active"
+          );
+
 
           currentArea =
             button.dataset.area;
 
+
           selectedArea.textContent =
-            "表示中：" + button.dataset.label;
+
+            "表示中：" +
+            button.dataset.label;
+
 
           updateJobs();
 
-          document
-            .getElementById("recruit")
-            .scrollIntoView({
-              behavior: "smooth"
-            });
+
+          setTimeout(
+            () => {
+
+              document
+                .getElementById("recruit")
+                .scrollIntoView({
+                  behavior: "smooth",
+                  block: "start"
+                });
+
+            },
+            150
+          );
 
         }
       );
@@ -2876,13 +4032,21 @@
         () => {
 
           filterButtons.forEach(
-            btn => btn.classList.remove("active")
+            btn =>
+              btn.classList.remove(
+                "active"
+              )
           );
 
-          button.classList.add("active");
+
+          button.classList.add(
+            "active"
+          );
+
 
           currentFilter =
             button.dataset.filter;
+
 
           updateJobs();
 
@@ -2896,6 +4060,7 @@
   updateJobs();
 
 </script>
+
 
 </body>
 
