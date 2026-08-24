@@ -8,9 +8,8 @@
   <title>オーファス リファラル採用｜紹介を受けた方へ</title>
 
   <style>
-
     /* =========================================
-       BASIC
+       RESET / BASE
     ========================================= */
 
     * {
@@ -27,38 +26,41 @@
       font-family:
         -apple-system,
         BlinkMacSystemFont,
-        "Hiragino Kaku Gothic ProN",
+        "Helvetica Neue",
         "Hiragino Sans",
         "Yu Gothic",
         "Meiryo",
         sans-serif;
 
-      color: #171717;
+      color: #111;
       background: #fff;
       line-height: 1.75;
       overflow-x: hidden;
     }
 
     :root {
-      --blue: #163ee7;
-      --yellow: #ffd72e;
-      --mint: #76e7d1;
-      --orange: #ff8a3d;
-      --pink: #ef5cff;
-      --light-blue: #eef3ff;
-      --light-yellow: #fff8cf;
-      --gray: #f5f6f8;
-      --dark: #111;
+      --black: #111111;
+      --dark: #1b1b1b;
+      --gray-dark: #555555;
+      --gray: #999999;
+      --line: #d9d9d9;
+      --light: #f4f4f4;
+      --white: #ffffff;
     }
 
     img {
-      max-width: 100%;
+      width: 100%;
+      display: block;
     }
 
     a {
       color: inherit;
+      text-decoration: none;
     }
 
+    button {
+      font-family: inherit;
+    }
 
     /* =========================================
        HEADER
@@ -70,19 +72,17 @@
       left: 0;
 
       width: 100%;
-      height: 78px;
-
-      padding: 0 4.5%;
+      height: 76px;
 
       display: flex;
       align-items: center;
       justify-content: space-between;
 
+      padding: 0 5%;
+
       background: rgba(255,255,255,.96);
-
-      backdrop-filter: blur(14px);
-
-      border-bottom: 1px solid rgba(0,0,0,.06);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
 
       z-index: 1000;
 
@@ -91,44 +91,34 @@
 
     .site-header.scrolled {
       height: 66px;
-
-      box-shadow:
-        0 10px 28px rgba(0,0,0,.08);
+      box-shadow: 0 8px 25px rgba(0,0,0,.05);
     }
 
     .logo img {
       width: 170px;
-      display: block;
     }
 
     .nav {
       display: flex;
       align-items: center;
-      gap: 22px;
+      gap: 26px;
     }
 
     .nav a {
-      text-decoration: none;
-
-      font-size: 13px;
-      font-weight: 800;
-
       position: relative;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .02em;
     }
 
-    .nav a:not(.nav-line)::after {
+    .nav a::after {
       content: "";
-
       position: absolute;
-
       left: 0;
-      bottom: -5px;
-
+      bottom: -6px;
       width: 0;
-      height: 3px;
-
-      background: var(--yellow);
-
+      height: 1px;
+      background: #111;
       transition: .3s;
     }
 
@@ -137,25 +127,22 @@
     }
 
     .nav-line {
-      background: var(--yellow);
-
       padding: 11px 20px;
+      background: #111;
+      color: #fff;
+    }
 
-      border-radius: 999px;
+    .nav-line::after {
+      display: none;
     }
 
     .menu-button {
       display: none;
-
       background: none;
-
       border: none;
-
       font-size: 28px;
-
       cursor: pointer;
     }
-
 
     /* =========================================
        HERO
@@ -163,31 +150,23 @@
 
     .hero {
       position: relative;
-
       min-height: 900px;
-
-      padding-top: 78px;
-
+      padding-top: 76px;
       overflow: hidden;
-
-      background: #fffef2;
+      background: #111;
     }
 
     .hero-bg {
       position: absolute;
       inset: 0;
-
       z-index: 0;
     }
 
     .hero-slide {
       position: absolute;
       inset: 0;
-
       opacity: 0;
-
-      transition:
-        opacity 1.3s ease;
+      transition: opacity 1.2s ease;
     }
 
     .hero-slide.active {
@@ -197,15 +176,11 @@
     .hero-slide img {
       width: 100%;
       height: 100%;
-
       object-fit: cover;
-
       object-position: center;
-
+      filter: grayscale(100%);
       transform: scale(1.04);
-
-      transition:
-        transform 7s ease;
+      transition: transform 7s ease;
     }
 
     .hero-slide.active img {
@@ -215,85 +190,24 @@
     .hero-overlay {
       position: absolute;
       inset: 0;
-
       z-index: 1;
 
       background:
         linear-gradient(
           90deg,
           rgba(255,255,255,.98) 0%,
-          rgba(255,255,255,.95) 35%,
-          rgba(255,255,255,.74) 57%,
-          rgba(255,255,255,.22) 100%
+          rgba(255,255,255,.97) 32%,
+          rgba(255,255,255,.80) 53%,
+          rgba(255,255,255,.20) 100%
         );
-    }
-
-    .hero-shape {
-      position: absolute;
-
-      pointer-events: none;
-
-      z-index: 2;
-    }
-
-    .shape-yellow {
-      width: 430px;
-      height: 430px;
-
-      background: var(--yellow);
-
-      border-radius:
-        42% 58% 63% 37% /
-        36% 41% 59% 64%;
-
-      right: -80px;
-      top: 110px;
-
-      animation:
-        floating 8s ease-in-out infinite;
-    }
-
-    .shape-mint {
-      width: 520px;
-      height: 250px;
-
-      background: var(--mint);
-
-      border-radius:
-        48% 52% 46% 54% /
-        56% 42% 58% 44%;
-
-      right: 10%;
-      bottom: -80px;
-
-      opacity: .95;
-
-      animation:
-        floating 10s ease-in-out infinite reverse;
-    }
-
-    @keyframes floating {
-
-      0%,
-      100% {
-        transform: translateY(0);
-      }
-
-      50% {
-        transform: translateY(-18px);
-      }
-
     }
 
     .hero-inner {
       position: relative;
+      z-index: 2;
 
-      z-index: 4;
-
-      width:
-        min(1180px, calc(100% - 70px));
-
-      min-height: 820px;
+      width: min(1180px, calc(100% - 70px));
+      min-height: 824px;
 
       margin: 0 auto;
 
@@ -302,225 +216,116 @@
     }
 
     .hero-copy {
-      width: 58%;
-
-      padding:
-        100px 0 80px;
+      width: 60%;
+      padding: 100px 0 80px;
     }
 
     .hero-kicker {
-      display: inline-flex;
-
-      align-items: center;
-
-      gap: 10px;
-
-      color: var(--blue);
-
-      font-size: 13px;
-      font-weight: 900;
-
-      letter-spacing: .17em;
-
-      margin-bottom: 24px;
-    }
-
-    .hero-kicker::before {
-      content: "";
-
-      width: 34px;
-      height: 4px;
-
-      background: var(--yellow);
-    }
-
-    .hero-title-wrap {
-      position: relative;
-
-      display: inline-block;
-
-      margin-bottom: 34px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .20em;
+      margin-bottom: 28px;
     }
 
     .hero-title {
-      position: relative;
-
-      z-index: 2;
-
-      font-size:
-        clamp(58px,6vw,92px);
-
-      line-height: 1.05;
-
-      letter-spacing: -.045em;
-
-      font-weight: 900;
-    }
-
-    .hero-marker {
-      position: absolute;
-
-      left: 0;
-      bottom: 3px;
-
-      width: 100%;
-      height: 18px;
-
-      background: var(--yellow);
-
-      z-index: 1;
-    }
-
-    .hero-hand {
-      display: block;
-
-      width: fit-content;
-
-      margin:
-        -5px 0 25px 15px;
-
-      font-family:
-        "Marker Felt",
-        "Comic Sans MS",
-        cursive;
-
-      font-size: 38px;
-
-      font-weight: 700;
-
-      transform:
-        rotate(-5deg);
+      font-size: clamp(60px, 6vw, 95px);
+      line-height: 1.04;
+      letter-spacing: -.05em;
+      font-weight: 800;
+      margin-bottom: 38px;
     }
 
     .hero-lead {
       max-width: 560px;
-
-      font-size: 19px;
-
+      font-size: 18px;
       font-weight: 600;
-
-      line-height: 1.9;
-
-      margin-bottom: 25px;
+      line-height: 2;
+      margin-bottom: 24px;
     }
 
     .hero-text {
       max-width: 560px;
-
-      color: #555;
-
-      font-size: 16px;
-
+      color: #444;
+      font-size: 15px;
       line-height: 2;
-
       margin-bottom: 30px;
     }
 
     .hero-note {
       display: inline-block;
-
-      padding: 12px 17px;
-
-      background: rgba(255,255,255,.92);
-
-      border: 2px solid #111;
-
-      box-shadow:
-        7px 7px 0 var(--yellow);
-
-      font-weight: 800;
-
-      margin-bottom: 32px;
+      padding: 11px 15px;
+      border: 1px solid #111;
+      background: rgba(255,255,255,.93);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 30px;
     }
 
     .hero-actions {
       display: flex;
-
       flex-wrap: wrap;
-
-      gap: 14px;
+      gap: 12px;
     }
 
     .btn-main,
     .btn-sub {
       display: inline-flex;
-
       align-items: center;
       justify-content: center;
 
-      min-height: 58px;
+      min-height: 56px;
 
-      padding: 0 28px;
+      padding: 0 26px;
 
-      border-radius: 999px;
+      border: 1px solid #111;
 
-      text-decoration: none;
-
-      font-weight: 800;
+      font-size: 14px;
+      font-weight: 700;
 
       transition: .3s;
     }
 
     .btn-main {
-      background: var(--blue);
-
-      color: white;
+      background: #111;
+      color: #fff;
     }
 
     .btn-sub {
-      background: white;
-
-      color: var(--blue);
-
-      border:
-        2px solid var(--blue);
+      background: #fff;
+      color: #111;
     }
 
     .btn-main:hover,
     .btn-sub:hover {
-      transform: translateY(-4px);
-
-      box-shadow:
-        0 12px 24px rgba(0,0,0,.12);
+      transform: translateY(-3px);
     }
 
     .hero-dots {
       position: absolute;
-
       right: 5%;
-      bottom: 40px;
+      bottom: 35px;
 
-      z-index: 5;
+      z-index: 3;
 
       display: flex;
-
-      gap: 9px;
+      gap: 8px;
     }
 
     .hero-dot {
-      width: 10px;
-      height: 10px;
-
+      width: 8px;
+      height: 8px;
       border: none;
-
       border-radius: 50%;
-
-      background:
-        rgba(255,255,255,.85);
-
+      background: rgba(255,255,255,.6);
       cursor: pointer;
-
       transition: .3s;
     }
 
     .hero-dot.active {
-      width: 32px;
-
+      width: 28px;
       border-radius: 999px;
-
-      background: var(--yellow);
+      background: #fff;
     }
-
 
     /* =========================================
        COMMON
@@ -528,85 +333,47 @@
 
     .section {
       position: relative;
-
-      overflow: hidden;
-
-      padding:
-        110px 7%;
+      padding: 110px 7%;
     }
 
     .section-inner {
       max-width: 1180px;
-
       margin: 0 auto;
-
-      position: relative;
-
-      z-index: 2;
     }
 
     .section-kicker {
       display: inline-block;
-
-      color: var(--blue);
-
-      font-size: 13px;
-      font-weight: 900;
-
-      letter-spacing: .16em;
-
-      margin-bottom: 12px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .18em;
+      color: #666;
+      margin-bottom: 10px;
     }
 
     .section-title {
-      font-size:
-        clamp(36px,4vw,58px);
-
-      line-height: 1.3;
-
-      letter-spacing: -.02em;
-    }
-
-    .section-title-box {
-      display: inline-block;
-
-      padding: 5px 14px;
-
-      background: white;
-
-      border: 3px solid #111;
-
-      box-shadow:
-        7px 7px 0 var(--yellow);
+      font-size: clamp(38px, 4vw, 60px);
+      line-height: 1.25;
+      letter-spacing: -.03em;
+      font-weight: 700;
     }
 
     .section-lead {
-      max-width: 730px;
-
+      max-width: 720px;
       margin-top: 18px;
-
       color: #666;
-
       line-height: 2;
     }
 
     .reveal {
       opacity: 0;
-
-      transform:
-        translateY(40px);
-
-      transition:
-        .8s ease;
+      transform: translateY(28px);
+      transition: .7s ease;
     }
 
     .reveal.show {
       opacity: 1;
-
-      transform:
-        translateY(0);
+      transform: translateY(0);
     }
-
 
     /* =========================================
        MESSAGE
@@ -618,423 +385,230 @@
 
     .message-layout {
       display: grid;
-
-      grid-template-columns:
-        .8fr 1.2fr;
-
-      gap: 60px;
-
+      grid-template-columns: .85fr 1.15fr;
+      gap: 70px;
       align-items: start;
     }
 
     .message-big {
       position: sticky;
-
       top: 120px;
 
-      font-size:
-        clamp(44px,5vw,72px);
-
+      font-size: clamp(42px, 5vw, 72px);
       line-height: 1.15;
-
-      font-weight: 900;
-    }
-
-    .message-big span {
-      display: inline-block;
-
-      border-bottom:
-        15px solid var(--yellow);
+      font-weight: 700;
+      letter-spacing: -.03em;
     }
 
     .message-card {
-      position: relative;
-
-      padding: 46px;
-
-      background: white;
-
-      border:
-        2px solid #111;
-
-      box-shadow:
-        12px 12px 0 var(--light-blue);
+      padding: 44px 0;
+      border-top: 1px solid #111;
+      border-bottom: 1px solid #111;
     }
 
     .message-card h3 {
-      font-size: 28px;
-
-      line-height: 1.5;
-
+      font-size: 27px;
+      line-height: 1.55;
       margin-bottom: 22px;
     }
 
     .message-card p {
       color: #555;
-
       margin-bottom: 14px;
     }
 
     .message-highlight {
       display: inline-block;
-
-      margin-top: 15px;
-
-      padding:
-        10px 15px;
-
-      background:
-        var(--yellow);
-
-      font-weight: 900;
+      margin-top: 18px;
+      padding-bottom: 3px;
+      border-bottom: 1px solid #111;
+      font-weight: 700;
     }
-
 
     /* =========================================
        ABOUT
     ========================================= */
 
     .about-section {
-      background:
-        var(--light-yellow);
+      background: var(--light);
     }
 
     .about-grid {
       display: grid;
-
-      grid-template-columns:
-        1fr 1fr;
-
-      gap: 55px;
-
-      margin-top: 55px;
-
-      align-items: center;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      margin-top: 60px;
+      align-items: start;
     }
 
     .about-copy h3 {
-      font-size: 34px;
-
-      line-height: 1.45;
-
+      font-size: 33px;
+      line-height: 1.5;
       margin-bottom: 20px;
     }
 
     .about-copy p {
       color: #555;
-
       margin-bottom: 14px;
     }
 
     .number-grid {
       display: grid;
-
-      grid-template-columns:
-        1fr 1fr;
-
-      gap: 16px;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid #111;
+      border-left: 1px solid #111;
     }
 
     .number-card {
-      padding: 26px;
-
-      background: white;
-
-      border:
-        2px solid #111;
-
-      transition: .3s;
-    }
-
-    .number-card:hover {
-      transform:
-        translateY(-5px);
+      min-height: 150px;
+      padding: 24px;
+      border-right: 1px solid #111;
+      border-bottom: 1px solid #111;
+      background: transparent;
     }
 
     .number-big {
       display: block;
-
-      color: var(--blue);
-
       font-size: 42px;
-
-      font-weight: 900;
-
-      line-height: 1.1;
+      line-height: 1;
+      font-weight: 700;
+      margin-bottom: 12px;
     }
 
     .number-label {
-      color: #555;
-
-      font-size: 13px;
-
-      font-weight: 700;
+      font-size: 12px;
+      color: #666;
     }
-
 
     /* =========================================
        MVV
     ========================================= */
 
     .mvv-section {
-      background: var(--blue);
-
-      color: white;
+      background: #111;
+      color: #fff;
     }
 
-    .mvv-section
-    .section-kicker {
-      color: var(--yellow);
-    }
-
-    .mvv-section
-    .section-title-box {
-      color: #111;
+    .mvv-section .section-kicker {
+      color: #aaa;
     }
 
     .mvv-grid {
       display: grid;
-
-      grid-template-columns:
-        repeat(3,1fr);
-
-      gap: 20px;
-
-      margin-top: 55px;
+      grid-template-columns: repeat(3,1fr);
+      gap: 0;
+      margin-top: 60px;
+      border-top: 1px solid #555;
+      border-left: 1px solid #555;
     }
 
     .mvv-card {
-      position: relative;
-
-      min-height: 300px;
-
+      min-height: 320px;
       padding: 34px;
-
-      background: white;
-
-      color: #111;
-
-      border-radius:
-        40px;
-
-      overflow: hidden;
-
-      transition: .3s;
-    }
-
-    .mvv-card:hover {
-      transform:
-        translateY(-8px);
+      border-right: 1px solid #555;
+      border-bottom: 1px solid #555;
     }
 
     .mvv-num {
-      position: absolute;
-
-      right: 20px;
-      top: 8px;
-
-      color: #edf0ff;
-
-      font-size: 72px;
-
-      font-weight: 900;
+      font-size: 14px;
+      color: #777;
+      margin-bottom: 40px;
     }
 
     .mvv-label {
-      color: var(--blue);
-
-      font-size: 12px;
-
-      font-weight: 900;
-
-      letter-spacing: .14em;
-
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      color: #aaa;
       margin-bottom: 20px;
     }
 
     .mvv-card h3 {
-      position: relative;
-
-      z-index: 2;
-
       font-size: 22px;
-
-      line-height: 1.6;
+      line-height: 1.65;
     }
 
     .mvv-card ul {
       list-style: none;
-
-      position: relative;
-
-      z-index: 2;
     }
 
     .mvv-card li {
-      margin-bottom: 10px;
-
-      font-weight: 800;
+      padding: 10px 0;
+      border-bottom: 1px solid #333;
+      font-size: 14px;
     }
-
-    .mvv-card li::before {
-      content: "→";
-
-      color: var(--yellow);
-
-      margin-right: 8px;
-    }
-
 
     /* =========================================
        HISTORY
     ========================================= */
 
     .history-section {
-      background: white;
+      background: #fff;
     }
 
     .history-timeline {
-      margin-top: 65px;
-
-      position: relative;
-    }
-
-    .history-line {
-      position: absolute;
-
-      left: 135px;
-
-      top: 20px;
-      bottom: 20px;
-
-      width: 4px;
-
-      background: var(--yellow);
+      margin-top: 70px;
+      border-top: 1px solid #111;
     }
 
     .history-item {
       display: grid;
-
-      grid-template-columns:
-        110px 1fr;
-
-      gap: 50px;
-
-      padding-bottom: 45px;
-
-      position: relative;
+      grid-template-columns: 150px 1fr;
+      gap: 40px;
+      padding: 30px 0;
+      border-bottom: 1px solid #ddd;
     }
 
     .history-year {
-      color: var(--blue);
-
-      font-size: 30px;
-
-      font-weight: 900;
-
-      position: relative;
-    }
-
-    .history-year::after {
-      content: "";
-
-      position: absolute;
-
-      right: -36px;
-      top: 13px;
-
-      width: 16px;
-      height: 16px;
-
-      background: white;
-
-      border:
-        4px solid var(--blue);
-
-      border-radius: 50%;
-    }
-
-    .history-content {
-      padding:
-        26px 30px;
-
-      background: white;
-
-      border:
-        2px solid #111;
-
-      box-shadow:
-        8px 8px 0 var(--light-blue);
+      font-size: 28px;
+      font-weight: 700;
     }
 
     .history-content h3 {
-      font-size: 22px;
-
-      margin-bottom: 10px;
+      font-size: 21px;
+      margin-bottom: 8px;
     }
 
     .history-content p {
       color: #666;
-
       font-size: 14px;
     }
-
-    .history-item:last-child
-    .history-content {
-      background: var(--yellow);
-
-      box-shadow:
-        8px 8px 0 var(--blue);
-    }
-
 
     /* =========================================
        JOBS
     ========================================= */
 
     .jobs-section {
-      background: var(--light-blue);
+      background: #f7f7f7;
     }
 
     .job-grid {
       display: grid;
-
-      grid-template-columns:
-        repeat(3,1fr);
-
-      gap: 24px;
-
-      margin-top: 55px;
+      grid-template-columns: repeat(3,1fr);
+      gap: 30px;
+      margin-top: 60px;
     }
 
     .job-card {
-      position: relative;
-
-      overflow: hidden;
-
-      background: white;
-
-      border:
-        2px solid #111;
-
+      background: #fff;
+      border: 1px solid #d8d8d8;
       transition: .3s;
     }
 
     .job-card:hover {
-      transform:
-        translateY(-8px);
-
-      box-shadow:
-        12px 12px 0 var(--yellow);
+      transform: translateY(-5px);
     }
 
     .job-photo {
       width: 100%;
-      height: 230px;
-
+      height: 245px;
       object-fit: cover;
+      filter: grayscale(100%);
+      transition: .4s;
+    }
 
-      display: block;
+    .job-card:hover .job-photo {
+      filter: grayscale(0%);
     }
 
     .job-content {
@@ -1042,67 +616,34 @@
     }
 
     .job-content h3 {
-      font-size: 22px;
-
+      font-size: 21px;
       margin-bottom: 8px;
     }
 
     .job-content p {
       color: #666;
-
-      font-size: 14px;
+      font-size: 13px;
     }
 
     .job-no {
-      position: absolute;
-
-      left: 14px;
-      top: 14px;
-
-      width: 44px;
-      height: 44px;
-
-      display: flex;
-
-      align-items: center;
-      justify-content: center;
-
-      background: white;
-
-      border:
-        2px solid #111;
-
-      border-radius: 50%;
-
-      font-weight: 900;
-
-      z-index: 2;
+      display: none;
     }
-
 
     /* =========================================
        PEOPLE
     ========================================= */
 
     .people-section {
-      background: white;
+      background: #fff;
     }
 
     .people-slider {
-      margin-top: 55px;
-
-      padding:
-        20px 5px 25px;
-
       display: flex;
-
-      gap: 24px;
-
+      gap: 28px;
       overflow-x: auto;
-
-      scroll-snap-type:
-        x mandatory;
-
+      margin-top: 60px;
+      padding-bottom: 20px;
+      scroll-snap-type: x mandatory;
       scrollbar-width: none;
     }
 
@@ -1111,354 +652,232 @@
     }
 
     .people-card {
-      flex:
-        0 0 300px;
-
+      flex: 0 0 290px;
       scroll-snap-align: start;
-
-      text-decoration: none;
-
-      color: #111;
     }
 
     .people-photo-wrap {
       position: relative;
-
-      width: 280px;
-      height: 280px;
-
-      margin:
-        0 auto 18px;
+      width: 290px;
+      height: 360px;
+      margin-bottom: 18px;
+      overflow: hidden;
+      background: #eee;
     }
 
     .people-photo-bg {
-      position: absolute;
-
-      inset: 12px;
-
-      background: var(--mint);
-
-      border-radius: 50%;
-
-      transform:
-        rotate(-5deg);
-    }
-
-    .people-card:nth-child(2n)
-    .people-photo-bg {
-      background:
-        var(--yellow);
+      display: none;
     }
 
     .people-photo {
-      position: absolute;
-
-      inset: 0;
-
       width: 100%;
       height: 100%;
-
       object-fit: cover;
+      object-position: center top;
+      filter: grayscale(100%);
+      transition: .4s;
+    }
 
-      object-position:
-        center top;
-
-      border-radius: 50%;
-
-      border:
-        3px solid #111;
+    .people-card:hover .people-photo {
+      filter: grayscale(0%);
+      transform: scale(1.02);
     }
 
     .people-plus {
       position: absolute;
-
-      right: 5px;
+      right: 10px;
       bottom: 10px;
 
-      width: 46px;
-      height: 46px;
+      width: 42px;
+      height: 42px;
 
       display: flex;
-
       align-items: center;
       justify-content: center;
 
       background: #111;
+      color: #fff;
 
-      color: white;
-
-      border-radius: 50%;
-
-      font-size: 24px;
+      font-size: 18px;
     }
 
     .people-job {
       display: inline-block;
-
-      padding:
-        4px 9px;
-
-      background: var(--yellow);
-
       font-size: 11px;
-
-      font-weight: 900;
-
+      color: #666;
+      letter-spacing: .08em;
       margin-bottom: 8px;
     }
 
     .people-card h3 {
       font-size: 18px;
-
-      line-height: 1.5;
+      line-height: 1.55;
+      margin-bottom: 6px;
     }
 
     .people-note {
-      margin-top: 8px;
-
-      color: #666;
-
-      font-size: 13px;
+      color: #777;
+      font-size: 12px;
     }
-
 
     /* =========================================
        AREA
     ========================================= */
 
     .area-section {
-      background: var(--light-yellow);
+      background: #111;
+      color: #fff;
+    }
+
+    .area-section .section-kicker {
+      color: #999;
+    }
+
+    .area-section .section-lead {
+      color: #aaa;
     }
 
     .area-grid {
-      margin-top: 55px;
-
+      margin-top: 60px;
       display: grid;
-
-      grid-template-columns:
-        repeat(3,1fr);
-
-      gap: 18px;
+      grid-template-columns: repeat(3,1fr);
+      border-top: 1px solid #444;
+      border-left: 1px solid #444;
     }
 
     .area-card {
       position: relative;
-
-      min-height: 165px;
+      min-height: 180px;
 
       padding: 24px;
 
-      background: white;
+      background: transparent;
+      color: #fff;
 
-      border:
-        2px solid #111;
-
-      cursor: pointer;
+      border: none;
+      border-right: 1px solid #444;
+      border-bottom: 1px solid #444;
 
       text-align: left;
 
-      font-family: inherit;
+      cursor: pointer;
 
       transition: .3s;
     }
 
     .area-card:hover,
     .area-card.active {
-      background: var(--blue);
-
-      color: white;
-
-      transform:
-        translateY(-5px);
-
-      box-shadow:
-        8px 8px 0 var(--yellow);
+      background: #fff;
+      color: #111;
     }
 
     .area-small {
       display: block;
-
-      color: var(--blue);
-
       font-size: 10px;
-
-      font-weight: 900;
-
-      letter-spacing: .14em;
-
-      margin-bottom: 10px;
+      letter-spacing: .15em;
+      color: #888;
+      margin-bottom: 12px;
     }
 
-    .area-card:hover
-    .area-small,
-    .area-card.active
-    .area-small {
-      color: var(--yellow);
+    .area-card:hover .area-small,
+    .area-card.active .area-small {
+      color: #555;
     }
 
     .area-name {
       display: block;
-
       font-size: 22px;
-
-      font-weight: 900;
+      font-weight: 700;
     }
 
     .area-jobs {
       display: block;
-
       margin-top: 10px;
-
-      color: #666;
-
+      color: #aaa;
       font-size: 12px;
     }
 
-    .area-card:hover
-    .area-jobs,
-    .area-card.active
-    .area-jobs {
-      color: #e9edff;
+    .area-card:hover .area-jobs,
+    .area-card.active .area-jobs {
+      color: #555;
     }
 
     .area-arrow {
       position: absolute;
-
-      right: 18px;
-      bottom: 16px;
-
-      width: 38px;
-      height: 38px;
-
-      display: flex;
-
-      align-items: center;
-      justify-content: center;
-
-      background: var(--yellow);
-
-      color: #111;
-
-      border-radius: 50%;
-
-      font-weight: 900;
+      right: 20px;
+      bottom: 18px;
+      font-size: 22px;
     }
-
 
     /* =========================================
        RECRUIT
     ========================================= */
 
     .recruit-section {
-      background: white;
+      background: #fff;
     }
 
     .recruit-header-row {
       display: flex;
-
-      justify-content:
-        space-between;
-
+      justify-content: space-between;
       align-items: flex-end;
-
       gap: 30px;
     }
 
     .selected-area {
-      display: inline-block;
-
-      padding:
-        8px 14px;
-
-      background: white;
-
-      border:
-        2px solid #111;
-
-      box-shadow:
-        5px 5px 0 var(--yellow);
-
       font-size: 12px;
-
-      font-weight: 800;
+      color: #666;
     }
 
     .filter-title {
       margin-top: 40px;
-
       margin-bottom: 12px;
-
       font-size: 12px;
-
-      font-weight: 900;
+      color: #777;
     }
 
     .filter-buttons {
       display: flex;
-
       flex-wrap: wrap;
-
-      gap: 10px;
-
-      margin-bottom: 35px;
+      gap: 8px;
+      margin-bottom: 40px;
     }
 
     .filter-button {
-      padding:
-        9px 16px;
-
-      background: white;
-
-      border:
-        2px solid #111;
-
+      padding: 9px 15px;
+      border: 1px solid #bbb;
+      background: #fff;
+      font-size: 12px;
       cursor: pointer;
-
-      font-family: inherit;
-
-      font-weight: 800;
+      transition: .3s;
     }
 
     .filter-button:hover,
     .filter-button.active {
       background: #111;
-
-      color: white;
+      color: #fff;
+      border-color: #111;
     }
 
     .recruit-list {
-      display: grid;
-
-      gap: 14px;
+      border-top: 1px solid #111;
     }
 
     .recruit-card {
       display: flex;
-
-      justify-content:
-        space-between;
-
+      justify-content: space-between;
       align-items: center;
-
       gap: 20px;
 
-      padding:
-        22px 24px;
+      padding: 24px 0;
 
-      background: white;
-
-      border:
-        2px solid #111;
+      border-bottom: 1px solid #ddd;
 
       transition: .3s;
     }
 
     .recruit-card:hover {
-      transform:
-        translateX(7px);
-
-      box-shadow:
-        -7px 7px 0 var(--light-blue);
+      padding-left: 10px;
     }
 
     .recruit-card.hidden {
@@ -1466,247 +885,131 @@
     }
 
     .recruit-info h3 {
-      margin-bottom: 4px;
+      font-size: 19px;
+      margin-bottom: 5px;
     }
 
     .recruit-info > span {
-      color: #666;
-
-      font-size: 13px;
+      color: #777;
+      font-size: 12px;
     }
 
     .job-tags {
       display: flex;
-
-      flex-wrap: wrap;
-
       gap: 6px;
-
-      margin-top: 9px;
+      margin-top: 8px;
     }
 
     .job-tag {
-      padding:
-        3px 8px;
-
-      background:
-        var(--light-blue);
-
+      padding: 3px 7px;
+      background: #eee;
       font-size: 10px;
-
-      font-weight: 700;
     }
 
     .detail-button {
-      min-width: 135px;
-      min-height: 46px;
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
 
-      display: inline-flex;
-
-      align-items: center;
-      justify-content: center;
-
-      background:
-        var(--yellow);
-
-      color: #111;
-
-      border:
-        2px solid #111;
-
-      text-decoration: none;
-
-      font-weight: 900;
+    .detail-button::after {
+      content: " →";
     }
 
     .no-jobs {
       display: none;
-
-      margin-top: 20px;
-
-      padding: 35px;
-
-      background: var(--gray);
-
-      border:
-        2px dashed #aaa;
-
+      padding: 30px;
+      background: #f3f3f3;
       text-align: center;
+      color: #666;
     }
 
     .no-jobs.show {
       display: block;
     }
 
-
     /* =========================================
        FLOW
     ========================================= */
 
     .flow-section {
-      background: var(--blue);
-
-      color: white;
-    }
-
-    .flow-section
-    .section-kicker {
-      color: var(--yellow);
+      background: #f4f4f4;
     }
 
     .flow-grid {
       display: grid;
-
-      grid-template-columns:
-        repeat(4,1fr);
-
-      gap: 18px;
-
-      margin-top: 50px;
+      grid-template-columns: repeat(4,1fr);
+      gap: 0;
+      margin-top: 55px;
+      border-top: 1px solid #111;
+      border-left: 1px solid #111;
     }
 
     .flow-card {
-      min-height: 210px;
-
-      padding: 26px;
-
-      background: white;
-
-      color: #111;
-
-      border-radius: 30px;
-
-      transition: .3s;
-    }
-
-    .flow-card:hover {
-      transform:
-        translateY(-7px);
+      min-height: 220px;
+      padding: 28px;
+      border-right: 1px solid #111;
+      border-bottom: 1px solid #111;
+      background: transparent;
     }
 
     .flow-num {
-      color: var(--blue);
-
-      font-size: 38px;
-
-      font-weight: 900;
+      font-size: 12px;
+      color: #777;
+      margin-bottom: 28px;
     }
 
     .flow-card h3 {
-      margin:
-        10px 0;
-
       font-size: 17px;
+      margin-bottom: 10px;
     }
 
     .flow-card p {
       color: #666;
-
-      font-size: 13px;
+      font-size: 12px;
     }
-
 
     /* =========================================
        LINE CTA
     ========================================= */
 
     .cta-section {
-      position: relative;
-
-      color: white;
-
-      background:
-        linear-gradient(
-          120deg,
-          #25c6d9 0%,
-          #35a6ee 42%,
-          #b34ef1 72%,
-          #ef49ce 100%
-        );
-    }
-
-    .cta-inner {
-      max-width: 1180px;
-
-      margin: 0 auto;
-    }
-
-    .cta-mini {
-      margin-bottom: 8px;
-
-      font-size: 13px;
-
-      font-weight: 900;
+      background: #111;
+      color: #fff;
     }
 
     .cta-title {
-      font-size:
-        clamp(54px,7vw,100px);
-
-      font-weight: 900;
-
+      font-size: clamp(54px, 7vw, 100px);
       line-height: 1;
+      letter-spacing: -.05em;
+      margin-bottom: 25px;
+    }
 
-      letter-spacing: -.045em;
-
-      margin-bottom: 20px;
+    .cta-mini {
+      color: #aaa;
+      font-size: 12px;
+      margin-bottom: 10px;
     }
 
     .cta-text {
-      max-width: 670px;
-
-      margin-bottom: 20px;
-
+      max-width: 650px;
+      color: #ccc;
       line-height: 2;
+      margin-bottom: 28px;
     }
-
-    .cta-hand {
-      display: inline-block;
-
-      margin-bottom: 30px;
-
-      font-family:
-        "Marker Felt",
-        "Comic Sans MS",
-        cursive;
-
-      font-size: 28px;
-
-      transform:
-        rotate(-2deg);
-    }
-
-
-    /* =========================================
-       LINE CONTACT BOX
-    ========================================= */
 
     .line-contact-box {
-      max-width: 850px;
-
-      margin-top: 20px;
-
-      padding: 40px;
+      max-width: 860px;
+      margin-top: 35px;
+      padding: 38px;
 
       display: grid;
-
-      grid-template-columns:
-        1fr auto 1fr;
-
+      grid-template-columns: 1fr auto 1fr;
       gap: 35px;
-
       align-items: center;
 
-      background:
-        rgba(255,255,255,.96);
-
+      background: #fff;
       color: #111;
-
-      border:
-        3px solid #111;
-
-      box-shadow:
-        12px 12px 0 rgba(255,215,46,.9);
     }
 
     .line-button-area,
@@ -1715,142 +1018,76 @@
     }
 
     .line-guide-title {
-      font-size: 17px;
-
-      font-weight: 900;
-
-      margin-bottom: 18px;
-    }
-
-    .line-guide-small {
-      margin-top: 14px;
-
-      color: #666;
-
-      font-size: 12px;
-
-      line-height: 1.6;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 16px;
     }
 
     .line-button {
       display: inline-flex;
-
       align-items: center;
       justify-content: center;
 
-      min-height: 60px;
-
       width: 100%;
-
-      padding:
-        0 22px;
+      min-height: 58px;
 
       background: #111;
+      color: #fff;
 
-      color: white;
-
-      border:
-        2px solid #111;
-
-      border-radius: 999px;
-
-      text-decoration: none;
-
-      font-weight: 900;
-
-      transition: .3s;
+      font-size: 14px;
+      font-weight: 700;
     }
 
-    .line-button:hover {
-      transform:
-        translateY(-4px);
-
-      background: #06c755;
-
-      border-color: #06c755;
+    .line-guide-small {
+      margin-top: 12px;
+      font-size: 11px;
+      color: #777;
     }
 
     .line-divider {
-      width: 52px;
-      height: 52px;
-
-      display: flex;
-
-      align-items: center;
-      justify-content: center;
-
-      background: var(--yellow);
-
-      border:
-        2px solid #111;
-
-      border-radius: 50%;
-
       font-size: 11px;
-
-      font-weight: 900;
+      color: #aaa;
     }
 
     .line-qr {
-      display: block;
-
-      width: 165px;
-      height: 165px;
-
-      margin: 0 auto;
-
-      padding: 8px;
-
-      background: white;
-
+      width: 155px;
+      height: 155px;
       object-fit: contain;
+      margin: 0 auto;
     }
-
 
     /* =========================================
        FOOTER
     ========================================= */
 
     footer {
-      padding:
-        55px 7%;
-
-      background: #111;
-
-      color: white;
-
+      padding: 50px 7%;
+      background: #000;
+      color: #fff;
       text-align: center;
     }
 
     .footer-logo {
       display: inline-block;
-
-      margin-bottom: 15px;
-
-      padding:
-        12px 20px;
-
-      background: white;
+      background: #fff;
+      padding: 12px 18px;
+      margin-bottom: 14px;
     }
 
     .footer-logo img {
-      width: 150px;
-
-      display: block;
+      width: 145px;
     }
 
     footer p {
-      color: #aaa;
-
-      font-size: 11px;
+      font-size: 10px;
+      color: #888;
     }
-
 
     /* =========================================
        MOBILE
     ========================================= */
 
-    @media(max-width:900px) {
+    @media (max-width: 900px) {
 
       .site-header {
         height: 68px;
@@ -1866,24 +1103,19 @@
 
       .nav {
         position: absolute;
-
         top: 68px;
         left: 0;
 
         width: 100%;
 
         display: none;
-
         flex-direction: column;
-
         align-items: flex-start;
 
         padding: 28px;
 
-        background: white;
-
-        box-shadow:
-          0 18px 28px rgba(0,0,0,.08);
+        background: #fff;
+        border-bottom: 1px solid #ddd;
       }
 
       .nav.open {
@@ -1891,48 +1123,29 @@
       }
 
       .hero {
-        min-height: 800px;
-
+        min-height: 820px;
         padding-top: 68px;
       }
 
       .hero-inner {
-        width:
-          calc(100% - 38px);
-
-        min-height: 730px;
+        width: calc(100% - 38px);
+        min-height: 752px;
       }
 
       .hero-copy {
         width: 100%;
-
-        padding:
-          75px 0;
-      }
-
-      .hero-overlay {
-        background:
-          rgba(255,255,255,.82);
       }
 
       .hero-title {
         font-size: 56px;
       }
 
-      .shape-yellow {
-        width: 250px;
-        height: 250px;
-
-        opacity: .55;
-      }
-
-      .shape-mint {
-        opacity: .4;
+      .hero-overlay {
+        background: rgba(255,255,255,.84);
       }
 
       .section {
-        padding:
-          80px 6%;
+        padding: 78px 6%;
       }
 
       .message-layout,
@@ -1952,21 +1165,9 @@
         grid-template-columns: 1fr;
       }
 
-      .history-line {
-        left: 8px;
-      }
-
       .history-item {
         grid-template-columns: 1fr;
-
-        padding-left: 34px;
-
         gap: 10px;
-      }
-
-      .history-year::after {
-        left: -34px;
-        right: auto;
       }
 
       .recruit-header-row {
@@ -1979,118 +1180,54 @@
 
       .recruit-card {
         flex-direction: column;
-
         align-items: flex-start;
       }
 
-      .detail-button {
-        width: 100%;
-      }
-
       .people-card {
-        flex-basis: 270px;
+        flex-basis: 260px;
       }
 
       .people-photo-wrap {
-        width: 250px;
-        height: 250px;
+        width: 260px;
+        height: 320px;
       }
-
-
-      /* LINEはスマホではQRを消す */
 
       .line-contact-box {
         grid-template-columns: 1fr;
-
         gap: 20px;
-
-        padding:
-          30px 20px;
+        padding: 28px 20px;
       }
 
       .line-divider,
       .line-qr-area {
         display: none;
       }
-
-      .line-button {
-        min-height: 64px;
-
-        font-size: 16px;
-      }
-
     }
 
   </style>
-
 </head>
-
 
 <body>
 
-
-<!-- =========================================
-     HEADER
-========================================= -->
-
-<header
-  class="site-header"
-  id="header"
->
+<header class="site-header" id="header">
 
   <a href="#" class="logo">
-
-    <img
-      src="logo.png"
-      alt="株式会社オーファス"
-    >
-
+    <img src="logo.png" alt="株式会社オーファス">
   </a>
 
-
-  <button
-    class="menu-button"
-    id="menuButton"
-  >
+  <button class="menu-button" id="menuButton">
     ☰
   </button>
 
+  <nav class="nav" id="nav">
 
-  <nav
-    class="nav"
-    id="nav"
-  >
-
-    <a href="#message">
-      紹介を受けた方へ
-    </a>
-
-    <a href="#about">
-      会社を知る
-    </a>
-
-    <a href="#jobs">
-      仕事を知る
-    </a>
-
-    <a href="#people">
-      働く人を知る
-    </a>
-
-    <a href="#area">
-      エリアから探す
-    </a>
-
-    <a href="#recruit">
-      募集職種
-    </a>
-
-    <a
-      href="#contact"
-      class="nav-line"
-    >
-      LINEで話す
-    </a>
+    <a href="#message">紹介を受けた方へ</a>
+    <a href="#about">会社を知る</a>
+    <a href="#jobs">仕事を知る</a>
+    <a href="#people">働く人を知る</a>
+    <a href="#area">エリアから探す</a>
+    <a href="#recruit">募集職種</a>
+    <a href="#contact" class="nav-line">LINEで話す</a>
 
   </nav>
 
@@ -2099,231 +1236,64 @@
 
 <main>
 
+  <!-- HERO -->
 
-<!-- =========================================
-     HERO
-========================================= -->
+  <section class="hero">
 
-<section class="hero">
+    <div class="hero-bg">
 
-  <div class="hero-bg">
-
-    <div class="hero-slide active">
-
-      <img
-        src="hero01.jpg"
-        alt=""
-      >
-
-    </div>
-
-    <div class="hero-slide">
-
-      <img
-        src="hero02.jpg"
-        alt=""
-      >
-
-    </div>
-
-    <div class="hero-slide">
-
-      <img
-        src="hero03.jpg"
-        alt=""
-      >
-
-    </div>
-
-  </div>
-
-
-  <div class="hero-overlay"></div>
-
-  <div class="hero-shape shape-yellow"></div>
-
-  <div class="hero-shape shape-mint"></div>
-
-
-  <div class="hero-inner">
-
-    <div class="hero-copy">
-
-      <div class="hero-kicker">
-        OHFAS REFERRAL RECRUITING
+      <div class="hero-slide active">
+        <img src="hero01.jpg" alt="">
       </div>
 
+      <div class="hero-slide">
+        <img src="hero02.jpg" alt="">
+      </div>
 
-      <div class="hero-title-wrap">
+      <div class="hero-slide">
+        <img src="hero03.jpg" alt="">
+      </div>
+
+    </div>
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-inner">
+
+      <div class="hero-copy">
+
+        <div class="hero-kicker">
+          OHFAS REFERRAL RECRUITING
+        </div>
 
         <h1 class="hero-title">
           このご縁に、<br>
           ありがとう。
         </h1>
 
-        <div class="hero-marker"></div>
-
-      </div>
-
-
-      <div class="hero-hand">
-        Welcome!
-      </div>
-
-
-      <p class="hero-lead">
-
-        社員・スタッフから紹介を受けて、<br>
-        このページをご覧いただいたあなたへ。
-
-      </p>
-
-
-      <p class="hero-text">
-
-        今すぐ転職を考えている方も、
-        まだそこまで考えていない方も。<br>
-
-        まずは気軽に、
-        オーファスのことを
-        知ってみませんか？
-
-      </p>
-
-
-      <div class="hero-note">
-
-        応募する前に、
-        「知る」だけでも大丈夫です。
-
-      </div>
-
-
-      <div class="hero-actions">
-
-        <a
-          href="#about"
-          class="btn-main"
-        >
-          オーファスを知る
-        </a>
-
-        <a
-          href="#area"
-          class="btn-sub"
-        >
-          近くの仕事を探す
-        </a>
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <div class="hero-dots">
-
-    <button
-      class="hero-dot active"
-      data-slide="0"
-    ></button>
-
-    <button
-      class="hero-dot"
-      data-slide="1"
-    ></button>
-
-    <button
-      class="hero-dot"
-      data-slide="2"
-    ></button>
-
-  </div>
-
-</section>
-
-
-<!-- =========================================
-     MESSAGE
-========================================= -->
-
-<section
-  class="section message-section reveal"
-  id="message"
->
-
-  <div class="section-inner">
-
-    <div class="message-layout">
-
-      <div class="message-big">
-
-        <span>ありがとう</span><br>
-        から始まる、<br>
-        新しいご縁。
-
-      </div>
-
-
-      <div class="message-card">
-
-        <h3>
-
-          人とのつながりを、<br>
-          大切にした採用です。
-
-        </h3>
-
-
-        <p>
-
-          オーファスでは、
-          私たちのことをよく知る
-          社員・スタッフから、
-
-          大切な友人や知人をご紹介いただく
-          「リファラル採用」を行っています。
-
+        <p class="hero-lead">
+          社員・スタッフから紹介を受けて、<br>
+          このページをご覧いただいたあなたへ。
         </p>
 
-
-        <p>
-
-          あなたにこのページが届いたのも、
-
-          誰かが
-          「オーファスに合うかもしれない」
-          と思ってくれたからかもしれません。
-
+        <p class="hero-text">
+          今すぐ転職を考えている方も、まだそこまで考えていない方も。<br>
+          まずは気軽に、オーファスのことを知ってみませんか？
         </p>
 
+        <div class="hero-note">
+          応募する前に、「知る」だけでも大丈夫です。
+        </div>
 
-        <p>
+        <div class="hero-actions">
 
-          だからといって、
-          すぐに応募や転職を
-          決める必要はありません。
+          <a href="#about" class="btn-main">
+            オーファスを知る
+          </a>
 
-        </p>
-
-
-        <p>
-
-          まずは会社のこと。
-          働く人のこと。
-          仕事のこと。<br>
-
-          少しずつ知ってもらえたら
-          嬉しいです。
-
-        </p>
-
-
-        <div class="message-highlight">
-
-          「ちょっと気になる」
-          からで大丈夫です。
+          <a href="#area" class="btn-sub">
+            近くの仕事を探す
+          </a>
 
         </div>
 
@@ -2331,120 +1301,126 @@
 
     </div>
 
-  </div>
+    <div class="hero-dots">
 
-</section>
+      <button class="hero-dot active" data-slide="0"></button>
+      <button class="hero-dot" data-slide="1"></button>
+      <button class="hero-dot" data-slide="2"></button>
 
+    </div>
 
-<!-- =========================================
-     ABOUT
-========================================= -->
-
-<section
-  class="section about-section reveal"
-  id="about"
->
-
-  <div class="section-inner">
-
-    <span class="section-kicker">
-      ABOUT OHFAS
-    </span>
+  </section>
 
 
-    <h2 class="section-title">
+  <!-- MESSAGE -->
 
-      <span class="section-title-box">
+  <section class="section message-section reveal" id="message">
+
+    <div class="section-inner">
+
+      <div class="message-layout">
+
+        <div class="message-big">
+          ありがとうから始まる、<br>
+          新しいご縁。
+        </div>
+
+        <div class="message-card">
+
+          <h3>
+            人とのつながりを、<br>
+            大切にした採用です。
+          </h3>
+
+          <p>
+            オーファスでは、私たちのことをよく知る社員・スタッフから、
+            大切な友人や知人をご紹介いただく「リファラル採用」を行っています。
+          </p>
+
+          <p>
+            あなたにこのページが届いたのも、
+            誰かが「オーファスに合うかもしれない」と思ってくれたからかもしれません。
+          </p>
+
+          <p>
+            だからといって、すぐに応募や転職を決める必要はありません。
+          </p>
+
+          <p>
+            まずは会社のこと。働く人のこと。仕事のこと。<br>
+            少しずつ知ってもらえたら嬉しいです。
+          </p>
+
+          <div class="message-highlight">
+            「ちょっと気になる」からで大丈夫です。
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ABOUT -->
+
+  <section class="section about-section reveal" id="about">
+
+    <div class="section-inner">
+
+      <span class="section-kicker">
+        ABOUT OHFAS
+      </span>
+
+      <h2 class="section-title">
         オーファスって？
-      </span>
+      </h2>
 
-    </h2>
+      <div class="about-grid">
 
+        <div class="about-copy">
 
-    <div class="about-grid">
+          <h3>
+            建物を守る。<br>
+            その先の安心を支える。
+          </h3>
 
-      <div class="about-copy">
+          <p>
+            オーファスは、建物の安全・快適な環境を支える
+            総合ビルメンテナンス会社です。
+          </p>
 
-        <h3>
-
-          建物を守る。<br>
-          その先の安心を支える。
-
-        </h3>
-
-
-        <p>
-
-          オーファスは、
-          建物の安全・快適な環境を支える
-          総合ビルメンテナンス会社です。
-
-        </p>
-
-
-        <p>
-
-          清掃、設備管理、警備、
-          顧客管理など、
-
-          さまざまな仕事を通して、
-          地域の暮らしや社会を支えています。
-
-        </p>
-
-      </div>
-
-
-      <div class="number-grid">
-
-        <div class="number-card">
-
-          <span class="number-big">
-            1948
-          </span>
-
-          <span class="number-label">
-            創業
-          </span>
+          <p>
+            清掃、設備管理、警備、顧客管理など、
+            さまざまな仕事を通して、
+            地域の暮らしや社会を支えています。
+          </p>
 
         </div>
 
+        <div class="number-grid">
 
-        <div class="number-card">
+          <div class="number-card">
+            <span class="number-big">1948</span>
+            <span class="number-label">創業</span>
+          </div>
 
-          <span class="number-big">
-            約78年
-          </span>
+          <div class="number-card">
+            <span class="number-big">約78年</span>
+            <span class="number-label">地域とともに</span>
+          </div>
 
-          <span class="number-label">
-            地域とともに
-          </span>
+          <div class="number-card">
+            <span class="number-big">600+</span>
+            <span class="number-label">社員・スタッフ</span>
+          </div>
 
-        </div>
-
-
-        <div class="number-card">
-
-          <span class="number-big">
-            600+
-          </span>
-
-          <span class="number-label">
-            社員・スタッフ
-          </span>
-
-        </div>
-
-
-        <div class="number-card">
-
-          <span class="number-big">
-            熊本
-          </span>
-
-          <span class="number-label">
-            を中心に展開
-          </span>
+          <div class="number-card">
+            <span class="number-big">熊本</span>
+            <span class="number-label">を中心に展開</span>
+          </div>
 
         </div>
 
@@ -2452,278 +1428,204 @@
 
     </div>
 
-  </div>
-
-</section>
+  </section>
 
 
-<!-- =========================================
-     MVV
-========================================= -->
+  <!-- MVV -->
 
-<section
-  class="section mvv-section reveal"
->
+  <section class="section mvv-section reveal">
 
-  <div class="section-inner">
+    <div class="section-inner">
 
-    <span class="section-kicker">
-      MISSION / VISION / VALUE
-    </span>
+      <span class="section-kicker">
+        MISSION / VISION / VALUE
+      </span>
 
-
-    <h2 class="section-title">
-
-      <span class="section-title-box">
+      <h2 class="section-title">
         私たちが大切にしていること
-      </span>
+      </h2>
 
-    </h2>
+      <div class="mvv-grid">
 
+        <div class="mvv-card">
 
-    <div class="mvv-grid">
+          <div class="mvv-num">01</div>
 
+          <div class="mvv-label">
+            MISSION
+          </div>
 
-      <div class="mvv-card">
+          <h3>
+            建物を未来へつなぐ仕事で<br>
+            社会に貢献する
+          </h3>
 
-        <div class="mvv-num">
-          01
         </div>
 
-        <div class="mvv-label">
-          MISSION
+        <div class="mvv-card">
+
+          <div class="mvv-num">02</div>
+
+          <div class="mvv-label">
+            VISION
+          </div>
+
+          <h3>
+            選ばれ続ける<br>
+            環境ソリューション<br>
+            パートナーに
+          </h3>
+
         </div>
 
-        <h3>
+        <div class="mvv-card">
 
-          建物を未来へつなぐ仕事で<br>
-          社会に貢献する
+          <div class="mvv-num">03</div>
 
-        </h3>
+          <div class="mvv-label">
+            VALUE
+          </div>
+
+          <ul>
+            <li>ありがとうをつなぐ仕事を</li>
+            <li>変化に気づき速やかに対応する</li>
+            <li>まごころで応える</li>
+          </ul>
+
+        </div>
 
       </div>
-
-
-      <div class="mvv-card">
-
-        <div class="mvv-num">
-          02
-        </div>
-
-        <div class="mvv-label">
-          VISION
-        </div>
-
-        <h3>
-
-          選ばれ続ける<br>
-          環境ソリューション<br>
-          パートナーに
-
-        </h3>
-
-      </div>
-
-
-      <div class="mvv-card">
-
-        <div class="mvv-num">
-          03
-        </div>
-
-        <div class="mvv-label">
-          VALUE
-        </div>
-
-        <ul>
-
-          <li>
-            ありがとうをつなぐ仕事を
-          </li>
-
-          <li>
-            変化に気づき速やかに対応する
-          </li>
-
-          <li>
-            まごころで応える
-          </li>
-
-        </ul>
-
-      </div>
-
 
     </div>
 
-  </div>
-
-</section>
+  </section>
 
 
-<!-- =========================================
-     HISTORY
-========================================= -->
+  <!-- HISTORY -->
 
-<section
-  class="section history-section reveal"
->
+  <section class="section history-section reveal">
 
-  <div class="section-inner">
+    <div class="section-inner">
 
-    <span class="section-kicker">
-      HISTORY
-    </span>
+      <span class="section-kicker">
+        HISTORY
+      </span>
 
-
-    <h2 class="section-title">
-
-      <span class="section-title-box">
+      <h2 class="section-title">
         オーファスの歩み
-      </span>
+      </h2>
 
-    </h2>
+      <p class="section-lead">
+        1948年から、時代と地域に合わせて仕事の幅を広げてきました。
+      </p>
 
+      <div class="history-timeline">
 
-    <p class="section-lead">
+        <div class="history-item">
 
-      1948年から、
-      時代と地域に合わせて
-      仕事の幅を広げてきました。
+          <div class="history-year">
+            1948
+          </div>
 
-    </p>
+          <div class="history-content">
 
+            <h3>
+              「大成産業」として創業
+            </h3>
 
-    <div class="history-timeline">
+            <p>
+              逓信省（旧・郵政省）への物資納入から、
+              オーファスの歴史が始まりました。
+            </p>
 
-      <div class="history-line"></div>
-
-
-      <div class="history-item">
-
-        <div class="history-year">
-          1948
-        </div>
-
-        <div class="history-content">
-
-          <h3>
-            「大成産業」として創業
-          </h3>
-
-          <p>
-
-            逓信省（旧・郵政省）への
-            物資納入から、
-            オーファスの歴史が始まりました。
-
-          </p>
+          </div>
 
         </div>
 
-      </div>
+        <div class="history-item">
 
+          <div class="history-year">
+            1953
+          </div>
 
-      <div class="history-item">
+          <div class="history-content">
 
-        <div class="history-year">
-          1953
-        </div>
+            <h3>
+              熊本大水害をきっかけに
+            </h3>
 
-        <div class="history-content">
+            <p>
+              建物の清掃や設備管理などを手掛ける
+              ビルメンテナンス業へ本格的に進出。
+              「大森産業」へ社名を変更しました。
+            </p>
 
-          <h3>
-            熊本大水害をきっかけに
-          </h3>
-
-          <p>
-
-            建物の清掃や設備管理などを手掛ける
-            ビルメンテナンス業へ本格的に進出。
-
-            「大森産業」へ社名を変更しました。
-
-          </p>
+          </div>
 
         </div>
 
-      </div>
+        <div class="history-item">
 
+          <div class="history-year">
+            長年
+          </div>
 
-      <div class="history-item">
+          <div class="history-content">
 
-        <div class="history-year">
-          長年
-        </div>
+            <h3>
+              事業の幅を広げる
+            </h3>
 
-        <div class="history-content">
+            <p>
+              ビルメンテナンスに加え、
+              コンビニ運営、清掃資機材販売、環境衛生、
+              工事、アウトソーシングなどへ展開。
+            </p>
 
-          <h3>
-            事業の幅を広げる
-          </h3>
-
-          <p>
-
-            ビルメンテナンスに加え、
-            コンビニ運営、清掃資機材販売、
-            環境衛生、工事、
-            アウトソーシングなどへ展開。
-
-          </p>
+          </div>
 
         </div>
 
-      </div>
+        <div class="history-item">
 
+          <div class="history-year">
+            2021
+          </div>
 
-      <div class="history-item">
+          <div class="history-content">
 
-        <div class="history-year">
-          2021
-        </div>
+            <h3>
+              新しいオーファスへ
+            </h3>
 
-        <div class="history-content">
+            <p>
+              グループ体制を再編し、
+              「OHFASホールディングス」へ。
+              大森産業も「オーファス」へ社名を一新しました。
+            </p>
 
-          <h3>
-            新しいオーファスへ
-          </h3>
-
-          <p>
-
-            グループ体制を再編し、
-            「OHFASホールディングス」へ。
-
-            大森産業も
-            「オーファス」へ
-            社名を一新しました。
-
-          </p>
+          </div>
 
         </div>
 
-      </div>
+        <div class="history-item">
 
+          <div class="history-year">
+            2026
+          </div>
 
-      <div class="history-item">
+          <div class="history-content">
 
-        <div class="history-year">
-          2026
-        </div>
+            <h3>
+              創業約78年。次の未来へ。
+            </h3>
 
-        <div class="history-content">
+            <p>
+              社員600名以上。
+              地域に根ざした企業として、今も進化を続けています。
+            </p>
 
-          <h3>
-            創業約78年。次の未来へ。
-          </h3>
-
-          <p>
-
-            社員600名以上。
-
-            地域に根ざした企業として、
-            今も進化を続けています。
-
-          </p>
+          </div>
 
         </div>
 
@@ -2731,1263 +1633,966 @@
 
     </div>
 
-  </div>
-
-</section>
+  </section>
 
 
-<!-- =========================================
-     JOB
-========================================= -->
+  <!-- JOB -->
 
-<section
-  class="section jobs-section reveal"
-  id="jobs"
->
+  <section class="section jobs-section reveal" id="jobs">
 
-  <div class="section-inner">
+    <div class="section-inner">
 
-    <span class="section-kicker">
-      OUR JOB
-    </span>
+      <span class="section-kicker">
+        OUR JOB
+      </span>
 
-
-    <h2 class="section-title">
-
-      <span class="section-title-box">
+      <h2 class="section-title">
         仕事はいろいろ。
-      </span>
+      </h2>
 
-    </h2>
+      <p class="section-lead">
+        経験を活かせる仕事も、未経験から始められる仕事もあります。
+      </p>
 
+      <div class="job-grid">
 
-    <p class="section-lead">
-
-      経験を活かせる仕事も、
-      未経験から始められる仕事もあります。
-
-    </p>
-
-
-    <div class="job-grid">
-
-
-      <article class="job-card">
-
-        <div class="job-no">
-          #1
-        </div>
-
-        <img
-          src="job-equipment.jpg"
-          alt="設備管理"
-          class="job-photo"
-        >
-
-        <div class="job-content">
-
-          <h3>
-            設備管理
-          </h3>
-
-          <p>
-
-            建物の電気・空調・給排水などの
-            点検や保守管理を行います。
-
-          </p>
-
-        </div>
-
-      </article>
-
-
-      <article class="job-card">
-
-        <div class="job-no">
-          #2
-        </div>
-
-        <img
-          src="job-cleaning.jpg"
-          alt="清掃"
-          class="job-photo"
-        >
-
-        <div class="job-content">
-
-          <h3>
-            清掃
-          </h3>
-
-          <p>
-
-            オフィスや公共施設などの
-            快適な環境を支える仕事です。
-
-          </p>
-
-        </div>
-
-      </article>
-
-
-      <article class="job-card">
-
-        <div class="job-no">
-          #3
-        </div>
-
-        <img
-          src="job-security.jpg"
-          alt="警備"
-          class="job-photo"
-        >
-
-        <div class="job-content">
-
-          <h3>
-            警備
-          </h3>
-
-          <p>
-
-            施設やイベントで、
-            人と建物の安全を守ります。
-
-          </p>
-
-        </div>
-
-      </article>
-
-
-      <article class="job-card">
-
-        <div class="job-no">
-          #4
-        </div>
-
-        <img
-          src="job-sales.jpg"
-          alt="企画・顧客管理"
-          class="job-photo"
-        >
-
-        <div class="job-content">
-
-          <h3>
-            企画・顧客管理
-          </h3>
-
-          <p>
-
-            お客様と現場をつなぎながら、
-            建物管理を支えます。
-
-          </p>
-
-        </div>
-
-      </article>
-
-
-      <article class="job-card">
-
-        <div class="job-no">
-          #5
-        </div>
-
-        <img
-          src="job-telephone.jpg"
-          alt="電話交換"
-          class="job-photo"
-        >
-
-        <div class="job-content">
-
-          <h3>
-            電話交換
-          </h3>
-
-          <p>
-
-            電話を適切な部署へつなぎ、
-            施設の窓口を支えます。
-
-          </p>
-
-        </div>
-
-      </article>
-
-
-      <article class="job-card">
-
-        <div class="job-no">
-          #6
-        </div>
-
-        <img
-          src="job-labor.jpg"
-          alt="労務管理"
-          class="job-photo"
-        >
-
-        <div class="job-content">
-
-          <h3>
-            労務管理
-          </h3>
-
-          <p>
-
-            スタッフが安心して働けるよう、
-            労務や各種手続きを支えます。
-
-          </p>
-
-        </div>
-
-      </article>
-
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================================
-     PEOPLE
-========================================= -->
-
-<section
-  class="section people-section reveal"
-  id="people"
->
-
-  <div class="section-inner">
-
-    <span class="section-kicker">
-      STAFF INTERVIEW
-    </span>
-
-
-    <h2 class="section-title">
-
-      <span class="section-title-box">
-        働く人をのぞいてみる
-      </span>
-
-    </h2>
-
-
-    <p class="section-lead">
-
-      入社のきっかけや仕事のリアルを、
-      実際に働くスタッフに聞きました。
-
-    </p>
-
-
-    <div class="people-slider">
-
-
-      <a href="#" class="people-card">
-
-        <div class="people-photo-wrap">
-
-          <div class="people-photo-bg"></div>
+        <article class="job-card">
 
           <img
-            src="staff01.jpg"
-            alt="清掃スタッフ"
-            class="people-photo"
+            src="job-equipment.jpg"
+            alt="設備管理"
+            class="job-photo"
           >
 
-          <div class="people-plus">
-            +
+          <div class="job-content">
+            <h3>設備管理</h3>
+            <p>
+              建物の電気・空調・給排水などの
+              点検や保守管理を行います。
+            </p>
           </div>
 
-        </div>
+        </article>
 
-        <span class="people-job">
-          清掃スタッフ
-        </span>
-
-        <h3>
-          「ありがとう」が
-          やりがいになる仕事。
-        </h3>
-
-        <p class="people-note">
-          毎日の仕事のリアルを聞きました。
-        </p>
-
-      </a>
-
-
-      <a href="#" class="people-card">
-
-        <div class="people-photo-wrap">
-
-          <div class="people-photo-bg"></div>
+        <article class="job-card">
 
           <img
-            src="staff02.jpg"
-            alt="警備スタッフ"
-            class="people-photo"
+            src="job-cleaning.jpg"
+            alt="清掃"
+            class="job-photo"
           >
 
-          <div class="people-plus">
-            +
+          <div class="job-content">
+            <h3>清掃</h3>
+            <p>
+              オフィスや公共施設などの
+              快適な環境を支える仕事です。
+            </p>
           </div>
 
-        </div>
+        </article>
 
-        <span class="people-job">
-          警備スタッフ
-        </span>
-
-        <h3>
-          安心をつくることが、
-          私たちの役割。
-        </h3>
-
-        <p class="people-note">
-          人や施設を守る仕事について。
-        </p>
-
-      </a>
-
-
-      <a href="#" class="people-card">
-
-        <div class="people-photo-wrap">
-
-          <div class="people-photo-bg"></div>
+        <article class="job-card">
 
           <img
-            src="staff03.jpg"
-            alt="設備管理スタッフ"
-            class="people-photo"
+            src="job-security.jpg"
+            alt="警備"
+            class="job-photo"
           >
 
-          <div class="people-plus">
-            +
+          <div class="job-content">
+            <h3>警備</h3>
+            <p>
+              施設やイベントで、
+              人と建物の安全を守ります。
+            </p>
           </div>
 
-        </div>
+        </article>
 
-        <span class="people-job">
-          設備管理
-        </span>
-
-        <h3>
-          建物の当たり前を、
-          毎日支える。
-        </h3>
-
-        <p class="people-note">
-          設備を守る仕事について。
-        </p>
-
-      </a>
-
-
-      <a href="#" class="people-card">
-
-        <div class="people-photo-wrap">
-
-          <div class="people-photo-bg"></div>
+        <article class="job-card">
 
           <img
-            src="staff04.jpg"
-            alt="電話交換スタッフ"
-            class="people-photo"
-          >
-
-          <div class="people-plus">
-            +
-          </div>
-
-        </div>
-
-        <span class="people-job">
-          電話交換
-        </span>
-
-        <h3>
-          仕事と好きなことを
-          両立できる働き方。
-        </h3>
-
-        <p class="people-note">
-          自分らしい働き方について。
-        </p>
-
-      </a>
-
-
-      <a href="#" class="people-card">
-
-        <div class="people-photo-wrap">
-
-          <div class="people-photo-bg"></div>
-
-          <img
-            src="staff05.jpg"
+            src="job-sales.jpg"
             alt="企画・顧客管理"
-            class="people-photo"
+            class="job-photo"
           >
 
-          <div class="people-plus">
-            +
+          <div class="job-content">
+            <h3>企画・顧客管理</h3>
+            <p>
+              お客様と現場をつなぎながら、
+              建物管理を支えます。
+            </p>
           </div>
 
-        </div>
+        </article>
 
-        <span class="people-job">
-          企画・顧客管理
-        </span>
-
-        <h3>
-          お客様と現場をつなぐ、
-          調整役として。
-        </h3>
-
-        <p class="people-note">
-          幅広い仕事の魅力について。
-        </p>
-
-      </a>
-
-
-      <a href="#" class="people-card">
-
-        <div class="people-photo-wrap">
-
-          <div class="people-photo-bg"></div>
+        <article class="job-card">
 
           <img
-            src="staff06.jpg"
-            alt="労務管理"
-            class="people-photo"
+            src="job-telephone.jpg"
+            alt="電話交換"
+            class="job-photo"
           >
 
-          <div class="people-plus">
-            +
+          <div class="job-content">
+            <h3>電話交換</h3>
+            <p>
+              電話を適切な部署へつなぎ、
+              施設の窓口を支えます。
+            </p>
           </div>
 
-        </div>
+        </article>
 
-        <span class="people-job">
-          労務管理
-        </span>
+        <article class="job-card">
 
-        <h3>
-          働く人を支えることも、
-          大切な仕事。
-        </h3>
+          <img
+            src="job-labor.jpg"
+            alt="労務管理"
+            class="job-photo"
+          >
 
-        <p class="people-note">
-          本社からスタッフを支えています。
-        </p>
+          <div class="job-content">
+            <h3>労務管理</h3>
+            <p>
+              スタッフが安心して働けるよう、
+              労務や各種手続きを支えます。
+            </p>
+          </div>
 
-      </a>
+        </article>
 
+      </div>
 
     </div>
 
-  </div>
-
-</section>
+  </section>
 
 
-<!-- =========================================
-     AREA
-========================================= -->
+  <!-- PEOPLE -->
 
-<section
-  class="section area-section reveal"
-  id="area"
->
+  <section class="section people-section reveal" id="people">
 
-  <div class="section-inner">
+    <div class="section-inner">
 
-    <span class="section-kicker">
-      AREA
-    </span>
-
-
-    <h2 class="section-title">
-
-      <span class="section-title-box">
-        あなたの街から探す
+      <span class="section-kicker">
+        STAFF INTERVIEW
       </span>
 
-    </h2>
+      <h2 class="section-title">
+        働く人をのぞいてみる
+      </h2>
 
+      <p class="section-lead">
+        入社のきっかけや仕事のリアルを、
+        実際に働くスタッフに聞きました。
+      </p>
 
-    <p class="section-lead">
+      <div class="people-slider">
 
-      仕事内容も大切だけど、
-      毎日の「通いやすさ」も大切。
+        <a href="#" class="people-card">
 
-      気になるエリアから
-      仕事を探してみてください。
+          <div class="people-photo-wrap">
 
-    </p>
+            <img
+              src="staff01.jpg"
+              alt="清掃スタッフ"
+              class="people-photo"
+            >
 
-
-    <div class="area-grid">
-
-
-      <button
-        class="area-card active"
-        data-area="all"
-        data-label="すべてのエリア"
-      >
-
-        <span class="area-small">
-          ALL AREA
-        </span>
-
-        <span class="area-name">
-          すべてのエリア
-        </span>
-
-        <span class="area-jobs">
-          熊本県内のお仕事を見る
-        </span>
-
-        <span class="area-arrow">
-          →
-        </span>
-
-      </button>
-
-
-      <button
-        class="area-card"
-        data-area="central"
-        data-label="熊本市中央区"
-      >
-
-        <span class="area-small">
-          KUMAMOTO CITY
-        </span>
-
-        <span class="area-name">
-          熊本市中央区
-        </span>
-
-        <span class="area-jobs">
-          設備管理・電話交換・清掃など
-        </span>
-
-        <span class="area-arrow">
-          →
-        </span>
-
-      </button>
-
-
-      <button
-        class="area-card"
-        data-area="east"
-        data-label="熊本市東区"
-      >
-
-        <span class="area-small">
-          KUMAMOTO CITY
-        </span>
-
-        <span class="area-name">
-          熊本市東区
-        </span>
-
-        <span class="area-jobs">
-          清掃・警備など
-        </span>
-
-        <span class="area-arrow">
-          →
-        </span>
-
-      </button>
-
-
-      <button
-        class="area-card"
-        data-area="mashiki"
-        data-label="益城・上益城"
-      >
-
-        <span class="area-small">
-          KAMIMASHIKI
-        </span>
-
-        <span class="area-name">
-          益城・上益城
-        </span>
-
-        <span class="area-jobs">
-          設備管理・清掃など
-        </span>
-
-        <span class="area-arrow">
-          →
-        </span>
-
-      </button>
-
-
-      <button
-        class="area-card"
-        data-area="kikuyo"
-        data-label="菊陽・大津"
-      >
-
-        <span class="area-small">
-          KIKUYO / OZU
-        </span>
-
-        <span class="area-name">
-          菊陽・大津
-        </span>
-
-        <span class="area-jobs">
-          清掃・設備管理・警備など
-        </span>
-
-        <span class="area-arrow">
-          →
-        </span>
-
-      </button>
-
-
-      <button
-        class="area-card"
-        data-area="other"
-        data-label="その他熊本県内"
-      >
-
-        <span class="area-small">
-          OTHER AREA
-        </span>
-
-        <span class="area-name">
-          その他熊本県内
-        </span>
-
-        <span class="area-jobs">
-          その他の勤務地を見る
-        </span>
-
-        <span class="area-arrow">
-          →
-        </span>
-
-      </button>
-
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================================
-     RECRUIT
-========================================= -->
-
-<section
-  class="section recruit-section reveal"
-  id="recruit"
->
-
-  <div class="section-inner">
-
-    <div class="recruit-header-row">
-
-      <div>
-
-        <span class="section-kicker">
-          RECRUIT
-        </span>
-
-
-        <h2 class="section-title">
-
-          <span class="section-title-box">
-            現在募集中のお仕事
-          </span>
-
-        </h2>
-
-
-        <p class="section-lead">
-
-          エリアと職種を組み合わせて、
-          気になる仕事を探せます。
-
-        </p>
-
-      </div>
-
-
-      <div
-        class="selected-area"
-        id="selectedArea"
-      >
-
-        表示中：すべてのエリア
-
-      </div>
-
-    </div>
-
-
-    <p class="filter-title">
-      職種でも絞り込めます
-    </p>
-
-
-    <div class="filter-buttons">
-
-      <button
-        class="filter-button active"
-        data-filter="all"
-      >
-        すべて
-      </button>
-
-      <button
-        class="filter-button"
-        data-filter="cleaning"
-      >
-        清掃
-      </button>
-
-      <button
-        class="filter-button"
-        data-filter="equipment"
-      >
-        設備管理
-      </button>
-
-      <button
-        class="filter-button"
-        data-filter="security"
-      >
-        警備
-      </button>
-
-      <button
-        class="filter-button"
-        data-filter="office"
-      >
-        本社スタッフ
-      </button>
-
-      <button
-        class="filter-button"
-        data-filter="telephone"
-      >
-        電話交換
-      </button>
-
-    </div>
-
-
-    <div class="recruit-list">
-
-
-      <div
-        class="recruit-card"
-        data-area="central"
-        data-category="equipment"
-      >
-
-        <div class="recruit-info">
-
-          <h3>
-            設備管理スタッフ
-          </h3>
-
-          <span>
-            正社員 ｜ 熊本市中央区
-          </span>
-
-          <div class="job-tags">
-
-            <span class="job-tag">
-              設備管理
-            </span>
-
-            <span class="job-tag">
-              正社員
-            </span>
+            <div class="people-plus">
+              +
+            </div>
 
           </div>
 
-        </div>
-
-        <a
-          href="#"
-          class="detail-button"
-        >
-          詳しく見る →
-        </a>
-
-      </div>
-
-
-      <div
-        class="recruit-card"
-        data-area="central"
-        data-category="telephone"
-      >
-
-        <div class="recruit-info">
-
-          <h3>
-            電話交換スタッフ
-          </h3>
-
-          <span>
-            パート・アルバイト ｜ 熊本市中央区
-          </span>
-
-          <div class="job-tags">
-
-            <span class="job-tag">
-              電話交換
-            </span>
-
-            <span class="job-tag">
-              パート
-            </span>
-
-          </div>
-
-        </div>
-
-        <a
-          href="#"
-          class="detail-button"
-        >
-          詳しく見る →
-        </a>
-
-      </div>
-
-
-      <div
-        class="recruit-card"
-        data-area="east"
-        data-category="cleaning"
-      >
-
-        <div class="recruit-info">
-
-          <h3>
+          <span class="people-job">
             清掃スタッフ
-          </h3>
-
-          <span>
-            パート ｜ 熊本市東区
           </span>
 
-        </div>
+          <h3>
+            「ありがとう」がやりがいになる仕事。
+          </h3>
 
-        <a
-          href="#"
-          class="detail-button"
-        >
-          詳しく見る →
+          <p class="people-note">
+            毎日の仕事のリアルを聞きました。
+          </p>
+
         </a>
 
-      </div>
+        <a href="#" class="people-card">
 
+          <div class="people-photo-wrap">
 
-      <div
-        class="recruit-card"
-        data-area="east"
-        data-category="security"
-      >
+            <img
+              src="staff02.jpg"
+              alt="警備スタッフ"
+              class="people-photo"
+            >
 
-        <div class="recruit-info">
+            <div class="people-plus">
+              +
+            </div>
 
-          <h3>
+          </div>
+
+          <span class="people-job">
             警備スタッフ
-          </h3>
-
-          <span>
-            正社員・アルバイト ｜ 熊本市東区
           </span>
-
-        </div>
-
-        <a
-          href="#"
-          class="detail-button"
-        >
-          詳しく見る →
-        </a>
-
-      </div>
-
-
-      <div
-        class="recruit-card"
-        data-area="mashiki"
-        data-category="equipment"
-      >
-
-        <div class="recruit-info">
 
           <h3>
-            設備管理スタッフ
+            安心をつくることが、私たちの役割。
           </h3>
 
-          <span>
-            正社員 ｜ 益城・上益城
-          </span>
+          <p class="people-note">
+            人や施設を守る仕事について。
+          </p>
 
-        </div>
-
-        <a
-          href="#"
-          class="detail-button"
-        >
-          詳しく見る →
         </a>
 
-      </div>
+        <a href="#" class="people-card">
 
+          <div class="people-photo-wrap">
 
-      <div
-        class="recruit-card"
-        data-area="kikuyo"
-        data-category="cleaning"
-      >
+            <img
+              src="staff03.jpg"
+              alt="設備管理スタッフ"
+              class="people-photo"
+            >
 
-        <div class="recruit-info">
+            <div class="people-plus">
+              +
+            </div>
+
+          </div>
+
+          <span class="people-job">
+            設備管理
+          </span>
 
           <h3>
-            清掃スタッフ
+            建物の当たり前を、毎日支える。
           </h3>
 
-          <span>
-            パート ｜ 菊陽・大津
-          </span>
+          <p class="people-note">
+            設備を守る仕事について。
+          </p>
 
-        </div>
-
-        <a
-          href="#"
-          class="detail-button"
-        >
-          詳しく見る →
         </a>
 
-      </div>
+        <a href="#" class="people-card">
 
+          <div class="people-photo-wrap">
 
-      <div
-        class="recruit-card"
-        data-area="other"
-        data-category="office"
-      >
+            <img
+              src="staff04.jpg"
+              alt="電話交換スタッフ"
+              class="people-photo"
+            >
 
-        <div class="recruit-info">
+            <div class="people-plus">
+              +
+            </div>
+
+          </div>
+
+          <span class="people-job">
+            電話交換
+          </span>
 
           <h3>
-            企画・顧客管理スタッフ
+            仕事と好きなことを両立できる働き方。
           </h3>
 
-          <span>
-            正社員 ｜ 熊本県内
-          </span>
+          <p class="people-note">
+            自分らしい働き方について。
+          </p>
 
-        </div>
-
-        <a
-          href="#"
-          class="detail-button"
-        >
-          詳しく見る →
         </a>
 
-      </div>
+        <a href="#" class="people-card">
 
+          <div class="people-photo-wrap">
 
-      <div
-        class="recruit-card"
-        data-area="other"
-        data-category="office"
-      >
+            <img
+              src="staff05.jpg"
+              alt="企画・顧客管理"
+              class="people-photo"
+            >
 
-        <div class="recruit-info">
+            <div class="people-plus">
+              +
+            </div>
+
+          </div>
+
+          <span class="people-job">
+            企画・顧客管理
+          </span>
 
           <h3>
-            労務管理スタッフ
+            お客様と現場をつなぐ、調整役として。
           </h3>
 
-          <span>
-            正社員 ｜ 熊本県内
+          <p class="people-note">
+            幅広い仕事の魅力について。
+          </p>
+
+        </a>
+
+        <a href="#" class="people-card">
+
+          <div class="people-photo-wrap">
+
+            <img
+              src="staff06.jpg"
+              alt="労務管理"
+              class="people-photo"
+            >
+
+            <div class="people-plus">
+              +
+            </div>
+
+          </div>
+
+          <span class="people-job">
+            労務管理
           </span>
 
-        </div>
+          <h3>
+            働く人を支えることも、大切な仕事。
+          </h3>
 
-        <a
-          href="#"
-          class="detail-button"
-        >
-          詳しく見る →
+          <p class="people-note">
+            本社からスタッフを支えています。
+          </p>
+
         </a>
 
       </div>
 
-
     </div>
 
+  </section>
 
-    <div
-      class="no-jobs"
-      id="noJobs"
-    >
 
-      現在、この条件で表示できる求人はありません。
+  <!-- AREA -->
 
-    </div>
+  <section class="section area-section reveal" id="area">
 
-  </div>
+    <div class="section-inner">
 
-</section>
+      <span class="section-kicker">
+        AREA
+      </span>
 
+      <h2 class="section-title">
+        あなたの街から探す
+      </h2>
 
-<!-- =========================================
-     FLOW
-========================================= -->
+      <p class="section-lead">
+        仕事内容も大切だけど、毎日の「通いやすさ」も大切。
+        気になるエリアから仕事を探してみてください。
+      </p>
 
-<section
-  class="section flow-section reveal"
->
+      <div class="area-grid">
 
-  <div class="section-inner">
-
-    <span class="section-kicker">
-      FLOW
-    </span>
-
-
-    <h2 class="section-title">
-      紹介を受けてからの流れ
-    </h2>
-
-
-    <div class="flow-grid">
-
-
-      <div class="flow-card">
-
-        <div class="flow-num">
-          01
-        </div>
-
-        <h3>
-          このページを見る
-        </h3>
-
-        <p>
-          まずはオーファスについて知ってください。
-        </p>
-
-      </div>
-
-
-      <div class="flow-card">
-
-        <div class="flow-num">
-          02
-        </div>
-
-        <h3>
-          近くの仕事を探す
-        </h3>
-
-        <p>
-          通いやすいエリアから仕事を探せます。
-        </p>
-
-      </div>
-
-
-      <div class="flow-card">
-
-        <div class="flow-num">
-          03
-        </div>
-
-        <h3>
-          LINEで聞いてみる
-        </h3>
-
-        <p>
-          応募前の相談や質問も気軽にできます。
-        </p>
-
-      </div>
-
-
-      <div class="flow-card">
-
-        <div class="flow-num">
-          04
-        </div>
-
-        <h3>
-          希望すれば選考へ
-        </h3>
-
-        <p>
-          納得した上で選考に進んでいただきます。
-        </p>
-
-      </div>
-
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================================
-     LINE CONTACT
-========================================= -->
-
-<section
-  class="section cta-section reveal"
-  id="contact"
->
-
-  <div class="cta-inner">
-
-    <p class="cta-mini">
-      まだ応募じゃなくて大丈夫。
-    </p>
-
-
-    <h2 class="cta-title">
-      LET'S TALK!
-    </h2>
-
-
-    <p class="cta-text">
-
-      仕事内容や働き方、
-      職場の雰囲気など、
-
-      気になることがあれば
-      LINEからお気軽にご相談ください。
-
-    </p>
-
-
-    <div class="cta-hand">
-      「ちょっと聞いてみたい」でOK！
-    </div>
-
-
-    <div class="line-contact-box">
-
-
-      <!-- スマホ -->
-
-      <div class="line-button-area">
-
-        <p class="line-guide-title">
-          スマホで見ている方
-        </p>
-
-
-        <a
-          href="https://lin.ee/UM4EIXgs"
-          class="line-button"
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          class="area-card active"
+          data-area="all"
+          data-label="すべてのエリア"
         >
 
-          LINEで気軽に話してみる →
+          <span class="area-small">
+            ALL AREA
+          </span>
 
-        </a>
+          <span class="area-name">
+            すべてのエリア
+          </span>
 
+          <span class="area-jobs">
+            熊本県内のお仕事を見る
+          </span>
 
-        <p class="line-guide-small">
+          <span class="area-arrow">
+            →
+          </span>
 
-          ボタンをタップすると<br>
-          LINEが開きます。
+        </button>
 
-        </p>
-
-      </div>
-
-
-      <!-- OR -->
-
-      <div class="line-divider">
-        OR
-      </div>
-
-
-      <!-- PC -->
-
-      <div class="line-qr-area">
-
-        <p class="line-guide-title">
-          パソコンで見ている方
-        </p>
-
-
-        <img
-          src="line-qr.png"
-          alt="オーファス公式LINE QRコード"
-          class="line-qr"
+        <button
+          class="area-card"
+          data-area="central"
+          data-label="熊本市中央区"
         >
 
+          <span class="area-small">
+            KUMAMOTO CITY
+          </span>
 
-        <p class="line-guide-small">
+          <span class="area-name">
+            熊本市中央区
+          </span>
 
-          スマホのカメラで<br>
-          QRコードを読み取ってください。
+          <span class="area-jobs">
+            設備管理・電話交換・清掃など
+          </span>
 
-        </p>
+          <span class="area-arrow">
+            →
+          </span>
+
+        </button>
+
+        <button
+          class="area-card"
+          data-area="east"
+          data-label="熊本市東区"
+        >
+
+          <span class="area-small">
+            KUMAMOTO CITY
+          </span>
+
+          <span class="area-name">
+            熊本市東区
+          </span>
+
+          <span class="area-jobs">
+            清掃・警備など
+          </span>
+
+          <span class="area-arrow">
+            →
+          </span>
+
+        </button>
+
+        <button
+          class="area-card"
+          data-area="mashiki"
+          data-label="益城・上益城"
+        >
+
+          <span class="area-small">
+            KAMIMASHIKI
+          </span>
+
+          <span class="area-name">
+            益城・上益城
+          </span>
+
+          <span class="area-jobs">
+            設備管理・清掃など
+          </span>
+
+          <span class="area-arrow">
+            →
+          </span>
+
+        </button>
+
+        <button
+          class="area-card"
+          data-area="kikuyo"
+          data-label="菊陽・大津"
+        >
+
+          <span class="area-small">
+            KIKUYO / OZU
+          </span>
+
+          <span class="area-name">
+            菊陽・大津
+          </span>
+
+          <span class="area-jobs">
+            清掃・設備管理・警備など
+          </span>
+
+          <span class="area-arrow">
+            →
+          </span>
+
+        </button>
+
+        <button
+          class="area-card"
+          data-area="other"
+          data-label="その他熊本県内"
+        >
+
+          <span class="area-small">
+            OTHER AREA
+          </span>
+
+          <span class="area-name">
+            その他熊本県内
+          </span>
+
+          <span class="area-jobs">
+            その他の勤務地を見る
+          </span>
+
+          <span class="area-arrow">
+            →
+          </span>
+
+        </button>
 
       </div>
-
 
     </div>
 
-  </div>
+  </section>
 
-</section>
 
+  <!-- RECRUIT -->
+
+  <section class="section recruit-section reveal" id="recruit">
+
+    <div class="section-inner">
+
+      <div class="recruit-header-row">
+
+        <div>
+
+          <span class="section-kicker">
+            RECRUIT
+          </span>
+
+          <h2 class="section-title">
+            現在募集中のお仕事
+          </h2>
+
+          <p class="section-lead">
+            エリアと職種を組み合わせて、
+            気になる仕事を探せます。
+          </p>
+
+        </div>
+
+        <div
+          class="selected-area"
+          id="selectedArea"
+        >
+          表示中：すべてのエリア
+        </div>
+
+      </div>
+
+      <p class="filter-title">
+        職種でも絞り込めます
+      </p>
+
+      <div class="filter-buttons">
+
+        <button class="filter-button active" data-filter="all">
+          すべて
+        </button>
+
+        <button class="filter-button" data-filter="cleaning">
+          清掃
+        </button>
+
+        <button class="filter-button" data-filter="equipment">
+          設備管理
+        </button>
+
+        <button class="filter-button" data-filter="security">
+          警備
+        </button>
+
+        <button class="filter-button" data-filter="office">
+          本社スタッフ
+        </button>
+
+        <button class="filter-button" data-filter="telephone">
+          電話交換
+        </button>
+
+      </div>
+
+      <div class="recruit-list">
+
+        <div
+          class="recruit-card"
+          data-area="central"
+          data-category="equipment"
+        >
+
+          <div class="recruit-info">
+
+            <h3>
+              設備管理スタッフ
+            </h3>
+
+            <span>
+              正社員 ｜ 熊本市中央区
+            </span>
+
+            <div class="job-tags">
+
+              <span class="job-tag">
+                設備管理
+              </span>
+
+              <span class="job-tag">
+                正社員
+              </span>
+
+            </div>
+
+          </div>
+
+          <a href="#" class="detail-button">
+            詳しく見る
+          </a>
+
+        </div>
+
+        <div
+          class="recruit-card"
+          data-area="central"
+          data-category="telephone"
+        >
+
+          <div class="recruit-info">
+
+            <h3>
+              電話交換スタッフ
+            </h3>
+
+            <span>
+              パート・アルバイト ｜ 熊本市中央区
+            </span>
+
+          </div>
+
+          <a href="#" class="detail-button">
+            詳しく見る
+          </a>
+
+        </div>
+
+        <div
+          class="recruit-card"
+          data-area="east"
+          data-category="cleaning"
+        >
+
+          <div class="recruit-info">
+
+            <h3>
+              清掃スタッフ
+            </h3>
+
+            <span>
+              パート ｜ 熊本市東区
+            </span>
+
+          </div>
+
+          <a href="#" class="detail-button">
+            詳しく見る
+          </a>
+
+        </div>
+
+        <div
+          class="recruit-card"
+          data-area="east"
+          data-category="security"
+        >
+
+          <div class="recruit-info">
+
+            <h3>
+              警備スタッフ
+            </h3>
+
+            <span>
+              正社員・アルバイト ｜ 熊本市東区
+            </span>
+
+          </div>
+
+          <a href="#" class="detail-button">
+            詳しく見る
+          </a>
+
+        </div>
+
+        <div
+          class="recruit-card"
+          data-area="mashiki"
+          data-category="equipment"
+        >
+
+          <div class="recruit-info">
+
+            <h3>
+              設備管理スタッフ
+            </h3>
+
+            <span>
+              正社員 ｜ 益城・上益城
+            </span>
+
+          </div>
+
+          <a href="#" class="detail-button">
+            詳しく見る
+          </a>
+
+        </div>
+
+        <div
+          class="recruit-card"
+          data-area="kikuyo"
+          data-category="cleaning"
+        >
+
+          <div class="recruit-info">
+
+            <h3>
+              清掃スタッフ
+            </h3>
+
+            <span>
+              パート ｜ 菊陽・大津
+            </span>
+
+          </div>
+
+          <a href="#" class="detail-button">
+            詳しく見る
+          </a>
+
+        </div>
+
+        <div
+          class="recruit-card"
+          data-area="other"
+          data-category="office"
+        >
+
+          <div class="recruit-info">
+
+            <h3>
+              企画・顧客管理スタッフ
+            </h3>
+
+            <span>
+              正社員 ｜ 熊本県内
+            </span>
+
+          </div>
+
+          <a href="#" class="detail-button">
+            詳しく見る
+          </a>
+
+        </div>
+
+        <div
+          class="recruit-card"
+          data-area="other"
+          data-category="office"
+        >
+
+          <div class="recruit-info">
+
+            <h3>
+              労務管理スタッフ
+            </h3>
+
+            <span>
+              正社員 ｜ 熊本県内
+            </span>
+
+          </div>
+
+          <a href="#" class="detail-button">
+            詳しく見る
+          </a>
+
+        </div>
+
+      </div>
+
+      <div class="no-jobs" id="noJobs">
+        現在、この条件で表示できる求人はありません。
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FLOW -->
+
+  <section class="section flow-section reveal">
+
+    <div class="section-inner">
+
+      <span class="section-kicker">
+        FLOW
+      </span>
+
+      <h2 class="section-title">
+        紹介を受けてからの流れ
+      </h2>
+
+      <div class="flow-grid">
+
+        <div class="flow-card">
+
+          <div class="flow-num">
+            01
+          </div>
+
+          <h3>
+            このページを見る
+          </h3>
+
+          <p>
+            まずはオーファスについて知ってください。
+          </p>
+
+        </div>
+
+        <div class="flow-card">
+
+          <div class="flow-num">
+            02
+          </div>
+
+          <h3>
+            近くの仕事を探す
+          </h3>
+
+          <p>
+            通いやすいエリアから仕事を探せます。
+          </p>
+
+        </div>
+
+        <div class="flow-card">
+
+          <div class="flow-num">
+            03
+          </div>
+
+          <h3>
+            LINEで聞いてみる
+          </h3>
+
+          <p>
+            応募前の相談や質問も気軽にできます。
+          </p>
+
+        </div>
+
+        <div class="flow-card">
+
+          <div class="flow-num">
+            04
+          </div>
+
+          <h3>
+            希望すれば選考へ
+          </h3>
+
+          <p>
+            納得した上で選考に進んでいただきます。
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- LINE CTA -->
+
+  <section class="section cta-section reveal" id="contact">
+
+    <div class="section-inner">
+
+      <p class="cta-mini">
+        まだ応募じゃなくて大丈夫。
+      </p>
+
+      <h2 class="cta-title">
+        LET'S TALK.
+      </h2>
+
+      <p class="cta-text">
+        仕事内容や働き方、職場の雰囲気など、
+        気になることがあればLINEからお気軽にご相談ください。
+      </p>
+
+      <div class="line-contact-box">
+
+        <div class="line-button-area">
+
+          <p class="line-guide-title">
+            スマホで見ている方
+          </p>
+
+          <a
+            href="https://lin.ee/UM4EIXgs"
+            class="line-button"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            LINEで気軽に話してみる →
+          </a>
+
+          <p class="line-guide-small">
+            タップするとLINEが開きます
+          </p>
+
+        </div>
+
+        <div class="line-divider">
+          OR
+        </div>
+
+        <div class="line-qr-area">
+
+          <p class="line-guide-title">
+            パソコンで見ている方
+          </p>
+
+          <img
+            src="line-qr.png"
+            alt="オーファス公式LINE QRコード"
+            class="line-qr"
+          >
+
+          <p class="line-guide-small">
+            スマホでQRコードを読み取ってください
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
 
 </main>
 
-
-<!-- =========================================
-     FOOTER
-========================================= -->
 
 <footer>
 
@@ -4000,7 +2605,6 @@
 
   </div>
 
-
   <p>
     © OHFAS CO., LTD. All Rights Reserved.
   </p>
@@ -4009,165 +2613,67 @@
 
 
 <script>
+  /* HERO SLIDESHOW */
+
+  const slides =
+    document.querySelectorAll(".hero-slide");
+
+  const dots =
+    document.querySelectorAll(".hero-dot");
+
+  let currentSlide = 0;
+
+  let slideTimer;
 
 
-/* =========================================
-   HERO SLIDESHOW
-========================================= */
+  function showSlide(index) {
 
-const slides =
-  document.querySelectorAll(".hero-slide");
+    slides.forEach(
+      slide => slide.classList.remove("active")
+    );
 
-const dots =
-  document.querySelectorAll(".hero-dot");
+    dots.forEach(
+      dot => dot.classList.remove("active")
+    );
 
-let currentSlide = 0;
+    slides[index].classList.add("active");
 
-let slideTimer;
+    dots[index].classList.add("active");
+
+    currentSlide = index;
+  }
 
 
-function showSlide(index) {
+  function nextSlide() {
 
-  slides.forEach(
-    slide =>
-      slide.classList.remove("active")
-  );
+    const next =
+      (currentSlide + 1) % slides.length;
+
+    showSlide(next);
+  }
+
+
+  function startSlide() {
+
+    slideTimer =
+      setInterval(nextSlide, 5000);
+  }
+
 
   dots.forEach(
-    dot =>
-      dot.classList.remove("active")
-  );
+    dot => {
 
-  slides[index]
-    .classList.add("active");
-
-  dots[index]
-    .classList.add("active");
-
-  currentSlide = index;
-
-}
-
-
-function nextSlide() {
-
-  const next =
-    (currentSlide + 1) %
-    slides.length;
-
-  showSlide(next);
-
-}
-
-
-function startSlide() {
-
-  slideTimer =
-    setInterval(
-      nextSlide,
-      5000
-    );
-
-}
-
-
-dots.forEach(
-  dot => {
-
-    dot.addEventListener(
-      "click",
-      () => {
-
-        clearInterval(slideTimer);
-
-        showSlide(
-          Number(dot.dataset.slide)
-        );
-
-        startSlide();
-
-      }
-    );
-
-  }
-);
-
-
-startSlide();
-
-
-
-/* =========================================
-   HEADER
-========================================= */
-
-const header =
-  document.getElementById("header");
-
-
-window.addEventListener(
-  "scroll",
-  () => {
-
-    if (window.scrollY > 40) {
-
-      header.classList.add(
-        "scrolled"
-      );
-
-    } else {
-
-      header.classList.remove(
-        "scrolled"
-      );
-
-    }
-
-  }
-);
-
-
-
-/* =========================================
-   MOBILE MENU
-========================================= */
-
-const menuButton =
-  document.getElementById(
-    "menuButton"
-  );
-
-const nav =
-  document.getElementById(
-    "nav"
-  );
-
-
-menuButton.addEventListener(
-  "click",
-  () => {
-
-    nav.classList.toggle(
-      "open"
-    );
-
-  }
-);
-
-
-document
-  .querySelectorAll("#nav a")
-  .forEach(
-    link => {
-
-      link.addEventListener(
+      dot.addEventListener(
         "click",
         () => {
 
-          nav.classList.remove(
-            "open"
+          clearInterval(slideTimer);
+
+          showSlide(
+            Number(dot.dataset.slide)
           );
 
+          startSlide();
         }
       );
 
@@ -4175,241 +2681,221 @@ document
   );
 
 
+  startSlide();
 
-/* =========================================
-   SCROLL REVEAL
-========================================= */
 
-const reveals =
-  document.querySelectorAll(
-    ".reveal"
+  /* HEADER */
+
+  const header =
+    document.getElementById("header");
+
+  window.addEventListener(
+    "scroll",
+    () => {
+
+      if (window.scrollY > 40) {
+        header.classList.add("scrolled");
+      } else {
+        header.classList.remove("scrolled");
+      }
+
+    }
   );
 
 
-const observer =
-  new IntersectionObserver(
+  /* MOBILE MENU */
 
-    entries => {
+  const menuButton =
+    document.getElementById("menuButton");
 
-      entries.forEach(
-        entry => {
+  const nav =
+    document.getElementById("nav");
 
-          if (
-            entry.isIntersecting
-          ) {
+  menuButton.addEventListener(
+    "click",
+    () => {
+      nav.classList.toggle("open");
+    }
+  );
 
-            entry.target
-              .classList
-              .add("show");
+
+  document
+    .querySelectorAll("#nav a")
+    .forEach(
+      link => {
+
+        link.addEventListener(
+          "click",
+          () => {
+            nav.classList.remove("open");
+          }
+        );
+
+      }
+    );
+
+
+  /* SCROLL REVEAL */
+
+  const reveals =
+    document.querySelectorAll(".reveal");
+
+  const observer =
+    new IntersectionObserver(
+      entries => {
+
+        entries.forEach(
+          entry => {
+
+            if (entry.isIntersecting) {
+              entry.target.classList.add("show");
+            }
 
           }
+        );
+
+      },
+      {
+        threshold: .1
+      }
+    );
+
+  reveals.forEach(
+    item => observer.observe(item)
+  );
+
+
+  /* AREA + JOB FILTER */
+
+  const areaButtons =
+    document.querySelectorAll(".area-card");
+
+  const filterButtons =
+    document.querySelectorAll(".filter-button");
+
+  const recruitCards =
+    document.querySelectorAll(".recruit-card");
+
+  const selectedArea =
+    document.getElementById("selectedArea");
+
+  const noJobs =
+    document.getElementById("noJobs");
+
+
+  let currentArea = "all";
+
+  let currentFilter = "all";
+
+
+  function updateJobs() {
+
+    let visibleCount = 0;
+
+
+    recruitCards.forEach(
+      card => {
+
+        const areaMatch =
+          currentArea === "all" ||
+          card.dataset.area === currentArea;
+
+        const filterMatch =
+          currentFilter === "all" ||
+          card.dataset.category === currentFilter;
+
+
+        if (areaMatch && filterMatch) {
+
+          card.classList.remove("hidden");
+
+          visibleCount++;
+
+        } else {
+
+          card.classList.add("hidden");
+
+        }
+
+      }
+    );
+
+
+    if (visibleCount === 0) {
+
+      noJobs.classList.add("show");
+
+    } else {
+
+      noJobs.classList.remove("show");
+
+    }
+
+  }
+
+
+  areaButtons.forEach(
+    button => {
+
+      button.addEventListener(
+        "click",
+        () => {
+
+          areaButtons.forEach(
+            btn => btn.classList.remove("active")
+          );
+
+          button.classList.add("active");
+
+          currentArea =
+            button.dataset.area;
+
+          selectedArea.textContent =
+            "表示中：" + button.dataset.label;
+
+          updateJobs();
+
+          document
+            .getElementById("recruit")
+            .scrollIntoView({
+              behavior: "smooth"
+            });
 
         }
       );
 
-    },
-
-    {
-      threshold: .1
     }
-
   );
 
 
-reveals.forEach(
-  item =>
-    observer.observe(item)
-);
+  filterButtons.forEach(
+    button => {
 
+      button.addEventListener(
+        "click",
+        () => {
 
+          filterButtons.forEach(
+            btn => btn.classList.remove("active")
+          );
 
-/* =========================================
-   AREA FILTER
-========================================= */
+          button.classList.add("active");
 
-const areaButtons =
-  document.querySelectorAll(
-    ".area-card"
-  );
+          currentFilter =
+            button.dataset.filter;
 
-const filterButtons =
-  document.querySelectorAll(
-    ".filter-button"
-  );
+          updateJobs();
 
-const recruitCards =
-  document.querySelectorAll(
-    ".recruit-card"
-  );
-
-const selectedArea =
-  document.getElementById(
-    "selectedArea"
-  );
-
-const noJobs =
-  document.getElementById(
-    "noJobs"
-  );
-
-
-let currentArea = "all";
-
-let currentFilter = "all";
-
-
-function updateJobs() {
-
-  let visibleCount = 0;
-
-
-  recruitCards.forEach(
-    card => {
-
-      const areaMatch =
-
-        currentArea === "all" ||
-
-        card.dataset.area ===
-        currentArea;
-
-
-      const filterMatch =
-
-        currentFilter === "all" ||
-
-        card.dataset.category ===
-        currentFilter;
-
-
-      if (
-        areaMatch &&
-        filterMatch
-      ) {
-
-        card.classList.remove(
-          "hidden"
-        );
-
-        visibleCount++;
-
-      } else {
-
-        card.classList.add(
-          "hidden"
-        );
-
-      }
+        }
+      );
 
     }
   );
 
 
-  if (visibleCount === 0) {
-
-    noJobs.classList.add(
-      "show"
-    );
-
-  } else {
-
-    noJobs.classList.remove(
-      "show"
-    );
-
-  }
-
-}
-
-
-
-areaButtons.forEach(
-  button => {
-
-    button.addEventListener(
-      "click",
-      () => {
-
-        areaButtons.forEach(
-          btn =>
-            btn.classList.remove(
-              "active"
-            )
-        );
-
-
-        button.classList.add(
-          "active"
-        );
-
-
-        currentArea =
-          button.dataset.area;
-
-
-        selectedArea.textContent =
-
-          "表示中：" +
-          button.dataset.label;
-
-
-        updateJobs();
-
-
-        document
-          .getElementById(
-            "recruit"
-          )
-          .scrollIntoView({
-            behavior: "smooth"
-          });
-
-      }
-    );
-
-  }
-);
-
-
-
-filterButtons.forEach(
-  button => {
-
-    button.addEventListener(
-      "click",
-      () => {
-
-        filterButtons.forEach(
-          btn =>
-            btn.classList.remove(
-              "active"
-            )
-        );
-
-
-        button.classList.add(
-          "active"
-        );
-
-
-        currentFilter =
-          button.dataset.filter;
-
-
-        updateJobs();
-
-      }
-    );
-
-  }
-);
-
-
-updateJobs();
-
+  updateJobs();
 
 </script>
-
 
 </body>
 
