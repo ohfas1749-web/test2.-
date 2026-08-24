@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>株式会社オーファス | 社員紹介・リファラル特設サイト</title>
-  <meta name="description" content="株式会社オーファスの社員・スタッフから紹介を受けた方のための特別案内ページです。このご縁に、ありがとう。熊本の街と暮らしを支える仕事をご紹介します。">
+  <meta name="description" content="株式会社オーファスの社員・スタッフから紹介を受けた方のための案内ページです。このご縁に、ありがとう。熊本の街と暮らしを支える仕事をご紹介します。">
   
-  <!-- Google Fonts: 幾何学的で細身・洗練された英字ゴシック(Plus Jakarta Sans) ＆ 軽やかで可読性の高い日本語ゴシック(Noto Sans JP) -->
+  <!-- Google Fonts: 幾何学的な細身英字ゴシック ＆ 洗練された日本語ゴシック -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -29,12 +29,12 @@
       --brand-mint: #3E8F8A;
       --brand-mint-subtle: #E3F1F0;
       --brand-sky: #5B95AC;
+      --brand-sky-subtle: #E8F2F6;
       --brand-mustard: #CFA043;
       --brand-mustard-subtle: #FBF4E4;
       --border-line: #E1E8EA;
       --border-soft: #EEF4F5;
       
-      /* タイポグラフィ：上質で細身なモダン・ゴシック体で統一 */
       --font-en: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       --font-ja: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       
@@ -66,7 +66,7 @@
       position: relative;
     }
 
-    /* 繊細な方眼グリッド背景 */
+    /* 繊細な方眼背景 */
     body::before {
       content: '';
       position: fixed;
@@ -77,7 +77,7 @@
       background-image: radial-gradient(var(--border-line) 1px, transparent 0);
       background-size: 36px 36px;
       pointer-events: none;
-      opacity: 0.45;
+      opacity: 0.4;
       z-index: -1;
     }
 
@@ -120,7 +120,7 @@
       position: relative;
     }
 
-    /* SECTION TITLE (ゴシック・洗練された大文字スペーシング) */
+    /* SECTION TITLE (ゴシック・洗練されたモダン見出し) */
     .section-graphic-title {
       font-family: var(--font-en);
       font-size: clamp(2.4rem, 5.5vw, 4.2rem);
@@ -159,33 +159,6 @@
       font-weight: 400;
     }
 
-    /* 画像プレースホルダー */
-    .img-placeholder-box {
-      width: 100%;
-      background: linear-gradient(135deg, #F4F8F8 0%, #EAF1F1 100%);
-      border: 1px dashed #BFD7D5;
-      border-radius: 4px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      color: #6D8E8B;
-      font-size: 0.8rem;
-      letter-spacing: 0.05em;
-      padding: 24px;
-      text-align: center;
-      min-height: 160px;
-    }
-
-    .img-placeholder-box svg {
-      width: 28px;
-      height: 28px;
-      stroke: #7DA6A3;
-      stroke-width: 1.4;
-      fill: none;
-      margin-bottom: 8px;
-    }
-
     /* スクロールアニメーション */
     .reveal-item {
       opacity: 0;
@@ -199,7 +172,7 @@
     }
 
     /* ==========================================================================
-       01. HEADER (ロゴを控えめにコンパクト化)
+       01. HEADER (小さく控えめなロゴ・日本語メニュー)
        ========================================================================== */
     .site-header {
       position: fixed;
@@ -207,13 +180,13 @@
       left: 0;
       width: 100%;
       z-index: 100;
-      padding: 18px 32px;
+      padding: 16px 32px;
       transition: padding 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
     }
 
     .site-header.is-scrolled {
-      padding: 12px 32px;
-      background: rgba(255, 255, 255, 0.94);
+      padding: 10px 32px;
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(8px);
       border-bottom: 1px solid rgba(225, 232, 234, 0.8);
       box-shadow: 0 2px 12px rgba(0, 0, 0, 0.02);
@@ -227,15 +200,15 @@
       justify-content: space-between;
     }
 
-    /* 小さく上品に配置したロゴ周り */
     .header-logo {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
+    /* 小さく上品なロゴ設定 */
     .logo-img-wrapper {
-      height: 22px; /* 以前より小さく設定 */
+      height: 20px;
       display: flex;
       align-items: center;
     }
@@ -248,7 +221,7 @@
 
     .logo-fallback-text {
       font-family: var(--font-en);
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       font-weight: 700;
       letter-spacing: 0.12em;
       color: var(--brand-mint);
@@ -258,27 +231,26 @@
     }
 
     .logo-badge {
-      font-family: var(--font-en);
-      font-size: 0.6rem;
-      font-weight: 600;
+      font-family: var(--font-ja);
+      font-size: 0.62rem;
+      font-weight: 500;
       background: var(--brand-mint-subtle);
       color: var(--brand-mint);
       padding: 1px 6px;
       border-radius: 4px;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.05em;
     }
 
     .header-nav {
       display: flex;
       align-items: center;
-      gap: 28px;
+      gap: 24px;
     }
 
     .nav-link {
-      font-family: var(--font-en);
       font-size: 0.82rem;
       font-weight: 500;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.06em;
       color: var(--text-sub);
       position: relative;
       padding: 4px 0;
@@ -309,9 +281,9 @@
       gap: 6px;
       background-color: #06C755;
       color: #FFF;
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       font-weight: 500;
-      padding: 7px 16px;
+      padding: 6px 14px;
       border-radius: 99px;
       letter-spacing: 0.04em;
     }
@@ -323,8 +295,8 @@
 
     .mobile-menu-toggle {
       display: none;
-      width: 40px;
-      height: 40px;
+      width: 36px;
+      height: 36px;
       flex-direction: column;
       justify-content: center;
       align-items: center;
@@ -334,7 +306,7 @@
 
     .mobile-menu-toggle span {
       display: block;
-      width: 20px;
+      width: 18px;
       height: 1.5px;
       background-color: var(--text-main);
       transition: transform 0.3s ease, opacity 0.3s ease;
@@ -356,7 +328,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: 24px;
+      gap: 22px;
       opacity: 0;
       visibility: hidden;
       transition: opacity 0.25s ease, visibility 0.25s ease;
@@ -368,18 +340,17 @@
     }
 
     .mobile-nav-overlay .nav-link {
-      font-size: 1.15rem;
-      letter-spacing: 0.15em;
+      font-size: 1.05rem;
       color: var(--text-main);
     }
 
     /* ==========================================================================
-       02. HERO / FIRST VIEW
+       02. HERO / FIRST VIEW (アイソメトリック・ビル断面イラスト再現)
        ========================================================================== */
     .hero-section {
       min-height: 88vh;
-      padding-top: 110px;
-      padding-bottom: 50px;
+      padding-top: 100px;
+      padding-bottom: 40px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -398,16 +369,16 @@
     .hero-text-block {
       text-align: center;
       max-width: 680px;
-      margin: 0 auto 36px;
+      margin: 0 auto 30px;
     }
 
     .hero-eyebrow {
       font-family: var(--font-en);
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 600;
       letter-spacing: 0.24em;
       color: var(--brand-sky);
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       display: inline-block;
     }
 
@@ -417,7 +388,7 @@
       line-height: 1.55;
       letter-spacing: 0.06em;
       color: var(--text-main);
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .hero-sub-copy {
@@ -427,43 +398,29 @@
     }
 
     .hero-illustration-stage {
-      max-width: 900px;
+      max-width: 920px;
       margin: 0 auto;
       position: relative;
     }
 
-    .hero-illustration-container {
-      position: relative;
-      border-radius: 6px;
-      background-color: var(--bg-white);
+    .hero-svg-card {
+      background: #FFFFFF;
       border: 1px solid #DFECE9;
+      border-radius: 8px;
       box-shadow: 0 4px 20px rgba(107, 163, 186, 0.06);
-      padding: 24px;
+      padding: 16px;
+      position: relative;
     }
 
-    .town-tag {
-      position: absolute;
-      background: rgba(255, 255, 255, 0.92);
-      border: 1px solid var(--border-line);
-      padding: 3px 10px;
-      border-radius: 99px;
-      font-size: 0.68rem;
-      font-family: var(--font-en);
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      color: var(--brand-mint);
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
-      pointer-events: none;
+    .hero-svg-canvas {
+      width: 100%;
+      height: auto;
+      display: block;
     }
-
-    .town-tag.tag-1 { top: 12%; left: 6%; }
-    .town-tag.tag-2 { top: 16%; right: 8%; }
-    .town-tag.tag-3 { bottom: 14%; left: 10%; }
-    .town-tag.tag-4 { bottom: 18%; right: 6%; }
 
     .hero-scroll-prompt {
       text-align: center;
-      margin-top: 36px;
+      margin-top: 30px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -476,7 +433,7 @@
 
     .hero-scroll-line {
       width: 1px;
-      height: 28px;
+      height: 24px;
       background: linear-gradient(to bottom, var(--brand-sky), transparent);
       animation: scrollDown 2s infinite ease-in-out;
     }
@@ -489,7 +446,7 @@
     }
 
     /* ==========================================================================
-       03. INTRODUCTION (HELLO)
+       03. INTRODUCTION (HELLO / 手描き対話イラスト)
        ========================================================================== */
     .intro-section {
       background: var(--bg-white);
@@ -498,23 +455,23 @@
     .intro-grid {
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
-      gap: 56px;
+      gap: 50px;
       align-items: center;
     }
 
     .intro-card {
       background: var(--bg-mint-tint);
       border-radius: 6px;
-      padding: 40px 36px;
+      padding: 32px 28px;
       border: 1px solid #DCECE9;
     }
 
     .intro-accent-box {
-      margin-top: 28px;
-      padding: 14px 18px;
+      margin-top: 24px;
+      padding: 12px 16px;
       background: var(--bg-white);
       border-left: 3px solid var(--brand-mustard);
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       font-weight: 500;
       color: var(--text-main);
     }
@@ -529,15 +486,15 @@
     .mvv-container {
       display: flex;
       flex-direction: column;
-      gap: 36px;
-      margin-top: 50px;
+      gap: 32px;
+      margin-top: 48px;
     }
 
     .mvv-row {
       display: grid;
       grid-template-columns: 150px 1fr;
       gap: 28px;
-      padding: 28px 0;
+      padding: 24px 0;
       border-bottom: 1px dashed var(--border-line);
       align-items: baseline;
     }
@@ -548,28 +505,28 @@
 
     .mvv-label {
       font-family: var(--font-en);
-      font-size: 1.35rem;
+      font-size: 1.3rem;
       font-weight: 600;
       letter-spacing: 0.12em;
       color: var(--brand-mint);
     }
 
     .mvv-title {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: 500;
       color: var(--text-main);
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .mvv-desc-list {
       list-style: none;
       color: var(--text-sub);
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       line-height: 2;
     }
 
     /* ==========================================================================
-       05. NUMBERS (Editorial Infographic / Modern Gothic)
+       05. NUMBERS (インフォグラフィック)
        ========================================================================== */
     .numbers-section {
       background: var(--bg-white);
@@ -580,12 +537,12 @@
     .numbers-hero-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      margin-bottom: 48px;
+      gap: 18px;
+      margin-bottom: 44px;
     }
 
     .number-hero-item {
-      padding: 28px 18px;
+      padding: 24px 16px;
       background: var(--bg-blue-tint);
       border-radius: 6px;
       text-align: center;
@@ -594,7 +551,7 @@
 
     .number-value {
       font-family: var(--font-en);
-      font-size: clamp(2rem, 3.2vw, 2.8rem);
+      font-size: clamp(1.9rem, 3vw, 2.6rem);
       font-weight: 600;
       color: var(--brand-sky);
       line-height: 1.1;
@@ -602,7 +559,7 @@
     }
 
     .number-unit {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       margin-left: 2px;
       color: var(--text-sub);
       font-weight: 400;
@@ -610,7 +567,7 @@
 
     .number-label-en {
       font-family: var(--font-en);
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 600;
       letter-spacing: 0.14em;
       color: var(--brand-mint);
@@ -620,7 +577,7 @@
     }
 
     .number-label-ja {
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: var(--text-main);
       margin-top: 2px;
       font-weight: 500;
@@ -629,21 +586,21 @@
     .numbers-charts-grid {
       display: grid;
       grid-template-columns: 1fr 1.2fr 1fr;
-      gap: 28px;
+      gap: 24px;
       background: var(--bg-sand-tint);
-      padding: 36px 30px;
+      padding: 32px 26px;
       border-radius: 6px;
       border: 1px solid #ECE7DC;
     }
 
     .chart-box-title {
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: 500;
       color: var(--text-main);
-      margin-bottom: 18px;
+      margin-bottom: 16px;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
 
     .chart-box-title::before {
@@ -658,12 +615,12 @@
     .gender-ratio-container {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 18px;
     }
 
     .gender-donut-svg {
-      width: 90px;
-      height: 90px;
+      width: 85px;
+      height: 85px;
       transform: rotate(-90deg);
     }
 
@@ -683,34 +640,34 @@
     }
 
     .gender-legend {
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       line-height: 1.8;
     }
 
     .gender-legend span {
       display: inline-block;
-      width: 10px;
-      height: 10px;
+      width: 9px;
+      height: 9px;
       border-radius: 2px;
-      margin-right: 6px;
+      margin-right: 5px;
     }
 
     .bar-group {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
     }
 
     .bar-item {
       display: grid;
-      grid-template-columns: 50px 1fr 38px;
+      grid-template-columns: 46px 1fr 36px;
       align-items: center;
-      gap: 10px;
-      font-size: 0.78rem;
+      gap: 8px;
+      font-size: 0.76rem;
     }
 
     .bar-track {
-      height: 7px;
+      height: 6px;
       background: #E5E0D5;
       border-radius: 99px;
       overflow: hidden;
@@ -725,17 +682,17 @@
     }
 
     .stacked-bar-container {
-      margin-top: 12px;
+      margin-top: 10px;
     }
 
     .stacked-bar-track {
-      height: 16px;
+      height: 15px;
       width: 100%;
       background: #E5E0D5;
       border-radius: 4px;
       display: flex;
       overflow: hidden;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .stacked-fill-1 {
@@ -759,9 +716,9 @@
     .history-editorial-track {
       display: flex;
       flex-direction: column;
-      gap: 36px;
+      gap: 32px;
       max-width: 780px;
-      margin: 40px auto 0;
+      margin: 36px auto 0;
       position: relative;
       padding-left: 28px;
       border-left: 1px solid #BFD9D6;
@@ -775,7 +732,7 @@
       content: '';
       position: absolute;
       left: -33px;
-      top: 10px;
+      top: 8px;
       width: 9px;
       height: 9px;
       background: var(--bg-white);
@@ -785,23 +742,23 @@
 
     .history-year {
       font-family: var(--font-en);
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       font-weight: 600;
       letter-spacing: 0.05em;
       color: var(--brand-mint);
       line-height: 1;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     .history-body-title {
-      font-size: 1rem;
+      font-size: 0.98rem;
       font-weight: 500;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
       color: var(--text-main);
     }
 
     .history-text {
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       color: var(--text-sub);
       line-height: 1.8;
     }
@@ -816,8 +773,8 @@
     .work-editorial-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-      margin-top: 40px;
+      gap: 24px;
+      margin-top: 36px;
     }
 
     .work-item-card {
@@ -836,7 +793,7 @@
     }
 
     .work-img-container {
-      height: 180px;
+      height: 170px;
       position: relative;
       overflow: hidden;
       background: #EBF3F3;
@@ -854,7 +811,7 @@
     }
 
     .work-content {
-      padding: 22px;
+      padding: 20px;
       display: flex;
       flex-direction: column;
       flex-grow: 1;
@@ -862,7 +819,7 @@
 
     .work-tag-en {
       font-family: var(--font-en);
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 600;
       letter-spacing: 0.12em;
       color: var(--brand-sky);
@@ -871,16 +828,16 @@
     }
 
     .work-title-ja {
-      font-size: 1.05rem;
+      font-size: 1.02rem;
       font-weight: 500;
       color: var(--text-main);
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .work-desc {
-      font-size: 0.84rem;
+      font-size: 0.82rem;
       color: var(--text-sub);
-      line-height: 1.8;
+      line-height: 1.75;
     }
 
     /* ==========================================================================
@@ -891,7 +848,7 @@
     }
 
     .filter-pills-bar {
-      margin: 28px 0;
+      margin: 24px 0;
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
@@ -899,15 +856,15 @@
     }
 
     .filter-label-txt {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 500;
       color: var(--text-sub);
-      margin-right: 6px;
+      margin-right: 4px;
     }
 
     .filter-btn {
-      font-size: 0.82rem;
-      padding: 6px 16px;
+      font-size: 0.8rem;
+      padding: 5px 14px;
       border-radius: 99px;
       background: var(--bg-white);
       border: 1px solid var(--border-line);
@@ -925,10 +882,10 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 20px;
-      padding-bottom: 10px;
+      margin-bottom: 18px;
+      padding-bottom: 8px;
       border-bottom: 1px solid var(--border-line);
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       color: var(--text-sub);
     }
 
@@ -942,11 +899,11 @@
       background: var(--bg-white);
       border: 1px solid var(--border-line);
       border-radius: 6px;
-      padding: 18px 24px;
+      padding: 16px 22px;
       display: grid;
-      grid-template-columns: 40px 1.5fr 1fr 110px 120px;
+      grid-template-columns: 36px 1.5fr 1fr 100px 110px;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
       transition: border-color 0.2s ease, transform 0.2s ease;
     }
 
@@ -957,26 +914,26 @@
 
     .job-index-num {
       font-family: var(--font-en);
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 600;
       color: var(--brand-sky);
     }
 
     .job-index-role {
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: 500;
       color: var(--text-main);
     }
 
     .job-index-area {
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: var(--text-sub);
     }
 
     .job-index-type {
       display: inline-block;
-      font-size: 0.72rem;
-      padding: 3px 8px;
+      font-size: 0.7rem;
+      padding: 2px 7px;
       border-radius: 4px;
       background: var(--brand-mint-subtle);
       color: var(--brand-mint);
@@ -985,7 +942,7 @@
     }
 
     .job-index-action-btn {
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: var(--brand-mint);
       font-weight: 500;
       display: flex;
@@ -1004,15 +961,15 @@
     .people-editorial-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-      margin-top: 40px;
+      gap: 24px;
+      margin-top: 36px;
     }
 
     .staff-card {
       background: var(--bg-base);
       border: 1px solid var(--border-soft);
       border-radius: 6px;
-      padding: 24px;
+      padding: 22px;
       cursor: pointer;
       transition: transform 0.25s ease, border-color 0.25s ease;
     }
@@ -1023,13 +980,13 @@
     }
 
     .staff-avatar-frame {
-      width: 72px;
-      height: 72px;
+      width: 68px;
+      height: 68px;
       border-radius: 50%;
       overflow: hidden;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       border: 2px solid #FFF;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+      box-shadow: 0 3px 8px rgba(0,0,0,0.05);
       background: #E8F0F0;
     }
 
@@ -1040,7 +997,7 @@
     }
 
     .staff-role-badge {
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       color: var(--brand-sky);
       font-family: var(--font-en);
       font-weight: 600;
@@ -1049,24 +1006,24 @@
     }
 
     .staff-name {
-      font-size: 1rem;
+      font-size: 0.98rem;
       font-weight: 500;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .staff-quote-balloon {
       background: #FFFFFF;
       border: 1px solid var(--border-line);
       border-radius: 4px;
-      padding: 14px;
-      font-size: 0.82rem;
+      padding: 12px;
+      font-size: 0.8rem;
       color: var(--text-sub);
-      line-height: 1.7;
+      line-height: 1.65;
     }
 
     .staff-readmore {
-      margin-top: 12px;
-      font-size: 0.74rem;
+      margin-top: 10px;
+      font-size: 0.72rem;
       color: var(--brand-mint);
       font-weight: 500;
       display: flex;
@@ -1084,38 +1041,38 @@
     .howto-path-container {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      gap: 16px;
-      margin-top: 48px;
+      gap: 14px;
+      margin-top: 40px;
     }
 
     .howto-step-item {
       background: var(--bg-white);
       border: 1px solid #ECE7DC;
       border-radius: 6px;
-      padding: 22px 18px;
+      padding: 20px 16px;
       display: flex;
       flex-direction: column;
     }
 
     .howto-step-num {
       font-family: var(--font-en);
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       font-weight: 700;
       color: var(--brand-mustard);
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     .howto-step-title {
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: 500;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
       color: var(--text-main);
     }
 
     .howto-step-text {
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       color: var(--text-sub);
-      line-height: 1.6;
+      line-height: 1.55;
     }
 
     /* ==========================================================================
@@ -1128,9 +1085,9 @@
     .faq-accordion-list {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
       max-width: 780px;
-      margin: 36px auto 0;
+      margin: 32px auto 0;
     }
 
     .faq-item {
@@ -1142,12 +1099,12 @@
 
     .faq-question-btn {
       width: 100%;
-      padding: 18px 24px;
+      padding: 16px 22px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       text-align: left;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       font-weight: 500;
       color: var(--text-main);
     }
@@ -1180,15 +1137,15 @@
     }
 
     .faq-answer-content {
-      padding: 16px 24px 20px;
-      font-size: 0.88rem;
+      padding: 14px 22px 18px;
+      font-size: 0.86rem;
       color: var(--text-sub);
-      line-height: 1.85;
+      line-height: 1.8;
       border-top: 1px dashed var(--border-soft);
     }
 
     /* ==========================================================================
-       12. LINE (LET'S TALK)
+       12. LINE (LET'S TALK) ※PC QRコード注記削除・クリーンな誘導
        ========================================================================== */
     .line-section {
       background: linear-gradient(180deg, #FFFFFF 0%, #EFF8F6 100%);
@@ -1198,12 +1155,14 @@
       background: var(--bg-white);
       border: 1px solid #D5E6E4;
       border-radius: 8px;
-      padding: clamp(28px, 5vw, 56px);
+      padding: clamp(28px, 5vw, 48px);
       box-shadow: 0 6px 24px rgba(62, 143, 138, 0.05);
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 40px;
+      display: flex;
+      flex-direction: column;
       align-items: center;
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto;
     }
 
     .line-cta-btn {
@@ -1213,9 +1172,9 @@
       gap: 10px;
       background: #06C755;
       color: #FFFFFF;
-      padding: 14px 32px;
+      padding: 15px 36px;
       border-radius: 99px;
-      font-size: 0.95rem;
+      font-size: 0.96rem;
       font-weight: 500;
       letter-spacing: 0.04em;
       margin-top: 24px;
@@ -1227,60 +1186,37 @@
       transform: translateY(-2px);
     }
 
-    .line-qr-box {
-      background: var(--bg-mint-tint);
-      border: 1px dashed #BEDAD7;
-      border-radius: 6px;
-      padding: 20px;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .line-qr-img-wrapper {
-      width: 120px;
-      height: 120px;
-      background: #FFF;
-      border: 1px solid var(--border-line);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 10px;
-    }
-
     /* ==========================================================================
        13. FOOTER
        ========================================================================== */
     .site-footer {
       background: #F4F8F8;
       border-top: 1px solid var(--border-soft);
-      padding: 70px 0 36px;
+      padding: 60px 0 32px;
       text-align: center;
     }
 
     .footer-grand-copy {
       font-family: var(--font-en);
-      font-size: clamp(1.8rem, 4.5vw, 3.2rem);
+      font-size: clamp(1.8rem, 4.5vw, 3rem);
       font-weight: 300;
       color: #8BAFAc;
       letter-spacing: 0.16em;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     .footer-sub-copy {
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: var(--text-sub);
-      margin-bottom: 32px;
+      margin-bottom: 28px;
       letter-spacing: 0.06em;
     }
 
     .footer-copy-text {
       font-family: var(--font-en);
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       color: var(--text-light);
-      margin-top: 36px;
+      margin-top: 32px;
       letter-spacing: 0.06em;
     }
 
@@ -1317,7 +1253,7 @@
       max-height: 90vh;
       border-radius: 8px;
       overflow-y: auto;
-      padding: 36px 30px;
+      padding: 32px 26px;
       position: relative;
       box-shadow: 0 14px 36px rgba(0,0,0,0.1);
       transform: translateY(16px);
@@ -1330,8 +1266,8 @@
 
     .modal-close-btn {
       position: absolute;
-      top: 20px;
-      right: 20px;
+      top: 18px;
+      right: 18px;
       width: 32px;
       height: 32px;
       border-radius: 50%;
@@ -1351,12 +1287,12 @@
     .modal-table {
       width: 100%;
       border-collapse: collapse;
-      margin: 20px 0;
-      font-size: 0.86rem;
+      margin: 18px 0;
+      font-size: 0.85rem;
     }
 
     .modal-table th, .modal-table td {
-      padding: 10px 14px;
+      padding: 10px 12px;
       border-bottom: 1px solid var(--border-soft);
       text-align: left;
     }
@@ -1375,17 +1311,16 @@
       .header-nav, .header-line-btn { display: none; }
       .mobile-menu-toggle { display: flex; }
       
-      .intro-grid { grid-template-columns: 1fr; gap: 36px; }
+      .intro-grid { grid-template-columns: 1fr; gap: 32px; }
       .numbers-hero-grid { grid-template-columns: repeat(2, 1fr); }
-      .numbers-charts-grid { grid-template-columns: 1fr; gap: 32px; }
+      .numbers-charts-grid { grid-template-columns: 1fr; gap: 28px; }
       .work-editorial-grid { grid-template-columns: 1fr; }
       .people-editorial-grid { grid-template-columns: 1fr; }
-      .howto-path-container { grid-template-columns: 1fr; gap: 12px; }
-      .line-card-frame { grid-template-columns: 1fr; }
+      .howto-path-container { grid-template-columns: 1fr; gap: 10px; }
       
       .job-index-item {
-        grid-template-columns: 32px 1fr auto;
-        gap: 10px;
+        grid-template-columns: 30px 1fr auto;
+        gap: 8px;
       }
       .job-index-area { grid-column: 2 / 3; }
       .job-index-type { grid-column: 2 / 3; justify-self: start; }
@@ -1393,11 +1328,10 @@
     }
 
     @media (max-width: 540px) {
-      .site-header { padding: 14px 18px; }
+      .site-header { padding: 12px 16px; }
       .container, .container-narrow { padding: 0 16px; }
       .numbers-hero-grid { grid-template-columns: 1fr; }
       .mvv-row { grid-template-columns: 1fr; gap: 6px; }
-      .line-qr-box { display: none; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1412,7 +1346,7 @@
 <body>
 
   <!-- ==========================================================================
-       HEADER (ロゴを小さく控えめに、モダンゴシックで端正なナビゲーション)
+       HEADER (小さく控えめなロゴ・日本語ナビゲーション)
        ========================================================================== -->
   <header class="site-header" id="siteHeader">
     <div class="header-inner">
@@ -1420,23 +1354,22 @@
         <div class="logo-img-wrapper">
           <img src="logo.png" alt="OHFAS ロゴ" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
           <div class="logo-fallback-text" style="display:none;">
-            OHFAS <span class="logo-badge">REFERRAL</span>
+            OHFAS <span class="logo-badge">社員紹介</span>
           </div>
         </div>
       </a>
 
       <nav class="header-nav" aria-label="メインナビゲーション">
-        <a href="#about" class="nav-link">ABOUT</a>
-        <a href="#numbers" class="nav-link">NUMBERS</a>
-        <a href="#work" class="nav-link">WORK</a>
-        <a href="#area" class="nav-link">AREA</a>
-        <a href="#jobs" class="nav-link">JOBS</a>
-        <a href="#people" class="nav-link">PEOPLE</a>
-        <a href="#faq" class="nav-link">FAQ</a>
+        <a href="#about" class="nav-link">会社について</a>
+        <a href="#numbers" class="nav-link">数字で見る</a>
+        <a href="#work" class="nav-link">仕事内容</a>
+        <a href="#area" class="nav-link">エリア・求人</a>
+        <a href="#people" class="nav-link">働く人の声</a>
+        <a href="#faq" class="nav-link">よくある質問</a>
       </nav>
 
       <a href="https://lin.ee/UM4EIXgs" target="_blank" rel="noopener noreferrer" class="header-line-btn">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.82 2 10.53c0 2.94 1.76 5.54 4.45 7.07-.19.7-.7 2.53-.8 2.92-.13.51.19.5.39.37.16-.1 2.21-1.48 3.1-2.09.91.13 1.87.2 2.86.2 5.52 0 10-3.82 10-8.53S17.52 2 12 2z"/></svg>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.82 2 10.53c0 2.94 1.76 5.54 4.45 7.07-.19.7-.7 2.53-.8 2.92-.13.51.19.5.39.37.16-.1 2.21-1.48 3.1-2.09.91.13 1.87.2 2.86.2 5.52 0 10-3.82 10-8.53S17.52 2 12 2z"/></svg>
         LINEで相談
       </a>
 
@@ -1450,19 +1383,19 @@
 
   <!-- Mobile Menu Overlay -->
   <div class="mobile-nav-overlay" id="mobileOverlay">
-    <a href="#about" class="nav-link mobile-nav-link">ABOUT</a>
-    <a href="#numbers" class="nav-link mobile-nav-link">NUMBERS</a>
-    <a href="#work" class="nav-link mobile-nav-link">WORK</a>
-    <a href="#area" class="nav-link mobile-nav-link">AREA & JOBS</a>
-    <a href="#people" class="nav-link mobile-nav-link">PEOPLE</a>
-    <a href="#faq" class="nav-link mobile-nav-link">FAQ</a>
+    <a href="#about" class="nav-link mobile-nav-link">会社について</a>
+    <a href="#numbers" class="nav-link mobile-nav-link">数字で見るオーファス</a>
+    <a href="#work" class="nav-link mobile-nav-link">オーファスの仕事</a>
+    <a href="#area" class="nav-link mobile-nav-link">エリアと募集中のお仕事</a>
+    <a href="#people" class="nav-link mobile-nav-link">働く人の声</a>
+    <a href="#faq" class="nav-link mobile-nav-link">よくある質問</a>
     <a href="https://lin.ee/UM4EIXgs" target="_blank" rel="noopener noreferrer" class="header-line-btn" style="display:inline-flex; margin-top:14px; padding: 10px 24px; font-size: 0.9rem;">
       LINEで気軽に話を聞いてみる
     </a>
   </div>
 
   <!-- ==========================================================================
-       HERO / FIRST VIEW
+       HERO / FIRST VIEW (添付画像の世界観を反映した手描き風アイソメトリックイラスト)
        ========================================================================== -->
   <section class="hero-section">
     <div class="hero-content-wrap">
@@ -1475,20 +1408,198 @@
         </p>
       </div>
 
-      <!-- イラストステージ -->
+      <!-- ビル断面・各フロアで働くスタッフの手描き風SVGイラスト -->
       <div class="hero-illustration-stage reveal-item">
-        <div class="hero-illustration-container">
-          <img src="hero-illustration.png" alt="熊本の街と働く人々を描いた手描きイラスト" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-          <div class="img-placeholder-box" style="display:none; min-height:280px;">
-            <svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l8-4v18M13 21V11l6 3v7M9 9v.01M9 13v.01M9 17v.01M17 17v.01"/></svg>
-            <strong style="font-family:var(--font-en); font-weight:600;">hero-illustration.png</strong>
-            <span style="font-size:0.75rem; margin-top:4px;">熊本の街並み・ビル・病院・働く人々の手描き線画イラスト</span>
-          </div>
+        <div class="hero-svg-card">
+          <svg class="hero-svg-canvas" viewBox="0 0 880 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#F2F9F9"/>
+                <stop offset="100%" stop-color="#E5F1F0"/>
+              </linearGradient>
+              <linearGradient id="roofGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#F4F8F8"/>
+                <stop offset="100%" stop-color="#E2EDED"/>
+              </linearGradient>
+              <filter id="softShadow" x="-5%" y="-5%" width="110%" height="115%">
+                <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#3A6B68" flood-opacity="0.08"/>
+              </filter>
+            </defs>
 
-          <span class="town-tag tag-1">CLEANING</span>
-          <span class="town-tag tag-2">FACILITY</span>
-          <span class="town-tag tag-3">SECURITY</span>
-          <span class="town-tag tag-4">MANAGEMENT</span>
+            <!-- 街・背景要素（木々・道路・街並み） -->
+            <rect width="880" height="500" rx="6" fill="url(#skyGrad)"/>
+            
+            <!-- 雲 -->
+            <path d="M120 70 q15 -18 35 0 q20 -10 30 10 q15 15 -5 20 h-55 q-15 -10 -5 -30 z" fill="#FFFFFF" opacity="0.8"/>
+            <path d="M720 85 q12 -14 28 0 q16 -8 24 8 q12 12 -4 16 h-44 q-12 -8 -4 -24 z" fill="#FFFFFF" opacity="0.8"/>
+
+            <!-- 道路＆植栽 -->
+            <path d="M0 430 L880 430 L880 500 L0 500 Z" fill="#EAEFEF"/>
+            <path d="M0 420 L880 420" stroke="#CBDCDC" stroke-width="3" stroke-dasharray="16 12"/>
+            
+            <!-- 植栽・グリーン -->
+            <ellipse cx="90" cy="380" rx="55" ry="32" fill="#BCE0D7"/>
+            <ellipse cx="140" cy="390" rx="40" ry="24" fill="#A8D6CB"/>
+            <path d="M90 380 L90 415 M140 390 L140 415" stroke="#7AA99F" stroke-width="3" stroke-linecap="round"/>
+
+            <!-- ビル本体構造（アイソメトリック断面） -->
+            <g filter="url(#softShadow)">
+              <!-- ビル外壁・躯体 -->
+              <path d="M 240 100 L 640 100 L 640 420 L 240 420 Z" fill="#FFFFFF" stroke="#608285" stroke-width="2.5" stroke-linejoin="round"/>
+              <!-- 屋上スラブ -->
+              <path d="M 220 100 L 440 25 L 660 100 L 640 100 Z" fill="url(#roofGrad)" stroke="#608285" stroke-width="2.5" stroke-linejoin="round"/>
+              <!-- 各フロアの床（スラブ） -->
+              <line x1="240" y1="210" x2="640" y2="210" stroke="#608285" stroke-width="2.5"/>
+              <line x1="240" y1="315" x2="640" y2="315" stroke="#608285" stroke-width="2.5"/>
+              <!-- 縦パイプ・配管シャフト -->
+              <path d="M 600 60 L 600 420" stroke="#5B95AC" stroke-width="6" stroke-linecap="round"/>
+              <path d="M 612 80 L 612 420" stroke="#E59980" stroke-width="4" stroke-linecap="round"/>
+            </g>
+
+            <!-- ================= 屋上：設備管理 (FACILITY & MAINTENANCE) ================= -->
+            <g id="roof-facility">
+              <!-- ソーラーパネル・キュービクル・空調室外機 -->
+              <rect x="270" y="55" width="60" height="35" rx="2" fill="#3D5A6C" stroke="#2B4352" stroke-width="1.5" transform="skewX(-15)"/>
+              <rect x="360" y="60" width="45" height="32" fill="#D6E4E6" stroke="#608285" stroke-width="1.5"/>
+              <rect x="415" y="60" width="45" height="32" fill="#D6E4E6" stroke="#608285" stroke-width="1.5"/>
+              <circle cx="437" cy="76" r="10" stroke="#87A6A8" stroke-width="1.5" fill="none"/>
+              <!-- 配電盤 -->
+              <rect x="520" y="45" width="50" height="50" fill="#EAF0F2" stroke="#608285" stroke-width="2"/>
+              <line x1="545" y1="45" x2="545" y2="95" stroke="#608285" stroke-width="1"/>
+              <!-- 点検スタッフ -->
+              <circle cx="495" cy="62" r="7" fill="#F7D3B6"/>
+              <path d="M 488 60 Q 495 52 502 60" fill="#2E7099"/>
+              <rect x="488" y="70" width="14" height="24" rx="3" fill="#3882B0"/>
+              <!-- 手元のバインダー -->
+              <rect x="500" y="72" width="7" height="10" fill="#CFA043"/>
+              <!-- フキダシ注記 -->
+              <g transform="translate(450, 18)">
+                <rect x="0" y="0" width="130" height="22" rx="11" fill="#FFFFFF" stroke="#3E8F8A" stroke-width="1.2"/>
+                <text x="65" y="15" fill="#3E8F8A" font-size="11" font-family="'Noto Sans JP', sans-serif" font-weight="500" text-anchor="middle">屋上設備・空調点検</text>
+              </g>
+            </g>
+
+            <!-- ================= 3階：オフィス・管理・電話交換 (MANAGEMENT & OFFICE) ================= -->
+            <g id="floor3-office">
+              <!-- デスクとPC -->
+              <rect x="270" y="165" width="85" height="40" rx="2" fill="#F0F4F5" stroke="#A2BABE" stroke-width="1.5"/>
+              <rect x="295" y="145" width="30" height="20" rx="2" fill="#4B636E"/>
+              <rect x="400" y="165" width="85" height="40" rx="2" fill="#F0F4F5" stroke="#A2BABE" stroke-width="1.5"/>
+              <rect x="425" y="145" width="30" height="20" rx="2" fill="#4B636E"/>
+
+              <!-- 電話交換・事務スタッフ (女性) -->
+              <circle cx="330" cy="148" r="6.5" fill="#FCDDC5"/>
+              <path d="M 323 148 Q 330 140 337 148" fill="#50382E"/>
+              <rect x="323" y="156" width="14" height="22" rx="3" fill="#529994"/>
+              <path d="M 321 146 Q 320 152 325 153" stroke="#222" stroke-width="1.2" fill="none"/> <!-- ヘッドセット -->
+
+              <!-- 労務・顧客管理スタッフ (男性) -->
+              <circle cx="460" cy="148" r="6.5" fill="#FCDDC5"/>
+              <path d="M 453 146 Q 460 140 467 146" fill="#2A3842"/>
+              <rect x="453" y="156" width="14" height="22" rx="3" fill="#3E6F8E"/>
+
+              <!-- モニター監視盤 -->
+              <rect x="520" y="130" width="60" height="35" rx="2" fill="#2E3D45"/>
+              <rect x="525" y="135" width="22" height="12" fill="#4FB3A9"/>
+              <rect x="552" y="135" width="22" height="12" fill="#4FB3A9"/>
+              <rect x="525" y="150" width="22" height="12" fill="#5B95AC"/>
+              <rect x="552" y="150" width="22" height="12" fill="#5B95AC"/>
+
+              <g transform="translate(250, 118)">
+                <rect x="0" y="0" width="140" height="22" rx="11" fill="#FFFFFF" stroke="#3E8F8A" stroke-width="1.2"/>
+                <text x="70" y="15" fill="#3E8F8A" font-size="11" font-family="'Noto Sans JP', sans-serif" font-weight="500" text-anchor="middle">企画・労務・電話交換</text>
+              </g>
+            </g>
+
+            <!-- ================= 2階：打合せ・空調メンテナンス (MEETING & DUCT) ================= -->
+            <g id="floor2-meeting">
+              <!-- 天井点検口＆作業スタッフ -->
+              <rect x="270" y="215" width="40" height="8" fill="#D0E3E5" stroke="#608285" stroke-width="1"/>
+              <!-- 脚立とスタッフ -->
+              <path d="M 280 295 L 290 235 L 300 295" stroke="#7A9396" stroke-width="2"/>
+              <circle cx="290" cy="230" r="6.5" fill="#FCDDC5"/>
+              <rect x="283" y="238" width="14" height="22" rx="3" fill="#3882B0"/>
+              <path d="M 290 238 L 295 220" stroke="#3882B0" stroke-width="3" stroke-linecap="round"/> <!-- 腕を上げて天井確認 -->
+
+              <!-- 打合せスペース（スーツの顧客対応スタッフ） -->
+              <circle cx="390" cy="255" r="6.5" fill="#FCDDC5"/>
+              <rect x="383" y="263" width="14" height="24" rx="3" fill="#2E4857"/>
+              <circle cx="430" cy="255" r="6.5" fill="#FCDDC5"/>
+              <rect x="423" y="263" width="14" height="24" rx="3" fill="#556975"/>
+              <ellipse cx="410" cy="285" rx="35" ry="10" fill="#E8EFF0" stroke="#8CAAB0" stroke-width="1.5"/>
+
+              <!-- 観葉植物 -->
+              <path d="M 545 300 L 555 300 L 553 312 L 547 312 Z" fill="#CFA043"/>
+              <circle cx="550" cy="295" r="10" fill="#78B8A6"/>
+
+              <g transform="translate(450, 225)">
+                <rect x="0" y="0" width="130" height="22" rx="11" fill="#FFFFFF" stroke="#3E8F8A" stroke-width="1.2"/>
+                <text x="65" y="15" fill="#3E8F8A" font-size="11" font-family="'Noto Sans JP', sans-serif" font-weight="500" text-anchor="middle">施設巡回・顧客対応</text>
+              </g>
+            </g>
+
+            <!-- ================= 1階：エントランス・清掃・受付 (CLEANING & FRONT) ================= -->
+            <g id="floor1-entrance">
+              <!-- 受付カウンター -->
+              <rect x="410" y="360" width="130" height="50" rx="3" fill="#E1ECEB" stroke="#7A9B9E" stroke-width="2"/>
+              <circle cx="445" cy="345" r="6.5" fill="#FCDDC5"/>
+              <rect x="438" y="353" width="14" height="22" rx="3" fill="#3E8F8A"/>
+              <!-- 来客者 -->
+              <circle cx="510" cy="345" r="6.5" fill="#FCDDC5"/>
+              <rect x="503" y="353" width="14" height="24" rx="3" fill="#3A4D59"/>
+
+              <!-- 清掃スタッフ（モップがけ） -->
+              <circle cx="310" cy="350" r="6.5" fill="#FCDDC5"/>
+              <path d="M 303 348 Q 310 342 317 348" fill="#3882B0"/> <!-- キャップ -->
+              <rect x="303" y="358" width="14" height="24" rx="3" fill="#58A7D8"/>
+              <!-- モップ -->
+              <line x1="312" y1="365" x2="335" y2="405" stroke="#738A8C" stroke-width="2" stroke-linecap="round"/>
+              <ellipse cx="338" cy="406" rx="8" ry="3" fill="#D6E8E8"/>
+
+              <!-- 清掃カート -->
+              <rect x="255" y="370" width="26" height="35" rx="2" fill="#F5FAF9" stroke="#7A9B9E" stroke-width="1.5"/>
+              <circle cx="260" cy="408" r="3" fill="#555"/>
+              <circle cx="276" cy="408" r="3" fill="#555"/>
+
+              <g transform="translate(250, 328)">
+                <rect x="0" y="0" width="120" height="22" rx="11" fill="#FFFFFF" stroke="#3E8F8A" stroke-width="1.2"/>
+                <text x="60" y="15" fill="#3E8F8A" font-size="11" font-family="'Noto Sans JP', sans-serif" font-weight="500" text-anchor="middle">館内日常清掃</text>
+              </g>
+            </g>
+
+            <!-- ================= ビル外構・道路：警備スタッフ・誘導 (SECURITY) ================= -->
+            <g id="ground-security">
+              <!-- 左側：警備スタッフ（誘導棒を掲げる） -->
+              <circle cx="160" cy="375" r="6.5" fill="#FCDDC5"/>
+              <path d="M 153 373 Q 160 367 167 373" fill="#203E54"/> <!-- 制帽 -->
+              <rect x="153" y="383" width="14" height="25" rx="3" fill="#3A6482"/>
+              <!-- 蛍光ベスト -->
+              <rect x="154" y="384" width="12" height="12" fill="#E6D337" opacity="0.85"/>
+              <!-- 誘導棒（赤） -->
+              <line x1="167" y1="388" x2="185" y2="378" stroke="#E65A47" stroke-width="3" stroke-linecap="round"/>
+              <!-- コーン -->
+              <polygon points="125,418 135,418 130,395" fill="#E8684A"/>
+              <polygon points="140,418 150,418 145,395" fill="#E8684A"/>
+
+              <!-- 右側：巡回警備＆車両誘導 -->
+              <circle cx="680" cy="375" r="6.5" fill="#FCDDC5"/>
+              <path d="M 673 373 Q 680 367 687 373" fill="#203E54"/>
+              <rect x="673" y="383" width="14" height="25" rx="3" fill="#3A6482"/>
+              <rect x="674" y="384" width="12" height="12" fill="#E6D337" opacity="0.85"/>
+              <line x1="673" y1="388" x2="658" y2="380" stroke="#E65A47" stroke-width="3" stroke-linecap="round"/>
+
+              <!-- 車両 -->
+              <rect x="720" y="385" width="70" height="30" rx="6" fill="#526E7F"/>
+              <rect x="732" y="375" width="42" height="15" rx="3" fill="#99B8C7"/>
+              <circle cx="736" cy="415" r="6" fill="#2B363D"/>
+              <circle cx="774" cy="415" r="6" fill="#2B363D"/>
+
+              <g transform="translate(670, 335)">
+                <rect x="0" y="0" width="130" height="22" rx="11" fill="#FFFFFF" stroke="#3E8F8A" stroke-width="1.2"/>
+                <text x="65" y="15" fill="#3E8F8A" font-size="11" font-family="'Noto Sans JP', sans-serif" font-weight="500" text-anchor="middle">施設警備・車両誘導</text>
+              </g>
+            </g>
+          </svg>
         </div>
       </div>
     </div>
@@ -1500,7 +1611,7 @@
   </section>
 
   <!-- ==========================================================================
-       INTRODUCTION (HELLO)
+       INTRODUCTION (HELLO / あなたのための手描き対話イラスト)
        ========================================================================== -->
   <section class="intro-section section-padding" id="intro">
     <div class="container">
@@ -1523,13 +1634,42 @@
         </div>
 
         <div class="intro-card reveal-item">
-          <img src="about-illustration.png" alt="手描きイラスト" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-          <div class="img-placeholder-box" style="display:none;">
-            <svg viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 7v5l3 3"/></svg>
-            <strong style="font-family:var(--font-en); font-weight:600;">about-illustration.png</strong>
-            <span style="font-size:0.75rem; margin-top:4px;">温かみのある対話とご縁の線画イラスト</span>
-          </div>
-          <p style="margin-top:16px; font-size:0.86rem; color:var(--text-sub); line-height:1.8;">
+          <!-- HELLO用：手描き風「紹介とあたたかな対話」SVGイラスト -->
+          <svg viewBox="0 0 360 220" width="100%" height="auto" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block; margin:0 auto;">
+            <!-- 背景のやわらかな円 -->
+            <circle cx="180" cy="110" r="85" fill="#EAF4F3"/>
+            <!-- つながりの点線ライン -->
+            <path d="M 100 120 Q 180 60 260 120" stroke="#3E8F8A" stroke-width="1.8" stroke-dasharray="4 4"/>
+            <path d="M 180 85 L 180 75" stroke="#CFA043" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="180" cy="70" r="3" fill="#CFA043"/>
+
+            <!-- 紹介してくれた社員 (左) -->
+            <g transform="translate(70, 75)">
+              <circle cx="30" cy="22" r="14" fill="#FCDDC5"/>
+              <path d="M 16 20 Q 30 6 44 20" fill="#3B5360"/> <!-- 髪 -->
+              <path d="M 14 42 Q 30 36 46 42 L 50 85 L 10 85 Z" fill="#3E8F8A" rx="4"/> <!-- 服 -->
+              <!-- 笑顔の目 -->
+              <path d="M 25 22 Q 28 25 31 22" stroke="#444" stroke-width="1.2" fill="none"/>
+              <path d="M 33 22 Q 36 25 39 22" stroke="#444" stroke-width="1.2" fill="none"/>
+              <!-- フキダシ -->
+              <rect x="-15" y="-28" width="80" height="24" rx="12" fill="#FFFFFF" stroke="#3E8F8A" stroke-width="1.2"/>
+              <text x="25" y="-12" fill="#3E8F8A" font-size="10" font-family="'Noto Sans JP', sans-serif" font-weight="500" text-anchor="middle">良い会社だよ</text>
+            </g>
+
+            <!-- ページを見ているあなた (右) -->
+            <g transform="translate(210, 75)">
+              <circle cx="30" cy="22" r="14" fill="#FCDDC5"/>
+              <path d="M 16 22 Q 30 8 44 22" fill="#6B5347"/> <!-- 髪 -->
+              <path d="M 14 42 Q 30 36 46 42 L 50 85 L 10 85 Z" fill="#5B95AC" rx="4"/> <!-- 服 -->
+              <path d="M 23 22 Q 26 25 29 22" stroke="#444" stroke-width="1.2" fill="none"/>
+              <path d="M 31 22 Q 34 25 37 22" stroke="#444" stroke-width="1.2" fill="none"/>
+              <!-- フキダシ -->
+              <rect x="-5" y="-28" width="80" height="24" rx="12" fill="#FFFFFF" stroke="#5B95AC" stroke-width="1.2"/>
+              <text x="35" y="-12" fill="#5B95AC" font-size="10" font-family="'Noto Sans JP', sans-serif" font-weight="500" text-anchor="middle">見てみようかな</text>
+            </g>
+          </svg>
+
+          <p style="margin-top:16px; font-size:0.86rem; color:var(--text-sub); line-height:1.8; text-align:center;">
             誰かの「ここ、良い会社だよ」という一言から始まるつながりを、私たちは何よりも大切にしています。
           </p>
         </div>
@@ -1752,8 +1892,7 @@
         <div class="work-item-card reveal-item">
           <div class="work-img-container">
             <img src="job-cleaning.jpg" alt="清掃業務" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="img-placeholder-box" style="display:none; height:100%;">
-              <svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            <div class="img-placeholder-box" style="display:none; height:100%; border:none; background:#EBF3F3;">
               <span>job-cleaning.jpg</span>
             </div>
           </div>
@@ -1768,8 +1907,7 @@
         <div class="work-item-card reveal-item">
           <div class="work-img-container">
             <img src="job-equipment.jpg" alt="設備管理業務" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="img-placeholder-box" style="display:none; height:100%;">
-              <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            <div class="img-placeholder-box" style="display:none; height:100%; border:none; background:#EBF3F3;">
               <span>job-equipment.jpg</span>
             </div>
           </div>
@@ -1784,8 +1922,7 @@
         <div class="work-item-card reveal-item">
           <div class="work-img-container">
             <img src="job-security.jpg" alt="警備業務" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="img-placeholder-box" style="display:none; height:100%;">
-              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <div class="img-placeholder-box" style="display:none; height:100%; border:none; background:#EBF3F3;">
               <span>job-security.jpg</span>
             </div>
           </div>
@@ -1800,8 +1937,7 @@
         <div class="work-item-card reveal-item">
           <div class="work-img-container">
             <img src="job-telephone.jpg" alt="電話交換業務" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="img-placeholder-box" style="display:none; height:100%;">
-              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <div class="img-placeholder-box" style="display:none; height:100%; border:none; background:#EBF3F3;">
               <span>job-telephone.jpg</span>
             </div>
           </div>
@@ -1816,8 +1952,7 @@
         <div class="work-item-card reveal-item">
           <div class="work-img-container">
             <img src="job-sales.jpg" alt="企画・顧客管理業務" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="img-placeholder-box" style="display:none; height:100%;">
-              <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+            <div class="img-placeholder-box" style="display:none; height:100%; border:none; background:#EBF3F3;">
               <span>job-sales.jpg</span>
             </div>
           </div>
@@ -1832,8 +1967,7 @@
         <div class="work-item-card reveal-item">
           <div class="work-img-container">
             <img src="job-labor.jpg" alt="労務管理業務" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="img-placeholder-box" style="display:none; height:100%;">
-              <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 7a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <div class="img-placeholder-box" style="display:none; height:100%; border:none; background:#EBF3F3;">
               <span>job-labor.jpg</span>
             </div>
           </div>
@@ -1858,7 +1992,6 @@
         <h2 class="editorial-heading">あなたの近くにも、<br>仕事があるかも。</h2>
       </div>
 
-      <!-- Area Filtering Bar -->
       <div class="filter-pills-bar reveal-item">
         <span class="filter-label-txt">エリア：</span>
         <button class="filter-btn is-active" data-area="all">すべて</button>
@@ -1869,7 +2002,6 @@
         <button class="filter-btn" data-area="other">その他熊本県内</button>
       </div>
 
-      <!-- Job Filter Bar -->
       <div class="filter-pills-bar reveal-item" style="margin-top:-14px;">
         <span class="filter-label-txt">職種：</span>
         <button class="filter-btn filter-job is-active" data-job="all">すべての職種</button>
@@ -1885,7 +2017,6 @@
         <span style="font-size:0.78rem;">※気になる仕事はLINEで気軽に質問できます</span>
       </div>
 
-      <!-- Job Index List -->
       <div class="jobs-index-list" id="jobList">
         <!-- Item 01 -->
         <div class="job-index-item reveal-item" data-area="chuo" data-job="facility">
@@ -1987,7 +2118,7 @@
   </section>
 
   <!-- ==========================================================================
-       PEOPLE (働く人の声)
+       PEOPLE
        ========================================================================== -->
   <section class="people-section section-padding" id="people">
     <div class="container">
@@ -2002,7 +2133,7 @@
         <div class="staff-card reveal-item" onclick="openStaffModal('staff1')">
           <div class="staff-avatar-frame">
             <img src="staff01.jpg" alt="清掃スタッフ" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="img-placeholder-box" style="display:none; height:100%; padding:0; min-height:0;">
+            <div class="img-placeholder-box" style="display:none; height:100%; padding:0; min-height:0; border:none; background:#E8F0F0;">
               <span style="font-family:var(--font-en); font-weight:600;">01</span>
             </div>
           </div>
@@ -2018,7 +2149,7 @@
         <div class="staff-card reveal-item" onclick="openStaffModal('staff2')">
           <div class="staff-avatar-frame">
             <img src="staff02.jpg" alt="警備スタッフ" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="img-placeholder-box" style="display:none; height:100%; padding:0; min-height:0;">
+            <div class="img-placeholder-box" style="display:none; height:100%; padding:0; min-height:0; border:none; background:#E8F0F0;">
               <span style="font-family:var(--font-en); font-weight:600;">02</span>
             </div>
           </div>
@@ -2034,7 +2165,7 @@
         <div class="staff-card reveal-item" onclick="openStaffModal('staff3')">
           <div class="staff-avatar-frame">
             <img src="staff03.jpg" alt="設備管理スタッフ" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="img-placeholder-box" style="display:none; height:100%; padding:0; min-height:0;">
+            <div class="img-placeholder-box" style="display:none; height:100%; padding:0; min-height:0; border:none; background:#E8F0F0;">
               <span style="font-family:var(--font-en); font-weight:600;">03</span>
             </div>
           </div>
@@ -2050,7 +2181,7 @@
         <div class="staff-card reveal-item" onclick="openStaffModal('staff4')">
           <div class="staff-avatar-frame">
             <img src="staff04.jpg" alt="電話交換スタッフ" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="img-placeholder-box" style="display:none; height:100%; padding:0; min-height:0;">
+            <div class="img-placeholder-box" style="display:none; height:100%; padding:0; min-height:0; border:none; background:#E8F0F0;">
               <span style="font-family:var(--font-en); font-weight:600;">04</span>
             </div>
           </div>
@@ -2066,7 +2197,7 @@
         <div class="staff-card reveal-item" onclick="openStaffModal('staff5')">
           <div class="staff-avatar-frame">
             <img src="staff05.jpg" alt="企画・顧客管理スタッフ" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="img-placeholder-box" style="display:none; height:100%; padding:0; min-height:0;">
+            <div class="img-placeholder-box" style="display:none; height:100%; padding:0; min-height:0; border:none; background:#E8F0F0;">
               <span style="font-family:var(--font-en); font-weight:600;">05</span>
             </div>
           </div>
@@ -2082,7 +2213,7 @@
         <div class="staff-card reveal-item" onclick="openStaffModal('staff6')">
           <div class="staff-avatar-frame">
             <img src="staff06.jpg" alt="労務管理スタッフ" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="img-placeholder-box" style="display:none; height:100%; padding:0; min-height:0;">
+            <div class="img-placeholder-box" style="display:none; height:100%; padding:0; min-height:0; border:none; background:#E8F0F0;">
               <span style="font-family:var(--font-en); font-weight:600;">06</span>
             </div>
           </div>
@@ -2196,38 +2327,24 @@
   </section>
 
   <!-- ==========================================================================
-       LINE (LET'S TALK)
+       LINE (LET'S TALK) ※PC QRコード注記削除・シンプルで洗練されたCTA
        ========================================================================== -->
   <section class="line-section section-padding" id="line">
     <div class="container">
       <div class="line-card-frame reveal-item">
-        <div>
-          <span class="section-graphic-title" style="font-size:2.2rem; color:var(--brand-mint);">LET'S TALK</span>
-          <h2 class="editorial-heading" style="margin-top:6px;">
-            「ちょっと気になる。」<br>
-            それくらいからで大丈夫です。
-          </h2>
-          <p class="editorial-lead">
-            仕事のこと、勤務地のこと、シフトのこと。<br>
-            知りたいことがあれば、公式LINEで気軽に聞いてみてください。担当者がやさしくお答えします。
-          </p>
-          <a href="https://lin.ee/UM4EIXgs" target="_blank" rel="noopener noreferrer" class="line-cta-btn">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.82 2 10.53c0 2.94 1.76 5.54 4.45 7.07-.19.7-.7 2.53-.8 2.92-.13.51.19.5.39.37.16-.1 2.21-1.48 3.1-2.09.91.13 1.87.2 2.86.2 5.52 0 10-3.82 10-8.53S17.52 2 12 2z"/></svg>
-            LINEで話を聞いてみる <span>→</span>
-          </a>
-        </div>
-
-        <div class="line-qr-box">
-          <div class="line-qr-img-wrapper">
-            <img src="line-qr.png" alt="LINE友だち追加QRコード" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-            <div style="display:none; font-size:0.75rem; color:var(--text-light); text-align:center;">
-              line-qr.png
-            </div>
-          </div>
-          <p style="font-size:0.78rem; color:var(--text-sub);">
-            PCでご覧の方は<br>スマホでQRを読み取ってください
-          </p>
-        </div>
+        <span class="section-graphic-title" style="font-size:2rem; color:var(--brand-mint);">LET'S TALK</span>
+        <h2 class="editorial-heading" style="margin-top:4px;">
+          「ちょっと気になる。」<br>
+          それくらいからで大丈夫です。
+        </h2>
+        <p class="editorial-lead" style="max-width:540px;">
+          仕事のこと、勤務地のこと、シフトのこと。<br>
+          知りたいことがあれば、公式LINEで気軽に聞いてみてください。担当者がやさしくお答えします。
+        </p>
+        <a href="https://lin.ee/UM4EIXgs" target="_blank" rel="noopener noreferrer" class="line-cta-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.82 2 10.53c0 2.94 1.76 5.54 4.45 7.07-.19.7-.7 2.53-.8 2.92-.13.51.19.5.39.37.16-.1 2.21-1.48 3.1-2.09.91.13 1.87.2 2.86.2 5.52 0 10-3.82 10-8.53S17.52 2 12 2z"/></svg>
+          LINEで話を聞いてみる <span>→</span>
+        </a>
       </div>
     </div>
   </section>
@@ -2239,10 +2356,6 @@
     <div class="container reveal-item">
       <div class="footer-grand-copy">THANK YOU</div>
       <p class="footer-sub-copy">このご縁に、ありがとう。</p>
-
-      <div style="max-width:280px; margin:0 auto 28px;">
-        <img src="footer-illustration.png" alt="街の小さなイラスト" onerror="this.style.display='none';">
-      </div>
 
       <div style="font-size:0.82rem; color:var(--text-sub);">
         株式会社オーファス（OHFAS Inc.）<br>
@@ -2461,7 +2574,7 @@
 
     });
 
-    /* Modal Data & Functions */
+    /* Modal Data & Handlers */
     const jobData = {
       job1: {
         title: "設備管理スタッフ（熊本市中央区）",
