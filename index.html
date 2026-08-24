@@ -6,7 +6,7 @@
   <title>株式会社オーファス | 社員紹介・リファラル特設サイト</title>
   <meta name="description" content="株式会社オーファスの社員・スタッフから紹介を受けた方のための案内ページです。このご縁に、ありがとう。熊本の街と暮らしを支える仕事をご紹介します。">
   
-  <!-- Google Fonts: 幾何学的な細身英字ゴシック ＆ 洗練された日本語ゴシック -->
+  <!-- Google Fonts: 幾何学的で洗練されたモダン英字ゴシック ＆ 上質で読みやすい日本語ゴシック -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -345,7 +345,7 @@
     }
 
     /* ==========================================================================
-       02. HERO / FIRST VIEW (アイソメトリック・ビル断面イラスト再現)
+       02. HERO / FIRST VIEW (指定イラスト hero-illustration.png を使用)
        ========================================================================== */
     .hero-section {
       min-height: 88vh;
@@ -369,7 +369,7 @@
     .hero-text-block {
       text-align: center;
       max-width: 680px;
-      margin: 0 auto 30px;
+      margin: 0 auto 28px;
     }
 
     .hero-eyebrow {
@@ -398,23 +398,25 @@
     }
 
     .hero-illustration-stage {
-      max-width: 920px;
+      max-width: 960px;
       margin: 0 auto;
       position: relative;
     }
 
-    .hero-svg-card {
+    .hero-img-card {
       background: #FFFFFF;
       border: 1px solid #DFECE9;
       border-radius: 8px;
-      box-shadow: 0 4px 20px rgba(107, 163, 186, 0.06);
-      padding: 16px;
+      box-shadow: 0 4px 24px rgba(107, 163, 186, 0.08);
+      padding: 12px;
       position: relative;
+      overflow: hidden;
     }
 
-    .hero-svg-canvas {
+    .hero-img-card img {
       width: 100%;
       height: auto;
+      border-radius: 4px;
       display: block;
     }
 
@@ -446,7 +448,7 @@
     }
 
     /* ==========================================================================
-       03. INTRODUCTION (HELLO / 手描き対話イラスト)
+       03. INTRODUCTION (HELLO / 手描き風対話SVGイラスト)
        ========================================================================== */
     .intro-section {
       background: var(--bg-white);
@@ -1145,7 +1147,7 @@
     }
 
     /* ==========================================================================
-       12. LINE (LET'S TALK) ※PC QRコード注記削除・クリーンな誘導
+       12. LINE (LET'S TALK) ※PC QRコード注記削除・シンプルで洗練されたCTA
        ========================================================================== */
     .line-section {
       background: linear-gradient(180deg, #FFFFFF 0%, #EFF8F6 100%);
@@ -1395,7 +1397,7 @@
   </div>
 
   <!-- ==========================================================================
-       HERO / FIRST VIEW (添付画像の世界観を反映した手描き風アイソメトリックイラスト)
+       HERO / FIRST VIEW (添付画像 hero-illustration.png を配置)
        ========================================================================== -->
   <section class="hero-section">
     <div class="hero-content-wrap">
@@ -1408,198 +1410,10 @@
         </p>
       </div>
 
-      <!-- ビル断面・各フロアで働くスタッフの手描き風SVGイラスト -->
+      <!-- 指定の手描きアイソメトリックイラスト -->
       <div class="hero-illustration-stage reveal-item">
-        <div class="hero-svg-card">
-          <svg class="hero-svg-canvas" viewBox="0 0 880 500" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#F2F9F9"/>
-                <stop offset="100%" stop-color="#E5F1F0"/>
-              </linearGradient>
-              <linearGradient id="roofGrad" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#F4F8F8"/>
-                <stop offset="100%" stop-color="#E2EDED"/>
-              </linearGradient>
-              <filter id="softShadow" x="-5%" y="-5%" width="110%" height="115%">
-                <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#3A6B68" flood-opacity="0.08"/>
-              </filter>
-            </defs>
-
-            <!-- 街・背景要素（木々・道路・街並み） -->
-            <rect width="880" height="500" rx="6" fill="url(#skyGrad)"/>
-            
-            <!-- 雲 -->
-            <path d="M120 70 q15 -18 35 0 q20 -10 30 10 q15 15 -5 20 h-55 q-15 -10 -5 -30 z" fill="#FFFFFF" opacity="0.8"/>
-            <path d="M720 85 q12 -14 28 0 q16 -8 24 8 q12 12 -4 16 h-44 q-12 -8 -4 -24 z" fill="#FFFFFF" opacity="0.8"/>
-
-            <!-- 道路＆植栽 -->
-            <path d="M0 430 L880 430 L880 500 L0 500 Z" fill="#EAEFEF"/>
-            <path d="M0 420 L880 420" stroke="#CBDCDC" stroke-width="3" stroke-dasharray="16 12"/>
-            
-            <!-- 植栽・グリーン -->
-            <ellipse cx="90" cy="380" rx="55" ry="32" fill="#BCE0D7"/>
-            <ellipse cx="140" cy="390" rx="40" ry="24" fill="#A8D6CB"/>
-            <path d="M90 380 L90 415 M140 390 L140 415" stroke="#7AA99F" stroke-width="3" stroke-linecap="round"/>
-
-            <!-- ビル本体構造（アイソメトリック断面） -->
-            <g filter="url(#softShadow)">
-              <!-- ビル外壁・躯体 -->
-              <path d="M 240 100 L 640 100 L 640 420 L 240 420 Z" fill="#FFFFFF" stroke="#608285" stroke-width="2.5" stroke-linejoin="round"/>
-              <!-- 屋上スラブ -->
-              <path d="M 220 100 L 440 25 L 660 100 L 640 100 Z" fill="url(#roofGrad)" stroke="#608285" stroke-width="2.5" stroke-linejoin="round"/>
-              <!-- 各フロアの床（スラブ） -->
-              <line x1="240" y1="210" x2="640" y2="210" stroke="#608285" stroke-width="2.5"/>
-              <line x1="240" y1="315" x2="640" y2="315" stroke="#608285" stroke-width="2.5"/>
-              <!-- 縦パイプ・配管シャフト -->
-              <path d="M 600 60 L 600 420" stroke="#5B95AC" stroke-width="6" stroke-linecap="round"/>
-              <path d="M 612 80 L 612 420" stroke="#E59980" stroke-width="4" stroke-linecap="round"/>
-            </g>
-
-            <!-- ================= 屋上：設備管理 (FACILITY & MAINTENANCE) ================= -->
-            <g id="roof-facility">
-              <!-- ソーラーパネル・キュービクル・空調室外機 -->
-              <rect x="270" y="55" width="60" height="35" rx="2" fill="#3D5A6C" stroke="#2B4352" stroke-width="1.5" transform="skewX(-15)"/>
-              <rect x="360" y="60" width="45" height="32" fill="#D6E4E6" stroke="#608285" stroke-width="1.5"/>
-              <rect x="415" y="60" width="45" height="32" fill="#D6E4E6" stroke="#608285" stroke-width="1.5"/>
-              <circle cx="437" cy="76" r="10" stroke="#87A6A8" stroke-width="1.5" fill="none"/>
-              <!-- 配電盤 -->
-              <rect x="520" y="45" width="50" height="50" fill="#EAF0F2" stroke="#608285" stroke-width="2"/>
-              <line x1="545" y1="45" x2="545" y2="95" stroke="#608285" stroke-width="1"/>
-              <!-- 点検スタッフ -->
-              <circle cx="495" cy="62" r="7" fill="#F7D3B6"/>
-              <path d="M 488 60 Q 495 52 502 60" fill="#2E7099"/>
-              <rect x="488" y="70" width="14" height="24" rx="3" fill="#3882B0"/>
-              <!-- 手元のバインダー -->
-              <rect x="500" y="72" width="7" height="10" fill="#CFA043"/>
-              <!-- フキダシ注記 -->
-              <g transform="translate(450, 18)">
-                <rect x="0" y="0" width="130" height="22" rx="11" fill="#FFFFFF" stroke="#3E8F8A" stroke-width="1.2"/>
-                <text x="65" y="15" fill="#3E8F8A" font-size="11" font-family="'Noto Sans JP', sans-serif" font-weight="500" text-anchor="middle">屋上設備・空調点検</text>
-              </g>
-            </g>
-
-            <!-- ================= 3階：オフィス・管理・電話交換 (MANAGEMENT & OFFICE) ================= -->
-            <g id="floor3-office">
-              <!-- デスクとPC -->
-              <rect x="270" y="165" width="85" height="40" rx="2" fill="#F0F4F5" stroke="#A2BABE" stroke-width="1.5"/>
-              <rect x="295" y="145" width="30" height="20" rx="2" fill="#4B636E"/>
-              <rect x="400" y="165" width="85" height="40" rx="2" fill="#F0F4F5" stroke="#A2BABE" stroke-width="1.5"/>
-              <rect x="425" y="145" width="30" height="20" rx="2" fill="#4B636E"/>
-
-              <!-- 電話交換・事務スタッフ (女性) -->
-              <circle cx="330" cy="148" r="6.5" fill="#FCDDC5"/>
-              <path d="M 323 148 Q 330 140 337 148" fill="#50382E"/>
-              <rect x="323" y="156" width="14" height="22" rx="3" fill="#529994"/>
-              <path d="M 321 146 Q 320 152 325 153" stroke="#222" stroke-width="1.2" fill="none"/> <!-- ヘッドセット -->
-
-              <!-- 労務・顧客管理スタッフ (男性) -->
-              <circle cx="460" cy="148" r="6.5" fill="#FCDDC5"/>
-              <path d="M 453 146 Q 460 140 467 146" fill="#2A3842"/>
-              <rect x="453" y="156" width="14" height="22" rx="3" fill="#3E6F8E"/>
-
-              <!-- モニター監視盤 -->
-              <rect x="520" y="130" width="60" height="35" rx="2" fill="#2E3D45"/>
-              <rect x="525" y="135" width="22" height="12" fill="#4FB3A9"/>
-              <rect x="552" y="135" width="22" height="12" fill="#4FB3A9"/>
-              <rect x="525" y="150" width="22" height="12" fill="#5B95AC"/>
-              <rect x="552" y="150" width="22" height="12" fill="#5B95AC"/>
-
-              <g transform="translate(250, 118)">
-                <rect x="0" y="0" width="140" height="22" rx="11" fill="#FFFFFF" stroke="#3E8F8A" stroke-width="1.2"/>
-                <text x="70" y="15" fill="#3E8F8A" font-size="11" font-family="'Noto Sans JP', sans-serif" font-weight="500" text-anchor="middle">企画・労務・電話交換</text>
-              </g>
-            </g>
-
-            <!-- ================= 2階：打合せ・空調メンテナンス (MEETING & DUCT) ================= -->
-            <g id="floor2-meeting">
-              <!-- 天井点検口＆作業スタッフ -->
-              <rect x="270" y="215" width="40" height="8" fill="#D0E3E5" stroke="#608285" stroke-width="1"/>
-              <!-- 脚立とスタッフ -->
-              <path d="M 280 295 L 290 235 L 300 295" stroke="#7A9396" stroke-width="2"/>
-              <circle cx="290" cy="230" r="6.5" fill="#FCDDC5"/>
-              <rect x="283" y="238" width="14" height="22" rx="3" fill="#3882B0"/>
-              <path d="M 290 238 L 295 220" stroke="#3882B0" stroke-width="3" stroke-linecap="round"/> <!-- 腕を上げて天井確認 -->
-
-              <!-- 打合せスペース（スーツの顧客対応スタッフ） -->
-              <circle cx="390" cy="255" r="6.5" fill="#FCDDC5"/>
-              <rect x="383" y="263" width="14" height="24" rx="3" fill="#2E4857"/>
-              <circle cx="430" cy="255" r="6.5" fill="#FCDDC5"/>
-              <rect x="423" y="263" width="14" height="24" rx="3" fill="#556975"/>
-              <ellipse cx="410" cy="285" rx="35" ry="10" fill="#E8EFF0" stroke="#8CAAB0" stroke-width="1.5"/>
-
-              <!-- 観葉植物 -->
-              <path d="M 545 300 L 555 300 L 553 312 L 547 312 Z" fill="#CFA043"/>
-              <circle cx="550" cy="295" r="10" fill="#78B8A6"/>
-
-              <g transform="translate(450, 225)">
-                <rect x="0" y="0" width="130" height="22" rx="11" fill="#FFFFFF" stroke="#3E8F8A" stroke-width="1.2"/>
-                <text x="65" y="15" fill="#3E8F8A" font-size="11" font-family="'Noto Sans JP', sans-serif" font-weight="500" text-anchor="middle">施設巡回・顧客対応</text>
-              </g>
-            </g>
-
-            <!-- ================= 1階：エントランス・清掃・受付 (CLEANING & FRONT) ================= -->
-            <g id="floor1-entrance">
-              <!-- 受付カウンター -->
-              <rect x="410" y="360" width="130" height="50" rx="3" fill="#E1ECEB" stroke="#7A9B9E" stroke-width="2"/>
-              <circle cx="445" cy="345" r="6.5" fill="#FCDDC5"/>
-              <rect x="438" y="353" width="14" height="22" rx="3" fill="#3E8F8A"/>
-              <!-- 来客者 -->
-              <circle cx="510" cy="345" r="6.5" fill="#FCDDC5"/>
-              <rect x="503" y="353" width="14" height="24" rx="3" fill="#3A4D59"/>
-
-              <!-- 清掃スタッフ（モップがけ） -->
-              <circle cx="310" cy="350" r="6.5" fill="#FCDDC5"/>
-              <path d="M 303 348 Q 310 342 317 348" fill="#3882B0"/> <!-- キャップ -->
-              <rect x="303" y="358" width="14" height="24" rx="3" fill="#58A7D8"/>
-              <!-- モップ -->
-              <line x1="312" y1="365" x2="335" y2="405" stroke="#738A8C" stroke-width="2" stroke-linecap="round"/>
-              <ellipse cx="338" cy="406" rx="8" ry="3" fill="#D6E8E8"/>
-
-              <!-- 清掃カート -->
-              <rect x="255" y="370" width="26" height="35" rx="2" fill="#F5FAF9" stroke="#7A9B9E" stroke-width="1.5"/>
-              <circle cx="260" cy="408" r="3" fill="#555"/>
-              <circle cx="276" cy="408" r="3" fill="#555"/>
-
-              <g transform="translate(250, 328)">
-                <rect x="0" y="0" width="120" height="22" rx="11" fill="#FFFFFF" stroke="#3E8F8A" stroke-width="1.2"/>
-                <text x="60" y="15" fill="#3E8F8A" font-size="11" font-family="'Noto Sans JP', sans-serif" font-weight="500" text-anchor="middle">館内日常清掃</text>
-              </g>
-            </g>
-
-            <!-- ================= ビル外構・道路：警備スタッフ・誘導 (SECURITY) ================= -->
-            <g id="ground-security">
-              <!-- 左側：警備スタッフ（誘導棒を掲げる） -->
-              <circle cx="160" cy="375" r="6.5" fill="#FCDDC5"/>
-              <path d="M 153 373 Q 160 367 167 373" fill="#203E54"/> <!-- 制帽 -->
-              <rect x="153" y="383" width="14" height="25" rx="3" fill="#3A6482"/>
-              <!-- 蛍光ベスト -->
-              <rect x="154" y="384" width="12" height="12" fill="#E6D337" opacity="0.85"/>
-              <!-- 誘導棒（赤） -->
-              <line x1="167" y1="388" x2="185" y2="378" stroke="#E65A47" stroke-width="3" stroke-linecap="round"/>
-              <!-- コーン -->
-              <polygon points="125,418 135,418 130,395" fill="#E8684A"/>
-              <polygon points="140,418 150,418 145,395" fill="#E8684A"/>
-
-              <!-- 右側：巡回警備＆車両誘導 -->
-              <circle cx="680" cy="375" r="6.5" fill="#FCDDC5"/>
-              <path d="M 673 373 Q 680 367 687 373" fill="#203E54"/>
-              <rect x="673" y="383" width="14" height="25" rx="3" fill="#3A6482"/>
-              <rect x="674" y="384" width="12" height="12" fill="#E6D337" opacity="0.85"/>
-              <line x1="673" y1="388" x2="658" y2="380" stroke="#E65A47" stroke-width="3" stroke-linecap="round"/>
-
-              <!-- 車両 -->
-              <rect x="720" y="385" width="70" height="30" rx="6" fill="#526E7F"/>
-              <rect x="732" y="375" width="42" height="15" rx="3" fill="#99B8C7"/>
-              <circle cx="736" cy="415" r="6" fill="#2B363D"/>
-              <circle cx="774" cy="415" r="6" fill="#2B363D"/>
-
-              <g transform="translate(670, 335)">
-                <rect x="0" y="0" width="130" height="22" rx="11" fill="#FFFFFF" stroke="#3E8F8A" stroke-width="1.2"/>
-                <text x="65" y="15" fill="#3E8F8A" font-size="11" font-family="'Noto Sans JP', sans-serif" font-weight="500" text-anchor="middle">施設警備・車両誘導</text>
-              </g>
-            </g>
-          </svg>
+        <div class="hero-img-card">
+          <img src="hero-illustration.png" alt="建物の各フロアで働くオーファスのスタッフと仕事を描いた手描きイラスト">
         </div>
       </div>
     </div>
@@ -1636,9 +1450,7 @@
         <div class="intro-card reveal-item">
           <!-- HELLO用：手描き風「紹介とあたたかな対話」SVGイラスト -->
           <svg viewBox="0 0 360 220" width="100%" height="auto" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block; margin:0 auto;">
-            <!-- 背景のやわらかな円 -->
             <circle cx="180" cy="110" r="85" fill="#EAF4F3"/>
-            <!-- つながりの点線ライン -->
             <path d="M 100 120 Q 180 60 260 120" stroke="#3E8F8A" stroke-width="1.8" stroke-dasharray="4 4"/>
             <path d="M 180 85 L 180 75" stroke="#CFA043" stroke-width="2" stroke-linecap="round"/>
             <circle cx="180" cy="70" r="3" fill="#CFA043"/>
@@ -1646,12 +1458,10 @@
             <!-- 紹介してくれた社員 (左) -->
             <g transform="translate(70, 75)">
               <circle cx="30" cy="22" r="14" fill="#FCDDC5"/>
-              <path d="M 16 20 Q 30 6 44 20" fill="#3B5360"/> <!-- 髪 -->
-              <path d="M 14 42 Q 30 36 46 42 L 50 85 L 10 85 Z" fill="#3E8F8A" rx="4"/> <!-- 服 -->
-              <!-- 笑顔の目 -->
+              <path d="M 16 20 Q 30 6 44 20" fill="#3B5360"/>
+              <path d="M 14 42 Q 30 36 46 42 L 50 85 L 10 85 Z" fill="#3E8F8A" rx="4"/>
               <path d="M 25 22 Q 28 25 31 22" stroke="#444" stroke-width="1.2" fill="none"/>
               <path d="M 33 22 Q 36 25 39 22" stroke="#444" stroke-width="1.2" fill="none"/>
-              <!-- フキダシ -->
               <rect x="-15" y="-28" width="80" height="24" rx="12" fill="#FFFFFF" stroke="#3E8F8A" stroke-width="1.2"/>
               <text x="25" y="-12" fill="#3E8F8A" font-size="10" font-family="'Noto Sans JP', sans-serif" font-weight="500" text-anchor="middle">良い会社だよ</text>
             </g>
@@ -1659,11 +1469,10 @@
             <!-- ページを見ているあなた (右) -->
             <g transform="translate(210, 75)">
               <circle cx="30" cy="22" r="14" fill="#FCDDC5"/>
-              <path d="M 16 22 Q 30 8 44 22" fill="#6B5347"/> <!-- 髪 -->
-              <path d="M 14 42 Q 30 36 46 42 L 50 85 L 10 85 Z" fill="#5B95AC" rx="4"/> <!-- 服 -->
+              <path d="M 16 22 Q 30 8 44 22" fill="#6B5347"/>
+              <path d="M 14 42 Q 30 36 46 42 L 50 85 L 10 85 Z" fill="#5B95AC" rx="4"/>
               <path d="M 23 22 Q 26 25 29 22" stroke="#444" stroke-width="1.2" fill="none"/>
               <path d="M 31 22 Q 34 25 37 22" stroke="#444" stroke-width="1.2" fill="none"/>
-              <!-- フキダシ -->
               <rect x="-5" y="-28" width="80" height="24" rx="12" fill="#FFFFFF" stroke="#5B95AC" stroke-width="1.2"/>
               <text x="35" y="-12" fill="#5B95AC" font-size="10" font-family="'Noto Sans JP', sans-serif" font-weight="500" text-anchor="middle">見てみようかな</text>
             </g>
