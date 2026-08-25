@@ -1,265 +1,622 @@
-# Gemini指示用｜採用サイトデザインの全面リニューアル
-
-現在制作している採用サイトのデザインを、以下の参考サイトのようなクオリティまで引き上げてください。
-
-参考サイト：
-https://recruit.dive.design/
-
-## 重要
-
-参考サイトのHTML・CSS・JavaScript・文章・画像などをコピーするのではなく、
-
-* デザイン思想
-* レイアウト
-* 情報の見せ方
-* 写真の使い方
-* タイポグラフィ
-* 余白
-* UI/UX
-* スクロール体験
-* アニメーション
-* 採用サイトとしてのストーリー設計
-
-を分析し、その考え方を参考にして**完全オリジナルの採用サイトとして再設計**してください。
-
-既存サイトの細かいデザインは一度リセットして構いません。
-
----
-
-## 目指す世界観
-
-「企業ホームページ」ではなく、
-
-**採用のためのブランドサイト**
-
-として見えるデザインにしてください。
-
-特に、
-
-* 大胆な写真
-* 大きな文字
-* 強いタイポグラフィ
-* 広い余白
-* 英字をアクセントに使った見出し
-* 写真と文字を重ねるレイアウト
-* 左右非対称のレイアウト
-* スクロールすることで次のコンテンツが現れる構成
-* ページ全体にリズムがあるデザイン
-
-を重視してください。
-
----
-
-# FIRST VIEW
-
-ファーストビューは一般的な、
-
-「背景画像＋中央にキャッチコピー＋ボタン」
-
-という採用サイトによくある構成にはしないでください。
-
-画面いっぱいを使った大胆なレイアウトにします。
-
-写真を複数配置し、その上または周囲に大きなタイポグラフィを配置してください。
-
-最初の1画面を見ただけで、
-
-「この会社、ちょっと気になる」
-
-と思わせる採用ブランディングを重視します。
-
----
-
-# TYPOGRAPHY
-
-文字を単なる説明ではなく、デザイン要素として使用してください。
-
-日本語の大きなコピーと、
-
-MISSION
-VISION
-VALUE
-PEOPLE
-JOBS
-AREA
-ABOUT
-
-などの英字を組み合わせます。
-
-セクション番号として
-
-01
-02
-03
-
-などの数字も大胆に使用してください。
-
----
-
-# PHOTO
-
-写真は小さなカードの中だけに閉じ込めないでください。
-
-* 横長
-* 縦長
-* 大きな全面写真
-* 写真の一部を画面外にはみ出させる
-* 写真＋大きな文字
-* 複数写真のコラージュ
-
-など、セクションごとに写真の見せ方を変えてください。
-
-角丸カードを大量に並べる「SaaSサイト」のようなデザインにはしないでください。
-
----
-
-# CONTENT FLOW
-
-サイト全体を、単なる情報一覧ではなく、
-
-「会社を知る → 人を知る → 仕事を知る → 自分が働く姿を想像する」
-
-というストーリーとして設計してください。
-
-構成イメージ：
-
-FIRST VIEW
-
-↓
-
-MESSAGE / CONCEPT
-
-↓
-
-MISSION / VISION / VALUE
-
-↓
-
-ABOUT
-会社について
-
-↓
-
-AREA
-働く場所から探す
-
-↓
-
-JOBS
-仕事を知る
-
-↓
-
-PEOPLE
-スタッフインタビュー
-
-↓
-
-NUMBERS
-数字で見る会社
-
-↓
-
-HISTORY
-会社の歩み
-
-↓
-
-ENTRY
-応募・問い合わせ
-
----
-
-# AREA
-
-エリアから仕事を探せることを、このサイトの特徴のひとつにしてください。
-
-一般的な求人一覧だけではなく、
-
-「あなたの街で働く」
-
-という感覚が伝わるUIにします。
-
-エリアを選択すると、そのエリアで募集中の仕事が表示されるようにしてください。
-
----
-
-# PEOPLE
-
-スタッフインタビューは重要コンテンツとして大きく扱ってください。
-
-単純な3列カードだけではなく、
-
-大きな人物写真＋コピー
-
-を中心にしたデザインにします。
-
-写真に、
-
-「仕事も、私らしく。」
-
-「誰かの『ありがとう』が、今日のやりがい。」
-
-など、一人ひとりの働き方が伝わる短いコピーを重ねる構成も検討してください。
-
----
-
-# MOTION
-
-JavaScriptを使用して、スクロールに合わせた自然なアニメーションを実装してください。
-
-例：
-
-* テキストのフェードアップ
-* 写真のマスク解除
-* 写真の軽いパララックス
-* 大きな英字がゆっくり移動
-* スクロールに合わせたラインの伸長
-* インタビュー写真の横スクロール
-* hover時の画像ズーム
-* ボタンのhoverアニメーション
-
-ただし、派手なアニメーションを大量に入れるのではなく、
-
-**高級な採用サイトのような滑らかな動き**
-
-にしてください。
-
----
-
-# RESPONSIVE
-
-PC版だけではなくスマートフォン版も完全対応してください。
-
-単純にPCレイアウトを縦積みにするのではなく、
-
-スマートフォンでも
-
-* 大きな文字
-* 写真
-* 余白
-* スクロール体験
-
-が成立するようにレスポンシブ設計してください。
-
----
-
-# DEVELOPMENT
-
-HTML / CSS / JavaScriptで制作してください。
-
-参考サイトのソースコードをコピーせず、ゼロから実装してください。
-
-既存サイトにあるコンテンツや情報はできる限り維持しながら、
-
-**デザイン・レイアウト・UI/UXは全面的に再設計してください。**
-
-最終的には、
-
-「参考サイトのコピー」
-
-ではなく、
-
-**参考サイトと並べても見劣りしない、独自の採用ブランドサイト**
-
-を目指してください。
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RECRUIT BRANDING SITE</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       RESET & BASE VARIABLES
+       ========================================================================== */
+    :root {
+      --color-bg: #f8f9fa;
+      --color-surface: #ffffff;
+      --color-dark: #121316;
+      --color-muted: #737882;
+      --color-accent: #0f4c81;
+      --font-jp: 'Noto Sans JP', sans-serif;
+      --font-en: 'Cinzel', serif;
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --section-spacing: clamp(100px, 12vw, 200px);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--color-bg);
+      color: var(--color-dark);
+      font-family: var(--font-jp);
+      line-height: 1.8;
+      letter-spacing: 0.05em;
+      overflow-x: hidden;
+      word-break: break-word;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ==========================================================================
+       TYPOGRAPHY & ACCENTS
+       ========================================================================== */
+    .en-title {
+      font-family: var(--font-en);
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 1;
+      letter-spacing: 0.08em;
+    }
+
+    .section-header {
+      position: relative;
+      margin-bottom: clamp(40px, 6vw, 80px);
+    }
+
+    .section-number {
+      font-family: var(--font-en);
+      font-size: clamp(4rem, 10vw, 8rem);
+      color: rgba(18, 19, 22, 0.04);
+      position: absolute;
+      top: -0.4em;
+      left: -0.05em;
+      z-index: 0;
+      user-select: none;
+    }
+
+    .section-title {
+      position: relative;
+      z-index: 1;
+      font-size: clamp(2rem, 4.5vw, 3.5rem);
+    }
+
+    .section-subtitle {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--color-accent);
+      margin-top: 8px;
+    }
+
+    /* ==========================================================================
+       ANIMATIONS (SCROLL OBSERVER)
+       ========================================================================== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1.2s var(--ease-out-expo), transform 1.2s var(--ease-out-expo);
+    }
+
+    .img-reveal {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .img-reveal img {
+      transform: scale(1.15);
+      transition: transform 1.4s var(--ease-out-expo);
+    }
+
+    .img-reveal::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: var(--color-bg);
+      transform: translateY(0%);
+      transition: transform 1.2s var(--ease-out-expo);
+      z-index: 2;
+    }
+
+    .is-visible.fade-up {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .is-visible.img-reveal::after {
+      transform: translateY(101%);
+    }
+
+    .is-visible.img-reveal img {
+      transform: scale(1);
+    }
+
+    /* ==========================================================================
+       NAV
+       ========================================================================== */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 30px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      mix-blend-mode: difference;
+      color: #ffffff;
+    }
+
+    .logo {
+      font-family: var(--font-en);
+      font-weight: 700;
+      font-size: 1.25rem;
+      letter-spacing: 0.15em;
+    }
+
+    .nav-btn {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      padding: 8px 24px;
+      border: 1px solid #ffffff;
+      border-radius: 999px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    /* ==========================================================================
+       FIRST VIEW
+       ========================================================================== */
+    .fv {
+      height: 100vh;
+      min-height: 700px;
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: repeat(12, 1fr);
+      padding: 0 5%;
+    }
+
+    .fv-bg-text {
+      grid-column: 1 / -1;
+      grid-row: 5 / 8;
+      font-size: clamp(4rem, 15vw, 14rem);
+      font-family: var(--font-en);
+      color: rgba(18, 19, 22, 0.05);
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .fv-img-main {
+      grid-column: 7 / 13;
+      grid-row: 2 / 12;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .fv-img-sub {
+      grid-column: 2 / 6;
+      grid-row: 6 / 12;
+      height: 80%;
+      z-index: 3;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+    }
+
+    .fv-copy {
+      grid-column: 1 / 8;
+      grid-row: 3 / 7;
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    .fv-copy h1 {
+      font-size: clamp(2.2rem, 5vw, 4.5rem);
+      font-weight: 900;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+    }
+
+    .fv-copy p {
+      margin-top: 24px;
+      font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+      color: var(--color-muted);
+      max-width: 480px;
+    }
+
+    /* ==========================================================================
+       SECTIONS COMMON
+       ========================================================================== */
+    .section-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: var(--section-spacing) 5%;
+    }
+
+    /* ==========================================================================
+       MESSAGE / CONCEPT
+       ========================================================================== */
+    .concept-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8%;
+      align-items: center;
+    }
+
+    .concept-text h2 {
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    .concept-text p {
+      color: var(--color-muted);
+      margin-bottom: 24px;
+    }
+
+    /* ==========================================================================
+       AREA FILTER UI
+       ========================================================================== */
+    .area-tabs {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .area-tab {
+      padding: 12px 28px;
+      border: 1px solid rgba(18, 19, 22, 0.15);
+      border-radius: 999px;
+      background: transparent;
+      cursor: pointer;
+      font-family: var(--font-jp);
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+    }
+
+    .area-tab.active {
+      background: var(--color-dark);
+      color: #fff;
+      border-color: var(--color-dark);
+    }
+
+    .area-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 30px;
+    }
+
+    .job-card {
+      background: var(--color-surface);
+      padding: 40px;
+      border-radius: 4px;
+      position: relative;
+      transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s var(--ease-out-expo);
+      border: 1px solid rgba(18, 19, 22, 0.05);
+    }
+
+    .job-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+    }
+
+    .job-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--color-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+
+    .job-title {
+      font-size: 1.3rem;
+      margin-bottom: 16px;
+    }
+
+    /* ==========================================================================
+       PEOPLE INTERVIEWS
+       ========================================================================== */
+    .people-item {
+      display: grid;
+      grid-template-columns: 7fr 5fr;
+      gap: 60px;
+      align-items: center;
+      margin-bottom: 140px;
+    }
+
+    .people-item:nth-child(even) {
+      grid-template-columns: 5fr 7fr;
+      direction: rtl;
+    }
+
+    .people-item:nth-child(even) .people-content {
+      direction: ltr;
+    }
+
+    .people-img-wrap {
+      position: relative;
+    }
+
+    .people-img {
+      height: 580px;
+      width: 100%;
+    }
+
+    .people-catch {
+      position: absolute;
+      bottom: -30px;
+      left: 10%;
+      background: var(--color-surface);
+      padding: 24px 32px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+      font-weight: 700;
+      font-size: 1.2rem;
+      max-width: 80%;
+      z-index: 3;
+    }
+
+    .people-item:nth-child(even) .people-catch {
+      left: auto;
+      right: 10%;
+    }
+
+    .people-role {
+      font-family: var(--font-en);
+      font-size: 0.9rem;
+      color: var(--color-accent);
+      margin-bottom: 8px;
+    }
+
+    .people-name {
+      font-size: 2rem;
+      margin-bottom: 24px;
+    }
+
+    /* ==========================================================================
+       ENTRY CTA
+       ========================================================================== */
+    .entry-banner {
+      background: var(--color-dark);
+      color: #fff;
+      padding: clamp(80px, 10vw, 140px) 5%;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .entry-banner h2 {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      margin-bottom: 24px;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 20px 60px;
+      background: #fff;
+      color: var(--color-dark);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      border-radius: 999px;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .cta-btn:hover {
+      transform: scale(1.05);
+      background: #e9ecef;
+    }
+
+    /* ==========================================================================
+       RESPONSIVE
+       ========================================================================== */
+    @media (max-width: 900px) {
+      .fv {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-top: 100px;
+        height: auto;
+        min-height: auto;
+      }
+      .fv-copy { order: 1; margin-bottom: 40px; }
+      .fv-img-main { height: 350px; order: 2; width: 100%; }
+      .fv-img-sub { display: none; }
+      .concept-grid { grid-template-columns: 1fr; gap: 40px; }
+      .people-item, .people-item:nth-child(even) { grid-template-columns: 1fr; gap: 40px; }
+      .people-img { height: 400px; }
+      .people-catch { position: relative; bottom: 0; left: 0 !important; right: 0 !important; max-width: 100%; margin-top: -40px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">CORP RECRUIT</div>
+    <a href="#entry" class="nav-btn">ENTRY</a>
+  </header>
+
+  <!-- FIRST VIEW -->
+  <section class="fv">
+    <div class="fv-bg-text">NEW HORIZONS</div>
+    <div class="fv-copy fade-up">
+      <span class="section-subtitle">2027 RECRUITMENT</span>
+      <h1>意志が、<br>景色をつくる。</h1>
+      <p>型にはまった成長はいらない。あなたの熱量と個性が重なり合ったとき、まだ見ぬ次の日常が動き出します。</p>
+    </div>
+    <div class="fv-img-main img-reveal">
+      <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80" alt="Team collaborating">
+    </div>
+    <div class="fv-img-sub img-reveal">
+      <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" alt="Member profile">
+    </div>
+  </section>
+
+  <!-- CONCEPT -->
+  <section class="section-container">
+    <div class="section-header fade-up">
+      <span class="section-number">01</span>
+      <h2 class="section-title en-title">CONCEPT</h2>
+      <span class="section-subtitle">私たちの存在理由</span>
+    </div>
+    <div class="concept-grid">
+      <div class="concept-img img-reveal">
+        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1000&q=80" alt="Office workspace">
+      </div>
+      <div class="concept-text fade-up">
+        <h2>当たり前を疑い、<br>未来のスタンダードへ。</h2>
+        <p>単に指示されたものをつくるのではなく、課題の本質を見つめ直す。個々がリーダーシップを持ち、プロフェッショナルとして自律駆動する組織を目指しています。</p>
+        <p>失敗を恐れる現状維持よりも、試行錯誤から生まれる革新を歓迎します。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- AREA SEARCH -->
+  <section class="section-container">
+    <div class="section-header fade-up">
+      <span class="section-number">02</span>
+      <h2 class="section-title en-title">AREA</h2>
+      <span class="section-subtitle">働く場所から探す</span>
+    </div>
+
+    <!-- AREA TABS -->
+    <div class="area-tabs fade-up">
+      <button class="area-tab active" data-filter="all">ALL</button>
+      <button class="area-tab" data-filter="tokyo">TOKYO</button>
+      <button class="area-tab" data-filter="osaka">OSAKA</button>
+      <button class="area-tab" data-filter="fukuoka">FUKUOKA</button>
+      <button class="area-tab" data-filter="remote">REMOTE</button>
+    </div>
+
+    <!-- JOBS GRID -->
+    <div class="area-grid">
+      <div class="job-card fade-up" data-area="tokyo">
+        <div class="job-tag">TOKYO / PRODUCT</div>
+        <h3 class="job-title">プロダクトデザイナー</h3>
+        <p>デザインシステムの設計からUI/UXリサーチまで、包括的にプロダクト価値を高めます。</p>
+      </div>
+      <div class="job-card fade-up" data-area="osaka remote">
+        <div class="job-tag">OSAKA / REMOTE / DEV</div>
+        <h3 class="job-title">フロントエンドエンジニア</h3>
+        <p>Web標準技術と最新フレームワークを用いた、高パフォーマンスな体験の設計・実装。</p>
+      </div>
+      <div class="job-card fade-up" data-area="fukuoka">
+        <div class="job-tag">FUKUOKA / BUSINESS</div>
+        <h3 class="job-title">エリアマーケティング</h3>
+        <p>地域に深く根ざしたプロモーション戦略とアライアンスの立案・実行。</p>
+      </div>
+      <div class="job-card fade-up" data-area="tokyo remote">
+        <div class="job-tag">TOKYO / REMOTE / MGMT</div>
+        <h3 class="job-title">プロジェクトマネージャー</h3>
+        <p>複数拠点を横断するプロジェクトのロードマップ策定とステークホルダーマネジメント。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PEOPLE -->
+  <section class="section-container">
+    <div class="section-header fade-up">
+      <span class="section-number">03</span>
+      <h2 class="section-title en-title">PEOPLE</h2>
+      <span class="section-subtitle">社員インタビュー</span>
+    </div>
+
+    <div class="people-list">
+      <!-- Person 1 -->
+      <article class="people-item">
+        <div class="people-img-wrap img-reveal">
+          <img class="people-img" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1000&q=80" alt="Interviewee 01">
+          <div class="people-catch">「妥協しない議論が、最高の体験をつくる。」</div>
+        </div>
+        <div class="people-content fade-up">
+          <div class="people-role">Lead Brand Designer</div>
+          <h3 class="people-name">佐々木 遥 / 2022年入社</h3>
+          <p>前職の広告代理店から転職。事業会社のインハウスデザイナーとして、ブランドのトーン＆マナー定義からプロダクトUIの統括まで幅広く担当。</p>
+        </div>
+      </article>
+
+      <!-- Person 2 -->
+      <article class="people-item">
+        <div class="people-img-wrap img-reveal">
+          <img class="people-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1000&q=80" alt="Interviewee 02">
+          <div class="people-catch">「場所を選ばない働き方が、自由な発想を生む。」</div>
+        </div>
+        <div class="people-content fade-up">
+          <div class="people-role">Senior Software Engineer</div>
+          <h3 class="people-name">田中 健介 / 2024年入社</h3>
+          <p>フルリモート制度を活用し、福岡拠点をベースに開発をリード。マイクロサービス化の推進とジュニアエンジニアのメンターを担当。</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ENTRY BANNER -->
+  <section id="entry" class="entry-banner">
+    <h2 class="en-title fade-up">BECOME A MEMBER</h2>
+    <p class="fade-up">あなたの経験と情熱を、私たちは歓迎します。</p>
+    <a href="#" class="cta-btn fade-up">エントリーフォームへ</a>
+  </section>
+
+  <!-- SCRIPT -->
+  <script>
+    // 1. Scroll-triggered Reveal Animations
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.15
+    };
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-up, .img-reveal').forEach(el => {
+      revealObserver.observe(el);
+    });
+
+    // 2. Area Filter Functionality
+    const areaTabs = document.querySelectorAll('.area-tab');
+    const jobCards = document.querySelectorAll('.job-card');
+
+    areaTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        areaTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        const filterValue = tab.getAttribute('data-filter');
+
+        jobCards.forEach(card => {
+          const cardAreas = card.getAttribute('data-area').split(' ');
+          if (filterValue === 'all' || cardAreas.includes(filterValue)) {
+            card.style.display = 'block';
+            setTimeout(() => { card.style.opacity = '1'; }, 10);
+          } else {
+            card.style.opacity = '0';
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
