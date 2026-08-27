@@ -194,7 +194,7 @@ body.ready .plane{animation:fly 3s cubic-bezier(.2,.7,.2,1) .2s both}
 .keep-box{padding:54px;background:linear-gradient(125deg,rgba(21,157,37,.08),rgba(255,255,255,.8) 55%,rgba(23,43,209,.06)),#fff;border:1px solid var(--ink)}
 .keep-box h2{margin:0;font-size:clamp(2rem,4vw,3.8rem);line-height:1.35}
 .keep-box>.section-lead{max-width:760px;margin-top:20px}
-.keep-actions{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:30px}
+.keep-actions{display:grid;grid-template-columns:1fr;gap:14px;margin-top:30px;max-width:760px}
 .keep-card{padding:26px;background:#fff;border:1px solid var(--line)}
 .keep-card h3{margin:0 0 10px}
 .keep-card p{margin:0 0 20px;color:var(--muted);font-size:.88rem}
@@ -468,12 +468,13 @@ html.js .reveal{opacity:1;transform:none}
     <h2>今すぐ転職じゃなくても、<br>オーファスとつながっておきませんか？</h2>
     <p class="section-lead">「こんな仕事なら興味がある」「このエリアなら働けそう」「条件が合えば考えてみたい」。そんな希望だけ、私たちに教えてください。</p>
 
-    <div class="keep-actions">
-      <article class="keep-card"><h3>まずは登録しておく</h3><p>希望する仕事・エリア・働き方を登録。合いそうな募集が出たときにご案内します。</p><a class="btn btn-green" href="#" data-register>興味登録する</a></article>
-      <article class="keep-card"><h3>LINEでつながる</h3><p>「少し聞いてみたい」くらいなら、LINEから採用担当に気軽に相談できます。</p><a class="btn btn-blue" href="#" data-line>LINEでつながる</a></article>
+    <div class="keep-actions keep-actions-single">
+      <article class="keep-card keep-card-line">
+        <h3>LINEでつながる</h3>
+        <p>今すぐ転職を考えていなくても大丈夫です。気になる仕事や働き方について、採用担当と気軽につながっておけます。</p>
+        <a class="btn btn-green" href="#" data-line>LINEで採用担当とつながる</a>
+      </article>
     </div>
-
-    <a class="sub-link" href="https://arwrk.net/recruit/yhapccvbz94kp8h" target="_blank" rel="noopener">今すぐ仕事を探している方へ　現在募集中の求人を見る ↗</a>
   </div>
 </div>
 </section>
@@ -652,7 +653,6 @@ function updateTimelineProgress(){
 window.addEventListener("scroll", updateTimelineProgress, {passive:true});
 window.addEventListener("resize", updateTimelineProgress);
 updateTimelineProgress();
-
 </script>
 </body>
 </html>
