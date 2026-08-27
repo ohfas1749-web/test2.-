@@ -49,7 +49,7 @@ button{font:inherit;color:inherit}
 .section{position:relative;padding:112px 0;overflow:hidden}
 .section-head{position:relative;max-width:860px;margin:0 auto 56px;text-align:center;z-index:2}
 .section-label{margin:0 0 12px;color:var(--green);font-size:.68rem;font-weight:800;letter-spacing:.17em}
-.section-title{margin:0;font-size:clamp(1.9rem,3vw,3rem);line-height:1.45;letter-spacing:-.025em;font-weight:700}
+.section-title{margin:0;font-size:clamp(1.9rem,3vw,3rem);line-height:1.45;letter-spacing:-.025em;font-weight:700;text-wrap:balance;word-break:normal;line-break:strict}
 .section-copy{max-width:720px;margin:18px auto 0;color:#525b56;font-size:.92rem;line-height:2;text-align:center}
 .ghost-word{
   position:absolute;left:50%;top:18px;transform:translateX(-50%);
@@ -151,8 +151,9 @@ body.ready .paper-plane{animation:fly 3s cubic-bezier(.2,.7,.2,1) .2s both}
 
 /* Editorial break */
 .editorial-break{padding:92px 0 100px}
-.editorial-break p{max-width:1040px;margin:0 auto;text-align:center;font-size:clamp(2rem,4.5vw,4.2rem);line-height:1.45;letter-spacing:-.035em;font-weight:700}
+.editorial-break p{max-width:1040px;margin:0 auto;text-align:center;font-size:clamp(2rem,4.5vw,4.2rem);line-height:1.45;letter-spacing:-.035em;font-weight:700;text-wrap:balance;word-break:normal;line-break:strict}
 .editorial-break span{color:var(--green)}
+.phrase-nowrap{white-space:nowrap}
 
 /* Jobs mosaic */
 .jobs-grid{
@@ -300,6 +301,41 @@ html.js .reveal.show{opacity:1;transform:none}
   .modal-photo{min-height:280px;height:280px}
 }
 @media(max-width:640px){
+  .section-head{
+    max-width:100%;
+    padding-inline:10px;
+    margin-bottom:42px;
+  }
+  .section-title{
+    max-width:20em;
+    margin-inline:auto;
+    font-size:clamp(1.55rem,6.6vw,2rem);
+    line-height:1.5;
+    letter-spacing:-.02em;
+    text-wrap:balance;
+  }
+  .section-copy{
+    max-width:32em;
+    padding-inline:4px;
+    font-size:.86rem;
+    line-height:1.95;
+  }
+  .ghost-word{
+    top:26px;
+    font-size:clamp(4.5rem,23vw,7.5rem);
+  }
+  .editorial-break{
+    padding:72px 0 78px;
+  }
+  .editorial-break p{
+    max-width:12.5em;
+    padding-inline:10px;
+    font-size:clamp(1.7rem,7.8vw,2.25rem);
+    line-height:1.55;
+    letter-spacing:-.025em;
+    text-wrap:balance;
+  }
+
   :root{--header:68px}
   .container{width:min(calc(100% - 24px),var(--max))}
   .section{padding:82px 0}
@@ -474,7 +510,7 @@ html.js .reveal.show{opacity:1;transform:none}
 
 <section class="editorial-break">
   <div class="container">
-    <p class="reveal">仕事は違っても、<br>支えているのは<span>誰かの日常。</span></p>
+    <p class="reveal">仕事は違っても、<br>支えているのは<span class="phrase-nowrap">誰かの日常。</span></p>
   </div>
 </section>
 
