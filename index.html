@@ -1,6 +1,4 @@
-from pathlib import Path
-
-html = r'''<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
@@ -13,16 +11,16 @@ html = r'''<!DOCTYPE html>
       --ink:#111312;
       --paper:#f7f7f2;
       --white:#ffffff;
-      --sky:#28a9d5;
-      --sky-soft:#dff4fb;
+      --sky:#4b9bb5;
+      --sky-soft:#edf4f5;
       --yellow:#f2eb55;
       --green:#07c755;
       --gray:#686c69;
       --line:#d9dad4;
       --max:1180px;
-      --radius-xl:42px;
-      --radius-lg:28px;
-      --radius-md:18px;
+      --radius-xl:10px;
+      --radius-lg:8px;
+      --radius-md:6px;
       --shadow:10px 10px 0 var(--ink);
     }
 
@@ -84,7 +82,7 @@ html = r'''<!DOCTYPE html>
       content:"";
       width:32px;
       height:3px;
-      border-radius:20px;
+      border-radius:6px;
       background:var(--sky);
     }
 
@@ -110,7 +108,7 @@ html = r'''<!DOCTYPE html>
       gap:12px;
       min-height:54px;
       padding:0 24px;
-      border-radius:999px;
+      border-radius:4px;
       border:1.5px solid var(--ink);
       font-weight:900;
       transition:.22s ease;
@@ -131,7 +129,7 @@ html = r'''<!DOCTYPE html>
       min-height:30px;
       padding:0 12px;
       border:1px solid var(--ink);
-      border-radius:999px;
+      border-radius:4px;
       font-size:.7rem;
       font-weight:900;
       letter-spacing:.08em;
@@ -218,7 +216,7 @@ html = r'''<!DOCTYPE html>
       padding:11px 17px;
       color:#fff;
       background:var(--ink);
-      border-radius:999px;
+      border-radius:4px;
     }
 
     .menu-button{
@@ -245,14 +243,11 @@ html = r'''<!DOCTYPE html>
     .hero::after{
       content:"";
       position:absolute;
-      width:340px;
-      aspect-ratio:1;
-      border-radius:50%;
-      background:var(--yellow);
-      filter:blur(0);
-      left:-170px;
-      bottom:-100px;
-      opacity:.75;
+      width:220px;
+      height:220px;
+      right:-90px;
+      top:70px;
+      background:rgba(75,155,181,.08);
       z-index:-1;
     }
 
@@ -269,7 +264,7 @@ html = r'''<!DOCTYPE html>
       gap:10px;
       padding:9px 13px;
       border:1.5px solid var(--ink);
-      border-radius:999px;
+      border-radius:4px;
       background:#fff;
       font-size:.72rem;
       font-weight:900;
@@ -325,7 +320,7 @@ html = r'''<!DOCTYPE html>
       inset:35px 0 30px 35px;
       overflow:hidden;
       border:2px solid var(--ink);
-      border-radius:50px;
+      border-radius:10px;
       background:var(--sky);
       transform:rotate(2deg);
       box-shadow:14px 14px 0 var(--ink);
@@ -334,13 +329,13 @@ html = r'''<!DOCTYPE html>
     .visual-board::before{
       content:"";
       position:absolute;
-      width:74%;
-      aspect-ratio:1;
-      border-radius:50%;
-      right:-20%;
-      top:-17%;
+      width:48%;
+      height:34%;
+      right:0;
+      top:0;
       background:var(--yellow);
-      border:2px solid var(--ink);
+      border-left:2px solid var(--ink);
+      border-bottom:2px solid var(--ink);
     }
 
     .visual-board::after{
@@ -370,7 +365,7 @@ html = r'''<!DOCTYPE html>
       position:relative;
       overflow:hidden;
       border:2px solid var(--ink);
-      border-radius:28px 28px 90px 90px;
+      border-radius:6px;
       background:#fff;
     }
 
@@ -394,7 +389,7 @@ html = r'''<!DOCTYPE html>
       bottom:-3%;
       width:86%;
       height:63%;
-      border-radius:70px 70px 0 0;
+      border-radius:8px 8px 0 0;
       background:var(--ink);
     }
 
@@ -408,11 +403,11 @@ html = r'''<!DOCTYPE html>
       top:0;
       padding:15px 20px;
       border:2px solid var(--ink);
-      border-radius:18px;
+      border-radius:6px;
       background:#fff;
       font-size:.9rem;
       font-weight:900;
-      box-shadow:7px 7px 0 var(--ink);
+      box-shadow:4px 4px 0 var(--ink);
       transform:rotate(4deg);
     }
 
@@ -423,7 +418,7 @@ html = r'''<!DOCTYPE html>
       bottom:10px;
       padding:11px 16px;
       border:1.5px solid var(--ink);
-      border-radius:999px;
+      border-radius:4px;
       background:#fff;
       font-size:.72rem;
       font-weight:900;
@@ -443,7 +438,7 @@ html = r'''<!DOCTYPE html>
       border:2px solid var(--ink);
       border-radius:var(--radius-xl);
       background:#fff;
-      box-shadow:var(--shadow);
+      box-shadow:6px 6px 0 var(--ink);
     }
 
     .welcome-card::before{
@@ -481,7 +476,7 @@ html = r'''<!DOCTYPE html>
       gap:14px;
       margin-top:26px;
       padding:18px;
-      border-radius:18px;
+      border-radius:6px;
       background:var(--sky-soft);
     }
 
@@ -504,12 +499,12 @@ html = r'''<!DOCTYPE html>
       justify-content:space-between;
       padding:30px;
       border:1.5px solid var(--ink);
-      border-radius:30px;
+      border-radius:8px;
       background:#fff;
     }
 
     .mvv-card:nth-child(2){background:var(--yellow)}
-    .mvv-card:nth-child(3){background:var(--sky)}
+    .mvv-card:nth-child(3){background:#ecefea}
 
     .mvv-card .num{
       font-size:.75rem;
@@ -533,7 +528,7 @@ html = r'''<!DOCTYPE html>
     .history-panel{
       overflow:hidden;
       border:1.5px solid var(--ink);
-      border-radius:34px;
+      border-radius:8px;
       background:#fff;
     }
 
@@ -574,18 +569,16 @@ html = r'''<!DOCTYPE html>
 
     .job-card{
       position:relative;
-      min-height:320px;
-      padding:28px;
+      min-height:390px;
+      padding:0 0 24px;
       overflow:hidden;
-      border:1.5px solid var(--ink);
-      border-radius:30px;
-      background:#fff;
-      transition:.25s ease;
+      border-bottom:1.5px solid var(--ink);
+      background:transparent;
+      transition:.2s ease;
     }
 
     .job-card:hover{
-      transform:translateY(-6px);
-      box-shadow:8px 8px 0 var(--ink);
+      transform:translateY(-3px);
     }
 
     .job-no{
@@ -599,19 +592,32 @@ html = r'''<!DOCTYPE html>
       letter-spacing:-.08em;
     }
 
-    .job-icon{
-      width:74px;
-      height:74px;
+    .job-photo{
+      width:100%;
+      aspect-ratio:16 / 10;
+      object-fit:cover;
+      border:1px solid #cfd4d1;
+      border-radius:0;
+      background:#e9ecea;
+    }
+
+    .job-photo-placeholder{
+      width:100%;
+      aspect-ratio:16 / 10;
       display:grid;
       place-items:center;
-      border:1.5px solid var(--ink);
-      border-radius:22px;
-      background:var(--paper);
-      font-size:2.05rem;
+      border:1px solid #cfd4d1;
+      border-radius:0;
+      background:
+        linear-gradient(135deg, #e8f4f7 0%, #f7f7f2 100%);
+      color:#7b8380;
+      font-size:.78rem;
+      font-weight:800;
+      letter-spacing:.05em;
     }
 
     .job-card h3{
-      margin:28px 0 8px;
+      margin:22px 0 8px;
       font-size:1.5rem;
       letter-spacing:-.02em;
     }
@@ -624,48 +630,55 @@ html = r'''<!DOCTYPE html>
 
     .job-link{
       position:absolute;
-      left:28px;
-      bottom:25px;
+      left:0;
+      bottom:4px;
       font-size:.78rem;
       font-weight:900;
     }
 
     /* NUMBERS */
     .numbers{
-      background:var(--ink);
-      color:#fff;
+      background:#eef4f5;
+      color:var(--ink);
+      border-top:1px solid #d9e2e4;
+      border-bottom:1px solid #d9e2e4;
     }
 
-    .numbers .section-kicker::before{background:var(--yellow)}
-    .numbers .section-lead{color:#c5c8c6}
+    .numbers .section-kicker::before{background:var(--sky)}
+    .numbers .section-lead{color:#5e6562}
 
     .numbers-grid{
       display:grid;
       grid-template-columns:repeat(4,1fr);
-      border-top:1px solid #4b4f4c;
-      border-left:1px solid #4b4f4c;
+      gap:14px;
     }
 
     .number-card{
-      min-height:220px;
+      min-height:205px;
       display:flex;
       flex-direction:column;
       justify-content:space-between;
       padding:28px;
-      border-right:1px solid #4b4f4c;
-      border-bottom:1px solid #4b4f4c;
+      border:1px solid #d7dcda;
+      border-radius:0;
+      background:#fff;
+    }
+
+    .number-card:nth-child(3n+2){
+      background:#f8fbfb;
     }
 
     .number-label{
-      color:#b9bdba;
-      font-size:.74rem;
-      font-weight:800;
+      color:#7c8581;
+      font-size:.72rem;
+      font-weight:850;
       letter-spacing:.1em;
     }
 
     .number-value{
       display:block;
       margin-top:18px;
+      color:var(--sky);
       font-size:clamp(3rem,5vw,5.2rem);
       line-height:.92;
       letter-spacing:-.07em;
@@ -673,6 +686,7 @@ html = r'''<!DOCTYPE html>
     }
 
     .number-value small{
+      color:var(--ink);
       font-size:.32em;
       letter-spacing:0;
       margin-left:4px;
@@ -680,7 +694,7 @@ html = r'''<!DOCTYPE html>
 
     .number-note{
       margin:12px 0 0;
-      color:#c5c8c6;
+      color:#606661;
       font-size:.78rem;
     }
 
@@ -696,7 +710,7 @@ html = r'''<!DOCTYPE html>
       position:relative;
       overflow:hidden;
       border:1.5px solid var(--ink);
-      border-radius:30px;
+      border-radius:8px;
       background:#fff;
     }
 
@@ -760,7 +774,7 @@ html = r'''<!DOCTYPE html>
       grid-template-columns:repeat(4,1fr);
       gap:0;
       border:1.5px solid var(--ink);
-      border-radius:30px;
+      border-radius:8px;
       overflow:hidden;
       background:#fff;
     }
@@ -800,7 +814,7 @@ html = r'''<!DOCTYPE html>
       overflow:hidden;
       padding:66px;
       border:2px solid var(--ink);
-      border-radius:44px;
+      border-radius:10px;
       background:var(--yellow);
     }
 
@@ -845,7 +859,7 @@ html = r'''<!DOCTYPE html>
     select,.search-button{
       min-height:58px;
       border:1.5px solid var(--ink);
-      border-radius:15px;
+      border-radius:4px;
       background:#fff;
       padding:0 17px;
       font-weight:850;
@@ -866,7 +880,7 @@ html = r'''<!DOCTYPE html>
       gap:34px;
       padding:50px;
       border:1.5px solid var(--ink);
-      border-radius:34px;
+      border-radius:8px;
       background:#fff;
     }
 
@@ -891,7 +905,7 @@ html = r'''<!DOCTYPE html>
       min-width:220px;
       min-height:64px;
       padding:0 25px;
-      border-radius:999px;
+      border-radius:4px;
       background:var(--green);
       color:#fff;
       font-weight:950;
@@ -960,6 +974,7 @@ html = r'''<!DOCTYPE html>
 
       .hero-layout{gap:24px}
       .visual{min-height:470px}
+      .hero-photo-frame{inset:18px 0 18px 12px}
 
       .mvv-grid,
       .jobs-grid{
@@ -1035,32 +1050,23 @@ html = r'''<!DOCTYPE html>
         min-height:360px;
       }
 
-      .visual-board{
-        inset:24px 6px 26px 10px;
-        border-radius:36px;
-        box-shadow:8px 8px 0 var(--ink);
-      }
-
-      .staff-stack{
-        inset:82px 24px 86px 34px;
-        gap:7px;
-      }
-
-      .staff-placeholder::before{
-        width:48px;
-        height:48px;
-        top:22px;
+      .hero-photo-frame{
+        inset:14px 0 18px 0;
       }
 
       .visual-badge{
-        right:3px;
-        font-size:.75rem;
-        padding:10px 13px;
+        left:0;
+        top:0;
+        font-size:.74rem;
+        padding:10px 12px;
       }
 
       .visual-caption{
+        right:0;
         bottom:0;
+        max-width:82%;
         font-size:.66rem;
+        padding:10px 12px;
       }
 
       .welcome-card,
@@ -1070,7 +1076,7 @@ html = r'''<!DOCTYPE html>
       }
 
       .welcome-card{
-        box-shadow:7px 7px 0 var(--ink);
+        box-shadow:4px 4px 0 var(--ink);
       }
 
       .section-head{
@@ -1184,18 +1190,25 @@ html = r'''<!DOCTYPE html>
           <p class="hero-note">紹介された方専用の採用サイトです。</p>
         </div>
 
-        <div class="visual" aria-hidden="true">
-          <div class="visual-board"></div>
-
-          <!-- 実運用ではここをスタッフ写真3枚に差し替え -->
-          <div class="staff-stack">
-            <div class="staff-placeholder"></div>
-            <div class="staff-placeholder"></div>
-            <div class="staff-placeholder"></div>
+        <div class="visual">
+          <div class="hero-photo-frame">
+            <img
+              class="hero-photo"
+              src="images/hero-staff.jpg"
+              alt="オーファスで働くスタッフ"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+            >
+            <div class="hero-photo-placeholder" style="display:none;">
+              ここにオーファスで働くスタッフの実写写真を入れます。<br>
+              清掃・警備・設備など、自然な仕事風景の横長写真がおすすめです。
+            </div>
           </div>
 
           <div class="visual-badge">つながったご縁に、ありがとう。</div>
-          <div class="visual-caption">清掃 / 警備 / 設備 / 電話交換 / 営業・労務管理</div>
+          <div class="visual-caption">
+            清掃・警備・設備・電話交換・営業・労務管理など、<br>
+            さまざまな仕事があります。
+          </div>
         </div>
       </div>
     </section>
@@ -1283,7 +1296,7 @@ html = r'''<!DOCTYPE html>
         <div class="section-head">
           <div>
             <p class="section-kicker">OUR HISTORY</p>
-            <h2 class="section-title">長く続くには、<br>理由がある。</h2>
+            <h2 class="section-title">1948年から、<br>つないできたこと。</h2>
           </div>
 
           <p class="section-lead">
@@ -1295,20 +1308,44 @@ html = r'''<!DOCTYPE html>
         <div class="history-panel">
           <div class="history-row">
             <div class="history-year">1948</div>
-            <div class="history-title">オーファスの歩みがスタート</div>
-            <div class="history-text">地域に根ざし、建物を支える仕事を積み重ねてきました。</div>
+            <div class="history-title">創業</div>
+            <div class="history-text">地域に根ざした事業から、オーファスの歩みが始まりました。</div>
+          </div>
+
+          <div class="history-row">
+            <div class="history-year">1970s</div>
+            <div class="history-title">建物管理分野へ事業を拡大</div>
+            <div class="history-text">清掃をはじめ、建物を維持するためのサービス領域を広げていきます。</div>
+          </div>
+
+          <div class="history-row">
+            <div class="history-year">1980s</div>
+            <div class="history-title">設備管理・警備などへ展開</div>
+            <div class="history-text">お客様のさまざまなニーズに応えるため、総合的な建物管理体制を整えていきました。</div>
+          </div>
+
+          <div class="history-row">
+            <div class="history-year">2000s</div>
+            <div class="history-title">サービスの幅をさらに拡大</div>
+            <div class="history-text">現場で働くスタッフとともに、地域の多様な施設を支える会社へ成長。</div>
+          </div>
+
+          <div class="history-row">
+            <div class="history-year">2020s</div>
+            <div class="history-title">環境・安全・働きやすさを重視</div>
+            <div class="history-text">建物を守るだけでなく、働く人や利用する人の安心まで考えたサービスへ。</div>
           </div>
 
           <div class="history-row">
             <div class="history-year">NOW</div>
-            <div class="history-title">さまざまな施設へサービスを展開</div>
-            <div class="history-text">清掃・設備・警備など、建物管理を幅広く担っています。</div>
+            <div class="history-title">600名を超える仲間とともに</div>
+            <div class="history-text">清掃・警備・設備・電話交換・営業・労務管理など、多様な仕事を展開しています。</div>
           </div>
 
           <div class="history-row">
             <div class="history-year">NEXT</div>
             <div class="history-title">建物を、未来へ。</div>
-            <div class="history-text">これからも変化に気づき、必要とされる会社を目指します。</div>
+            <div class="history-text">これからも変化に気づき、地域とお客様から選ばれ続ける会社を目指します。</div>
           </div>
         </div>
       </div>
@@ -1320,7 +1357,7 @@ html = r'''<!DOCTYPE html>
         <div class="section-head">
           <div>
             <p class="section-kicker">OUR JOBS</p>
-            <h2 class="section-title">仕事はいろいろ。<br>働き方もいろいろ。</h2>
+            <h2 class="section-title">いろんな仕事に、<br>いろんな人がいる。</h2>
           </div>
 
           <p class="section-lead">
@@ -1332,7 +1369,9 @@ html = r'''<!DOCTYPE html>
         <div class="jobs-grid">
           <article class="job-card">
             <span class="job-no">01</span>
-            <div class="job-icon">🧹</div>
+            <img class="job-photo" src="images/job-cleaning.jpg" alt="清掃スタッフの仕事風景"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+            <div class="job-photo-placeholder" style="display:none;">清掃スタッフ写真</div>
             <h3>清掃</h3>
             <p>オフィス・病院・商業施設などを、気持ちよく使える空間に整える仕事です。</p>
             <span class="job-link">仕事を見る →</span>
@@ -1340,7 +1379,9 @@ html = r'''<!DOCTYPE html>
 
           <article class="job-card">
             <span class="job-no">02</span>
-            <div class="job-icon">🛡️</div>
+            <img class="job-photo" src="images/job-security.jpg" alt="警備スタッフの仕事風景"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+            <div class="job-photo-placeholder" style="display:none;">警備スタッフ写真</div>
             <h3>警備</h3>
             <p>施設の安全を守り、利用する人が安心して過ごせる環境を支えます。</p>
             <span class="job-link">仕事を見る →</span>
@@ -1348,7 +1389,9 @@ html = r'''<!DOCTYPE html>
 
           <article class="job-card">
             <span class="job-no">03</span>
-            <div class="job-icon">🔧</div>
+            <img class="job-photo" src="images/job-facility.jpg" alt="設備管理スタッフの仕事風景"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+            <div class="job-photo-placeholder" style="display:none;">設備管理スタッフ写真</div>
             <h3>設備管理</h3>
             <p>電気・空調・給排水など、建物設備の点検や維持管理を行います。</p>
             <span class="job-link">仕事を見る →</span>
@@ -1356,7 +1399,9 @@ html = r'''<!DOCTYPE html>
 
           <article class="job-card">
             <span class="job-no">04</span>
-            <div class="job-icon">☎️</div>
+            <img class="job-photo" src="images/job-telephone.jpg" alt="電話交換スタッフの仕事風景"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+            <div class="job-photo-placeholder" style="display:none;">電話交換スタッフ写真</div>
             <h3>電話交換</h3>
             <p>施設の窓口として電話を受け、必要な部署や担当者へつなぎます。</p>
             <span class="job-link">仕事を見る →</span>
@@ -1364,7 +1409,9 @@ html = r'''<!DOCTYPE html>
 
           <article class="job-card">
             <span class="job-no">05</span>
-            <div class="job-icon">🤝</div>
+            <img class="job-photo" src="images/job-management.jpg" alt="営業・労務管理スタッフの仕事風景"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+            <div class="job-photo-placeholder" style="display:none;">営業・労務管理スタッフ写真</div>
             <h3>営業・労務管理</h3>
             <p>お客様との関係づくりと、現場スタッフの働きやすさを支える仕事です。</p>
             <span class="job-link">仕事を見る →</span>
@@ -1372,7 +1419,9 @@ html = r'''<!DOCTYPE html>
 
           <article class="job-card">
             <span class="job-no">06</span>
-            <div class="job-icon">＋</div>
+            <img class="job-photo" src="images/job-other.jpg" alt="オーファスで働くスタッフの仕事風景"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+            <div class="job-photo-placeholder" style="display:none;">その他の仕事写真</div>
             <h3>そのほか</h3>
             <p>勤務地・勤務時間・雇用形態など、自分に合う条件から仕事を探せます。</p>
             <span class="job-link">求人一覧を見る →</span>
@@ -1391,55 +1440,55 @@ html = r'''<!DOCTYPE html>
           </div>
 
           <p class="section-lead">
-            どんな会社なのかを、働いている人や会社のデータから見てみましょう。
+            オーファスで働く人や会社の特徴を、わかりやすい数字で紹介します。
           </p>
         </div>
 
         <div class="numbers-grid">
           <div class="number-card">
-            <span class="number-label">EMPLOYEES</span>
+            <span class="number-label">従業員数</span>
             <strong class="number-value">635<small>名</small></strong>
             <p class="number-note">たくさんの仲間が働いています</p>
           </div>
 
           <div class="number-card">
-            <span class="number-label">ESTABLISHED</span>
+            <span class="number-label">創業</span>
             <strong class="number-value">1948<small>年</small></strong>
             <p class="number-note">地域とともに歩んできました</p>
           </div>
 
           <div class="number-card">
-            <span class="number-label">GENDER</span>
+            <span class="number-label">男女比</span>
             <strong class="number-value">55:45</strong>
             <p class="number-note">男性55％ / 女性45％</p>
           </div>
 
           <div class="number-card">
-            <span class="number-label">BEGINNER</span>
+            <span class="number-label">未経験スタート</span>
             <strong class="number-value">80<small>%</small></strong>
             <p class="number-note">未経験スタート</p>
           </div>
 
           <div class="number-card">
-            <span class="number-label">AGE</span>
+            <span class="number-label">年代</span>
             <strong class="number-value">20<small>代〜</small></strong>
             <p class="number-note">幅広い世代が活躍</p>
           </div>
 
           <div class="number-card">
-            <span class="number-label">YEARS</span>
+            <span class="number-label">平均勤続年数</span>
             <strong class="number-value">5<small>年</small></strong>
             <p class="number-note">平均勤続年数</p>
           </div>
 
           <div class="number-card">
-            <span class="number-label">WORK STYLE</span>
+            <span class="number-label">雇用形態</span>
             <strong class="number-value">30:70</strong>
             <p class="number-note">正社員30％ / パート等70％</p>
           </div>
 
           <div class="number-card">
-            <span class="number-label">JOBS</span>
+            <span class="number-label">職種</span>
             <strong class="number-value">6<small>+</small></strong>
             <p class="number-note">さまざまな職種があります</p>
           </div>
@@ -1645,8 +1694,3 @@ html = r'''<!DOCTYPE html>
   </script>
 </body>
 </html>
-'''
-
-out = Path("/mnt/data/ohfas_referral_brushup.html")
-out.write_text(html, encoding="utf-8")
-print(f"created: {out}")
