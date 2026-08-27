@@ -2,352 +2,1014 @@ from pathlib import Path
 from PIL import Image
 import io, base64, json
 
-# Prepare transparent logo from the uploaded OHFAS logo.
+# Prepare transparent OHFAS logo from the provided file
 logo_path = Path("/mnt/data/99810384-6c90-4dba-b66d-45266233d8f7.png")
 img = Image.open(logo_path).convert("RGBA")
 px = img.load()
 for y in range(img.height):
     for x in range(img.width):
-        r,g,b,a = px[x,y]
+        r, g, b, a = px[x, y]
         if r > 244 and g > 244 and b > 244:
-            px[x,y] = (255,255,255,0)
+            px[x, y] = (255, 255, 255, 0)
+
 buf = io.BytesIO()
 img.save(buf, format="PNG")
 logo_uri = "data:image/png;base64," + base64.b64encode(buf.getvalue()).decode("ascii")
 
 recruit_url = "https://arwrk.net/recruit/yhapccvbz94kp8h"
 
-staff_details = [
+jobs = [
     {
-        "role":"清掃スタッフ",
-        "title":"未経験でも、少しずつ覚えていけた。今ではこの仕事が、自分に合っていると思います。",
-        "intro":"入社時は清掃未経験でしたが、周りのスタッフに教えてもらいながら少しずつ仕事を覚えていきました。",
-        "reward":"自分がきれいにした場所をお客様が気持ちよく使ってくださること。「ありがとう」と声をかけてもらえるとうれしいです。",
-        "message":"コツコツ進めることが好きな方なら、未経験からでも始めやすい仕事だと思います。",
-        "image":"images/staff-01.jpg"
+        "title": "清掃",
+        "image": "images/job-cleaning.jpg",
+        "lead": "オフィス・病院・商業施設などを、気持ちよく使える空間に整える仕事です。",
+        "work": "床・共用部・トイレなどの清掃、ゴミ回収、備品補充など。",
+        "fit": "コツコツ取り組むことが好きな方、体を動かす仕事が好きな方。",
+        "style": "短時間勤務からフルタイムまで、勤務地によってさまざまです。"
     },
     {
-        "role":"警備スタッフ",
-        "title":"「ありがとう」のひと言が、やっぱりうれしい。",
-        "intro":"館内の巡回や出入管理、ご案内などを通して、施設の安全を守っています。",
-        "reward":"何も起きない一日を守ることと、利用者の方から直接感謝の言葉をいただけることです。",
-        "message":"責任はありますが、手順を覚えれば落ち着いて取り組める仕事です。",
-        "image":"images/staff-02.jpg"
+        "title": "警備",
+        "image": "images/job-security.jpg",
+        "lead": "施設を利用する人の安全と安心を守る仕事です。",
+        "work": "館内巡回、出入管理、受付、ご案内、異常の確認など。",
+        "fit": "責任感を持って落ち着いて対応できる方、人と接することが好きな方。",
+        "style": "日勤・夜勤・シフト制など、勤務先によって異なります。"
     },
     {
-        "role":"設備スタッフ",
-        "title":"何も起きない一日を守る。それも大切な仕事です。",
-        "intro":"電気・空調・給排水など、建物設備の点検や管理を行っています。",
-        "reward":"トラブルを未然に防げたときや、設備が当たり前に動き続けているときに達成感があります。",
-        "message":"設備や機械に興味がある方、技術を身につけたい方に向いています。",
-        "image":"images/staff-03.jpg"
+        "title": "設備管理",
+        "image": "images/job-facility.jpg",
+        "lead": "建物の設備がいつも通り動くように、点検・管理する仕事です。",
+        "work": "電気・空調・給排水設備の点検、簡単なメンテナンス、不具合への一次対応など。",
+        "fit": "機械や設備に興味がある方、資格や技術を身につけたい方。",
+        "style": "常駐管理・巡回管理など、現場によって勤務スタイルが異なります。"
     },
     {
-        "role":"電話交換スタッフ",
-        "title":"人と人をつなぐ仕事だから、言葉を大切にしています。",
-        "intro":"代表電話を受け、内容に応じて適切な部署や担当者へつなぐ仕事です。",
-        "reward":"丁寧に対応できたときや、相手の不安を少しでも和らげられたときにやりがいを感じます。",
-        "message":"最初は敬語が難しくても、経験を重ねるうちに自然と身についていきます。",
-        "image":"images/staff-04.jpg"
+        "title": "電話交換",
+        "image": "images/job-telephone.jpg",
+        "lead": "施設の“声の窓口”として、人と人をつなぐ仕事です。",
+        "work": "代表電話の受付、内容確認、担当部署への取り次ぎなど。",
+        "fit": "丁寧な受け答えができる方、人と話すことが好きな方。",
+        "style": "勤務地により勤務時間・曜日が異なります。"
     },
     {
-        "role":"営業・労務管理",
-        "title":"現場のみんなが働きやすい環境を、裏側から支える。",
-        "intro":"お客様との打ち合わせや現場確認、スタッフのフォローなどを行います。",
-        "reward":"スタッフの相談に応えられたときや、お客様から現場を評価していただけたときです。",
-        "message":"人の話を聞き、調整しながら前に進めることが好きな方に向いています。",
-        "image":"images/staff-05.jpg"
+        "title": "営業・労務管理",
+        "image": "images/job-management.jpg",
+        "lead": "お客様と現場スタッフの間に立ち、サービスを支える仕事です。",
+        "work": "お客様との打ち合わせ、現場確認、スタッフフォロー、勤務管理など。",
+        "fit": "人と関わることが好きな方、相談や調整が得意な方。",
+        "style": "本社勤務を中心に、担当現場への訪問や打ち合わせがあります。"
+    },
+    {
+        "title": "その他",
+        "image": "images/job-other.jpg",
+        "lead": "オーファスには、さまざまな勤務地・働き方・職種があります。",
+        "work": "募集時期に応じてさまざまな仕事があります。",
+        "fit": "まずは自分に合う仕事を相談したい方。",
+        "style": "勤務地・時間・雇用形態など、条件から探すことができます。"
     }
 ]
 
-job_details = [
+staff = [
     {
-        "label":"01",
-        "title":"清掃",
-        "lead":"施設を利用する人が、気持ちよく過ごせる空間をつくる仕事です。",
-        "work":"オフィス・病院・商業施設などで、床や共用部、トイレなどの清掃を行います。",
-        "fit":"コツコツ取り組むことが好きな方、体を動かす仕事が好きな方におすすめです。",
-        "style":"短時間勤務からフルタイムまで、勤務地によってさまざまな働き方があります。",
-        "image":"images/job-cleaning.jpg"
+        "role": "清掃スタッフ",
+        "image": "images/staff-01.jpg",
+        "title": "未経験でも、少しずつ覚えていけた。今ではこの仕事が、自分に合っていると思います。",
+        "intro": "入社したときは清掃未経験でした。周りのスタッフに教えてもらいながら、少しずつ仕事を覚えていきました。",
+        "reward": "自分がきれいにした場所をお客様が気持ちよく使ってくださること。『ありがとう』と言っていただけるとうれしいです。",
+        "message": "コツコツ進めることが好きな方なら、未経験からでも始めやすい仕事だと思います。"
     },
     {
-        "label":"02",
-        "title":"警備",
-        "lead":"施設を利用する人の安全と安心を守る仕事です。",
-        "work":"館内巡回、出入管理、受付、ご案内などを行い、異常がないかを確認します。",
-        "fit":"責任感を持って落ち着いて対応できる方、人と接する仕事が好きな方に向いています。",
-        "style":"施設や勤務先によって、日勤・夜勤・シフト制などがあります。",
-        "image":"images/job-security.jpg"
+        "role": "警備スタッフ",
+        "image": "images/staff-02.jpg",
+        "title": "「ありがとう」のひと言が、やっぱりうれしい。",
+        "intro": "館内巡回や出入管理、ご案内などを通して、施設の安全を守っています。",
+        "reward": "何も起きない一日を守ることと、利用者の方から直接感謝の言葉をいただけることです。",
+        "message": "責任はありますが、手順を覚えれば落ち着いて取り組める仕事です。"
     },
     {
-        "label":"03",
-        "title":"設備管理",
-        "lead":"建物の設備がいつも通り動くように、点検・管理する仕事です。",
-        "work":"電気、空調、給排水などの設備点検や簡単なメンテナンス、不具合への一次対応を行います。",
-        "fit":"機械や設備に興味がある方、資格や技術を身につけたい方におすすめです。",
-        "style":"常駐管理や巡回管理など、現場によって勤務スタイルが異なります。",
-        "image":"images/job-facility.jpg"
+        "role": "設備スタッフ",
+        "image": "images/staff-03.jpg",
+        "title": "何も起きない一日を守る。それも大切な仕事です。",
+        "intro": "電気・空調・給排水など、建物設備の点検や管理を行っています。",
+        "reward": "トラブルを未然に防げたときや、設備が当たり前に動き続けているときに達成感があります。",
+        "message": "設備や機械に興味がある方、技術を身につけたい方に向いています。"
     },
     {
-        "label":"04",
-        "title":"電話交換",
-        "lead":"施設の“声の窓口”として、人と人をつなぐ仕事です。",
-        "work":"代表電話を受け、内容を確認し、必要な部署や担当者へ取り次ぎます。",
-        "fit":"丁寧な受け答えができる方、人と話すことが好きな方に向いています。",
-        "style":"勤務地によって勤務時間や曜日が異なります。",
-        "image":"images/job-telephone.jpg"
+        "role": "電話交換スタッフ",
+        "image": "images/staff-04.jpg",
+        "title": "人と人をつなぐ仕事だから、言葉を大切にしています。",
+        "intro": "代表電話を受け、内容に応じて適切な部署や担当者へつなぐ仕事です。",
+        "reward": "丁寧に対応できたときや、相手の不安を少しでも和らげられたときにやりがいを感じます。",
+        "message": "最初は敬語が難しくても、経験を重ねるうちに自然と身についていきます。"
     },
     {
-        "label":"05",
-        "title":"営業・労務管理",
-        "lead":"お客様と現場スタッフの間に立ち、サービスを支える仕事です。",
-        "work":"お客様との打ち合わせ、現場確認、スタッフのフォロー、勤務管理などを行います。",
-        "fit":"人と関わることが好きな方、相談や調整が得意な方におすすめです。",
-        "style":"本社勤務を中心に、担当現場への訪問や打ち合わせがあります。",
-        "image":"images/job-management.jpg"
-    },
-    {
-        "label":"06",
-        "title":"そのほか",
-        "lead":"勤務地や働き方に合わせて選べる、さまざまな仕事があります。",
-        "work":"募集時期によって、さまざまな職種・勤務地の求人があります。",
-        "fit":"まずは条件から仕事を探したい方、自分に合う職種を相談したい方にもおすすめです。",
-        "style":"勤務地・勤務時間・雇用形態など、条件から探せます。",
-        "image":"images/job-other.jpg"
+        "role": "営業・労務管理",
+        "image": "images/staff-05.jpg",
+        "title": "現場のみんなが働きやすい環境を、裏側から支える。",
+        "intro": "お客様との打ち合わせや現場確認、スタッフのフォローなどを行います。",
+        "reward": "スタッフの相談に応えられたときや、お客様から現場を評価していただけたときです。",
+        "message": "人の話を聞き、調整しながら前に進めることが好きな方に向いています。"
     }
 ]
 
-html = f'''<!DOCTYPE html>
+html = f"""<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="株式会社オーファス リファラル採用サイト。ご紹介をきっかけに、会社・仕事・働く人を知り、今すぐ転職でなくてもつながっておける採用サイトです。">
   <title>OHFAS REFERRAL｜ご縁から、仕事を見つけよう。</title>
+  <meta name="description" content="株式会社オーファスのリファラル採用専用サイトです。今すぐ転職でなくても、まずは会社を知り、将来につながる登録ができます。">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    :root{{
+    :root {{
       --ink:#171b19;
       --paper:#f7f8f4;
-      --white:#fff;
+      --white:#ffffff;
       --blue:#172bd1;
       --green:#159d25;
-      --green-dark:#117c1d;
-      --line:#d9dfdb;
-      --muted:#66706a;
+      --green-dark:#0f7f1b;
+      --line:#dce2de;
+      --muted:#6a736d;
+      --soft:#eef4ef;
       --max:1180px;
     }}
 
-    *{{box-sizing:border-box}}
-    html{{scroll-behavior:smooth}}
-    body{{
+    * {{ box-sizing:border-box; }}
+    html {{ scroll-behavior:smooth; }}
+    body {{
       margin:0;
       color:var(--ink);
+      font-family:"Noto Sans JP","Yu Gothic",sans-serif;
       background:
         linear-gradient(to right, rgba(23,27,25,.045) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(23,27,25,.045) 1px, transparent 1px),
         var(--paper);
       background-size:32px 32px;
-      font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
-      line-height:1.8;
       -webkit-font-smoothing:antialiased;
     }}
-    body.modal-open{{overflow:hidden}}
-    a{{color:inherit;text-decoration:none}}
-    img{{display:block;max-width:100%}}
-    button,select,input{{font:inherit}}
-    .container{{width:min(calc(100% - 40px),var(--max));margin:auto}}
-    .section{{padding:108px 0}}
-    .section-head{{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:end;margin-bottom:42px}}
-    .kicker{{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:.75rem;font-weight:700;letter-spacing:.12em}}
-    .kicker::before{{content:"";width:30px;height:2px;background:var(--green)}}
-    .title{{margin:0;font-size:clamp(2rem,4vw,3.8rem);line-height:1.3;letter-spacing:-.025em;font-weight:700}}
-    .lead{{margin:0;color:#4f5853;font-size:.98rem;line-height:1.95}}
-    .btn{{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 22px;border:1px solid var(--ink);font-weight:700;transition:.2s ease}}
-    .btn-dark{{background:var(--ink);color:#fff}}
-    .btn-green{{background:var(--green);border-color:var(--green);color:#fff}}
-    .btn:hover{{transform:translateY(-2px)}}
 
-    /* header */
-    .site-header{{position:sticky;top:0;z-index:900;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(14px)}}
-    .header-inner{{height:74px;display:flex;align-items:center;justify-content:space-between;gap:24px}}
-    .brand img{{width:160px;height:auto}}
-    .nav{{display:flex;gap:25px;align-items:center;font-size:.78rem;font-weight:700}}
-    .nav a{{position:relative}}
-    .nav a::after{{content:"";position:absolute;left:0;bottom:-8px;width:0;height:2px;background:var(--green);transition:.2s}}
-    .nav a:hover::after{{width:100%}}
-    .nav .nav-cta{{padding:10px 15px;background:var(--blue);color:#fff}}
-    .nav .nav-cta::after{{display:none}}
-    .menu-btn{{display:none;width:42px;height:42px;border:1px solid var(--blue);background:#fff;color:var(--blue);font-weight:800}}
-    .progress{{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:linear-gradient(90deg,var(--blue),var(--green))}}
+    body.modal-open {{ overflow:hidden; }}
+    a {{ color:inherit; text-decoration:none; }}
+    img {{ display:block; max-width:100%; }}
+    button, input, select {{ font:inherit; }}
+    button {{ cursor:pointer; }}
+    .container {{ width:min(calc(100% - 40px), var(--max)); margin:auto; }}
+    .section {{ padding:104px 0; }}
 
-    /* hero */
-    .hero{{padding:58px 0 82px}}
-    .hero-grid{{display:grid;grid-template-columns:1.02fr .98fr;gap:54px;align-items:center}}
-    .hero-label{{display:inline-flex;padding:8px 11px;border:1px solid var(--ink);background:#fff;font-size:.7rem;font-weight:700;letter-spacing:.1em}}
-    .hero h1{{margin:24px 0 0;font-size:clamp(3rem,6vw,5.7rem);line-height:1.03;letter-spacing:-.045em;font-weight:800}}
-    .hero h1 span{{color:var(--green)}}
-    .hero-copy{{margin:28px 0 0;max-width:620px;font-size:1rem;line-height:1.95}}
-    .hero-actions{{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}}
-    .visual{{position:relative;min-height:500px}}
-    .hero-slider{{position:absolute;inset:0;overflow:hidden;border:1px solid var(--line);background:#e9edeb}}
-    .hero-slide{{position:absolute;inset:0;opacity:0;transition:opacity .8s ease}}
-    .hero-slide.active{{opacity:1}}
-    .hero-slide img{{width:100%;height:100%;object-fit:cover;transform:scale(1.03);transition:transform 5s ease}}
-    .hero-slide.active img{{transform:scale(1)}}
-    .slide-placeholder{{width:100%;height:100%;display:grid;place-items:center;color:#737c77;font-size:.84rem;text-align:center}}
-    .slider-dots{{position:absolute;left:18px;bottom:16px;display:flex;gap:7px;z-index:5}}
-    .slider-dot{{width:28px;height:3px;padding:0;border:0;background:rgba(255,255,255,.55)}}
-    .slider-dot.active{{background:#fff}}
-
-    /* welcome */
-    .welcome-panel{{display:grid;grid-template-columns:.9fr 1.1fr;gap:54px;padding:50px;background:#fff;border:1px solid var(--ink);box-shadow:5px 5px 0 var(--ink)}}
-    .welcome-panel h2{{margin:0;font-size:clamp(2rem,3.7vw,3.6rem);line-height:1.3;letter-spacing:-.03em}}
-    .welcome-note{{margin-top:22px;padding:18px 20px;border-left:4px solid var(--green);background:#f0f6f0}}
-
-    /* mvv */
-    .mvv-grid{{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}}
-    .mvv-card{{min-height:280px;padding:26px;border:1px solid var(--ink);background:#fff;display:flex;flex-direction:column;justify-content:space-between}}
-    .mvv-card:nth-child(2){{background:#f2f4ef}}
-    .mvv-card:nth-child(3){{background:#ecefea}}
-    .mvv-num{{font-size:.72rem;font-weight:700;letter-spacing:.11em}}
-    .mvv-card h3{{margin:30px 0 10px;font-size:1.38rem;line-height:1.45}}
-    .mvv-card p{{margin:0;font-size:.88rem;color:#4f5853}}
-
-    /* history */
-    .history{{background:#fff;border:1px solid var(--line)}}
-    .history-row{{display:grid;grid-template-columns:130px 1fr 1.1fr;gap:24px;padding:24px 28px;border-bottom:1px solid var(--line);align-items:center}}
-    .history-row:last-child{{border-bottom:0}}
-    .history-year{{font-size:1.7rem;font-weight:700;color:var(--green)}}
-    .history-title{{font-weight:700}}
-    .history-text{{color:#68706c;font-size:.86rem}}
-
-    /* jobs */
-    .jobs-grid{{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}}
-    .job-card{{position:relative;padding-bottom:22px;border-bottom:1px solid var(--ink);cursor:pointer;transition:.22s ease}}
-    .job-card:hover{{transform:translateY(-3px)}}
-    .job-no{{position:absolute;right:8px;top:-2px;font-size:3.5rem;font-weight:700;color:#e7ebe8;z-index:1}}
-    .job-photo,.job-placeholder{{position:relative;z-index:2;width:100%;aspect-ratio:16/10;object-fit:cover;border:1px solid #cfd5d2;background:#eef1ee}}
-    .job-placeholder{{display:grid;place-items:center;color:#7b837e;font-size:.8rem}}
-    .job-card h3{{margin:18px 0 7px;font-size:1.28rem}}
-    .job-card p{{margin:0;color:#5d6661;font-size:.88rem}}
-    .job-more{{display:inline-block;margin-top:14px;color:var(--green);font-size:.76rem;font-weight:700}}
-
-    /* numbers */
-    .numbers{{background:#eef4ef;border-top:1px solid #dfe7df;border-bottom:1px solid #dfe7df}}
-    .numbers-grid{{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}}
-    .number{{padding:26px;background:#fff;border:1px solid var(--line);min-height:180px;display:flex;flex-direction:column;justify-content:space-between}}
-    .number-label{{font-size:.7rem;color:#6d766f}}
-    .number-value{{display:block;margin-top:18px;color:var(--green);font-size:clamp(2.4rem,4vw,4rem);line-height:1;font-weight:700;letter-spacing:-.04em}}
-    .number-value small{{font-size:.34em;color:var(--ink);margin-left:4px}}
-    .number-note{{margin:12px 0 0;font-size:.76rem;color:#69716d}}
-
-    /* people */
-    .people-grid{{display:grid;grid-template-columns:1.2fr .8fr .8fr;grid-template-rows:repeat(2,290px);gap:16px}}
-    .person-card{{position:relative;overflow:hidden;background:#fff;border:1px solid var(--ink);cursor:pointer}}
-    .person-card.large{{grid-row:1/3}}
-    .person-photo{{position:absolute;inset:0;background:linear-gradient(135deg,#eef3ef,#dce5df)}}
-    .person-photo::before{{content:"";position:absolute;width:64px;height:64px;border-radius:50%;background:#f1c7a2;left:50%;top:20%;transform:translateX(-50%)}}
-    .person-photo::after{{content:"";position:absolute;width:42%;height:44%;background:#28302c;left:29%;bottom:8%;border-radius:50% 50% 0 0}}
-    .person-body{{position:absolute;left:0;right:0;bottom:0;padding:20px;background:#fff;border-top:1px solid var(--ink)}}
-    .person-card.large .person-body{{background:#eef4ef}}
-    .person-role{{font-size:.68rem;font-weight:700;color:var(--green)}}
-    .person-title{{margin:6px 0 0;font-size:1.05rem;line-height:1.5}}
-
-    /* registration */
-    .register-panel{{padding:58px;background:linear-gradient(125deg,#eef5ef 0%,#f7f8f4 55%,#eef1ff 100%);border:1px solid var(--ink);position:relative;overflow:hidden}}
-    .register-panel::after{{content:"CONNECT";position:absolute;right:-16px;bottom:-32px;font-size:7rem;font-weight:800;color:rgba(21,157,37,.06);letter-spacing:-.05em}}
-    .register-title{{margin:0;font-size:clamp(2.2rem,4.4vw,4.2rem);line-height:1.28;letter-spacing:-.03em}}
-    .register-copy{{max-width:760px;margin:20px 0 0;color:#505953}}
-    .register-points{{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}}
-    .register-point{{padding:18px;background:#fff;border:1px solid var(--line)}}
-    .register-point strong{{display:block;margin-bottom:4px}}
-    .register-actions{{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}}
-
-    /* footer */
-    footer{{padding:64px 0 30px;background:linear-gradient(115deg,rgba(23,43,209,.09),rgba(21,157,37,.12)),#f8faf8;border-top:1px solid var(--line)}}
-    .footer-main{{display:flex;justify-content:space-between;gap:40px;align-items:flex-end}}
-    .footer-logo img{{width:min(300px,70vw)}}
-    .footer-sub{{margin-top:8px;color:#505953;font-size:.8rem;letter-spacing:.08em;font-weight:700}}
-    .footer-socials{{display:flex;gap:18px;margin-top:22px}}
-    .footer-social{{display:inline-flex;align-items:center;color:#202522;font-weight:800}}
-    .footer-social svg{{width:26px;height:26px;fill:currentColor}}
-    .footer-contact{{display:flex;flex-wrap:wrap;gap:24px;align-items:flex-end;margin-top:24px;padding-top:22px;border-top:1px solid rgba(32,37,34,.16)}}
-    .footer-contact-label{{font-size:.68rem;color:#6d756f}}
-    .footer-tel{{display:block;margin-top:3px;font-size:1.18rem;font-weight:800}}
-    .footer-hours{{font-size:.66rem;color:#6d756f}}
-    .footer-copy{{margin-top:38px;font-size:.7rem;color:#737b76}}
-
-    /* modal */
-    .modal{{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:20px;opacity:0;visibility:hidden;transition:.22s}}
-    .modal.open{{opacity:1;visibility:visible}}
-    .modal-bg{{position:absolute;inset:0;background:rgba(17,24,20,.56);backdrop-filter:blur(6px)}}
-    .modal-panel{{position:relative;z-index:1;width:min(920px,95vw);max-height:88vh;overflow:auto;background:#fff;border:1px solid var(--line)}}
-    .modal-close{{position:sticky;top:14px;float:right;margin:14px 14px -58px 0;width:44px;height:44px;border:1px solid var(--line);background:#fff;font-size:1.45rem;z-index:3}}
-    .modal-grid{{display:grid;grid-template-columns:.9fr 1.1fr;min-height:540px}}
-    .modal-photo{{background:#e9edeb;min-height:540px}}
-    .modal-photo img{{width:100%;height:100%;object-fit:cover}}
-    .modal-content{{padding:58px 48px 42px}}
-    .modal-label{{font-size:.7rem;color:var(--green);font-weight:700;letter-spacing:.1em}}
-    .modal-title{{margin:12px 0 24px;font-size:clamp(1.7rem,3vw,2.6rem);line-height:1.35}}
-    .modal-block{{padding-top:16px;margin-top:16px;border-top:1px solid var(--line)}}
-    .modal-block h4{{margin:0 0 6px;font-size:.78rem;color:#68716b}}
-    .modal-block p{{margin:0;font-size:.91rem;color:#3f4742}}
-    .modal-action{{display:inline-flex;margin-top:24px;padding:12px 16px;background:var(--blue);color:#fff;font-weight:700}}
-
-    /* motion */
-    html.js .reveal{{opacity:0;transform:translateY(24px);transition:.7s cubic-bezier(.2,.7,.2,1)}}
-    html.js .reveal.show{{opacity:1;transform:none}}
-    .plane-layer{{position:fixed;inset:0;z-index:999;pointer-events:none;overflow:hidden}}
-    .plane{{position:absolute;left:-100px;top:58%;width:68px;opacity:0}}
-    body.loaded .plane{{animation:fly 2.6s cubic-bezier(.2,.7,.2,1) .2s both}}
-    @keyframes fly{{0%{{opacity:0;transform:translate(0,20px) rotate(-8deg)}}10%{{opacity:1}}45%{{transform:translate(45vw,-12vh) rotate(5deg)}}100%{{opacity:0;transform:translate(calc(100vw + 140px),-28vh) rotate(9deg)}}}}
-
-    @media(max-width:900px){{
-      .nav{{display:none}}
-      .menu-btn{{display:block}}
-      .hero-grid,.welcome-panel,.section-head{{grid-template-columns:1fr}}
-      .visual{{min-height:420px}}
-      .mvv-grid,.jobs-grid{{grid-template-columns:repeat(2,1fr)}}
-      .numbers-grid{{grid-template-columns:repeat(2,1fr)}}
-      .people-grid{{grid-template-columns:1fr 1fr;grid-template-rows:400px 280px 280px}}
-      .person-card.large{{grid-column:1/3;grid-row:auto}}
-      .register-points{{grid-template-columns:1fr}}
-      .history-row{{grid-template-columns:110px 1fr}}
-      .history-text{{grid-column:2}}
-      .modal-grid{{grid-template-columns:1fr}}
-      .modal-photo{{min-height:260px;height:260px}}
+    .eyebrow {{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin:0 0 12px;
+      font-size:.75rem;
+      font-weight:700;
+      letter-spacing:.12em;
     }}
 
-    @media(max-width:640px){{
-      .container{{width:min(calc(100% - 24px),var(--max))}}
-      .section{{padding:76px 0}}
-      .hero{{padding:32px 0 60px}}
-      .hero h1{{font-size:clamp(2.8rem,13vw,4.3rem)}}
-      .visual{{min-height:330px}}
-      .welcome-panel,.register-panel{{padding:28px}}
-      .mvv-grid,.jobs-grid,.numbers-grid,.people-grid{{grid-template-columns:1fr}}
-      .people-grid{{grid-template-rows:none}}
-      .person-card,.person-card.large{{min-height:400px;grid-column:auto}}
-      .history-row{{grid-template-columns:1fr;gap:6px}}
-      .history-text{{grid-column:auto}}
-      .footer-main{{flex-direction:column;align-items:flex-start}}
-      .modal{{padding:8px}}
-      .modal-content{{padding:32px 22px}}
+    .eyebrow::before {{
+      content:"";
+      width:30px;
+      height:2px;
+      background:var(--green);
     }}
 
-    @media(prefers-reduced-motion:reduce){{
-      html{{scroll-behavior:auto}}
-      *{{animation:none!important;transition:none!important}}
-      html.js .reveal{{opacity:1;transform:none}}
-      .plane-layer{{display:none}}
+    .section-head {{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:48px;
+      align-items:end;
+      margin-bottom:42px;
+    }}
+
+    .section-title {{
+      margin:0;
+      font-size:clamp(2rem,4vw,3.7rem);
+      line-height:1.32;
+      letter-spacing:-.03em;
+      font-weight:700;
+    }}
+
+    .section-lead {{
+      margin:0;
+      color:#4f5853;
+      line-height:1.95;
+      font-size:.98rem;
+    }}
+
+    .btn {{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:52px;
+      padding:0 22px;
+      border:1px solid var(--ink);
+      background:#fff;
+      font-weight:700;
+      transition:.2s ease;
+    }}
+
+    .btn:hover {{ transform:translateY(-2px); }}
+    .btn-dark {{ background:var(--ink); color:#fff; }}
+    .btn-green {{ background:var(--green); border-color:var(--green); color:#fff; }}
+
+    /* HEADER */
+    .site-header {{
+      position:sticky;
+      top:0;
+      z-index:900;
+      background:rgba(255,255,255,.97);
+      border-bottom:1px solid var(--line);
+      backdrop-filter:blur(14px);
+    }}
+
+    .header-inner {{
+      height:74px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:26px;
+    }}
+
+    .logo img {{ width:160px; }}
+    .nav {{
+      display:flex;
+      align-items:center;
+      gap:25px;
+      font-size:.78rem;
+      font-weight:700;
+    }}
+
+    .nav a {{
+      position:relative;
+    }}
+
+    .nav a:not(.nav-cta)::after {{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-8px;
+      width:0;
+      height:2px;
+      background:var(--green);
+      transition:.2s ease;
+    }}
+
+    .nav a:hover::after {{ width:100%; }}
+
+    .nav-cta {{
+      padding:10px 15px;
+      background:var(--blue);
+      color:#fff;
+    }}
+
+    .menu-btn {{
+      display:none;
+      width:44px;
+      height:44px;
+      border:1px solid var(--blue);
+      background:#fff;
+      color:var(--blue);
+      font-weight:800;
+    }}
+
+    .progress {{
+      position:absolute;
+      left:0;
+      bottom:-1px;
+      height:2px;
+      width:0;
+      background:linear-gradient(90deg,var(--blue),var(--green));
+    }}
+
+    /* HERO */
+    .hero {{ padding:62px 0 84px; }}
+    .hero-grid {{
+      display:grid;
+      grid-template-columns:1.02fr .98fr;
+      gap:56px;
+      align-items:center;
+    }}
+
+    .hero-label {{
+      display:inline-flex;
+      padding:8px 11px;
+      border:1px solid var(--ink);
+      background:#fff;
+      font-size:.7rem;
+      font-weight:700;
+      letter-spacing:.1em;
+    }}
+
+    .hero h1 {{
+      margin:24px 0 0;
+      font-size:clamp(3rem,6vw,5.6rem);
+      line-height:1.03;
+      letter-spacing:-.05em;
+      font-weight:800;
+    }}
+
+    .hero h1 span {{ color:var(--green); }}
+
+    .hero-copy {{
+      margin:28px 0 0;
+      max-width:620px;
+      color:#424b46;
+      font-size:1rem;
+      line-height:1.95;
+    }}
+
+    .hero-actions {{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:30px;
+    }}
+
+    .visual {{
+      position:relative;
+      min-height:500px;
+    }}
+
+    .slider {{
+      position:absolute;
+      inset:0;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background:#e9edeb;
+    }}
+
+    .slide {{
+      position:absolute;
+      inset:0;
+      opacity:0;
+      transition:opacity .8s ease;
+    }}
+
+    .slide.active {{ opacity:1; }}
+
+    .slide img {{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transform:scale(1.03);
+      transition:transform 5s ease;
+    }}
+
+    .slide.active img {{ transform:scale(1); }}
+
+    .slide-placeholder {{
+      width:100%;
+      height:100%;
+      display:grid;
+      place-items:center;
+      color:#7a837e;
+      text-align:center;
+      font-size:.84rem;
+    }}
+
+    .slider-dots {{
+      position:absolute;
+      left:18px;
+      bottom:16px;
+      z-index:5;
+      display:flex;
+      gap:7px;
+    }}
+
+    .slider-dot {{
+      width:28px;
+      height:3px;
+      padding:0;
+      border:0;
+      background:rgba(255,255,255,.55);
+    }}
+
+    .slider-dot.active {{ background:#fff; }}
+
+    /* INTRO */
+    .intro-panel {{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:54px;
+      padding:50px;
+      background:#fff;
+      border:1px solid var(--ink);
+      box-shadow:5px 5px 0 var(--ink);
+    }}
+
+    .intro-panel h2 {{
+      margin:0;
+      font-size:clamp(2rem,3.7vw,3.5rem);
+      line-height:1.35;
+      letter-spacing:-.03em;
+    }}
+
+    .intro-note {{
+      margin-top:22px;
+      padding:18px 20px;
+      border-left:4px solid var(--green);
+      background:#f0f6f0;
+      line-height:1.8;
+    }}
+
+    /* MVV */
+    .mvv-grid {{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+    }}
+
+    .mvv-card {{
+      min-height:280px;
+      padding:26px;
+      border:1px solid var(--ink);
+      background:#fff;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }}
+
+    .mvv-card:nth-child(2) {{ background:#f3f4ef; }}
+    .mvv-card:nth-child(3) {{ background:#ecefea; }}
+    .mvv-num {{
+      font-size:.72rem;
+      font-weight:700;
+      letter-spacing:.11em;
+    }}
+    .mvv-card h3 {{
+      margin:30px 0 10px;
+      font-size:1.38rem;
+      line-height:1.45;
+    }}
+    .mvv-card p {{
+      margin:0;
+      color:#4f5853;
+      font-size:.88rem;
+      line-height:1.8;
+    }}
+
+    /* HISTORY */
+    .history {{
+      background:#fff;
+      border:1px solid var(--line);
+    }}
+
+    .history-row {{
+      display:grid;
+      grid-template-columns:130px 1fr 1.1fr;
+      gap:24px;
+      align-items:center;
+      padding:24px 28px;
+      border-bottom:1px solid var(--line);
+      transition:.2s ease;
+    }}
+
+    .history-row:last-child {{ border-bottom:0; }}
+    .history-row:hover {{ background:#f8faf8; }}
+    .history-year {{
+      font-size:1.7rem;
+      font-weight:700;
+      color:var(--green);
+    }}
+    .history-title {{ font-weight:700; }}
+    .history-text {{
+      color:#68706c;
+      font-size:.86rem;
+      line-height:1.7;
+    }}
+
+    /* JOBS */
+    .jobs-grid {{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+    }}
+
+    .job-card {{
+      position:relative;
+      padding-bottom:22px;
+      border-bottom:1px solid var(--ink);
+      cursor:pointer;
+      transition:.22s ease;
+    }}
+
+    .job-card:hover {{ transform:translateY(-3px); }}
+    .job-card:focus-visible {{ outline:3px solid var(--blue); outline-offset:4px; }}
+
+    .job-no {{
+      position:absolute;
+      right:8px;
+      top:-4px;
+      z-index:1;
+      font-size:3.5rem;
+      font-weight:700;
+      color:#e5eae7;
+    }}
+
+    .job-photo,
+    .job-placeholder {{
+      position:relative;
+      z-index:2;
+      width:100%;
+      aspect-ratio:16/10;
+      object-fit:cover;
+      border:1px solid #cfd5d2;
+      background:#eef1ee;
+    }}
+
+    .job-placeholder {{
+      display:grid;
+      place-items:center;
+      color:#7b837e;
+      font-size:.8rem;
+    }}
+
+    .job-card h3 {{
+      margin:18px 0 7px;
+      font-size:1.28rem;
+    }}
+
+    .job-card p {{
+      margin:0;
+      color:#5d6661;
+      font-size:.88rem;
+      line-height:1.8;
+    }}
+
+    .job-more {{
+      display:inline-block;
+      margin-top:14px;
+      color:var(--green);
+      font-size:.76rem;
+      font-weight:700;
+    }}
+
+    /* NUMBERS */
+    .numbers {{
+      background:#eef4ef;
+      border-top:1px solid #dfe7df;
+      border-bottom:1px solid #dfe7df;
+    }}
+
+    .numbers-grid {{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:12px;
+    }}
+
+    .number {{
+      min-height:180px;
+      padding:26px;
+      background:#fff;
+      border:1px solid var(--line);
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }}
+
+    .number-label {{
+      font-size:.7rem;
+      color:#6d766f;
+    }}
+
+    .number-value {{
+      display:block;
+      margin-top:18px;
+      color:var(--green);
+      font-size:clamp(2.4rem,4vw,4rem);
+      line-height:1;
+      font-weight:700;
+      letter-spacing:-.04em;
+    }}
+
+    .number-value small {{
+      font-size:.34em;
+      color:var(--ink);
+      margin-left:4px;
+    }}
+
+    .number-note {{
+      margin:12px 0 0;
+      font-size:.76rem;
+      color:#69716d;
+    }}
+
+    /* PEOPLE */
+    .people-grid {{
+      display:grid;
+      grid-template-columns:1.2fr .8fr .8fr;
+      grid-template-rows:repeat(2,290px);
+      gap:16px;
+    }}
+
+    .person-card {{
+      position:relative;
+      overflow:hidden;
+      background:#fff;
+      border:1px solid var(--ink);
+      cursor:pointer;
+      transition:.22s ease;
+    }}
+
+    .person-card:hover {{ transform:translateY(-3px); }}
+    .person-card.large {{ grid-row:1/3; }}
+    .person-card:focus-visible {{ outline:3px solid var(--blue); outline-offset:4px; }}
+
+    .person-photo {{
+      position:absolute;
+      inset:0;
+      background:#e9edeb;
+    }}
+
+    .person-photo img {{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }}
+
+    .person-placeholder {{
+      width:100%;
+      height:100%;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg,#eef3ef,#dce5df);
+      color:#76807a;
+      font-size:.78rem;
+    }}
+
+    .person-body {{
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:0;
+      padding:20px;
+      background:#fff;
+      border-top:1px solid var(--ink);
+    }}
+
+    .person-card.large .person-body {{ background:#eef4ef; }}
+    .person-role {{
+      font-size:.68rem;
+      font-weight:700;
+      color:var(--green);
+    }}
+    .person-title {{
+      margin:6px 0 0;
+      font-size:1.05rem;
+      line-height:1.5;
+    }}
+
+    /* REGISTRATION */
+    .register-panel {{
+      position:relative;
+      overflow:hidden;
+      padding:58px;
+      background:linear-gradient(125deg,#eef5ef 0%,#f7f8f4 55%,#eef1ff 100%);
+      border:1px solid var(--ink);
+    }}
+
+    .register-panel::after {{
+      content:"CONNECT";
+      position:absolute;
+      right:-10px;
+      bottom:-30px;
+      font-size:7rem;
+      font-weight:800;
+      color:rgba(21,157,37,.055);
+      letter-spacing:-.05em;
+    }}
+
+    .register-panel > * {{ position:relative; z-index:1; }}
+
+    .register-title {{
+      margin:0;
+      font-size:clamp(2.2rem,4.3vw,4.1rem);
+      line-height:1.3;
+      letter-spacing:-.03em;
+    }}
+
+    .register-copy {{
+      max-width:760px;
+      margin:20px 0 0;
+      color:#505953;
+      line-height:1.95;
+    }}
+
+    .register-points {{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+      margin-top:28px;
+    }}
+
+    .register-point {{
+      padding:18px;
+      background:#fff;
+      border:1px solid var(--line);
+    }}
+
+    .register-point strong {{
+      display:block;
+      margin-bottom:5px;
+    }}
+
+    .register-point span {{
+      color:#68716c;
+      font-size:.86rem;
+      line-height:1.7;
+    }}
+
+    .register-actions {{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:28px;
+    }}
+
+    /* FOOTER */
+    footer {{
+      padding:64px 0 30px;
+      background:linear-gradient(115deg,rgba(23,43,209,.09),rgba(21,157,37,.12)),#f8faf8;
+      border-top:1px solid var(--line);
+    }}
+
+    .footer-main {{
+      display:flex;
+      justify-content:space-between;
+      gap:40px;
+      align-items:flex-end;
+    }}
+
+    .footer-logo img {{ width:min(300px,70vw); }}
+    .footer-sub {{
+      margin-top:8px;
+      color:#505953;
+      font-size:.8rem;
+      letter-spacing:.08em;
+      font-weight:700;
+    }}
+
+    .footer-socials {{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      margin-top:22px;
+    }}
+
+    .footer-social {{
+      display:inline-flex;
+      align-items:center;
+      border:0;
+      background:transparent;
+      font-weight:800;
+      color:#202522;
+      transition:.2s ease;
+    }}
+
+    .footer-social:hover {{
+      color:var(--green);
+      transform:translateY(-2px);
+    }}
+
+    .footer-social svg {{
+      width:26px;
+      height:26px;
+      fill:currentColor;
+    }}
+
+    .footer-contact {{
+      display:flex;
+      flex-wrap:wrap;
+      gap:24px;
+      align-items:flex-end;
+      margin-top:24px;
+      padding-top:22px;
+      border-top:1px solid rgba(32,37,34,.16);
+    }}
+
+    .footer-contact-label {{
+      font-size:.68rem;
+      color:#6d756f;
+    }}
+
+    .footer-tel {{
+      display:block;
+      margin-top:3px;
+      font-size:1.18rem;
+      font-weight:800;
+    }}
+
+    .footer-hours {{
+      font-size:.66rem;
+      color:#6d756f;
+    }}
+
+    .footer-copy {{
+      margin-top:38px;
+      font-size:.7rem;
+      color:#737b76;
+    }}
+
+    /* MODALS */
+    .modal {{
+      position:fixed;
+      inset:0;
+      z-index:1200;
+      display:grid;
+      place-items:center;
+      padding:20px;
+      opacity:0;
+      visibility:hidden;
+      transition:.22s ease;
+    }}
+
+    .modal.open {{
+      opacity:1;
+      visibility:visible;
+    }}
+
+    .modal-bg {{
+      position:absolute;
+      inset:0;
+      background:rgba(17,24,20,.56);
+      backdrop-filter:blur(6px);
+    }}
+
+    .modal-panel {{
+      position:relative;
+      z-index:1;
+      width:min(920px,95vw);
+      max-height:88vh;
+      overflow:auto;
+      background:#fff;
+      border:1px solid var(--line);
+      transform:translateY(18px);
+      transition:.25s ease;
+    }}
+
+    .modal.open .modal-panel {{ transform:none; }}
+
+    .modal-close {{
+      position:sticky;
+      top:14px;
+      z-index:4;
+      float:right;
+      margin:14px 14px -58px 0;
+      width:44px;
+      height:44px;
+      border:1px solid var(--line);
+      background:#fff;
+      font-size:1.45rem;
+    }}
+
+    .modal-grid {{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      min-height:540px;
+    }}
+
+    .modal-photo {{
+      min-height:540px;
+      background:#e9edeb;
+    }}
+
+    .modal-photo img {{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }}
+
+    .modal-content {{
+      padding:58px 48px 42px;
+    }}
+
+    .modal-label {{
+      font-size:.7rem;
+      color:var(--green);
+      font-weight:700;
+      letter-spacing:.1em;
+    }}
+
+    .modal-title {{
+      margin:12px 0 24px;
+      font-size:clamp(1.7rem,3vw,2.6rem);
+      line-height:1.35;
+    }}
+
+    .modal-block {{
+      padding-top:16px;
+      margin-top:16px;
+      border-top:1px solid var(--line);
+    }}
+
+    .modal-block h4 {{
+      margin:0 0 6px;
+      font-size:.78rem;
+      color:#68716b;
+    }}
+
+    .modal-block p {{
+      margin:0;
+      color:#3f4742;
+      font-size:.91rem;
+      line-height:1.85;
+    }}
+
+    .modal-action {{
+      display:inline-flex;
+      margin-top:24px;
+      padding:12px 16px;
+      background:var(--blue);
+      color:#fff;
+      font-weight:700;
+    }}
+
+    /* MOTION */
+    html.js .reveal {{
+      opacity:0;
+      transform:translateY(24px);
+      transition:.7s cubic-bezier(.2,.7,.2,1);
+    }}
+
+    html.js .reveal.show {{
+      opacity:1;
+      transform:none;
+    }}
+
+    .plane-layer {{
+      position:fixed;
+      inset:0;
+      z-index:1100;
+      pointer-events:none;
+      overflow:hidden;
+    }}
+
+    .plane {{
+      position:absolute;
+      left:-100px;
+      top:58%;
+      width:72px;
+      opacity:0;
+    }}
+
+    body.loaded .plane {{
+      animation:fly 3s cubic-bezier(.2,.7,.2,1) .25s both;
+    }}
+
+    @keyframes fly {{
+      0% {{ opacity:0; transform:translate(0,18px) rotate(-8deg); }}
+      10% {{ opacity:1; }}
+      45% {{ transform:translate(45vw,-12vh) rotate(5deg); }}
+      100% {{ opacity:0; transform:translate(calc(100vw + 140px),-28vh) rotate(9deg); }}
+    }}
+
+    @media(max-width:900px) {{
+      .nav {{ display:none; }}
+      .menu-btn {{ display:block; }}
+      .hero-grid, .intro-panel, .section-head {{ grid-template-columns:1fr; }}
+      .visual {{ min-height:420px; }}
+      .mvv-grid, .jobs-grid {{ grid-template-columns:repeat(2,1fr); }}
+      .numbers-grid {{ grid-template-columns:repeat(2,1fr); }}
+      .people-grid {{ grid-template-columns:1fr 1fr; grid-template-rows:400px 280px 280px; }}
+      .person-card.large {{ grid-column:1/3; grid-row:auto; }}
+      .register-points {{ grid-template-columns:1fr; }}
+      .history-row {{ grid-template-columns:110px 1fr; }}
+      .history-text {{ grid-column:2; }}
+      .modal-grid {{ grid-template-columns:1fr; }}
+      .modal-photo {{ min-height:260px; height:260px; }}
+    }}
+
+    @media(max-width:640px) {{
+      .container {{ width:min(calc(100% - 24px),var(--max)); }}
+      .section {{ padding:76px 0; }}
+      .hero {{ padding:32px 0 60px; }}
+      .hero h1 {{ font-size:clamp(2.8rem,13vw,4.3rem); }}
+      .visual {{ min-height:330px; }}
+      .intro-panel, .register-panel {{ padding:28px; }}
+      .mvv-grid, .jobs-grid, .numbers-grid, .people-grid {{ grid-template-columns:1fr; }}
+      .people-grid {{ grid-template-rows:none; }}
+      .person-card, .person-card.large {{ min-height:400px; grid-column:auto; }}
+      .history-row {{ grid-template-columns:1fr; gap:6px; }}
+      .history-text {{ grid-column:auto; }}
+      .footer-main {{ flex-direction:column; align-items:flex-start; }}
+      .footer-contact {{ flex-direction:column; align-items:flex-start; }}
+      .modal {{ padding:8px; }}
+      .modal-content {{ padding:32px 22px; }}
+    }}
+
+    @media(prefers-reduced-motion:reduce) {{
+      html {{ scroll-behavior:auto; }}
+      * {{ animation:none!important; transition:none!important; }}
+      html.js .reveal {{ opacity:1; transform:none; }}
+      .plane-layer {{ display:none; }}
     }}
   </style>
 </head>
+
 <body>
   <div class="plane-layer" aria-hidden="true">
     <div class="plane">
@@ -360,16 +1022,19 @@ html = f'''<!DOCTYPE html>
 
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="#top"><img src="{logo_uri}" alt="OHFAS オーファス"></a>
+      <a class="logo" href="#top"><img src="{logo_uri}" alt="OHFAS オーファス"></a>
+
       <nav class="nav">
         <a href="#about">会社を知る</a>
         <a href="#jobs">仕事を知る</a>
         <a href="#numbers">数字で見る</a>
         <a href="#people">人を知る</a>
-        <a href="#register" class="nav-cta">まずは登録</a>
+        <a class="nav-cta" href="#register">まずは登録</a>
       </nav>
+
       <button class="menu-btn" type="button">MENU</button>
     </div>
+
     <div class="progress" id="progress"></div>
   </header>
 
@@ -381,8 +1046,8 @@ html = f'''<!DOCTYPE html>
           <h1>ご縁から、<br><span>仕事</span>を見つけよう。</h1>
           <p class="hero-copy">
             誰かに紹介されて、このページを開いてくれたあなたへ。
-            今すぐ転職を考えていなくても大丈夫です。まずはオーファスを知って、
-            「ここならちょっと働いてみたいかも」と思える仕事があるか、のぞいてみてください。
+            今すぐ転職を考えていなくても大丈夫です。
+            まずはオーファスを知って、「ここならちょっと働いてみたいかも」と思える仕事があるか、のぞいてみてください。
           </p>
           <div class="hero-actions">
             <a class="btn btn-dark" href="#about">オーファスを知る</a>
@@ -391,19 +1056,20 @@ html = f'''<!DOCTYPE html>
         </div>
 
         <div class="visual reveal">
-          <div class="hero-slider" id="heroSlider">
-            <div class="hero-slide active">
+          <div class="slider">
+            <div class="slide active">
               <img src="images/hero-01.jpg" alt="清掃スタッフ" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
               <div class="slide-placeholder" style="display:none">hero-01.jpg<br>清掃スタッフ写真</div>
             </div>
-            <div class="hero-slide">
+            <div class="slide">
               <img src="images/hero-02.jpg" alt="警備スタッフ" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
               <div class="slide-placeholder" style="display:none">hero-02.jpg<br>警備スタッフ写真</div>
             </div>
-            <div class="hero-slide">
+            <div class="slide">
               <img src="images/hero-03.jpg" alt="設備スタッフ" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
               <div class="slide-placeholder" style="display:none">hero-03.jpg<br>設備スタッフ写真</div>
             </div>
+
             <div class="slider-dots">
               <button class="slider-dot active" type="button" aria-label="1枚目"></button>
               <button class="slider-dot" type="button" aria-label="2枚目"></button>
@@ -416,17 +1082,17 @@ html = f'''<!DOCTYPE html>
 
     <section class="section">
       <div class="container">
-        <div class="welcome-panel reveal">
+        <div class="intro-panel reveal">
           <div>
-            <p class="kicker">WELCOME</p>
+            <p class="eyebrow">WELCOME</p>
             <h2>紹介だからこそ、<br>ちゃんと知ってほしい。</h2>
           </div>
           <div>
-            <p class="lead">
+            <p class="section-lead">
               このサイトは、社員・友人・家族・知人からの紹介をきっかけに、
               オーファスを知っていただくためのリファラル採用専用サイトです。
             </p>
-            <div class="welcome-note">
+            <div class="intro-note">
               <strong>応募は、まだ先でも大丈夫です。</strong><br>
               気になる仕事や働き方を登録しておけば、今後あなたに合いそうな募集が出たときにご案内できます。
             </div>
@@ -439,10 +1105,10 @@ html = f'''<!DOCTYPE html>
       <div class="container">
         <div class="section-head reveal">
           <div>
-            <p class="kicker">ABOUT OHFAS</p>
-            <h2 class="title">オーファスって、<br>どんな会社？</h2>
+            <p class="eyebrow">ABOUT OHFAS</p>
+            <h2 class="section-title">オーファスって、<br>どんな会社？</h2>
           </div>
-          <p class="lead">
+          <p class="section-lead">
             清掃・設備管理・警備・電話交換など、さまざまな仕事で建物を支えている会社です。
             誰かの「あたりまえ」を守るために、日々の仕事を積み重ねています。
           </p>
@@ -451,15 +1117,26 @@ html = f'''<!DOCTYPE html>
         <div class="mvv-grid reveal">
           <article class="mvv-card">
             <span class="mvv-num">01 / MISSION</span>
-            <div><h3>建物を未来へつなぐ仕事で社会に貢献する。</h3><p>毎日の管理を積み重ね、建物の価値と安心を次の世代につなぎます。</p></div>
+            <div>
+              <h3>建物を未来へつなぐ仕事で社会に貢献する。</h3>
+              <p>毎日の管理を積み重ね、建物の価値と安心を次の世代につなぎます。</p>
+            </div>
           </article>
+
           <article class="mvv-card">
             <span class="mvv-num">02 / VISION</span>
-            <div><h3>選ばれ続ける環境ソリューションパートナーへ。</h3><p>困ったときに最初に思い出してもらえる存在を目指します。</p></div>
+            <div>
+              <h3>選ばれ続ける環境ソリューションパートナーへ。</h3>
+              <p>困ったときに最初に思い出してもらえる存在を目指します。</p>
+            </div>
           </article>
+
           <article class="mvv-card">
             <span class="mvv-num">03 / VALUE</span>
-            <div><h3>ありがとうをつなぐ。変化に気づく。まごころで応える。</h3><p>一人ひとりの行動が、オーファスらしさをつくっています。</p></div>
+            <div>
+              <h3>ありがとうをつなぐ。変化に気づく。まごころで応える。</h3>
+              <p>一人ひとりの行動が、オーファスらしさをつくっています。</p>
+            </div>
           </article>
         </div>
       </div>
@@ -468,9 +1145,15 @@ html = f'''<!DOCTYPE html>
     <section class="section">
       <div class="container">
         <div class="section-head reveal">
-          <div><p class="kicker">OUR HISTORY</p><h2 class="title">1948年から、<br>つないできたこと。</h2></div>
-          <p class="lead">地域とお客様に支えられながら、建物と人を支える仕事を広げてきました。</p>
+          <div>
+            <p class="eyebrow">OUR HISTORY</p>
+            <h2 class="section-title">1948年から、<br>つないできたこと。</h2>
+          </div>
+          <p class="section-lead">
+            地域とお客様に支えられながら、建物と人を支える仕事を広げてきました。
+          </p>
         </div>
+
         <div class="history reveal">
           <div class="history-row"><div class="history-year">1948</div><div class="history-title">創業</div><div class="history-text">地域に根ざした事業から、オーファスの歩みが始まりました。</div></div>
           <div class="history-row"><div class="history-year">1970s</div><div class="history-title">建物管理分野へ事業を拡大</div><div class="history-text">清掃をはじめ、建物を維持するためのサービス領域を広げていきます。</div></div>
@@ -486,20 +1169,27 @@ html = f'''<!DOCTYPE html>
     <section class="section" id="jobs">
       <div class="container">
         <div class="section-head reveal">
-          <div><p class="kicker">OUR JOBS</p><h2 class="title">いろんな仕事に、<br>いろんな人がいる。</h2></div>
-          <p class="lead">カードをクリックすると、その場で仕事内容を確認できます。気になる仕事があれば、登録時に希望職種として教えてください。</p>
+          <div>
+            <p class="eyebrow">OUR JOBS</p>
+            <h2 class="section-title">いろんな仕事に、<br>いろんな人がいる。</h2>
+          </div>
+          <p class="section-lead">
+            カードをクリックすると、その場で仕事内容を確認できます。
+            気になる仕事があれば、登録時に希望職種として教えてください。
+          </p>
         </div>
 
         <div class="jobs-grid reveal">
-          {''.join([f'''
+          {''.join(f'''
           <article class="job-card" tabindex="0" role="button" data-job="{i}">
-            <span class="job-no">{j["label"]}</span>
-            <img class="job-photo" src="{j["image"]}" alt="{j["title"]}スタッフ" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
-            <div class="job-placeholder" style="display:none">{j["title"]}スタッフ写真</div>
-            <h3>{j["title"]}</h3>
-            <p>{j["lead"]}</p>
+            <span class="job-no">{i+1:02}</span>
+            <img class="job-photo" src="{job["image"]}" alt="{job["title"]}スタッフ" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+            <div class="job-placeholder" style="display:none">{job["title"]}スタッフ写真</div>
+            <h3>{job["title"]}</h3>
+            <p>{job["lead"]}</p>
             <span class="job-more">詳しく見る →</span>
-          </article>''' for i,j in enumerate(job_details)])}
+          </article>
+          ''' for i,job in enumerate(jobs))}
         </div>
       </div>
     </section>
@@ -507,9 +1197,15 @@ html = f'''<!DOCTYPE html>
     <section class="section numbers" id="numbers">
       <div class="container">
         <div class="section-head reveal">
-          <div><p class="kicker">数字で見るオーファス</p><h2 class="title">会社のことを、<br>数字で。</h2></div>
-          <p class="lead">働く人や会社の特徴を、わかりやすい数字で紹介します。</p>
+          <div>
+            <p class="eyebrow">数字で見るオーファス</p>
+            <h2 class="section-title">会社のことを、<br>数字で。</h2>
+          </div>
+          <p class="section-lead">
+            働く人や会社の特徴を、わかりやすい数字で紹介します。
+          </p>
         </div>
+
         <div class="numbers-grid reveal">
           <div class="number"><span class="number-label">従業員数</span><strong class="number-value" data-count="635">635<small>名</small></strong><p class="number-note">たくさんの仲間が働いています</p></div>
           <div class="number"><span class="number-label">創業</span><strong class="number-value" data-count="1948">1948<small>年</small></strong><p class="number-note">地域とともに歩んできました</p></div>
@@ -526,18 +1222,28 @@ html = f'''<!DOCTYPE html>
     <section class="section" id="people">
       <div class="container">
         <div class="section-head reveal">
-          <div><p class="kicker">PEOPLE</p><h2 class="title">働く人を知る。</h2></div>
-          <p class="lead">スタッフカードをクリックすると、別ページへ移動せずにインタビューを読めます。</p>
+          <div>
+            <p class="eyebrow">PEOPLE</p>
+            <h2 class="section-title">働く人を知る。</h2>
+          </div>
+          <p class="section-lead">
+            スタッフカードをクリックすると、別ページへ移動せずにインタビューを読めます。
+          </p>
         </div>
+
         <div class="people-grid reveal">
-          {''.join([f'''
-          <article class="person-card {"large" if i==0 else ""}" tabindex="0" role="button" data-staff="{i}">
-            <div class="person-photo"></div>
-            <div class="person-body">
-              <span class="person-role">{s["role"]}</span>
-              <h3 class="person-title">{s["title"]}</h3>
+          {''.join(f'''
+          <article class="person-card {'large' if i == 0 else ''}" tabindex="0" role="button" data-staff="{i}">
+            <div class="person-photo">
+              <img src="{person["image"]}" alt="{person["role"]}" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+              <div class="person-placeholder" style="display:none">{person["role"]}写真</div>
             </div>
-          </article>''' for i,s in enumerate(staff_details)])}
+            <div class="person-body">
+              <span class="person-role">{person["role"]}</span>
+              <h3 class="person-title">{person["title"]}</h3>
+            </div>
+          </article>
+          ''' for i,person in enumerate(staff))}
         </div>
       </div>
     </section>
@@ -545,7 +1251,7 @@ html = f'''<!DOCTYPE html>
     <section class="section" id="register">
       <div class="container">
         <div class="register-panel reveal">
-          <p class="kicker">まずは、つながっておく。</p>
+          <p class="eyebrow">まずは、つながっておく。</p>
           <h2 class="register-title">今すぐ転職じゃなくても、<br>オーファスとつながっておきませんか？</h2>
           <p class="register-copy">
             今すぐ応募したい求人がなくても大丈夫です。
@@ -554,9 +1260,18 @@ html = f'''<!DOCTYPE html>
           </p>
 
           <div class="register-points">
-            <div class="register-point"><strong>今すぐ応募しなくてOK</strong><span>「少し気になる」段階でも登録できます。</span></div>
-            <div class="register-point"><strong>希望だけ伝えておける</strong><span>エリア・職種・働き方などを登録できます。</span></div>
-            <div class="register-point"><strong>合いそうな募集が出たらご案内</strong><span>タイミングが合ったときに検討できます。</span></div>
+            <div class="register-point">
+              <strong>今すぐ応募しなくてOK</strong>
+              <span>「少し気になる」段階でも登録できます。</span>
+            </div>
+            <div class="register-point">
+              <strong>希望だけ伝えておける</strong>
+              <span>エリア・職種・働き方などを登録できます。</span>
+            </div>
+            <div class="register-point">
+              <strong>合いそうな募集が出たらご案内</strong>
+              <span>タイミングが合ったときに検討できます。</span>
+            </div>
           </div>
 
           <div class="register-actions">
@@ -572,9 +1287,12 @@ html = f'''<!DOCTYPE html>
     <div class="container">
       <div class="footer-main">
         <div>
-          <div class="footer-logo"><img src="{logo_uri}" alt="OHFAS オーファス"></div>
+          <div class="footer-logo">
+            <img src="{logo_uri}" alt="OHFAS オーファス">
+          </div>
           <div class="footer-sub">REFERRAL RECRUITING SITE</div>
-          <div class="footer-socials">
+
+          <div class="footer-socials" aria-label="公式SNS">
             <a class="footer-social" href="#" aria-label="Facebook">
               <svg viewBox="0 0 24 24"><path d="M13.7 22v-9h3l.45-3.5H13.7V7.27c0-1.01.28-1.7 1.74-1.7h1.86V2.44c-.32-.04-1.43-.14-2.72-.14-2.69 0-4.53 1.64-4.53 4.66V9.5H7v3.5h3.05v9h3.65Z"/></svg>
             </a>
@@ -590,6 +1308,7 @@ html = f'''<!DOCTYPE html>
               <a class="footer-tel" href="tel:0000000000">TEL 000-000-0000</a>
               <span class="footer-hours">受付時間 00:00–00:00</span>
             </div>
+
             <a class="btn btn-green" href="#">LINEで相談する</a>
           </div>
         </div>
@@ -602,19 +1321,19 @@ html = f'''<!DOCTYPE html>
   </footer>
 
   <div class="modal" id="jobModal" aria-hidden="true">
-    <div class="modal-bg" data-close></div>
-    <div class="modal-panel">
-      <button class="modal-close" type="button" data-close>×</button>
+    <div class="modal-bg" data-job-close></div>
+    <div class="modal-panel" role="dialog" aria-modal="true">
+      <button class="modal-close" type="button" aria-label="閉じる" data-job-close>×</button>
       <div class="modal-grid">
         <div class="modal-photo"><img id="jobModalImage" src="" alt=""></div>
         <div class="modal-content">
           <span class="modal-label" id="jobModalLabel"></span>
           <h3 class="modal-title" id="jobModalTitle"></h3>
-          <p class="lead" id="jobModalLead"></p>
+          <p class="section-lead" id="jobModalLead"></p>
           <div class="modal-block"><h4>主な仕事内容</h4><p id="jobModalWork"></p></div>
           <div class="modal-block"><h4>こんな方におすすめ</h4><p id="jobModalFit"></p></div>
           <div class="modal-block"><h4>働き方</h4><p id="jobModalStyle"></p></div>
-          <a class="modal-action" href="#register" data-close>この仕事に興味ありで登録する →</a>
+          <a class="modal-action" href="#register" data-job-close>この仕事に興味ありで登録する →</a>
         </div>
       </div>
     </div>
@@ -622,8 +1341,8 @@ html = f'''<!DOCTYPE html>
 
   <div class="modal" id="staffModal" aria-hidden="true">
     <div class="modal-bg" data-staff-close></div>
-    <div class="modal-panel">
-      <button class="modal-close" type="button" data-staff-close>×</button>
+    <div class="modal-panel" role="dialog" aria-modal="true">
+      <button class="modal-close" type="button" aria-label="閉じる" data-staff-close>×</button>
       <div class="modal-grid">
         <div class="modal-photo"><img id="staffModalImage" src="" alt=""></div>
         <div class="modal-content">
@@ -639,91 +1358,172 @@ html = f'''<!DOCTYPE html>
 
   <script>
     document.documentElement.classList.add("js");
-    requestAnimationFrame(()=>document.body.classList.add("loaded"));
+    requestAnimationFrame(() => document.body.classList.add("loaded"));
 
-    const slides=[...document.querySelectorAll(".hero-slide")];
-    const dots=[...document.querySelectorAll(".slider-dot")];
-    let current=0;
-    function showSlide(i){{
-      current=i;
-      slides.forEach((s,n)=>s.classList.toggle("active",n===i));
-      dots.forEach((d,n)=>d.classList.toggle("active",n===i));
+    // Hero slider
+    const slides = [...document.querySelectorAll(".slide")];
+    const dots = [...document.querySelectorAll(".slider-dot")];
+    let currentSlide = 0;
+    let slideTimer = null;
+
+    function showSlide(index) {{
+      currentSlide = index;
+      slides.forEach((slide, i) => slide.classList.toggle("active", i === index));
+      dots.forEach((dot, i) => dot.classList.toggle("active", i === index));
     }}
-    let timer=setInterval(()=>showSlide((current+1)%slides.length),4500);
-    dots.forEach((d,i)=>d.addEventListener("click",()=>{{showSlide(i);clearInterval(timer);timer=setInterval(()=>showSlide((current+1)%slides.length),4500)}}));
 
-    const reveals=[...document.querySelectorAll(".reveal")];
-    const ro=new IntersectionObserver(entries=>{{
-      entries.forEach(e=>{{if(e.isIntersecting){{e.target.classList.add("show");ro.unobserve(e.target)}}}})
-    }},{{threshold:.12}});
-    reveals.forEach(el=>ro.observe(el));
+    function startSlider() {{
+      clearInterval(slideTimer);
+      slideTimer = setInterval(() => {{
+        showSlide((currentSlide + 1) % slides.length);
+      }}, 4500);
+    }}
 
-    const progress=document.getElementById("progress");
-    addEventListener("scroll",()=>{{
-      const max=document.documentElement.scrollHeight-innerHeight;
-      progress.style.width=(Math.min(1,scrollY/Math.max(1,max))*100)+"%";
-    }},{{passive:true}});
+    dots.forEach((dot, index) => {{
+      dot.addEventListener("click", () => {{
+        showSlide(index);
+        startSlider();
+      }});
+    }});
 
-    const countObs=new IntersectionObserver(entries=>{{
-      entries.forEach(e=>{{
-        if(!e.isIntersecting)return;
-        const el=e.target,target=Number(el.dataset.count);
-        const small=el.querySelector("small")?.textContent||"";
-        const start=performance.now(),dur=900;
-        function frame(now){{
-          const p=Math.min(1,(now-start)/dur),v=Math.round(target*(1-Math.pow(1-p,3)));
-          el.innerHTML=v+(small?`<small>${{small}}</small>`:"");
-          if(p<1)requestAnimationFrame(frame);
+    if (slides.length > 1) startSlider();
+
+    // Reveal animation
+    const revealObserver = new IntersectionObserver((entries, observer) => {{
+      entries.forEach(entry => {{
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("show");
+        observer.unobserve(entry.target);
+      }});
+    }}, {{ threshold: .12 }});
+
+    document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
+
+    // Scroll progress
+    const progress = document.getElementById("progress");
+    window.addEventListener("scroll", () => {{
+      const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      progress.style.width = Math.min(100, (window.scrollY / max) * 100) + "%";
+    }}, {{ passive:true }});
+
+    // Count-up numbers
+    const countObserver = new IntersectionObserver((entries, observer) => {{
+      entries.forEach(entry => {{
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = Number(el.dataset.count);
+        const suffix = el.querySelector("small")?.textContent || "";
+        const start = performance.now();
+        const duration = 900;
+
+        function tick(now) {{
+          const p = Math.min(1, (now - start) / duration);
+          const eased = 1 - Math.pow(1 - p, 3);
+          const value = Math.round(target * eased);
+          el.innerHTML = value + (suffix ? `<small>${{suffix}}</small>` : "");
+          if (p < 1) requestAnimationFrame(tick);
         }}
-        requestAnimationFrame(frame);
-        countObs.unobserve(el);
-      }})
-    }},{{threshold:.5}});
-    document.querySelectorAll("[data-count]").forEach(el=>countObs.observe(el));
 
-    const jobDetails={json.dumps(job_details, ensure_ascii=False)};
-    const jobModal=document.getElementById("jobModal");
-    function openJob(i){{
-      const d=jobDetails[i];
-      jobModalImage.src=d.image; jobModalImage.alt=d.title+"スタッフ";
-      jobModalLabel.textContent="JOB "+d.label;
-      jobModalTitle.textContent=d.title;
-      jobModalLead.textContent=d.lead;
-      jobModalWork.textContent=d.work;
-      jobModalFit.textContent=d.fit;
-      jobModalStyle.textContent=d.style;
-      jobModal.classList.add("open");document.body.classList.add("modal-open");
-    }}
-    function closeJob(){{jobModal.classList.remove("open");document.body.classList.remove("modal-open")}}
-    document.querySelectorAll("[data-job]").forEach(el=>{{
-      el.addEventListener("click",()=>openJob(Number(el.dataset.job)));
-      el.addEventListener("keydown",e=>{{if(e.key==="Enter"||e.key===" "){{e.preventDefault();openJob(Number(el.dataset.job))}}}})
-    }});
-    jobModal.querySelectorAll("[data-close]").forEach(el=>el.addEventListener("click",closeJob));
+        requestAnimationFrame(tick);
+        observer.unobserve(el);
+      }});
+    }}, {{ threshold:.5 }});
 
-    const staffDetails={json.dumps(staff_details, ensure_ascii=False)};
-    const staffModal=document.getElementById("staffModal");
-    function openStaff(i){{
-      const d=staffDetails[i];
-      staffModalImage.src=d.image; staffModalImage.alt=d.role;
-      staffModalRole.textContent=d.role;
-      staffModalTitle.textContent=d.title;
-      staffModalIntro.textContent=d.intro;
-      staffModalReward.textContent=d.reward;
-      staffModalMessage.textContent=d.message;
-      staffModal.classList.add("open");document.body.classList.add("modal-open");
+    document.querySelectorAll("[data-count]").forEach(el => countObserver.observe(el));
+
+    // Job modal
+    const jobDetails = {json.dumps(jobs, ensure_ascii=False)};
+    const jobModal = document.getElementById("jobModal");
+    const jobModalImage = document.getElementById("jobModalImage");
+    const jobModalLabel = document.getElementById("jobModalLabel");
+    const jobModalTitle = document.getElementById("jobModalTitle");
+    const jobModalLead = document.getElementById("jobModalLead");
+    const jobModalWork = document.getElementById("jobModalWork");
+    const jobModalFit = document.getElementById("jobModalFit");
+    const jobModalStyle = document.getElementById("jobModalStyle");
+
+    function openJob(index) {{
+      const data = jobDetails[index];
+      jobModalImage.src = data.image;
+      jobModalImage.alt = data.title + "スタッフ";
+      jobModalLabel.textContent = "JOB " + String(index + 1).padStart(2, "0");
+      jobModalTitle.textContent = data.title;
+      jobModalLead.textContent = data.lead;
+      jobModalWork.textContent = data.work;
+      jobModalFit.textContent = data.fit;
+      jobModalStyle.textContent = data.style;
+      jobModal.classList.add("open");
+      document.body.classList.add("modal-open");
     }}
-    function closeStaff(){{staffModal.classList.remove("open");document.body.classList.remove("modal-open")}}
-    document.querySelectorAll("[data-staff]").forEach(el=>{{
-      el.addEventListener("click",()=>openStaff(Number(el.dataset.staff)));
-      el.addEventListener("keydown",e=>{{if(e.key==="Enter"||e.key===" "){{e.preventDefault();openStaff(Number(el.dataset.staff))}}}})
+
+    function closeJob() {{
+      jobModal.classList.remove("open");
+      document.body.classList.remove("modal-open");
+    }}
+
+    document.querySelectorAll("[data-job]").forEach(card => {{
+      card.addEventListener("click", () => openJob(Number(card.dataset.job)));
+      card.addEventListener("keydown", event => {{
+        if (event.key === "Enter" || event.key === " ") {{
+          event.preventDefault();
+          openJob(Number(card.dataset.job));
+        }}
+      }});
     }});
-    staffModal.querySelectorAll("[data-staff-close]").forEach(el=>el.addEventListener("click",closeStaff));
-    document.addEventListener("keydown",e=>{{if(e.key==="Escape"){{closeJob();closeStaff()}}}});
+
+    document.querySelectorAll("[data-job-close]").forEach(el => el.addEventListener("click", closeJob));
+
+    // Staff modal
+    const staffDetails = {json.dumps(staff, ensure_ascii=False)};
+    const staffModal = document.getElementById("staffModal");
+    const staffModalImage = document.getElementById("staffModalImage");
+    const staffModalRole = document.getElementById("staffModalRole");
+    const staffModalTitle = document.getElementById("staffModalTitle");
+    const staffModalIntro = document.getElementById("staffModalIntro");
+    const staffModalReward = document.getElementById("staffModalReward");
+    const staffModalMessage = document.getElementById("staffModalMessage");
+
+    function openStaff(index) {{
+      const data = staffDetails[index];
+      staffModalImage.src = data.image;
+      staffModalImage.alt = data.role;
+      staffModalRole.textContent = data.role;
+      staffModalTitle.textContent = data.title;
+      staffModalIntro.textContent = data.intro;
+      staffModalReward.textContent = data.reward;
+      staffModalMessage.textContent = data.message;
+      staffModal.classList.add("open");
+      document.body.classList.add("modal-open");
+    }}
+
+    function closeStaff() {{
+      staffModal.classList.remove("open");
+      document.body.classList.remove("modal-open");
+    }}
+
+    document.querySelectorAll("[data-staff]").forEach(card => {{
+      card.addEventListener("click", () => openStaff(Number(card.dataset.staff)));
+      card.addEventListener("keydown", event => {{
+        if (event.key === "Enter" || event.key === " ") {{
+          event.preventDefault();
+          openStaff(Number(card.dataset.staff));
+        }}
+      }});
+    }});
+
+    document.querySelectorAll("[data-staff-close]").forEach(el => el.addEventListener("click", closeStaff));
+
+    document.addEventListener("keydown", event => {{
+      if (event.key === "Escape") {{
+        closeJob();
+        closeStaff();
+      }}
+    }});
   </script>
 </body>
-</html>'''
+</html>
+"""
 
-out = Path("/mnt/data/ohfas_referral_from_scratch_registration.html")
+out = Path("/mnt/data/ohfas_referral_full_rewrite.html")
 out.write_text(html, encoding="utf-8")
 print(out)
