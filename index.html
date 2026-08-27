@@ -1,952 +1,1652 @@
-<!DOCTYPE html>
+from pathlib import Path
+
+html = r'''<!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>オーファス リファラル採用サイト</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="株式会社オーファス リファラル採用サイト。ご紹介をきっかけに、会社・仕事・働く人を知っていただくためのサイトです。" />
+  <title>OHFAS REFERRAL｜ご縁から、仕事を見つけよう。</title>
 
   <style>
-    :root {
-      --blue: #0b3d91;
-      --blue-dark: #082c68;
-      --blue-light: #eaf2ff;
-      --yellow: #ffd43b;
-      --yellow-soft: #fff4b8;
-      --text: #222;
-      --subtext: #666;
-      --white: #ffffff;
-      --gray: #f6f7f9;
+    :root{
+      --ink:#111312;
+      --paper:#f7f7f2;
+      --white:#ffffff;
+      --sky:#28a9d5;
+      --sky-soft:#dff4fb;
+      --yellow:#f2eb55;
+      --green:#07c755;
+      --gray:#686c69;
+      --line:#d9dad4;
+      --max:1180px;
+      --radius-xl:42px;
+      --radius-lg:28px;
+      --radius-md:18px;
+      --shadow:10px 10px 0 var(--ink);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Hiragino Kaku Gothic ProN",
-        "Hiragino Sans",
-        "Yu Gothic",
-        sans-serif;
-      color: var(--text);
-      line-height: 1.8;
-      background: var(--white);
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    .container {
-      width: min(1120px, 90%);
-      margin: 0 auto;
-    }
-
-    .section {
-      padding: 90px 0;
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 50px;
-    }
-
-    .section-title span {
-      display: inline-block;
-      color: var(--blue);
-      font-size: 14px;
-      font-weight: bold;
-      letter-spacing: 0.12em;
-      margin-bottom: 8px;
-    }
-
-    .section-title h2 {
-      font-size: clamp(28px, 4vw, 42px);
-      line-height: 1.4;
-    }
-
-    .section-title p {
-      color: var(--subtext);
-      margin-top: 12px;
-    }
-
-    /* ヘッダー */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: rgba(255,255,255,0.96);
-      border-bottom: 1px solid #eee;
-    }
-
-    .header-inner {
-      min-height: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 30px;
-    }
-
-    .logo {
-      font-size: 24px;
-      font-weight: 800;
-      color: var(--blue);
-    }
-
-    .logo span {
-      color: #e9b900;
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 26px;
-      font-size: 14px;
-      font-weight: bold;
-    }
-
-    .header-button {
-      background: var(--yellow);
-      color: var(--blue-dark);
-      padding: 12px 20px;
-      border-radius: 999px;
-    }
-
-    /* ファーストビュー */
-    .hero {
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
       background:
-        linear-gradient(
-          120deg,
-          rgba(11,61,145,0.98),
-          rgba(8,44,104,0.94)
-        );
-      color: white;
-      min-height: 680px;
-      display: flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
+        linear-gradient(to right, rgba(17,19,18,.045) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(17,19,18,.045) 1px, transparent 1px),
+        var(--paper);
+      background-size:32px 32px;
+      color:var(--ink);
+      font-family:
+        "Hiragino Kaku Gothic ProN",
+        "Yu Gothic",
+        "YuGothic",
+        "Noto Sans JP",
+        sans-serif;
+      line-height:1.8;
+      -webkit-font-smoothing:antialiased;
     }
 
-    .hero::before {
-      content: "";
-      position: absolute;
-      width: 380px;
-      height: 380px;
-      border-radius: 50%;
-      background: var(--yellow);
-      top: -120px;
-      right: -100px;
-      opacity: 0.95;
+    body.menu-open{overflow:hidden}
+
+    a{color:inherit;text-decoration:none}
+    button,select{font:inherit}
+    img{display:block;max-width:100%}
+
+    .container{
+      width:min(calc(100% - 40px), var(--max));
+      margin-inline:auto;
     }
 
-    .hero::after {
-      content: "";
-      position: absolute;
-      width: 250px;
-      height: 250px;
-      border-radius: 50%;
-      border: 40px solid rgba(255,255,255,0.08);
-      bottom: -90px;
-      left: -70px;
+    .section{
+      padding:120px 0;
     }
 
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 760px;
+    .section-head{
+      display:grid;
+      grid-template-columns:.75fr 1.25fr;
+      gap:52px;
+      align-items:end;
+      margin-bottom:48px;
     }
 
-    .hero-label {
-      display: inline-block;
-      background: var(--yellow);
-      color: var(--blue-dark);
-      font-weight: bold;
-      padding: 8px 18px;
-      border-radius: 999px;
-      margin-bottom: 24px;
+    .section-kicker{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin:0 0 12px;
+      font-size:.78rem;
+      font-weight:900;
+      letter-spacing:.16em;
+      text-transform:uppercase;
     }
 
-    .hero h1 {
-      font-size: clamp(40px, 6vw, 72px);
-      line-height: 1.25;
-      margin-bottom: 24px;
+    .section-kicker::before{
+      content:"";
+      width:32px;
+      height:3px;
+      border-radius:20px;
+      background:var(--sky);
     }
 
-    .hero h1 strong {
-      color: var(--yellow);
+    .section-title{
+      margin:0;
+      font-size:clamp(2.8rem, 6vw, 6rem);
+      line-height:.94;
+      letter-spacing:-.065em;
+      font-weight:950;
     }
 
-    .hero p {
-      font-size: 18px;
-      max-width: 650px;
-      opacity: 0.92;
-      margin-bottom: 35px;
+    .section-lead{
+      margin:0;
+      max-width:720px;
+      color:#464a47;
+      font-size:1rem;
     }
 
-    .hero-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+      min-height:54px;
+      padding:0 24px;
+      border-radius:999px;
+      border:1.5px solid var(--ink);
+      font-weight:900;
+      transition:.22s ease;
     }
 
-    .btn {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      min-width: 190px;
-      padding: 15px 24px;
-      border-radius: 999px;
-      font-weight: bold;
-      transition: 0.2s;
+    .btn:hover{
+      transform:translateY(-3px);
+      box-shadow:5px 5px 0 var(--ink);
     }
 
-    .btn:hover {
-      transform: translateY(-2px);
+    .btn-dark{background:var(--ink);color:#fff}
+    .btn-yellow{background:var(--yellow)}
+    .btn-white{background:#fff}
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      min-height:30px;
+      padding:0 12px;
+      border:1px solid var(--ink);
+      border-radius:999px;
+      font-size:.7rem;
+      font-weight:900;
+      letter-spacing:.08em;
+      background:#fff;
     }
 
-    .btn-yellow {
-      background: var(--yellow);
-      color: var(--blue-dark);
+    /* HEADER */
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      border-bottom:1px solid rgba(17,19,18,.12);
+      background:rgba(247,247,242,.88);
+      backdrop-filter:blur(18px);
     }
 
-    .btn-white {
-      background: white;
-      color: var(--blue);
+    .header-inner{
+      height:74px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
     }
 
-    /* 紹介メッセージ */
-    .intro {
-      background: var(--yellow-soft);
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:11px;
+      font-weight:950;
+      font-size:.92rem;
+      letter-spacing:.035em;
     }
 
-    .intro-box {
-      background: white;
-      border-radius: 30px;
-      padding: 50px;
-      max-width: 900px;
-      margin: 0 auto;
-      text-align: center;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.06);
+    .brand-mark{
+      width:31px;
+      display:grid;
+      gap:3px;
     }
 
-    .intro-box h2 {
-      color: var(--blue);
-      font-size: 30px;
-      margin-bottom: 15px;
+    .brand-mark i{
+      display:block;
+      height:4px;
+      border-radius:99px;
+      background:var(--ink);
+    }
+
+    .brand-mark i:first-child{
+      width:100%;
+      background:var(--sky);
+    }
+
+    .brand-mark i:nth-child(2){width:70%}
+    .brand-mark i:nth-child(3){
+      width:45%;
+      background:var(--yellow);
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:27px;
+      font-size:.78rem;
+      font-weight:850;
+    }
+
+    .nav a{
+      position:relative;
+    }
+
+    .nav a:not(.header-cta)::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-7px;
+      width:0;
+      height:2px;
+      background:var(--sky);
+      transition:.2s ease;
+    }
+
+    .nav a:hover::after{width:100%}
+
+    .header-cta{
+      padding:11px 17px;
+      color:#fff;
+      background:var(--ink);
+      border-radius:999px;
+    }
+
+    .menu-button{
+      display:none;
+      width:44px;
+      height:44px;
+      border:1px solid var(--ink);
+      border-radius:50%;
+      background:#fff;
+      cursor:pointer;
+      font-weight:900;
+    }
+
+    /* HERO */
+    .hero{
+      position:relative;
+      overflow:hidden;
+      min-height:calc(100svh - 74px);
+      display:grid;
+      align-items:center;
+      padding:56px 0 80px;
+    }
+
+    .hero::after{
+      content:"";
+      position:absolute;
+      width:340px;
+      aspect-ratio:1;
+      border-radius:50%;
+      background:var(--yellow);
+      filter:blur(0);
+      left:-170px;
+      bottom:-100px;
+      opacity:.75;
+      z-index:-1;
+    }
+
+    .hero-layout{
+      display:grid;
+      grid-template-columns:1.03fr .97fr;
+      gap:62px;
+      align-items:center;
+    }
+
+    .hero-label{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:9px 13px;
+      border:1.5px solid var(--ink);
+      border-radius:999px;
+      background:#fff;
+      font-size:.72rem;
+      font-weight:900;
+      letter-spacing:.13em;
+    }
+
+    .hero-label::before{
+      content:"●";
+      color:var(--sky);
+    }
+
+    .hero h1{
+      margin:26px 0 0;
+      font-size:clamp(4.1rem, 8.5vw, 8.6rem);
+      line-height:.86;
+      letter-spacing:-.085em;
+      font-weight:950;
+    }
+
+    .hero h1 .blue{
+      display:inline-block;
+      color:var(--sky);
+      transform:rotate(-2deg);
+    }
+
+    .hero-sub{
+      margin:31px 0 0;
+      max-width:620px;
+      font-size:1.05rem;
+      font-weight:650;
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:35px;
+    }
+
+    .hero-note{
+      margin-top:24px;
+      color:#686c69;
+      font-size:.78rem;
+    }
+
+    .visual{
+      position:relative;
+      min-height:590px;
+    }
+
+    .visual-board{
+      position:absolute;
+      inset:35px 0 30px 35px;
+      overflow:hidden;
+      border:2px solid var(--ink);
+      border-radius:50px;
+      background:var(--sky);
+      transform:rotate(2deg);
+      box-shadow:14px 14px 0 var(--ink);
+    }
+
+    .visual-board::before{
+      content:"";
+      position:absolute;
+      width:74%;
+      aspect-ratio:1;
+      border-radius:50%;
+      right:-20%;
+      top:-17%;
+      background:var(--yellow);
+      border:2px solid var(--ink);
+    }
+
+    .visual-board::after{
+      content:"THANK YOU";
+      position:absolute;
+      left:30px;
+      bottom:23px;
+      color:#fff;
+      opacity:.92;
+      font-size:clamp(4.2rem,7vw,7.7rem);
+      line-height:.8;
+      font-weight:950;
+      letter-spacing:-.08em;
+    }
+
+    .staff-stack{
+      position:absolute;
+      z-index:2;
+      inset:115px 42px 117px 65px;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:13px;
+      transform:rotate(-1.5deg);
+    }
+
+    .staff-placeholder{
+      position:relative;
+      overflow:hidden;
+      border:2px solid var(--ink);
+      border-radius:28px 28px 90px 90px;
+      background:#fff;
+    }
+
+    .staff-placeholder::before{
+      content:"";
+      position:absolute;
+      top:34px;
+      left:50%;
+      width:66px;
+      height:66px;
+      transform:translateX(-50%);
+      border:2px solid var(--ink);
+      border-radius:50%;
+      background:#f4c9a4;
+    }
+
+    .staff-placeholder::after{
+      content:"";
+      position:absolute;
+      left:7%;
+      bottom:-3%;
+      width:86%;
+      height:63%;
+      border-radius:70px 70px 0 0;
+      background:var(--ink);
+    }
+
+    .staff-placeholder:nth-child(2)::after{background:#33465d}
+    .staff-placeholder:nth-child(3)::after{background:#d9c7a9}
+
+    .visual-badge{
+      position:absolute;
+      z-index:3;
+      right:-8px;
+      top:0;
+      padding:15px 20px;
+      border:2px solid var(--ink);
+      border-radius:18px;
+      background:#fff;
+      font-size:.9rem;
+      font-weight:900;
+      box-shadow:7px 7px 0 var(--ink);
+      transform:rotate(4deg);
+    }
+
+    .visual-caption{
+      position:absolute;
+      z-index:3;
+      left:0;
+      bottom:10px;
+      padding:11px 16px;
+      border:1.5px solid var(--ink);
+      border-radius:999px;
+      background:#fff;
+      font-size:.72rem;
+      font-weight:900;
+    }
+
+    /* WELCOME */
+    .welcome{
+      padding-top:80px;
+    }
+
+    .welcome-card{
+      position:relative;
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:60px;
+      padding:62px;
+      border:2px solid var(--ink);
+      border-radius:var(--radius-xl);
+      background:#fff;
+      box-shadow:var(--shadow);
+    }
+
+    .welcome-card::before{
+      content:"REFERRAL";
+      position:absolute;
+      right:26px;
+      top:14px;
+      color:#edf0ec;
+      font-size:clamp(4rem, 8vw, 8rem);
+      line-height:1;
+      font-weight:950;
+      letter-spacing:-.07em;
+      z-index:0;
+    }
+
+    .welcome-card > *{
+      position:relative;
+      z-index:1;
+    }
+
+    .welcome-title{
+      margin:0;
+      font-size:clamp(2.5rem,5vw,5rem);
+      line-height:1.02;
+      letter-spacing:-.055em;
+      font-weight:950;
+    }
+
+    .welcome-copy p{margin:0}
+    .welcome-copy p + p{margin-top:18px}
+
+    .welcome-point{
+      display:flex;
+      align-items:flex-start;
+      gap:14px;
+      margin-top:26px;
+      padding:18px;
+      border-radius:18px;
+      background:var(--sky-soft);
+    }
+
+    .welcome-point strong{
+      display:block;
+      margin-bottom:3px;
     }
 
     /* MVV */
-    .mvv-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+    .mvv-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
     }
 
-    .mvv-card {
-      border-radius: 24px;
-      padding: 38px 30px;
-      background: var(--blue);
-      color: white;
-      min-height: 260px;
+    .mvv-card{
+      min-height:330px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      padding:30px;
+      border:1.5px solid var(--ink);
+      border-radius:30px;
+      background:#fff;
     }
 
-    .mvv-card:nth-child(2) {
-      background: var(--yellow);
-      color: var(--blue-dark);
+    .mvv-card:nth-child(2){background:var(--yellow)}
+    .mvv-card:nth-child(3){background:var(--sky)}
+
+    .mvv-card .num{
+      font-size:.75rem;
+      font-weight:950;
+      letter-spacing:.14em;
     }
 
-    .mvv-card:nth-child(3) {
-      background: var(--blue-light);
-      color: var(--blue-dark);
+    .mvv-card h3{
+      margin:40px 0 10px;
+      font-size:1.65rem;
+      line-height:1.3;
+      letter-spacing:-.02em;
     }
 
-    .mvv-card .en {
-      font-size: 13px;
-      font-weight: bold;
-      letter-spacing: 0.15em;
-      margin-bottom: 10px;
+    .mvv-card p{
+      margin:0;
+      font-size:.9rem;
     }
 
-    .mvv-card h3 {
-      font-size: 25px;
-      margin-bottom: 18px;
+    /* HISTORY */
+    .history-panel{
+      overflow:hidden;
+      border:1.5px solid var(--ink);
+      border-radius:34px;
+      background:#fff;
     }
 
-    .mvv-card p {
-      font-size: 18px;
-      font-weight: 600;
+    .history-row{
+      display:grid;
+      grid-template-columns:150px 1fr 250px;
+      align-items:center;
+      gap:24px;
+      min-height:128px;
+      padding:25px 30px;
+      border-bottom:1px solid var(--line);
     }
 
-    .value-list {
-      list-style: none;
-      display: grid;
-      gap: 8px;
+    .history-row:last-child{border-bottom:0}
+    .history-year{
+      font-size:2.2rem;
+      font-weight:950;
+      letter-spacing:-.05em;
     }
 
-    /* 職種 */
-    .jobs {
-      background: var(--gray);
+    .history-title{
+      font-size:1.15rem;
+      font-weight:900;
     }
 
-    .job-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+    .history-text{
+      color:#656965;
+      font-size:.88rem;
+      text-align:right;
     }
 
-    .job-card {
-      background: white;
-      padding: 30px;
-      border-radius: 22px;
-      border-top: 6px solid var(--yellow);
-      box-shadow: 0 10px 35px rgba(0,0,0,0.05);
+    /* JOBS */
+    .jobs-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
     }
 
-    .job-icon {
-      font-size: 36px;
-      margin-bottom: 12px;
+    .job-card{
+      position:relative;
+      min-height:320px;
+      padding:28px;
+      overflow:hidden;
+      border:1.5px solid var(--ink);
+      border-radius:30px;
+      background:#fff;
+      transition:.25s ease;
     }
 
-    .job-card h3 {
-      color: var(--blue);
-      margin-bottom: 10px;
-      font-size: 21px;
+    .job-card:hover{
+      transform:translateY(-6px);
+      box-shadow:8px 8px 0 var(--ink);
     }
 
-    .job-card p {
-      color: var(--subtext);
-      font-size: 15px;
+    .job-no{
+      position:absolute;
+      right:20px;
+      top:15px;
+      color:#eceee9;
+      font-size:4rem;
+      font-weight:950;
+      line-height:1;
+      letter-spacing:-.08em;
     }
 
-    /* 数字 */
-    .numbers-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
+    .job-icon{
+      width:74px;
+      height:74px;
+      display:grid;
+      place-items:center;
+      border:1.5px solid var(--ink);
+      border-radius:22px;
+      background:var(--paper);
+      font-size:2.05rem;
     }
 
-    .number-card {
-      text-align: center;
-      background: var(--blue-light);
-      border-radius: 22px;
-      padding: 35px 20px;
+    .job-card h3{
+      margin:28px 0 8px;
+      font-size:1.5rem;
+      letter-spacing:-.02em;
     }
 
-    .number-card strong {
-      display: block;
-      color: var(--blue);
-      font-size: 40px;
-      line-height: 1.2;
-      margin-bottom: 8px;
+    .job-card p{
+      margin:0;
+      color:#5f635f;
+      font-size:.9rem;
     }
 
-    /* スタッフ */
-    .people {
-      background: var(--blue);
-      color: white;
+    .job-link{
+      position:absolute;
+      left:28px;
+      bottom:25px;
+      font-size:.78rem;
+      font-weight:900;
     }
 
-    .people .section-title span {
-      color: var(--yellow);
+    /* NUMBERS */
+    .numbers{
+      background:var(--ink);
+      color:#fff;
     }
 
-    .people .section-title p {
-      color: rgba(255,255,255,0.75);
+    .numbers .section-kicker::before{background:var(--yellow)}
+    .numbers .section-lead{color:#c5c8c6}
+
+    .numbers-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      border-top:1px solid #4b4f4c;
+      border-left:1px solid #4b4f4c;
     }
 
-    .people-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+    .number-card{
+      min-height:220px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      padding:28px;
+      border-right:1px solid #4b4f4c;
+      border-bottom:1px solid #4b4f4c;
     }
 
-    .person-card {
-      background: white;
-      color: var(--text);
-      border-radius: 24px;
-      overflow: hidden;
+    .number-label{
+      color:#b9bdba;
+      font-size:.74rem;
+      font-weight:800;
+      letter-spacing:.1em;
     }
 
-    .person-photo {
-      height: 220px;
+    .number-value{
+      display:block;
+      margin-top:18px;
+      font-size:clamp(3rem,5vw,5.2rem);
+      line-height:.92;
+      letter-spacing:-.07em;
+      font-weight:950;
+    }
+
+    .number-value small{
+      font-size:.32em;
+      letter-spacing:0;
+      margin-left:4px;
+    }
+
+    .number-note{
+      margin:12px 0 0;
+      color:#c5c8c6;
+      font-size:.78rem;
+    }
+
+    /* PEOPLE */
+    .people-grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr .8fr;
+      grid-template-rows:repeat(2,310px);
+      gap:18px;
+    }
+
+    .person-card{
+      position:relative;
+      overflow:hidden;
+      border:1.5px solid var(--ink);
+      border-radius:30px;
+      background:#fff;
+    }
+
+    .person-card.large{
+      grid-row:1 / 3;
+      min-height:638px;
+      background:var(--sky);
+    }
+
+    .person-photo{
+      position:absolute;
+      inset:0;
       background:
-        linear-gradient(
-          135deg,
-          var(--yellow-soft),
-          var(--blue-light)
-        );
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 64px;
+        radial-gradient(circle at 50% 28%, #f2caa7 0 9%, transparent 9.5%),
+        radial-gradient(ellipse at 50% 86%, #2c3332 0 36%, transparent 36.5%),
+        linear-gradient(135deg,#f4f3ed,#dfe8ea);
     }
 
-    .person-content {
-      padding: 28px;
+    .person-card.large .person-photo{
+      inset:0 0 170px 0;
+      background:
+        radial-gradient(circle at 50% 25%, #f2caa7 0 8%, transparent 8.5%),
+        radial-gradient(ellipse at 50% 80%, #1f3038 0 35%, transparent 35.5%),
+        linear-gradient(135deg,#dff4fb,#f7f7f2);
     }
 
-    .person-content small {
-      color: var(--blue);
-      font-weight: bold;
+    .person-body{
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:0;
+      padding:25px;
+      background:#fff;
+      border-top:1.5px solid var(--ink);
     }
 
-    .person-content h3 {
-      margin: 8px 0 15px;
+    .person-card.large .person-body{
+      min-height:170px;
+      background:var(--yellow);
     }
 
-    .person-content p {
-      color: var(--subtext);
-      font-size: 15px;
+    .person-role{
+      display:block;
+      margin-bottom:7px;
+      font-size:.7rem;
+      font-weight:950;
+      letter-spacing:.12em;
+      text-transform:uppercase;
     }
 
-    /* FAQ */
-    .faq-list {
-      max-width: 850px;
-      margin: 0 auto;
-      display: grid;
-      gap: 16px;
+    .person-title{
+      margin:0;
+      font-size:1.22rem;
+      line-height:1.4;
+      font-weight:900;
     }
 
-    details {
-      background: var(--gray);
-      border-radius: 16px;
-      padding: 20px 24px;
+    /* PROCESS */
+    .process{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:0;
+      border:1.5px solid var(--ink);
+      border-radius:30px;
+      overflow:hidden;
+      background:#fff;
     }
 
-    summary {
-      cursor: pointer;
-      font-weight: bold;
-      color: var(--blue);
+    .process-item{
+      position:relative;
+      min-height:220px;
+      padding:27px;
+      border-right:1px solid var(--line);
     }
 
-    details p {
-      margin-top: 12px;
-      color: var(--subtext);
+    .process-item:last-child{border-right:0}
+
+    .process-step{
+      font-size:.72rem;
+      font-weight:950;
+      letter-spacing:.14em;
+      color:#6f746f;
     }
 
-    /* CTA */
-    .cta {
-      background: var(--yellow);
-      text-align: center;
+    .process-item strong{
+      display:block;
+      margin-top:30px;
+      font-size:1.3rem;
+      line-height:1.35;
     }
 
-    .cta-box {
-      max-width: 800px;
-      margin: 0 auto;
+    .process-item p{
+      margin:10px 0 0;
+      color:#646864;
+      font-size:.84rem;
     }
 
-    .cta h2 {
-      color: var(--blue-dark);
-      font-size: clamp(30px, 5vw, 48px);
-      margin-bottom: 18px;
+    /* FIND */
+    .find-panel{
+      position:relative;
+      overflow:hidden;
+      padding:66px;
+      border:2px solid var(--ink);
+      border-radius:44px;
+      background:var(--yellow);
     }
 
-    .cta p {
-      margin-bottom: 28px;
+    .find-panel::before{
+      content:"YOUR JOB";
+      position:absolute;
+      right:-20px;
+      bottom:-38px;
+      color:rgba(17,19,18,.07);
+      font-size:10rem;
+      font-weight:950;
+      line-height:.8;
+      letter-spacing:-.09em;
     }
 
-    footer {
-      background: var(--blue-dark);
-      color: white;
-      text-align: center;
-      padding: 35px 20px;
-      font-size: 13px;
+    .find-panel > *{
+      position:relative;
+      z-index:1;
     }
 
-    @media (max-width: 850px) {
-      nav {
-        display: none;
+    .find-title{
+      max-width:820px;
+      margin:0;
+      font-size:clamp(2.7rem,5.6vw,5.8rem);
+      line-height:1.02;
+      letter-spacing:-.06em;
+      font-weight:950;
+    }
+
+    .find-copy{
+      max-width:700px;
+      margin:22px 0 0;
+    }
+
+    .filters{
+      display:grid;
+      grid-template-columns:1fr 1fr auto;
+      gap:12px;
+      margin-top:34px;
+    }
+
+    select,.search-button{
+      min-height:58px;
+      border:1.5px solid var(--ink);
+      border-radius:15px;
+      background:#fff;
+      padding:0 17px;
+      font-weight:850;
+    }
+
+    .search-button{
+      min-width:180px;
+      background:var(--ink);
+      color:#fff;
+      cursor:pointer;
+    }
+
+    /* LINE */
+    .line-box{
+      display:grid;
+      grid-template-columns:1fr auto;
+      align-items:center;
+      gap:34px;
+      padding:50px;
+      border:1.5px solid var(--ink);
+      border-radius:34px;
+      background:#fff;
+    }
+
+    .line-box h2{
+      margin:0;
+      font-size:clamp(2.3rem,4.5vw,4.6rem);
+      line-height:1.05;
+      letter-spacing:-.055em;
+      font-weight:950;
+    }
+
+    .line-box p{
+      max-width:720px;
+      margin:18px 0 0;
+      color:#555a56;
+    }
+
+    .line-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:220px;
+      min-height:64px;
+      padding:0 25px;
+      border-radius:999px;
+      background:var(--green);
+      color:#fff;
+      font-weight:950;
+    }
+
+    /* FOOTER */
+    footer{
+      padding:68px 0 32px;
+      background:var(--ink);
+      color:#fff;
+    }
+
+    .footer-main{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:30px;
+    }
+
+    .footer-logo{
+      font-size:clamp(3rem,6vw,6rem);
+      line-height:.85;
+      font-weight:950;
+      letter-spacing:-.07em;
+    }
+
+    .footer-copy{
+      margin-top:46px;
+      color:#939894;
+      font-size:.72rem;
+    }
+
+    /* MOBILE DRAWER */
+    .mobile-nav{
+      position:fixed;
+      inset:74px 0 0 0;
+      z-index:999;
+      display:none;
+      padding:28px 20px;
+      background:var(--paper);
+    }
+
+    .mobile-nav.active{
+      display:block;
+    }
+
+    .mobile-nav a{
+      display:block;
+      padding:17px 4px;
+      border-bottom:1px solid var(--line);
+      font-size:1.2rem;
+      font-weight:900;
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:980px){
+      .nav{display:none}
+      .menu-button{display:block}
+
+      .hero-layout,
+      .welcome-card,
+      .section-head,
+      .line-box{
+        grid-template-columns:1fr;
+      }
+
+      .hero-layout{gap:24px}
+      .visual{min-height:470px}
+
+      .mvv-grid,
+      .jobs-grid{
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .numbers-grid{grid-template-columns:repeat(2,1fr)}
+
+      .history-row{
+        grid-template-columns:120px 1fr;
+      }
+
+      .history-text{
+        grid-column:2;
+        text-align:left;
+      }
+
+      .people-grid{
+        grid-template-columns:1fr 1fr;
+        grid-template-rows:430px 310px 310px;
+      }
+
+      .person-card.large{
+        grid-column:1 / 3;
+        grid-row:auto;
+        min-height:430px;
+      }
+
+      .person-card.large .person-photo{
+        inset:0 0 130px 0;
+      }
+
+      .person-card.large .person-body{
+        min-height:130px;
+      }
+
+      .process{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .process-item:nth-child(2){border-right:0}
+      .process-item:nth-child(-n+2){border-bottom:1px solid var(--line)}
+
+      .filters{
+        grid-template-columns:1fr;
+      }
+
+      .search-button{width:100%}
+    }
+
+    @media(max-width:640px){
+      .container{
+        width:min(calc(100% - 24px), var(--max));
+      }
+
+      .section{
+        padding:82px 0;
+      }
+
+      .hero{
+        padding:32px 0 62px;
+      }
+
+      .hero h1{
+        font-size:clamp(3.4rem,17vw,5.5rem);
+      }
+
+      .hero-sub{
+        font-size:.95rem;
+      }
+
+      .visual{
+        min-height:360px;
+      }
+
+      .visual-board{
+        inset:24px 6px 26px 10px;
+        border-radius:36px;
+        box-shadow:8px 8px 0 var(--ink);
+      }
+
+      .staff-stack{
+        inset:82px 24px 86px 34px;
+        gap:7px;
+      }
+
+      .staff-placeholder::before{
+        width:48px;
+        height:48px;
+        top:22px;
+      }
+
+      .visual-badge{
+        right:3px;
+        font-size:.75rem;
+        padding:10px 13px;
+      }
+
+      .visual-caption{
+        bottom:0;
+        font-size:.66rem;
+      }
+
+      .welcome-card,
+      .find-panel,
+      .line-box{
+        padding:28px;
+      }
+
+      .welcome-card{
+        box-shadow:7px 7px 0 var(--ink);
+      }
+
+      .section-head{
+        gap:24px;
       }
 
       .mvv-grid,
-      .job-grid,
-      .people-grid {
-        grid-template-columns: 1fr;
+      .jobs-grid,
+      .numbers-grid,
+      .people-grid,
+      .process{
+        grid-template-columns:1fr;
       }
 
-      .numbers-grid {
-        grid-template-columns: repeat(2, 1fr);
+      .mvv-card{min-height:280px}
+
+      .history-row{
+        grid-template-columns:1fr;
+        gap:8px;
+        padding:24px;
       }
 
-      .hero {
-        min-height: 600px;
+      .history-text{
+        grid-column:auto;
       }
 
-      .intro-box {
-        padding: 35px 24px;
-      }
-    }
-
-    @media (max-width: 500px) {
-      .section {
-        padding: 65px 0;
+      .people-grid{
+        grid-template-rows:none;
       }
 
-      .numbers-grid {
-        grid-template-columns: 1fr 1fr;
+      .person-card,
+      .person-card.large{
+        grid-column:auto;
+        min-height:430px;
       }
 
-      .hero h1 {
-        font-size: 42px;
+      .person-card.large{
+        grid-row:auto;
       }
 
-      .hero-buttons {
-        flex-direction: column;
+      .process-item{
+        border-right:0;
+        border-bottom:1px solid var(--line);
       }
 
-      .btn {
-        width: 100%;
+      .process-item:last-child{border-bottom:0}
+
+      .footer-main{
+        align-items:flex-start;
+        flex-direction:column;
       }
     }
   </style>
 </head>
 
 <body>
-
-  <!-- ヘッダー -->
-  <header>
+  <header class="site-header">
     <div class="container header-inner">
-      <div class="logo">
-        OHFAS <span>RECRUIT</span>
-      </div>
+      <a class="brand" href="#top" aria-label="OHFAS Referral Top">
+        <span class="brand-mark" aria-hidden="true">
+          <i></i><i></i><i></i>
+        </span>
+        <span>OHFAS REFERRAL</span>
+      </a>
 
-      <nav>
-        <a href="#about">オーファスについて</a>
+      <nav class="nav" aria-label="メインナビゲーション">
+        <a href="#about">会社を知る</a>
         <a href="#jobs">仕事を知る</a>
-        <a href="#people">働く人</a>
-        <a href="#faq">FAQ</a>
-        <a class="header-button" href="#contact">話を聞いてみる</a>
+        <a href="#numbers">数字で見る</a>
+        <a href="#people">人を知る</a>
+        <a href="#find" class="header-cta">仕事を探す</a>
       </nav>
+
+      <button class="menu-button" id="menuButton" type="button" aria-label="メニューを開く" aria-expanded="false">
+        ≡
+      </button>
     </div>
   </header>
 
+  <nav class="mobile-nav" id="mobileNav" aria-label="スマートフォンメニュー">
+    <a href="#about">会社を知る</a>
+    <a href="#jobs">仕事を知る</a>
+    <a href="#numbers">数字で見る</a>
+    <a href="#people">人を知る</a>
+    <a href="#find">仕事を探す</a>
+  </nav>
 
-  <!-- ファーストビュー -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-content">
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="container hero-layout">
+        <div>
+          <span class="hero-label">WELCOME TO OHFAS</span>
 
-        <div class="hero-label">
-          社員から紹介を受けたあなたへ
-        </div>
+          <h1>
+            ご縁から、<br>
+            <span class="blue">仕事</span>を見つけよう。
+          </h1>
 
-        <h1>
-          まずは、<br>
-          <strong>オーファス</strong>を<br>
-          知るところから。
-        </h1>
-
-        <p>
-          「どんな会社なんだろう？」
-          「どんな仕事があるんだろう？」
-          そんなところからで大丈夫です。
-          オーファスの仕事や働く人について、
-          少し覗いてみませんか？
-        </p>
-
-        <div class="hero-buttons">
-          <a href="#jobs" class="btn btn-yellow">
-            募集職種を見る
-          </a>
-
-          <a href="#contact" class="btn btn-white">
-            まずは話を聞いてみる
-          </a>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-
-  <!-- メッセージ -->
-  <section class="section intro">
-    <div class="container">
-      <div class="intro-box">
-        <h2>紹介されたからといって、応募しなくても大丈夫。</h2>
-
-        <p>
-          このサイトは、オーファスで働く社員から紹介を受けた方に、
-          私たちの会社や仕事を知っていただくためのページです。
-          まずは会社を知るだけでも、
-          気になる仕事について話を聞くだけでも大丈夫です。
-        </p>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- MVV -->
-  <section class="section" id="about">
-
-    <div class="container">
-
-      <div class="section-title">
-        <span>ABOUT OHFAS</span>
-        <h2>私たちが大切にしていること</h2>
-        <p>
-          建物を守るだけではなく、
-          その先にいる人や地域の未来を支える会社でありたいと考えています。
-        </p>
-      </div>
-
-      <div class="mvv-grid">
-
-        <div class="mvv-card">
-          <div class="en">MISSION</div>
-          <h3>ミッション</h3>
-
-          <p>
-            建物を未来へつなぐ仕事で<br>
-            社会に貢献する
+          <p class="hero-sub">
+            誰かに紹介されて、このページを開いてくれたあなたへ。<br>
+            いきなり応募を決めなくても大丈夫です。まずはオーファスを知って、
+            「ここならちょっと働いてみたいかも」と思える仕事があるか、のぞいてみてください。
           </p>
-        </div>
 
-
-        <div class="mvv-card">
-          <div class="en">VISION</div>
-          <h3>ビジョン</h3>
-
-          <p>
-            選ばれ続ける<br>
-            環境ソリューションパートナーに
-          </p>
-        </div>
-
-
-        <div class="mvv-card">
-          <div class="en">VALUE</div>
-          <h3>バリュー</h3>
-
-          <ul class="value-list">
-            <li>ありがとうをつなぐ仕事を</li>
-            <li>変化に気づき速やかに対応する</li>
-            <li>まごころで応える</li>
-          </ul>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- 仕事紹介 -->
-  <section class="section jobs" id="jobs">
-
-    <div class="container">
-
-      <div class="section-title">
-        <span>OUR JOBS</span>
-        <h2>オーファスには、いろいろな仕事があります。</h2>
-        <p>
-          建物を快適に、安全に使い続けるために、
-          さまざまな職種が連携しています。
-        </p>
-      </div>
-
-
-      <div class="job-grid">
-
-        <div class="job-card">
-          <div class="job-icon">🔧</div>
-          <h3>設備管理</h3>
-          <p>
-            建物の電気・空調・給排水設備などを点検し、
-            快適な環境を支える仕事です。
-          </p>
-        </div>
-
-
-        <div class="job-card">
-          <div class="job-icon">🧹</div>
-          <h3>清掃</h3>
-          <p>
-            オフィスや公共施設などを清潔に保ち、
-            利用する方が気持ちよく過ごせる環境をつくります。
-          </p>
-        </div>
-
-
-        <div class="job-card">
-          <div class="job-icon">🛡️</div>
-          <h3>警備</h3>
-          <p>
-            施設の安全確認や出入管理などを通して、
-            安心して利用できる環境を守ります。
-          </p>
-        </div>
-
-
-        <div class="job-card">
-          <div class="job-icon">🤝</div>
-          <h3>企画・顧客管理</h3>
-          <p>
-            お客様との打ち合わせや現場管理、
-            入札業務などを担当します。
-          </p>
-        </div>
-
-
-        <div class="job-card">
-          <div class="job-icon">☎️</div>
-          <h3>電話交換</h3>
-          <p>
-            電話を適切な部署につなぎ、
-            施設や企業の窓口を支える仕事です。
-          </p>
-        </div>
-
-
-        <div class="job-card">
-          <div class="job-icon">✨</div>
-          <h3>その他の仕事</h3>
-          <p>
-            オーファスでは、
-            さまざまな施設・働き方のお仕事があります。
-          </p>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- 数字 -->
-  <section class="section">
-
-    <div class="container">
-
-      <div class="section-title">
-        <span>OHFAS IN NUMBERS</span>
-        <h2>数字で見るオーファス</h2>
-        <p>
-          ここは実際の数字に置き換えて使ってください。
-        </p>
-      </div>
-
-
-      <div class="numbers-grid">
-
-        <div class="number-card">
-          <strong>1948</strong>
-          創業
-        </div>
-
-        <div class="number-card">
-          <strong>約150</strong>
-          管理物件
-        </div>
-
-        <div class="number-card">
-          <strong>00人</strong>
-          従業員数
-        </div>
-
-        <div class="number-card">
-          <strong>00%</strong>
-          未経験スタート
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- 働く人 -->
-  <section class="section people" id="people">
-
-    <div class="container">
-
-      <div class="section-title">
-        <span>PEOPLE</span>
-        <h2>どんな人が働いている？</h2>
-        <p>
-          オーファスで働くスタッフに、
-          仕事や会社について聞いてみました。
-        </p>
-      </div>
-
-
-      <div class="people-grid">
-
-        <div class="person-card">
-
-          <div class="person-photo">
-            👩‍💼
+          <div class="hero-actions">
+            <a class="btn btn-dark" href="#about">オーファスを知る →</a>
+            <a class="btn btn-yellow" href="#find">自分に合う仕事を探す</a>
           </div>
 
-          <div class="person-content">
-            <small>企画・顧客管理｜入社2年目</small>
+          <p class="hero-note">紹介された方専用の採用サイトです。</p>
+        </div>
 
-            <h3>
-              「人と関わりながら、
-              建物を支える仕事。」
-            </h3>
+        <div class="visual" aria-hidden="true">
+          <div class="visual-board"></div>
 
+          <!-- 実運用ではここをスタッフ写真3枚に差し替え -->
+          <div class="staff-stack">
+            <div class="staff-placeholder"></div>
+            <div class="staff-placeholder"></div>
+            <div class="staff-placeholder"></div>
+          </div>
+
+          <div class="visual-badge">つながったご縁に、ありがとう。</div>
+          <div class="visual-caption">清掃 / 警備 / 設備 / 電話交換 / 営業・労務管理</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WELCOME -->
+    <section class="section welcome">
+      <div class="container">
+        <div class="welcome-card">
+          <div>
+            <p class="section-kicker">WELCOME</p>
+            <h2 class="welcome-title">紹介だからこそ、<br>ちゃんと知ってほしい。</h2>
+          </div>
+
+          <div class="welcome-copy">
             <p>
-              入社したきっかけや、
-              実際に働いて感じたことをご紹介します。
+              オーファスに興味を持っていただき、ありがとうございます。
+              このサイトは、社員・友人・家族・知人からの紹介をきっかけに、
+              オーファスを知っていただくためにつくりました。
             </p>
 
-          </div>
-        </div>
-
-
-        <div class="person-card">
-
-          <div class="person-photo">
-            👨‍🔧
-          </div>
-
-          <div class="person-content">
-            <small>設備管理スタッフ</small>
-
-            <h3>
-              「毎日の点検が、
-              当たり前の日常を守っています。」
-            </h3>
-
             <p>
-              未経験から始めたスタッフの声や、
-              仕事のやりがいをご紹介します。
+              会社の良いところだけではなく、どんな仕事があるのか、どんな人が働いているのか、
+              そして自分に合いそうな働き方があるのか。気軽に見てもらえたらうれしいです。
             </p>
 
+            <div class="welcome-point">
+              <span>💡</span>
+              <div>
+                <strong>応募は、まだ先でも大丈夫です。</strong>
+                「ちょっと気になる」くらいの段階から、LINEで相談できます。
+              </div>
+            </div>
           </div>
         </div>
+      </div>
+    </section>
 
-
-        <div class="person-card">
-
-          <div class="person-photo">
-            👩‍💻
+    <!-- ABOUT / MVV -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">ABOUT OHFAS</p>
+            <h2 class="section-title">どんな会社？</h2>
           </div>
 
-          <div class="person-content">
-            <small>電話交換スタッフ</small>
+          <p class="section-lead">
+            オーファスは、建物を利用する人が毎日安心して過ごせるように、
+            清掃・設備管理・警備・電話交換など、さまざまな仕事で建物を支えている会社です。
+            目立つ仕事ではなくても、誰かの「あたりまえ」を守るために欠かせない仕事をしています。
+          </p>
+        </div>
 
-            <h3>
-              「仕事も、
-              自分の時間も大切に。」
-            </h3>
+        <div class="mvv-grid">
+          <article class="mvv-card">
+            <span class="num">01 / MISSION</span>
+            <div>
+              <h3>建物を未来へつなぐ仕事で<br>社会に貢献する。</h3>
+              <p>毎日の管理を積み重ね、建物の価値と安心を次の世代につなぎます。</p>
+            </div>
+          </article>
 
+          <article class="mvv-card">
+            <span class="num">02 / VISION</span>
+            <div>
+              <h3>選ばれ続ける<br>環境ソリューションパートナーへ。</h3>
+              <p>困ったときに最初に思い出してもらえる存在を目指します。</p>
+            </div>
+          </article>
+
+          <article class="mvv-card">
+            <span class="num">03 / VALUE</span>
+            <div>
+              <h3>ありがとうをつなぐ。<br>変化に気づく。まごころで応える。</h3>
+              <p>一人ひとりの行動が、オーファスらしさをつくっています。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- HISTORY -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">OUR HISTORY</p>
+            <h2 class="section-title">長く続くには、<br>理由がある。</h2>
+          </div>
+
+          <p class="section-lead">
+            1948年の創業から、地域とお客様に支えられながら歩んできました。
+            時代に合わせて仕事の幅を広げながら、建物と人を支えるという役割を続けています。
+          </p>
+        </div>
+
+        <div class="history-panel">
+          <div class="history-row">
+            <div class="history-year">1948</div>
+            <div class="history-title">オーファスの歩みがスタート</div>
+            <div class="history-text">地域に根ざし、建物を支える仕事を積み重ねてきました。</div>
+          </div>
+
+          <div class="history-row">
+            <div class="history-year">NOW</div>
+            <div class="history-title">さまざまな施設へサービスを展開</div>
+            <div class="history-text">清掃・設備・警備など、建物管理を幅広く担っています。</div>
+          </div>
+
+          <div class="history-row">
+            <div class="history-year">NEXT</div>
+            <div class="history-title">建物を、未来へ。</div>
+            <div class="history-text">これからも変化に気づき、必要とされる会社を目指します。</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- JOBS -->
+    <section class="section" id="jobs">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">OUR JOBS</p>
+            <h2 class="section-title">仕事はいろいろ。<br>働き方もいろいろ。</h2>
+          </div>
+
+          <p class="section-lead">
+            現場で直接お客様を支える仕事から、現場スタッフを支える仕事まで。
+            オーファスには、経験やライフスタイルに合わせて選べるさまざまな仕事があります。
+          </p>
+        </div>
+
+        <div class="jobs-grid">
+          <article class="job-card">
+            <span class="job-no">01</span>
+            <div class="job-icon">🧹</div>
+            <h3>清掃</h3>
+            <p>オフィス・病院・商業施設などを、気持ちよく使える空間に整える仕事です。</p>
+            <span class="job-link">仕事を見る →</span>
+          </article>
+
+          <article class="job-card">
+            <span class="job-no">02</span>
+            <div class="job-icon">🛡️</div>
+            <h3>警備</h3>
+            <p>施設の安全を守り、利用する人が安心して過ごせる環境を支えます。</p>
+            <span class="job-link">仕事を見る →</span>
+          </article>
+
+          <article class="job-card">
+            <span class="job-no">03</span>
+            <div class="job-icon">🔧</div>
+            <h3>設備管理</h3>
+            <p>電気・空調・給排水など、建物設備の点検や維持管理を行います。</p>
+            <span class="job-link">仕事を見る →</span>
+          </article>
+
+          <article class="job-card">
+            <span class="job-no">04</span>
+            <div class="job-icon">☎️</div>
+            <h3>電話交換</h3>
+            <p>施設の窓口として電話を受け、必要な部署や担当者へつなぎます。</p>
+            <span class="job-link">仕事を見る →</span>
+          </article>
+
+          <article class="job-card">
+            <span class="job-no">05</span>
+            <div class="job-icon">🤝</div>
+            <h3>営業・労務管理</h3>
+            <p>お客様との関係づくりと、現場スタッフの働きやすさを支える仕事です。</p>
+            <span class="job-link">仕事を見る →</span>
+          </article>
+
+          <article class="job-card">
+            <span class="job-no">06</span>
+            <div class="job-icon">＋</div>
+            <h3>そのほか</h3>
+            <p>勤務地・勤務時間・雇用形態など、自分に合う条件から仕事を探せます。</p>
+            <span class="job-link">求人一覧を見る →</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- NUMBERS -->
+    <section class="section numbers" id="numbers">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">OHFAS IN NUMBERS</p>
+            <h2 class="section-title">数字で見る<br>オーファス。</h2>
+          </div>
+
+          <p class="section-lead">
+            どんな会社なのかを、働いている人や会社のデータから見てみましょう。
+          </p>
+        </div>
+
+        <div class="numbers-grid">
+          <div class="number-card">
+            <span class="number-label">EMPLOYEES</span>
+            <strong class="number-value">635<small>名</small></strong>
+            <p class="number-note">たくさんの仲間が働いています</p>
+          </div>
+
+          <div class="number-card">
+            <span class="number-label">ESTABLISHED</span>
+            <strong class="number-value">1948<small>年</small></strong>
+            <p class="number-note">地域とともに歩んできました</p>
+          </div>
+
+          <div class="number-card">
+            <span class="number-label">GENDER</span>
+            <strong class="number-value">55:45</strong>
+            <p class="number-note">男性55％ / 女性45％</p>
+          </div>
+
+          <div class="number-card">
+            <span class="number-label">BEGINNER</span>
+            <strong class="number-value">80<small>%</small></strong>
+            <p class="number-note">未経験スタート</p>
+          </div>
+
+          <div class="number-card">
+            <span class="number-label">AGE</span>
+            <strong class="number-value">20<small>代〜</small></strong>
+            <p class="number-note">幅広い世代が活躍</p>
+          </div>
+
+          <div class="number-card">
+            <span class="number-label">YEARS</span>
+            <strong class="number-value">5<small>年</small></strong>
+            <p class="number-note">平均勤続年数</p>
+          </div>
+
+          <div class="number-card">
+            <span class="number-label">WORK STYLE</span>
+            <strong class="number-value">30:70</strong>
+            <p class="number-note">正社員30％ / パート等70％</p>
+          </div>
+
+          <div class="number-card">
+            <span class="number-label">JOBS</span>
+            <strong class="number-value">6<small>+</small></strong>
+            <p class="number-note">さまざまな職種があります</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PEOPLE -->
+    <section class="section" id="people">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">PEOPLE</p>
+            <h2 class="section-title">働く人を知る。</h2>
+          </div>
+
+          <p class="section-lead">
+            入社のきっかけ、仕事の大変さ、うれしかったこと、休日の過ごし方。
+            「実際どうなの？」に、オーファスで働く人たちが答えます。
+          </p>
+        </div>
+
+        <div class="people-grid">
+          <article class="person-card large">
+            <div class="person-photo"></div>
+            <div class="person-body">
+              <span class="person-role">CLEANING STAFF</span>
+              <h3 class="person-title">未経験でも、少しずつ覚えていけた。<br>今ではこの仕事が、自分に合っていると思います。</h3>
+            </div>
+          </article>
+
+          <article class="person-card">
+            <div class="person-photo"></div>
+            <div class="person-body">
+              <span class="person-role">SECURITY STAFF</span>
+              <h3 class="person-title">「ありがとう」のひと言が、やっぱりうれしい。</h3>
+            </div>
+          </article>
+
+          <article class="person-card">
+            <div class="person-photo"></div>
+            <div class="person-body">
+              <span class="person-role">FACILITY STAFF</span>
+              <h3 class="person-title">何も起きない一日を守る。それも大切な仕事です。</h3>
+            </div>
+          </article>
+
+          <article class="person-card">
+            <div class="person-photo"></div>
+            <div class="person-body">
+              <span class="person-role">TELEPHONE OPERATOR</span>
+              <h3 class="person-title">人と人をつなぐ仕事だから、言葉を大切にしています。</h3>
+            </div>
+          </article>
+
+          <article class="person-card">
+            <div class="person-photo"></div>
+            <div class="person-body">
+              <span class="person-role">MANAGEMENT</span>
+              <h3 class="person-title">現場のみんなが働きやすい環境を、裏側から支える。</h3>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FLOW -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">HOW TO START</p>
+            <h2 class="section-title">気になったら、<br>ここから。</h2>
+          </div>
+
+          <p class="section-lead">
+            紹介だからといって、応募を急ぐ必要はありません。
+            自分のペースで知って、話して、合いそうなら次へ進んでください。
+          </p>
+        </div>
+
+        <div class="process">
+          <div class="process-item">
+            <span class="process-step">STEP 01</span>
+            <strong>サイトを見る</strong>
+            <p>会社・仕事・人について、まずは気軽に知ってください。</p>
+          </div>
+
+          <div class="process-item">
+            <span class="process-step">STEP 02</span>
+            <strong>気になる仕事を探す</strong>
+            <p>勤務地や職種から、自分に合いそうな求人をチェック。</p>
+          </div>
+
+          <div class="process-item">
+            <span class="process-step">STEP 03</span>
+            <strong>LINEで聞いてみる</strong>
+            <p>応募前のちょっとした質問や相談でも大丈夫です。</p>
+          </div>
+
+          <div class="process-item">
+            <span class="process-step">STEP 04</span>
+            <strong>応募・面談へ</strong>
+            <p>「働いてみたい」と思ったら、そのときに応募へ進めます。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FIND JOB -->
+    <section class="section" id="find">
+      <div class="container">
+        <div class="find-panel">
+          <p class="section-kicker">FIND YOUR JOB</p>
+          <h2 class="find-title">あなたに合いそうな仕事、<br>ちょっと見てみませんか？</h2>
+          <p class="find-copy">
+            応募するかどうかは、求人を見てから決めて大丈夫です。
+            エリアや職種から、気になる仕事を探してみてください。
+          </p>
+
+          <form class="filters" onsubmit="return false;">
+            <select aria-label="勤務地から探す">
+              <option>勤務地から探す</option>
+              <option>熊本市</option>
+              <option>上益城エリア</option>
+              <option>菊池・合志エリア</option>
+              <option>その他</option>
+            </select>
+
+            <select aria-label="職種から探す">
+              <option>職種から探す</option>
+              <option>清掃</option>
+              <option>警備</option>
+              <option>設備管理</option>
+              <option>電話交換</option>
+              <option>営業・労務管理</option>
+            </select>
+
+            <button class="search-button" id="searchButton" type="button">求人を見る →</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- LINE -->
+    <section class="section">
+      <div class="container">
+        <div class="line-box">
+          <div>
+            <p class="section-kicker">KEEP IN TOUCH</p>
+            <h2>応募の前に、<br>LINEでつながる。</h2>
             <p>
-              自分らしい働き方をしている
-              スタッフのリアルな声をご紹介します。
+              「紹介してもらったけど、まだ応募するか迷っている」
+              「勤務時間だけ聞きたい」そんな段階でも大丈夫です。
+              気になることがあれば、採用担当へ気軽にご相談ください。
             </p>
-
           </div>
+
+          <a class="line-btn" href="#">LINEで相談する →</a>
         </div>
-
       </div>
+    </section>
+  </main>
 
-    </div>
-  </section>
-
-
-  <!-- FAQ -->
-  <section class="section" id="faq">
-
-    <div class="container">
-
-      <div class="section-title">
-        <span>FAQ</span>
-        <h2>リファラル採用について</h2>
-        <p>
-          気になることをまとめました。
-        </p>
-      </div>
-
-
-      <div class="faq-list">
-
-        <details>
-          <summary>
-            紹介されたら、必ず応募しないといけませんか？
-          </summary>
-
-          <p>
-            いいえ。まずは会社や仕事を知っていただくだけでも大丈夫です。
-          </p>
-        </details>
-
-
-        <details>
-          <summary>
-            話を聞くだけでも大丈夫ですか？
-          </summary>
-
-          <p>
-            もちろん大丈夫です。
-            気になる職種や働き方について、
-            気軽にご相談ください。
-          </p>
-        </details>
-
-
-        <details>
-          <summary>
-            紹介してくれた社員に選考内容は伝わりますか？
-          </summary>
-
-          <p>
-            選考内容や個人情報については、
-            適切に取り扱います。
-          </p>
-        </details>
-
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- CTA -->
-  <section class="section cta" id="contact">
-
-    <div class="container">
-
-      <div class="cta-box">
-
-        <h2>
-          まずは、話を聞くだけでも。
-        </h2>
-
-        <p>
-          「この仕事ってどんな仕事？」
-          「自分でもできる？」
-          そんな質問からでも大丈夫です。
-        </p>
-
-        <a href="#" class="btn btn-white">
-          気軽に相談する
-        </a>
-
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- フッター -->
   <footer>
-    <p>
-      株式会社オーファス｜Referral Recruitment
-    </p>
+    <div class="container">
+      <div class="footer-main">
+        <div>
+          <div class="footer-logo">OHFAS</div>
+          <div style="margin-top:12px;font-weight:800;">REFERRAL RECRUITING SITE</div>
+        </div>
+
+        <a href="#top" class="btn btn-yellow">PAGE TOP ↑</a>
+      </div>
+
+      <p class="footer-copy">© OHFAS. All Rights Reserved.</p>
+    </div>
   </footer>
 
+  <script>
+    const menuButton = document.getElementById("menuButton");
+    const mobileNav = document.getElementById("mobileNav");
+
+    menuButton.addEventListener("click", () => {
+      const open = mobileNav.classList.toggle("active");
+      document.body.classList.toggle("menu-open", open);
+      menuButton.setAttribute("aria-expanded", String(open));
+      menuButton.textContent = open ? "×" : "≡";
+    });
+
+    mobileNav.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileNav.classList.remove("active");
+        document.body.classList.remove("menu-open");
+        menuButton.setAttribute("aria-expanded", "false");
+        menuButton.textContent = "≡";
+      });
+    });
+
+    document.getElementById("searchButton").addEventListener("click", () => {
+      alert("ここを実際の求人一覧ページへ接続できます。");
+    });
+  </script>
 </body>
 </html>
+'''
+
+out = Path("/mnt/data/ohfas_referral_brushup.html")
+out.write_text(html, encoding="utf-8")
+print(f"created: {out}")
