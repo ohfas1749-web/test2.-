@@ -1194,6 +1194,301 @@
       .opening-plane-layer{display:none}
     }
 
+
+    /* STAFF INTERVIEW MODAL */
+    .person-card{
+      cursor:pointer;
+    }
+
+    .person-card:focus-visible{
+      outline:3px solid #172bd1;
+      outline-offset:4px;
+    }
+
+    .staff-modal{
+      position:fixed;
+      inset:0;
+      z-index:10000;
+      display:grid;
+      place-items:center;
+      padding:24px;
+      opacity:0;
+      visibility:hidden;
+      transition:opacity .25s ease, visibility .25s ease;
+    }
+
+    .staff-modal.is-open{
+      opacity:1;
+      visibility:visible;
+    }
+
+    .staff-modal-backdrop{
+      position:absolute;
+      inset:0;
+      background:rgba(20,25,22,.56);
+      backdrop-filter:blur(7px);
+    }
+
+    .staff-modal-panel{
+      position:relative;
+      z-index:1;
+      width:min(920px, 94vw);
+      max-height:88vh;
+      overflow:auto;
+      background:#fff;
+      border:1px solid #cfd5d2;
+      box-shadow:0 24px 80px rgba(0,0,0,.22);
+      transform:translateY(24px) scale(.985);
+      transition:transform .3s cubic-bezier(.2,.75,.25,1);
+    }
+
+    .staff-modal.is-open .staff-modal-panel{
+      transform:none;
+    }
+
+    .staff-modal-close{
+      position:sticky;
+      z-index:4;
+      top:18px;
+      float:right;
+      margin:18px 18px -62px 0;
+      width:46px;
+      height:46px;
+      border:1px solid #cfd5d2;
+      background:rgba(255,255,255,.95);
+      color:#202522;
+      font-size:1.6rem;
+      line-height:1;
+      cursor:pointer;
+    }
+
+    .staff-modal-grid{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      min-height:560px;
+    }
+
+    .staff-modal-photo{
+      min-height:560px;
+      background:#e9edeb;
+    }
+
+    .staff-modal-photo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .staff-modal-content{
+      padding:68px 56px 52px;
+    }
+
+    .staff-modal-role{
+      display:block;
+      margin-bottom:18px;
+      color:#172bd1;
+      font-size:.74rem;
+      font-weight:900;
+      letter-spacing:.14em;
+    }
+
+    .staff-modal-title{
+      margin:0 0 30px;
+      font-size:clamp(1.7rem,3vw,2.7rem);
+      line-height:1.35;
+      letter-spacing:-.035em;
+    }
+
+    .staff-modal-body{
+      display:grid;
+      gap:24px;
+    }
+
+    .staff-modal-block{
+      padding-top:20px;
+      border-top:1px solid #dfe3e1;
+    }
+
+    .staff-modal-block h4{
+      margin:0 0 8px;
+      font-size:.82rem;
+      color:#65706a;
+    }
+
+    .staff-modal-block p{
+      margin:0;
+      font-size:.95rem;
+      line-height:1.9;
+    }
+
+    body.modal-open{
+      overflow:hidden;
+    }
+
+    @media (max-width:760px){
+      .staff-modal{padding:10px}
+      .staff-modal-panel{width:100%;max-height:94vh}
+      .staff-modal-grid{grid-template-columns:1fr}
+      .staff-modal-photo{min-height:260px;height:260px}
+      .staff-modal-content{padding:34px 24px 34px}
+      .staff-modal-close{top:10px;margin:10px 10px -56px 0}
+    }
+
+
+    /* JOB DETAIL MODAL */
+    .job-card{
+      cursor:pointer;
+    }
+
+    .job-card:focus-visible{
+      outline:3px solid #172bd1;
+      outline-offset:4px;
+    }
+
+    .job-modal{
+      position:fixed;
+      inset:0;
+      z-index:10001;
+      display:grid;
+      place-items:center;
+      padding:24px;
+      opacity:0;
+      visibility:hidden;
+      transition:opacity .25s ease, visibility .25s ease;
+    }
+
+    .job-modal.is-open{
+      opacity:1;
+      visibility:visible;
+    }
+
+    .job-modal-backdrop{
+      position:absolute;
+      inset:0;
+      background:rgba(20,25,22,.56);
+      backdrop-filter:blur(7px);
+    }
+
+    .job-modal-panel{
+      position:relative;
+      z-index:1;
+      width:min(940px,94vw);
+      max-height:88vh;
+      overflow:auto;
+      background:#fff;
+      border:1px solid #cfd5d2;
+      box-shadow:0 24px 80px rgba(0,0,0,.22);
+      transform:translateY(24px) scale(.985);
+      transition:transform .3s cubic-bezier(.2,.75,.25,1);
+    }
+
+    .job-modal.is-open .job-modal-panel{
+      transform:none;
+    }
+
+    .job-modal-close{
+      position:sticky;
+      z-index:4;
+      top:18px;
+      float:right;
+      margin:18px 18px -62px 0;
+      width:46px;
+      height:46px;
+      border:1px solid #cfd5d2;
+      background:rgba(255,255,255,.95);
+      color:#202522;
+      font-size:1.6rem;
+      line-height:1;
+      cursor:pointer;
+    }
+
+    .job-modal-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      min-height:560px;
+    }
+
+    .job-modal-photo{
+      min-height:560px;
+      background:#e9edeb;
+    }
+
+    .job-modal-photo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .job-modal-content{
+      padding:66px 54px 48px;
+    }
+
+    .job-modal-label{
+      display:block;
+      margin-bottom:14px;
+      color:#159d25;
+      font-size:.74rem;
+      font-weight:900;
+      letter-spacing:.14em;
+    }
+
+    .job-modal-title{
+      margin:0 0 26px;
+      font-size:clamp(1.9rem,3vw,3rem);
+      line-height:1.2;
+      letter-spacing:-.04em;
+    }
+
+    .job-modal-lead{
+      margin:0 0 28px;
+      color:#4e5551;
+      line-height:1.9;
+    }
+
+    .job-modal-list{
+      display:grid;
+      gap:18px;
+    }
+
+    .job-modal-item{
+      padding-top:18px;
+      border-top:1px solid #dfe3e1;
+    }
+
+    .job-modal-item h4{
+      margin:0 0 7px;
+      font-size:.82rem;
+      color:#68706c;
+    }
+
+    .job-modal-item p{
+      margin:0;
+      font-size:.95rem;
+      line-height:1.85;
+    }
+
+    .job-modal-action{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:50px;
+      margin-top:28px;
+      padding:0 20px;
+      background:#172bd1;
+      color:#fff;
+      border-radius:4px;
+      font-weight:900;
+    }
+
+    @media(max-width:760px){
+      .job-modal{padding:10px}
+      .job-modal-panel{width:100%;max-height:94vh}
+      .job-modal-grid{grid-template-columns:1fr}
+      .job-modal-photo{min-height:250px;height:250px}
+      .job-modal-content{padding:34px 24px}
+      .job-modal-close{top:10px;margin:10px 10px -56px 0}
+    }
+
     /* RESPONSIVE */
     @media(max-width:980px){
       .nav{display:none}
@@ -1601,7 +1896,7 @@
         </div>
 
         <div class="jobs-grid reveal reveal-delay-1">
-          <article class="job-card">
+          <article class="job-card" tabindex="0" role="button" data-job="0">
             <span class="job-no">01</span>
             <img class="job-photo" src="images/job-cleaning.jpg" alt="清掃スタッフの仕事風景"
                  onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
@@ -1611,7 +1906,7 @@
             <span class="job-link">仕事を見る →</span>
           </article>
 
-          <article class="job-card">
+          <article class="job-card" tabindex="0" role="button" data-job="1">
             <span class="job-no">02</span>
             <img class="job-photo" src="images/job-security.jpg" alt="警備スタッフの仕事風景"
                  onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
@@ -1621,7 +1916,7 @@
             <span class="job-link">仕事を見る →</span>
           </article>
 
-          <article class="job-card">
+          <article class="job-card" tabindex="0" role="button" data-job="2">
             <span class="job-no">03</span>
             <img class="job-photo" src="images/job-facility.jpg" alt="設備管理スタッフの仕事風景"
                  onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
@@ -1631,7 +1926,7 @@
             <span class="job-link">仕事を見る →</span>
           </article>
 
-          <article class="job-card">
+          <article class="job-card" tabindex="0" role="button" data-job="3">
             <span class="job-no">04</span>
             <img class="job-photo" src="images/job-telephone.jpg" alt="電話交換スタッフの仕事風景"
                  onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
@@ -1641,7 +1936,7 @@
             <span class="job-link">仕事を見る →</span>
           </article>
 
-          <article class="job-card">
+          <article class="job-card" tabindex="0" role="button" data-job="4">
             <span class="job-no">05</span>
             <img class="job-photo" src="images/job-management.jpg" alt="営業・労務管理スタッフの仕事風景"
                  onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
@@ -1651,7 +1946,7 @@
             <span class="job-link">仕事を見る →</span>
           </article>
 
-          <article class="job-card">
+          <article class="job-card" tabindex="0" role="button" data-job="5">
             <span class="job-no">06</span>
             <img class="job-photo" src="images/job-other.jpg" alt="オーファスで働くスタッフの仕事風景"
                  onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
@@ -1663,6 +1958,45 @@
         </div>
       </div>
     </section>
+
+
+    <div class="job-modal" id="jobModal" aria-hidden="true">
+      <div class="job-modal-backdrop" data-job-close></div>
+      <div class="job-modal-panel" role="dialog" aria-modal="true" aria-labelledby="jobModalTitle">
+        <button class="job-modal-close" type="button" aria-label="閉じる" data-job-close>×</button>
+
+        <div class="job-modal-grid">
+          <div class="job-modal-photo">
+            <img id="jobModalImage" src="" alt="">
+          </div>
+
+          <div class="job-modal-content">
+            <span class="job-modal-label" id="jobModalLabel"></span>
+            <h3 class="job-modal-title" id="jobModalTitle"></h3>
+            <p class="job-modal-lead" id="jobModalLead"></p>
+
+            <div class="job-modal-list">
+              <div class="job-modal-item">
+                <h4>主な仕事内容</h4>
+                <p id="jobModalWork"></p>
+              </div>
+
+              <div class="job-modal-item">
+                <h4>こんな方におすすめ</h4>
+                <p id="jobModalFit"></p>
+              </div>
+
+              <div class="job-modal-item">
+                <h4>働き方</h4>
+                <p id="jobModalStyle"></p>
+              </div>
+            </div>
+
+            <a class="job-modal-action" href="#find" data-job-close>この職種の求人を探す →</a>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- NUMBERS -->
     <section class="section numbers" id="numbers">
@@ -1754,7 +2088,7 @@
             </div>
           </article>
 
-          <article class="person-card">
+          <article class="person-card" tabindex="0" role="button" data-staff="0">
             <div class="person-photo"></div>
             <div class="person-body">
               <span class="person-role">SECURITY STAFF</span>
@@ -1762,7 +2096,7 @@
             </div>
           </article>
 
-          <article class="person-card">
+          <article class="person-card" tabindex="0" role="button" data-staff="1">
             <div class="person-photo"></div>
             <div class="person-body">
               <span class="person-role">FACILITY STAFF</span>
@@ -1770,7 +2104,7 @@
             </div>
           </article>
 
-          <article class="person-card">
+          <article class="person-card" tabindex="0" role="button" data-staff="2">
             <div class="person-photo"></div>
             <div class="person-body">
               <span class="person-role">TELEPHONE OPERATOR</span>
@@ -1778,7 +2112,7 @@
             </div>
           </article>
 
-          <article class="person-card">
+          <article class="person-card" tabindex="0" role="button" data-staff="3">
             <div class="person-photo"></div>
             <div class="person-body">
               <span class="person-role">MANAGEMENT</span>
@@ -1831,6 +2165,37 @@
         </div>
       </div>
     </section>
+
+
+    <div class="staff-modal" id="staffModal" aria-hidden="true">
+      <div class="staff-modal-backdrop" data-modal-close></div>
+      <div class="staff-modal-panel" role="dialog" aria-modal="true" aria-labelledby="staffModalTitle">
+        <button class="staff-modal-close" type="button" aria-label="閉じる" data-modal-close>×</button>
+        <div class="staff-modal-grid">
+          <div class="staff-modal-photo">
+            <img id="staffModalImage" src="" alt="">
+          </div>
+          <div class="staff-modal-content">
+            <span class="staff-modal-role" id="staffModalRole"></span>
+            <h3 class="staff-modal-title" id="staffModalTitle"></h3>
+            <div class="staff-modal-body">
+              <div class="staff-modal-block">
+                <h4>入社して感じたこと</h4>
+                <p id="staffModalIntro"></p>
+              </div>
+              <div class="staff-modal-block">
+                <h4>仕事のやりがい</h4>
+                <p id="staffModalReward"></p>
+              </div>
+              <div class="staff-modal-block">
+                <h4>これから働く方へ</h4>
+                <p id="staffModalMessage"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- FIND JOB -->
     <section class="section" id="find">
@@ -1955,6 +2320,124 @@
 
     if(slides.length > 1) startSlider();
     document.documentElement.classList.add("js-ready");
+
+    const jobDetails = [{"label": "JOB 01", "title": "清掃", "lead": "施設を利用する人が、気持ちよく過ごせる空間をつくる仕事です。", "work": "オフィス・病院・商業施設などで、床や共用部、トイレなどの清掃を行います。", "fit": "コツコツ取り組むのが好きな方、体を動かす仕事が好きな方。未経験から始める方も多い職種です。", "style": "短時間勤務からフルタイムまで、勤務地によってさまざまな働き方があります。", "image": "images/job-cleaning.jpg"}, {"label": "JOB 02", "title": "警備", "lead": "施設を利用する人の安全と安心を守る仕事です。", "work": "館内巡回、出入管理、受付、ご案内などを行い、異常がないかを確認します。", "fit": "責任感を持って落ち着いて対応できる方、人と接する仕事が好きな方に向いています。", "style": "施設や勤務先によって、日勤・夜勤・シフト制などがあります。", "image": "images/job-security.jpg"}, {"label": "JOB 03", "title": "設備管理", "lead": "建物の設備がいつも通り動くように、点検・管理する仕事です。", "work": "電気、空調、給排水などの設備点検や簡単なメンテナンス、不具合への一次対応を行います。", "fit": "機械や設備に興味がある方、資格や技術を身につけたい方におすすめです。", "style": "常駐管理や巡回管理など、現場によって勤務スタイルが異なります。", "image": "images/job-facility.jpg"}, {"label": "JOB 04", "title": "電話交換", "lead": "施設の“声の窓口”として、人と人をつなぐ仕事です。", "work": "代表電話を受け、内容を確認し、必要な部署や担当者へ取り次ぎます。", "fit": "丁寧な受け答えができる方、人と話すことが好きな方に向いています。", "style": "勤務地によって勤務時間や曜日が異なり、落ち着いた室内で働く職場もあります。", "image": "images/job-telephone.jpg"}, {"label": "JOB 05", "title": "営業・労務管理", "lead": "お客様と現場スタッフの間に立ち、サービスを支える仕事です。", "work": "お客様との打ち合わせ、現場確認、スタッフのフォロー、勤務管理などを行います。", "fit": "人と関わることが好きな方、相談に乗ったり調整したりすることが得意な方におすすめです。", "style": "本社勤務を中心に、担当現場への訪問や打ち合わせがあります。", "image": "images/job-management.jpg"}, {"label": "JOB 06", "title": "そのほかの仕事", "lead": "オーファスには、勤務地や働き方に合わせて選べるさまざまな仕事があります。", "work": "募集時期によって、さまざまな職種・勤務地の求人があります。", "fit": "まずは条件から仕事を探したい方や、自分に合う職種を相談したい方にもおすすめです。", "style": "勤務地・勤務時間・雇用形態など、条件から求人を探せます。", "image": "images/job-other.jpg"}];
+    const staffDetails = [{"role": "清掃スタッフ", "title": "未経験でも、少しずつ覚えていけた。今ではこの仕事が、自分に合っていると思います。", "intro": "入社したときは清掃の経験がなく、最初は分からないことばかりでした。でも、周りのスタッフに教えてもらいながら少しずつ仕事を覚えていきました。", "reward": "自分がきれいにした場所をお客様が気持ちよく使ってくださること。「ありがとう」と声をかけてもらえると、やっていてよかったと思います。", "message": "一人で黙々と進める時間もありますが、困ったときは相談できる人がいます。未経験からでも始めやすい仕事だと思います。", "image": "images/staff-interview-01.jpg"}, {"role": "警備スタッフ", "title": "「ありがとう」のひと言が、やっぱりうれしい。", "intro": "施設を利用する方へのご案内や安全確認など、何も起きない一日を守るのが私たちの仕事です。", "reward": "直接「ありがとう」と言っていただける機会があること。日々の小さな対応が安心につながっていると感じます。", "message": "責任はありますが、決められた手順を覚えれば落ち着いて仕事に取り組めます。", "image": "images/staff-interview-02.jpg"}, {"role": "設備スタッフ", "title": "何も起きない一日を守る。それも大切な仕事です。", "intro": "建物の電気・空調・給排水などを点検し、不具合が起きる前に変化へ気づくことを大切にしています。", "reward": "トラブルを未然に防げたときや、設備が当たり前に動き続けているときに、この仕事の意味を感じます。", "message": "専門知識は仕事をしながら身につけていけます。機械や設備に興味がある方にも向いています。", "image": "images/staff-interview-03.jpg"}, {"role": "電話交換スタッフ", "title": "人と人をつなぐ仕事だから、言葉を大切にしています。", "intro": "電話を受け、内容を確認して適切な部署や担当者へつなぐ仕事です。施設の“声の窓口”として働いています。", "reward": "相手の顔が見えないからこそ、声のトーンや言葉遣いを意識しています。丁寧に対応できたときは達成感があります。", "message": "最初は敬語が難しく感じましたが、経験を重ねるうちに自然と身についていきました。", "image": "images/staff-interview-04.jpg"}, {"role": "営業・労務管理", "title": "現場のみんなが働きやすい環境を、裏側から支える。", "intro": "お客様との打ち合わせや現場の確認、スタッフのフォローなど、現場と会社をつなぐ役割です。", "reward": "スタッフから相談を受けて改善につながったときや、お客様から現場を評価していただけたときにやりがいを感じます。", "message": "人と関わることが多い仕事です。相手の話を聞いて、一緒に考えることを大切にしています。", "image": "images/staff-interview-05.jpg"}];
+
+    const staffModal = document.getElementById("staffModal");
+    const staffModalImage = document.getElementById("staffModalImage");
+    const staffModalRole = document.getElementById("staffModalRole");
+    const staffModalTitle = document.getElementById("staffModalTitle");
+    const staffModalIntro = document.getElementById("staffModalIntro");
+    const staffModalReward = document.getElementById("staffModalReward");
+    const staffModalMessage = document.getElementById("staffModalMessage");
+    let lastFocusedStaffCard = null;
+
+    function openStaffModal(index){
+      const data = staffDetails[index];
+      if (!data || !staffModal) return;
+
+      lastFocusedStaffCard = document.activeElement;
+      staffModalRole.textContent = data.role;
+      staffModalTitle.textContent = data.title;
+      staffModalIntro.textContent = data.intro;
+      staffModalReward.textContent = data.reward;
+      staffModalMessage.textContent = data.message;
+      staffModalImage.src = data.image;
+      staffModalImage.alt = `${data.role}のスタッフ写真`;
+
+      staffModal.classList.add("is-open");
+      staffModal.setAttribute("aria-hidden","false");
+      document.body.classList.add("modal-open");
+      staffModal.querySelector(".staff-modal-close").focus();
+    }
+
+    function closeStaffModal(){
+      if (!staffModal) return;
+      staffModal.classList.remove("is-open");
+      staffModal.setAttribute("aria-hidden","true");
+      document.body.classList.remove("modal-open");
+      if (lastFocusedStaffCard) lastFocusedStaffCard.focus();
+    }
+
+    document.querySelectorAll(".person-card[data-staff]").forEach(card => {
+      card.addEventListener("click", () => openStaffModal(Number(card.dataset.staff)));
+      card.addEventListener("keydown", e => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openStaffModal(Number(card.dataset.staff));
+        }
+      });
+    });
+
+    document.querySelectorAll("[data-modal-close]").forEach(el => {
+      el.addEventListener("click", closeStaffModal);
+    });
+
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape" && staffModal?.classList.contains("is-open")) {
+        closeStaffModal();
+      }
+    });
+
+
+    const jobModal = document.getElementById("jobModal");
+    const jobModalImage = document.getElementById("jobModalImage");
+    const jobModalLabel = document.getElementById("jobModalLabel");
+    const jobModalTitle = document.getElementById("jobModalTitle");
+    const jobModalLead = document.getElementById("jobModalLead");
+    const jobModalWork = document.getElementById("jobModalWork");
+    const jobModalFit = document.getElementById("jobModalFit");
+    const jobModalStyle = document.getElementById("jobModalStyle");
+    let lastFocusedJobCard = null;
+
+    function openJobModal(index){
+      const data = jobDetails[index];
+      if (!data || !jobModal) return;
+
+      lastFocusedJobCard = document.activeElement;
+      jobModalImage.src = data.image;
+      jobModalImage.alt = `${data.title}の仕事風景`;
+      jobModalLabel.textContent = data.label;
+      jobModalTitle.textContent = data.title;
+      jobModalLead.textContent = data.lead;
+      jobModalWork.textContent = data.work;
+      jobModalFit.textContent = data.fit;
+      jobModalStyle.textContent = data.style;
+
+      jobModal.classList.add("is-open");
+      jobModal.setAttribute("aria-hidden","false");
+      document.body.classList.add("modal-open");
+      jobModal.querySelector(".job-modal-close").focus();
+    }
+
+    function closeJobModal(){
+      if (!jobModal) return;
+      jobModal.classList.remove("is-open");
+      jobModal.setAttribute("aria-hidden","true");
+      document.body.classList.remove("modal-open");
+      if (lastFocusedJobCard) lastFocusedJobCard.focus();
+    }
+
+    document.querySelectorAll(".job-card[data-job]").forEach(card => {
+      card.addEventListener("click", () => openJobModal(Number(card.dataset.job)));
+      card.addEventListener("keydown", e => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openJobModal(Number(card.dataset.job));
+        }
+      });
+    });
+
+    document.querySelectorAll("[data-job-close]").forEach(el => {
+      el.addEventListener("click", closeJobModal);
+    });
+
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape" && jobModal?.classList.contains("is-open")) {
+        closeJobModal();
+      }
+    });
 
     /* Opening paper airplane */
     requestAnimationFrame(() => {
