@@ -87,12 +87,6 @@ button{font:inherit;color:inherit}
 @keyframes navIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
 .progress{position:absolute;left:0;bottom:-1px;width:0;height:2px;background:linear-gradient(90deg,#7fa9ef,var(--green))}
 
-/* Opening plane */
-.plane-layer{position:fixed;inset:0;z-index:1100;pointer-events:none;overflow:hidden}
-.paper-plane{position:absolute;left:-110px;top:58%;width:74px;opacity:0}
-body.ready .paper-plane{animation:fly 3s cubic-bezier(.2,.7,.2,1) .2s both}
-@keyframes fly{0%{opacity:0;transform:translate(0,18px) rotate(-10deg)}10%{opacity:1}45%{transform:translate(45vw,-12vh) rotate(5deg)}100%{opacity:0;transform:translate(calc(100vw + 160px),-28vh) rotate(10deg)}}
-
 /* Hero */
 .hero{position:relative;min-height:calc(100vh - var(--header));padding:42px 0 64px;display:flex;align-items:center;overflow:hidden}
 .hero::after{content:"REFERRAL";position:absolute;right:-18px;bottom:-25px;color:rgba(127,169,239,.08);font-size:clamp(7rem,18vw,16rem);font-weight:800;line-height:1;letter-spacing:-.08em;pointer-events:none}
@@ -106,12 +100,6 @@ body.ready .paper-plane{animation:fly 3s cubic-bezier(.2,.7,.2,1) .2s both}
 .hero-copy{max-width:580px;margin:14px 0 0;color:#515a55;font-size:.93rem}
 .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
 .hero-visual{position:relative;min-width:0}
-.hero-slider{position:relative;aspect-ratio:1.22/1;overflow:hidden;border-radius:28px;background:#e7ece8;box-shadow:0 22px 60px rgba(20,24,23,.08)}
-.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity .8s}
-.hero-slide.active{opacity:1}
-.hero-slide img{width:100%;height:100%;object-fit:cover;transform:scale(1.035);transition:transform 5s}
-.hero-slide.active img{transform:scale(1)}
-.slider-dots{position:absolute;z-index:4;left:20px;bottom:18px;display:flex;gap:7px}
 .slider-dot{width:28px;height:3px;padding:0;border:0;background:rgba(255,255,255,.5)}
 .slider-dot.active{background:#fff}
 
@@ -154,7 +142,6 @@ body.ready .paper-plane{animation:fly 3s cubic-bezier(.2,.7,.2,1) .2s both}
 .number-card em{display:block;margin-top:12px;color:var(--muted);font-size:.7rem;font-style:normal}
 
 /* History */
-.history-section{background:#fff}
 .timeline{position:relative}
 .timeline-track{position:absolute;left:150px;top:0;bottom:0;width:1px;background:#d4dcd7;overflow:hidden}
 .timeline-progress{position:absolute;left:0;top:0;width:2px;height:0;background:linear-gradient(180deg,#7fa9ef,var(--green));transform:translateX(-.5px)}
@@ -371,7 +358,6 @@ html.js .reveal.show{opacity:1;transform:none}
   .brand img{width:138px}
   .hero{padding:32px 0 60px}
   .hero h1{font-size:clamp(2.75rem,13vw,4.4rem)}
-  .hero-slider{aspect-ratio:4/4.6;border-radius:22px}
     .intro-grid,.about-feature-grid,.numbers-grid,.people-grid{grid-template-columns:1fr}
   .jobs-grid{
     grid-template-columns:1fr;
@@ -405,7 +391,6 @@ html.js .reveal.show{opacity:1;transform:none}
   html{scroll-behavior:auto}
   *{animation:none!important;transition:none!important}
   html.js .reveal{opacity:1;transform:none}
-  .plane-layer{display:none}
 }
 
 /* ===== LINE BUTTON COLOR ===== */
@@ -451,16 +436,22 @@ html.js .reveal.show{opacity:1;transform:none}
   }
 }
 
+
+/* ===== HERO WITHOUT PHOTO ===== */
+.hero-grid{
+  grid-template-columns:1fr !important;
+}
+.hero-copy-wrap{
+  max-width:980px;
+}
+.hero-visual,
+  display:none !important;
+}
+
 </style>
 </head>
 
 <body>
-<div class="plane-layer" aria-hidden="true">
-  <svg class="paper-plane" viewBox="0 0 96 96">
-    <path d="M8 45.5 87 12 62 84 45 58 8 45.5Z" fill="#fff" stroke="#172bd1" stroke-width="3.2" stroke-linejoin="round"/>
-    <path d="M45 58 87 12 36 50" fill="none" stroke="#159d25" stroke-width="3.2"/>
-  </svg>
-</div>
 
 <header class="site-header">
   <div class="container header-inner">
@@ -499,14 +490,6 @@ html.js .reveal.show{opacity:1;transform:none}
         <a class="button" href="#flow">LINEでつながる</a>
       </div>
     </div>
-
-    <div class="hero-visual reveal">
-      <div class="hero-slider">
-        <figure class="hero-slide active"><img src="hero01.jpg" alt="清掃スタッフ" onerror="this.style.display='none'"></figure>
-        <figure class="hero-slide"><img src="hero02.jpg" alt="警備スタッフ" onerror="this.style.display='none'"></figure>
-        <figure class="hero-slide"><img src="hero03.jpg" alt="設備スタッフ" onerror="this.style.display='none'"></figure>
-        <div class="slider-dots" id="sliderDots"></div>
-      </div>
     </div>
   </div>
 </section>
@@ -551,27 +534,14 @@ html.js .reveal.show{opacity:1;transform:none}
       <article class="about-feature reveal"><span>02</span><h3>いろんな人が働いている</h3><p>年代も働き方もさまざま。正社員・パートなど、それぞれの生活に合わせた働き方があります。</p></article>
       <article class="about-feature reveal"><span>03</span><h3>地域とともに歩んできた</h3><p>1948年の創業から、熊本を中心に建物と人の毎日を支えてきました。</p></article>
     </div>
-  </div>
-</section>
 
-<section class="section history-section">
-  <p class="ghost-word">STORY</p>
-  <div class="container">
-    <div class="section-head reveal">
-      <p class="section-label">OHFAS STORY</p>
-      <h2 class="section-title">地域とともに、歩んできました。</h2>
-      <p class="section-copy">時代に合わせて仕事の幅を広げながら、建物と人を支える役割をつないできました。</p>
-    </div>
-
-    <div class="timeline" id="timeline">
-      <div class="timeline-track" aria-hidden="true"><span class="timeline-progress" id="timelineProgress"></span></div>
-      <article class="timeline-row reveal"><time>1948</time><div><h3>創業</h3><p>熊本市にて大成産業株式会社を設立。オーファスの歴史がスタート</p></div></article>
-      <article class="timeline-row reveal"><time>1957</time><div><h3>建物管理の仕事を拡大</h3><p>現在のビルメンテナンス事業につながる一歩</p></div></article>
-      <article class="timeline-row reveal"><time>1969</time><div><h3>警備などへ展開</h3><p>オリエンタル警備保障株式会社を設立し、警備事業へ展開</p></div></article>
-      <article class="timeline-row reveal"><time>1996</time><div><h3>コンビニ事業へ進出</h3><p>ファミリーマート水前寺2丁目店をオープン。</p></div></article>
-      <article class="timeline-row reveal"><time>2011</time><div><h3>統一ブランド「OHFAS」</h3><p>ビルメンテナンスとセキュリティの統一ブランド「OHFAS」を構築。</p></div></article>
-      <article class="timeline-row reveal"><time>2021</time><div><h3>「株式会社オーファス」へ社名変更</h3><p>OHFASホールディングスを設立し、ホールディングス体制へ移行。大森産業株式会社から「株式会社オーファス」へ社名変更</p></div></article>
-      <article class="timeline-row reveal"><time>NOWT</time><div><h3>建物を、未来へ。</h3><p>600名を超える仲間と建物を未来へつなぐ仕事で社会に貢献</p></div></article>
+    <div class="numbers-grid">
+      <article class="number-card reveal"><p>創業</p><strong data-count="1948">1948<small>年</small></strong><em>地域とともに歩んできました</em></article>
+      <article class="number-card reveal"><p>従業員数</p><strong data-count="635">635<small>名</small></strong><em>OHFASホールディングスグループ全体</em></article>
+      <article class="number-card reveal"><p>未経験スタート</p><strong data-count="80">80<small>%</small></strong><em>経験ゼロから始めた人も多数</em></article>
+      <article class="number-card reveal"><p>男女比</p><strong>55<small>%</small>：45<small>%</small></strong><em>男性/女性</em></article>
+      <article class="number-card reveal"><p>平均勤続年数</p><strong data-count="5">5<small>年</small></strong><em>10年以上働いているスタッフも多数在籍</em></article>
+      <article class="number-card reveal"><p>雇用形態</p><strong>30<small>%</small>：70<small>%</small></strong><em>正社員/パート</em></article>
     </div>
   </div>
 </section>
@@ -898,8 +868,6 @@ mobileNav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{
 }));
 
 /* hero slider */
-const slides=[...document.querySelectorAll(".hero-slide")];
-const dotsBox=document.getElementById("sliderDots");
 let slideIndex=0;
 const dots=slides.map((_,i)=>{
   const b=document.createElement("button");
